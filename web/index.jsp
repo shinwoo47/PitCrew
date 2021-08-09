@@ -8,6 +8,7 @@
 </head>
 <body>
 	<h1>hi</h1>
-	<jsp:forward page="/WEB-INF/views/main/main.jsp"/>
+	<%-- <jsp:forward page="/WEB-INF/views/main/main.jsp"/> --%>
+	<jsp:forward page="/WEB-INF/views/user/services.jsp"/>
 </body>
 </html>
