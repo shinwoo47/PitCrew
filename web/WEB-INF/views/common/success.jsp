@@ -39,6 +39,14 @@
 					successMessage = "썸네일 게시판 등록에 성공하셨습니다!";
 					movePath = "${ pageContext.servletContext.contextPath }/thumbnail/list";
 					break;
+				case "cleanerLogin" : 
+					successMessage = "해결사 로그인 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
+					break;
+				case "adminLogin" : 
+					successMessage = "관리자 로그인 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/admin/home";
+					break;
 			}
 
 			alert(successMessage);

@@ -30,7 +30,7 @@
 <body>
     
     <!-- 네비 -->
-	<jsp:include page="../common/menubar.jsp"/>
+	<jsp:include page="../cleaner/cleanermenubar.jsp"/>
    
 
     <!-- Hero Section Begin -->
@@ -536,7 +536,7 @@
     </div>
     <!-- Search End -->
 
-    <!-- Js Plugins -->
+   <!-- Js Plugins -->
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery-3.3.1.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/bootstrap.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery.nice-select.min.js"></script>

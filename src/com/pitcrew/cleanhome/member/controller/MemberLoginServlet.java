@@ -45,7 +45,16 @@ public class MemberLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
 			
-			response.sendRedirect(request.getContextPath());
+			if(("해결사".equals(loginMember.getRole()))){
+				request.setAttribute("successCode", "cleanerLogin");
+				request.getRequestDispatcher("/WEB-INF/views/common/success.jsp").forward(request, response);
+			} else if(("관리자".equals(loginMember.getRole()))){
+				request.setAttribute("successCode", "adminLogin");
+				request.getRequestDispatcher("/WEB-INF/views/common/success.jsp").forward(request, response);
+			} else {
+				response.sendRedirect(request.getContextPath());
+			}
+	
 		} else {
 			request.setAttribute("message", "로그인 실패!");
 			request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);

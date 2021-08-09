@@ -21,7 +21,7 @@ import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
 
 
-@WebFilter(urlPatterns = {"/notice/*", "/member/*", "/board/*", "/thumbnail/*"})
+@WebFilter(urlPatterns = {"/cleaner/*", "/user/*", "/admin/*", "/member/*"})
 public class AuthenticationFilter implements Filter {
 	
 	Map<String, List<String>> permitURIList;
@@ -46,23 +46,34 @@ public class AuthenticationFilter implements Filter {
 			boolean isPermitAdmin = permitURIList.get("adminPermitList").contains(intent);
 			boolean isPermitMember = permitURIList.get("memberPermitList").contains(intent);
 			boolean isPermitAll = permitURIList.get("allPermitList").contains(intent);
-			if("ADMIN".equals(loginMember.getRole())) {
+			boolean iscleanerPermitList = permitURIList.get("cleanerPermitList").contains(intent);
+			System.out.println(loginMember.getRole());
+			if("관리자".equals(loginMember.getRole())) {
 				
-				if(isPermitAdmin || isPermitMember || isPermitAll) {
+				if(isPermitAdmin || isPermitMember || isPermitAll || iscleanerPermitList) {
 					isAuthorized = true;
 				}
 				
-			} else if("MEMBER".equals(loginMember.getRole())) {
+			} else if("사용자".equals(loginMember.getRole())) {
 				
 				if((isPermitMember || isPermitAll) && !isPermitAdmin) {
 					isAuthorized = true;
+				}
+				
+			} else if("해결사".equals(loginMember.getRole())) {
+				System.out.println("hi");
+				if((iscleanerPermitList || isPermitAll) && !isPermitAdmin) {
+					isAuthorized = true;
+					System.out.println(isAuthorized);
 				}
 				
 			}
 			
 			if(isAuthorized) {
 				chain.doFilter(request, response);
+				
 			} else {
+				System.out.println(isAuthorized);
 				((HttpServletResponse) response).sendError(403);
 			}
 			
@@ -84,9 +95,11 @@ public class AuthenticationFilter implements Filter {
 		List<String> adminPermitList = new ArrayList<>();
 		List<String> memberPermitList = new ArrayList<>();
 		List<String> allPermitList = new ArrayList<>();
+		List<String> cleanerPermitList = new ArrayList<>();
 		
 		adminPermitList.add("/notice/insert");
 		adminPermitList.add("/notice/update");
+		adminPermitList.add("/admin/home");
 		
 		memberPermitList.add("/notice/list");
 		memberPermitList.add("/notice/detail");
@@ -96,6 +109,9 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/thumbnail/list");
 		memberPermitList.add("/thumbnail/insert");
 		memberPermitList.add("/thumbnail/detail");
+		
+		cleanerPermitList.add("/cleaner/request/enroll");
+		cleanerPermitList.add("/cleaner/home");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");
@@ -104,6 +120,7 @@ public class AuthenticationFilter implements Filter {
 		permitURIList.put("adminPermitList", adminPermitList);
 		permitURIList.put("memberPermitList", memberPermitList);
 		permitURIList.put("allPermitList", allPermitList);
+		permitURIList.put("cleanerPermitList", cleanerPermitList);
 		
 	}
 
