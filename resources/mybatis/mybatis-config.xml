@@ -18,5 +18,6 @@
 	
 	<mappers>
 		<mapper resource="com/pitcrew/cleanhome/member/model/dao/MemberDAO.xml"/>
+		<mapper resource="com/pitcrew/cleanhome/cleaner/request/model/dao/RequestDAO.xml"/>
 	</mappers>
 </configuration>
