@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class MainServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = "/WEB-INF/views/admin/menubar.jsp";
+		String path = "/WEB-INF/views/main/adminmain.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
