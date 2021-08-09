@@ -34,11 +34,11 @@
             <ul>
                 <li class="active"><a href="./index.html">Home</a></li>
                 <li><a href="./about.html">About</a></li>
-                <li><a href="./services.html">Services</a></li>
+                <li><a href="./services.jsp">Services</a></li>
                 <li><a href="./blog.html">Blog</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="dropdown">
-                        <li><a href="./services.html">Features</a></li>
+                        <li><a href="./services.jsp">Features</a></li>
                         <li><a href="./services-details.html">Services Details</a></li>
                         <li><a href="./blog-details.html">Blog Details</a></li>
                     </ul>
@@ -102,11 +102,11 @@
                             <ul>
                                 <li class="active"><a href="./index.html">Home</a></li>
                                 <li><a href="./about.html">About</a></li>
-                                <li><a href="./services.html">Services</a></li>
+                                <li><a href="./services.jsp">Services</a></li>
                                 <li><a href="./blog.html">Blog</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">
-                                        <li><a href="./services.html">Features</a></li>
+                                        <li><a href="./services.jsp">Features</a></li>
                                         <li><a href="./services-details.html">Services Details</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
