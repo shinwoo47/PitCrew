@@ -76,13 +76,8 @@
                     
                     <div class="col-lg-3">
                         <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
-                            </c:if>
+                            <img src="img/flag.png" alt="">
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속중</h3>
                         </div>
                     </div>
 
@@ -101,17 +96,23 @@
                         <nav class="header__menu">
                             <ul>
                                 <li class="active"><a href="./index.html">Home</a></li>
-                                <li><a href="./about.html">About</a></li>
-                                <li><a href="./services.html">Services</a></li>
+                                <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/enroll">청소 서비스</a></li>
+                                <li><a href="./services.html">일정 관리</a></li>
                                 <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="#">Pages</a>
+                                <li><a href="#">MyPage</a>
                                     <ul class="dropdown">
-                                        <li><a href="./services.html">Features</a></li>
-                                        <li><a href="./services-details.html">Services Details</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                        <li><a href="./services.html">회원정보</a></li>
+                                        <li><a href="./services-details.html">계좌</a></li>
+                                        <li><a href="./blog-details.html">정산내역</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./contact.html">Contact</a></li>
+                                 <li><a href="#">고객센터</a>
+                                    <ul class="dropdown">
+                                        <li><a href="./services.html">공지사항</a></li>
+                                        <li><a href="./services-details.html">FAQ</a></li>
+                                        <li><a href="./blog-details.html">문의사항</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </nav>
                         <div class="header__search">
