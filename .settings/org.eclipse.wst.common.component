@@ -2,6 +2,9 @@
     <wb-module deploy-name="pitcrew">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/mappers"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/log4j"/>
         <property name="context-root" value="pitcrew"/>
         <property name="java-output-path" value="/pitcrew/web/WEB-INF/classes"/>
     </wb-module>

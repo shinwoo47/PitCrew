@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberDAO">
+	<resultMap type="com.pitcrew.cleanhome.member.model.dto.MemberDTO" id="memberResultMap">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="id" column="MEM_ID"/>
+		<result property="pwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="role" column="MEMBER_ROLE"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="entYn" column="ENT_YN"/>
+		<result property="entDate" column="ENT_DATE"/>
+	</resultMap>
+
+	<insert id="insertMember" parameterType="com.pitcrew.cleanhome.member.model.dto.MemberDTO">
+        INSERT /* com.greedy.jsp.member.model.dao.MemberDAO#insertMember() */
+          INTO MEMBER A
+        (
+          A.MEM_NO
+        , A.MEM_ID
+        , A.MEM_PWD
+        , A.MEM_NAME
+        , A.PHONE
+        , A.EMAIL
+        , A.ADDRESS
+        , A.MEMBER_ROLE
+        , A.BIRTH
+        , A.ENROLL_DATE
+        )
+        VALUES 
+        (
+          SEQ_MEMBER_NO.NEXTVAL
+        , #{ id }
+        , #{ pwd }
+        , #{ memName }
+        , #{ phone }
+        , #{ email }
+        , #{ address }
+        , #{ role }
+        , #{ birth }
+        , #{ enrollDate }
+        )
+	</insert>
+	<select id="selectEncryptedPwd" resultType="java.lang.String">
+        SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectEncryptedPwd() */
+               A.MEM_PWD
+          FROM MEMBER A
+         WHERE A.MEM_ID = #{ id }
+	</select>
+	
+	<select id="selectLoginMember" resultMap="memberResultMap">
+		SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectLoginMember() */
+			   A.MEM_NO
+		     , A.MEM_ID
+		     , A.MEM_NAME
+		     , A.PHONE
+		     , A.EMAIL
+		     , A.ADDRESS
+		     , A.ENROLL_DATE
+		     , A.MEMBER_ROLE
+		     , A.BIRTH
+        	 , A.ENROLL_DATE
+		 FROM  MEMBER A
+		WHERE  A.MEM_ID = #{ id }
+	</select>
+	
+	<!-- 아직 완료 안됨 -->
+	<update id="updateMember">
+		UPDATE /* com.kh.jsp.member.model.dao#MemberDao#updateMember() */
+		       member
+		   SET nick_name = ?
+		     , phone = ?
+		     , email = ?
+		     , address = ?
+		 WHERE status = 'Y'
+		   AND mid = ?
+		   AND member_pwd = ?
+	</update>
+	
+	<select id="selectChangedMemberInfo">
+		SELECT /* com.greedy.jsp.member.model.dao.MemberDAO#selectChangedMemberInfo() */
+			   mid
+		     , member_id
+		     , member_pwd
+		     , nick_name
+		     , phone
+		     , email
+		     , address
+		     , enroll_date
+		     , status
+		  FROM member
+		 WHERE status = 'Y'
+		   AND mid = ?
+	</select>
+	
+	<update id="deleteMember">		
+		UPDATE /* com.greedy.jsp.member.model.dao.MemberDAO#deleteMember() */
+		       member
+		   SET status = 'N'
+		 WHERE status = 'Y'
+		   AND mid = ?
+		   AND member_pwd = ?
+	</update>
+
+</mapper>
