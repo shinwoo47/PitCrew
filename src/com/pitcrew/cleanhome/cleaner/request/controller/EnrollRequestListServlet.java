@@ -15,9 +15,6 @@ import com.pitcrew.cleanhome.cleaner.request.model.service.RequestService;
 import com.pitcrew.cleanhome.common.paging.Pagenation;
 import com.pitcrew.cleanhome.common.paging.SelectCriteria;
 
-
-
-
 @WebServlet("/cleaner/request/enroll")
 public class EnrollRequestListServlet extends HttpServlet {
 	
