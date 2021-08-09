@@ -96,7 +96,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="resources/user/img/user/infor.png" alt=""></a>  
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -122,8 +122,16 @@
                         </nav>
                         <div class="header__search">
                             <i class="fa fa-search search-switch"></i>
-                        </div>
+                        </div><div class= "reqs_rs" align="center"><br><br>
+                        <h3 id="rses">준비  및  유의  사항</h3><br>
+                        <h3>청소도구를준비해주세요.</h3><br>
+                        <p>미 준비시 일부 서비스의 제한이 있을 수 있습니다. <br><br>
+                      	  귀중품, 현금 은 안전한 곳에 보관해주세요. 관리 소홀로<br>
+                       	  인한 분실 및 파손시 보상이 불가능해집니다.<br><br>
+						반려동물이 있는 경우 안전장치를 해주세요.</p></div>
+                        
                     </div>
+                    
                 </div>
             </div>
             <div class="canvas__open">
@@ -141,18 +149,18 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="img/services/roomClean.png" alt="">
+                            <img src="resources/user/img/user/roomClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>01.</span>방청소</h4>
-                            <a href="#">Find Out More</a>
+                            <a href="${ pageContext.servletContext.contextPath }/notice/list">Find Out More</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="img/services/bathroomClean.png" alt="">
+                            <img src="resources/user/img/user/bathroomClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>02.</span>화장실 청소</h4>
@@ -163,7 +171,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="img/services/allClean.png" alt="">
+                            <img src="resources/user/img/user/allClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>03.</span>전체청소</h4>
@@ -174,7 +182,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="img/services/washDish.png" alt="">
+                            <img src="resources/user/img/user/washDish.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>04.</span>설거지</h4>
@@ -185,7 +193,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="img/services/windowClean.png" alt="">
+                            <img src="resources/user/img/user/windowClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>05.</span>창틀청소</h4>
