@@ -110,6 +110,7 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/thumbnaid/search");
 		memberPermitList.add("/thumbnail/lisl/insert");
 		memberPermitList.add("/thumbnail/detail");
+		memberPermitList.add("/user/home");
 		
 		cleanerPermitList.add("/cleaner/request/enroll");
 		cleanerPermitList.add("/cleaner/home");

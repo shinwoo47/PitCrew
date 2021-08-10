@@ -47,6 +47,10 @@
 					successMessage = "관리자 로그인 성공";
 					movePath = "${ pageContext.servletContext.contextPath }/admin/home";
 					break;
+				case "userLogin" : 
+					successMessage = "사용자 로그인 성공";
+					movePath = "${ pageContext.servletContext.contextPath }/user/home";
+					break;
 			}
 
 			alert(successMessage);
