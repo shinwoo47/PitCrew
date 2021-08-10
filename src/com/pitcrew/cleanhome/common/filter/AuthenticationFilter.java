@@ -97,19 +97,25 @@ public class AuthenticationFilter implements Filter {
 		List<String> allPermitList = new ArrayList<>();
 		List<String> cleanerPermitList = new ArrayList<>();
 		
+		adminPermitList.add("/admin/home");
+		adminPermitList.add("/admin/notice/list");
 		adminPermitList.add("/notice/insert");
 		adminPermitList.add("/notice/update");
+
 		adminPermitList.add("/admin/home");
 		adminPermitList.add("/admin/select/alluserinfo");
+
+
 		
 		memberPermitList.add("/notice/list");
 		memberPermitList.add("/notice/detail");
 		memberPermitList.add("/board/list");
 		memberPermitList.add("/board/insert");
-		memberPermitList.add("/board/search");
-		memberPermitList.add("/thumbnail/list");
-		memberPermitList.add("/thumbnail/insert");
+		memberPermitList.add("/boart");
+		memberPermitList.add("/thumbnaid/search");
+		memberPermitList.add("/thumbnail/lisl/insert");
 		memberPermitList.add("/thumbnail/detail");
+		memberPermitList.add("/user/home");
 		
 		cleanerPermitList.add("/cleaner/request/enroll");
 		cleanerPermitList.add("/cleaner/home");

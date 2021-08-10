@@ -2,11 +2,14 @@ package com.pitcrew.cleanhome.cleaner.request.model.service;
 
 import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.cleaner.request.model.dao.RequestDAO;
+import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
+import com.pitcrew.cleanhome.common.paging.SelectCriteria;
 
 public class RequestService {
 	
@@ -26,6 +29,17 @@ public class RequestService {
 		session.close();
 		
 		return totalCount;
+	}
+
+	public List<RequestDTO> selectRequestList(SelectCriteria selectCriteria) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<RequestDTO> requestList = requestDAO.selectRequestList(session, selectCriteria);
+		
+		session.close();
+		
+		return requestList;
 	}
 
 }
