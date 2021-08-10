@@ -101,6 +101,11 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/notice/list");
 		adminPermitList.add("/notice/insert");
 		adminPermitList.add("/notice/update");
+
+		adminPermitList.add("/admin/home");
+		adminPermitList.add("/admin/select/alluserinfo");
+
+
 		
 		memberPermitList.add("/notice/list");
 		memberPermitList.add("/notice/detail");
