@@ -97,9 +97,10 @@ public class AuthenticationFilter implements Filter {
 		List<String> allPermitList = new ArrayList<>();
 		List<String> cleanerPermitList = new ArrayList<>();
 		
+		adminPermitList.add("/admin/home");
+		adminPermitList.add("/admin/notice/list");
 		adminPermitList.add("/notice/insert");
 		adminPermitList.add("/notice/update");
-		adminPermitList.add("/admin/home");
 		
 		memberPermitList.add("/notice/list");
 		memberPermitList.add("/notice/detail");
