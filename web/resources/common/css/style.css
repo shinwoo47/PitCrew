@@ -1841,7 +1841,9 @@ ol {
 }
 
 .blog__item__text {
-	padding-top: 25px;
+	padding-top: 20px;
+	margin : 10px 10px 10px 10px;
+	background-color: blue;
 }
 
 .blog__item__text h3 {

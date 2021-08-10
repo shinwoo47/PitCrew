@@ -48,8 +48,8 @@
 		let searchText = "";
 		
 		
-		if(${ !empty requestScope.selectCriteria.searchCondition? true: false }) {
-			searchText += "&searchCondition=${ requestScope.selectCriteria.searchCondition }";
+		if(${ !empty requestScope.selectCriteria.searchDate? true: false }) {
+			searchText += "&searchCondition=${ requestScope.selectCriteria.searchDate }";
 		}
 		
 		if(${ !empty requestScope.selectCriteria.searchValue? true: false }) {
