@@ -149,7 +149,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="resources/user/img/user/roomClean.png" alt="">
+                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/roomClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>01.</span>방청소</h4>
@@ -160,7 +160,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="resources/user/img/user/bathroomClean.png" alt="">
+                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/bathroomClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>02.</span>화장실 청소</h4>
@@ -171,7 +171,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="resources/user/img/user/allClean.png" alt="">
+                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/allClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>03.</span>전체청소</h4>
@@ -182,7 +182,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="resources/user/img/user/washDish.png" alt="">
+                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/washDish.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>04.</span>설거지</h4>
@@ -193,7 +193,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
-                            <img src="resources/user/img/user/windowClean.png" alt="">
+                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/windowClean.png" alt="">
                         </div>
                         <div class="services__item__text">
                             <h4><span>05.</span>창틀청소</h4>
