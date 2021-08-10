@@ -70,7 +70,7 @@ public class EnrollRequestListServlet extends HttpServlet {
 		
 		/* 조회해온다 */
 		List<RequestDTO> requestList = requestService.selectRequestList(selectCriteria);
-		
+		 
 		System.out.println("requestList : " + requestList);
 		
 		String path = "";

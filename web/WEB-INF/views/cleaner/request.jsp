@@ -40,23 +40,23 @@
     
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-7">
-                 	<c:forEach items="${ requestList }" var="requestList">
+                <div class="col-lg-8 col-md-7">	
                     <div class="blog__item">
                         <div class="blog__item__text">
-                            <h3>Get Best Advertiser In Your Side Pocket</a></h3>
+                        	<c:forEach var="request" items="${ requestScope.requestList }">
+                            <h3><c:out value="${ request.reqNo }"/></a></h3>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> <c:out value="${ request.product.time }"/></li>
+                                <li><i class="fa fa-clock-o"></i> <c:out value="${ request.reqDate }"/></li>
                                 <li><i class="fa fa-user"></i> John Smith</li>
                             </ul>
-                            <p>One of my favourite things I like to watch is the bloopers and outtakes that are shown of
-                                mistakes made during</p>
+                           
+                            <p>방청소</p>
+                            </c:forEach>
                             <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
+                        	
                         </div>
                     </div>
-                    </c:forEach>
                     <div class="blog__item">
-                    <c:forEach items="${ requestList }" var="requestList">
                         <div class="blog__item__img">
                             <img src="img/blog/blog-2.jpg" alt="">
                         </div>
@@ -69,8 +69,22 @@
                             <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
                                 buying things online in</p>
                             <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
+                        </div>  
+                    </div>
+                    <div class="blog__item">
+                        <div class="blog__item__img">
+                            <img src="img/blog/blog-3.jpg" alt="">
                         </div>
-                    </c:forEach>    
+                        <div class="blog__item__text">
+                            <h3><a href="./blog-details.html">Freelance Design Tricks How To Get Away With Murder</a></h3>
+                            <ul>
+                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
+                                <li><i class="fa fa-user"></i> John Smith</li>
+                            </ul>
+                            <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
+                                buying things online in</p>
+                            <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
                     </div>
                     <div class="blog__item">
                         <div class="blog__item__img">
