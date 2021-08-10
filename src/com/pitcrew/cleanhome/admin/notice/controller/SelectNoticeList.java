@@ -16,8 +16,24 @@ import com.pitcrew.cleanhome.admin.notice.model.service.NoticeService;
 @WebServlet("/admin/notice/list")
 public class SelectNoticeList extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("controller 진입성공");
+		
 		List<NoticeDTO> noticeList = new NoticeService().selectAllNoticeList();
+		
+		System.out.println("controller : " + noticeList);
+		
+		String path = "";
+		if(noticeList != null) {
+			path = "/WEB-INF/views/admin/notice/noticeList.jsp";
+			request.setAttribute("noticeList", noticeList);
+		} else {
+			path = "/WEB-INF/views/common/failed.jsp";
+			request.setAttribute("message", "조회에 실패했습니다. 다시 시도해주세요.");
+		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }
