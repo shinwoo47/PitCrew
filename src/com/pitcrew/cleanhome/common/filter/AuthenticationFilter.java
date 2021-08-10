@@ -106,9 +106,9 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/notice/detail");
 		memberPermitList.add("/board/list");
 		memberPermitList.add("/board/insert");
-		memberPermitList.add("/board/search");
-		memberPermitList.add("/thumbnail/list");
-		memberPermitList.add("/thumbnail/insert");
+		memberPermitList.add("/boart");
+		memberPermitList.add("/thumbnaid/search");
+		memberPermitList.add("/thumbnail/lisl/insert");
 		memberPermitList.add("/thumbnail/detail");
 		
 		cleanerPermitList.add("/cleaner/request/enroll");

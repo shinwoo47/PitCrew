@@ -33,23 +33,7 @@
     <!-- 네비 -->
 	<jsp:include page="../cleaner/cleanermenubar.jsp"/>
 
-    <!-- Breadcrumb Section Begin -->
-    <div class="breadcrumb-option set-bg" data-setbg="img/breadcrumb/breadcrumb-bg.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>Our Blog</h2>
-                        <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <span>Blog</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb Section End -->
+    
 
     <!-- Blog Section Begin -->
     <section class="blog spad">
@@ -57,12 +41,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-7">
-                 	<c:forEach items="${ requestList }" var="request">
+                 	<c:forEach items="${ requestList }" var="requestList">
                     <div class="blog__item">
                         <div class="blog__item__text">
                             <h3>Get Best Advertiser In Your Side Pocket</a></h3>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> ${ request.Date }</li>
+                                <li><i class="fa fa-clock-o"></i> <c:out value="${ request.product.time }"/></li>
                                 <li><i class="fa fa-user"></i> John Smith</li>
                             </ul>
                             <p>One of my favourite things I like to watch is the bloopers and outtakes that are shown of
@@ -72,6 +56,7 @@
                     </div>
                     </c:forEach>
                     <div class="blog__item">
+                    <c:forEach items="${ requestList }" var="requestList">
                         <div class="blog__item__img">
                             <img src="img/blog/blog-2.jpg" alt="">
                         </div>
@@ -85,6 +70,7 @@
                                 buying things online in</p>
                             <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
                         </div>
+                    </c:forEach>    
                     </div>
                     <div class="blog__item">
                         <div class="blog__item__img">
@@ -118,9 +104,7 @@
                     </div>
                     <div class="blog__pagination">
                         <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
+                        	<jsp:include page="../common/paging.jsp"/>
                         <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
