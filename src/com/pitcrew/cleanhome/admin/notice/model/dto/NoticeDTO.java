@@ -1,6 +1,6 @@
 package com.pitcrew.cleanhome.admin.notice.model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO;
 
@@ -10,17 +10,18 @@ public class NoticeDTO {
 	private String title;
 	private String content;
 	private String category;
-	private java.util.Date writeDate;
+	private java.sql.Date writeDate;
 	private int writerMemberNo;
 	private MemberDTO writer;
 	private String status;
 	private int count;
 	private MemberDTO role;
+	private String forWho;
 	
 	public NoticeDTO() {}
 
 	public NoticeDTO(int no, String title, String content, String category, Date writeDate, int writerMemberNo,
-			MemberDTO writer, String status, int count, MemberDTO role) {
+			MemberDTO writer, String status, int count, MemberDTO role, String forWho) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -32,6 +33,7 @@ public class NoticeDTO {
 		this.status = status;
 		this.count = count;
 		this.role = role;
+		this.forWho = forWho;
 	}
 
 	public int getNo() {
@@ -70,7 +72,7 @@ public class NoticeDTO {
 		return writeDate;
 	}
 
-	public void setWriteDate(java.util.Date writeDate) {
+	public void setWriteDate(java.sql.Date writeDate) {
 		this.writeDate = writeDate;
 	}
 
@@ -114,13 +116,22 @@ public class NoticeDTO {
 		this.role = role;
 	}
 
+	public String getForWho() {
+		return forWho;
+	}
+
+	public void setForWho(String forWho) {
+		this.forWho = forWho;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeDTO [no=" + no + ", title=" + title + ", content=" + content + ", category=" + category
 				+ ", writeDate=" + writeDate + ", writerMemberNo=" + writerMemberNo + ", writer=" + writer + ", status="
-				+ status + ", count=" + count + ", role=" + role + "]";
+				+ status + ", count=" + count + ", role=" + role + ", forWho=" + forWho + "]";
 	}
 
+	
 	
 	
 

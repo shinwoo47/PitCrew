@@ -18,7 +18,7 @@
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
-            <h3>사용자 공지사항</h3><br>
+            <h3>해결사 공지사항</h3><br>
           <!--  <div class="row" style="background-color: #02A79D">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <h3 style="color:#fff">No</h3>
@@ -35,7 +35,7 @@
    				<th>조회</th>
          	</tr>
          	<tr></tr>
-         	<c:forEach items="${ requestScope.noticeList }" var="notice">
+         	<c:forEach items="${ requestScope.noticeCleanerList }" var="notice">
 					<tr>
 						<td class="hidden"><c:out value="${ notice.no }"/></td>
 						<td><c:out value="${ notice.title }"/></td>
@@ -58,30 +58,24 @@
 					this.parentNode.style.backgroundColor = "#00C1B6";
 					this.parentNode.style.cursor = "pointer";
 				}
+				
 				$tds[i].onmouseout = function() {
 					this.parentNode.style.backgroundColor = "#fff";
 				}
+				
 				$tds[i].onclick = function() {
 					const no = this.parentNode.children[0].innerText;
-					location.href = "${ pageContext.servletContext.contextPath }/admin/notice/detail?no=" + no;
+					location.href = "${ pageContext.servletContext.contextPath }/admin/cleanernotice/detail?no=" + no;
 				}
 				
 			}
 			
 		}
     
-	    if(document.getElementById("writeBoard")) {
-			const $writeNotice = document.getElementById("writeBoard");
-			$writeNotice.onclick = function() {
-				location.href = "${ pageContext.servletContext.contextPath }/admin/notice/insert";
-			}
-		}
+    
+    
     
     
     </script>
-    
-    
-    
-    
 </body>
 </html>

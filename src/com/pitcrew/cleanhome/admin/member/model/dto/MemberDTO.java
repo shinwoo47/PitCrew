@@ -1,6 +1,6 @@
 package com.pitcrew.cleanhome.admin.member.model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MemberDTO {
 
@@ -8,14 +8,14 @@ public class MemberDTO {
 	private String name;
 	private String id;
 	private String email;
-	private java.util.Date bday;
+	private java.sql.Date bday;
 	private String address;
 	private String pwd;
 	private String phone;
-	private java.util.Date enrollDate;
+	private java.sql.Date enrollDate;
 	private String role;
 	private String status;
-	private java.util.Date entireDate;
+	private java.sql.Date entireDate;
 	
 	public MemberDTO() {}
 
@@ -72,7 +72,7 @@ public class MemberDTO {
 		return bday;
 	}
 
-	public void setBday(java.util.Date bday) {
+	public void setBday(java.sql.Date bday) {
 		this.bday = bday;
 	}
 
@@ -104,7 +104,7 @@ public class MemberDTO {
 		return enrollDate;
 	}
 
-	public void setEnrollDate(java.util.Date enrollDate) {
+	public void setEnrollDate(java.sql.Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
 
@@ -128,7 +128,7 @@ public class MemberDTO {
 		return entireDate;
 	}
 
-	public void setEntireDate(java.util.Date entireDate) {
+	public void setEntireDate(java.sql.Date entireDate) {
 		this.entireDate = entireDate;
 	}
 
