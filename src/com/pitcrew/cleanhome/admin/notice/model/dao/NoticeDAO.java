@@ -8,6 +8,7 @@ import com.pitcrew.cleanhome.admin.notice.model.dto.NoticeDTO;
 
 public class NoticeDAO {
 
+
 	public List<NoticeDTO> selectAllNoticeList(SqlSession session, String forWho) {
 
 
@@ -24,6 +25,7 @@ public class NoticeDAO {
 
 
 		return session.selectOne("NoticeDAO.selectNoticeDetail", no);
+
 	}
 
 

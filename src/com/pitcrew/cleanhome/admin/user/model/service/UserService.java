@@ -17,11 +17,11 @@ public class UserService {
 		userDAO = new UserDAO();
 	}
 	
-	
+	/* 사용자 정보 조회 */
 	public List<UserDTO> selectAllUserInfoList() {
-
+	
 		SqlSession session = getSqlSession();
-		
+
 		List<UserDTO> userList = userDAO.selectAllUserInfoList(session);
 		
 		session.close();

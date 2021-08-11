@@ -16,14 +16,13 @@ import com.pitcrew.cleanhome.admin.user.model.service.UserService;
 public class SelectAllUserInfoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		List<UserDTO> userList = new UserService().selectAllUserInfoList();
 		
-		System.out.println(userList);
+		System.out.println("서블릿 유저리스트 : " + userList);
 		
 		String path = "";
 		if(userList != null) {
-			path = "/WEB-INF/admin/views/admin/user/userList.jsp";
+			path = "/WEB-INF/views/admin/user/userList.jsp";
 			request.setAttribute("userList", userList);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
