@@ -18,4 +18,9 @@ public class UserInfoDAO {
 		return session.selectList("UserInfoDAO.selectUpdateMyInfo", memNo);
 	}
 
+	public int updateMyInfo(SqlSession session, MemberDTO updateMember) {
+
+		return session.update("UserInfoDAO.updateMyInfo", updateMember);
+	}
+
 }
