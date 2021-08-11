@@ -32,6 +32,17 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  	
+  	<style>
+	.blog__details__text {
+	margin-bottom: 65px;
+	border: 1px solid black;
+	padding: 10px 10px 10px 10px;
+	}
+	.requestReq {
+	margin-bottom: 20px;
+	}
+  	</style>
 </head>
 
 <body>
@@ -60,7 +71,12 @@
 							    <tbody>
 							      <tr>
 							        <td>장소</td>
-							        <td>${ fn:replace(requestDetail.address.address, "$", " ")}</td>
+							        <td>
+							        	<c:set var="address" value="${ requestDetail.address.address }"/>
+                        				<c:set var="address1" value="${ fn:substring(address, fn:indexOf(address,'$') + 1, 30) }"/>
+                        				<c:set var="address2" value="${ fn:replace(address1, \"$\", \" \") }"/>
+                        				<c:out value="${ address2 }"/>
+                        			</td>
 							      </tr>
 							      <tr>
 							        <td>연락처</td>
@@ -102,40 +118,22 @@
 							  </table>
 							</div>
                     </div>
-                    <div class="blog__details__quote">
-                        <p>${ request.reqReq }</p>
+                    <h4 class="requestReq">요청사항</h4>
+                    <div class="blog__details__text" style="text-align:left;">
+                        <p>${ requestDetail.reqReq }</p>
 
                     </div>
                     <div class="blog__details__text">
-                        <h4>1. Promotional Advertising Specialty You Ve Waited Long Enough</h4>
-                        <p class="first-para">Take it on a Thursday or Friday, when the big Sunday advertisements are in
-                            process construction, the scene is remarkably lively, and the man at the head of the
-                            advertising department has plenty</p>
-                        <p>He must have very clear-cut and definite ideas as to whatâs what, and no matter what
-                            influence may be brought to bear upon him by the different managers the advertising manager
-                            must have a stamina to select what he considers the best and arrange the same as he thinks
-                            wise, while at the same time he must have sufficient tact and skill to do these things
-                            without hurting the</p>
+                        <h4>안내 및 주의사항</h4>
+                        <p class="first-para">
+                        	청소시작 10분전 반드시 도착.<br>
+                        	청소전 사진과 청소 후 사진 촬영 후 사진 등록 필수!<br>
+                        	청소 마치고 청소 맡긴 분에게 끝났다고 말하기<br>
+						</p> 
                     </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <div class="blog__details__text">
-                        <h4>2. Advertising Relationships Vs Business Decisions</h4>
-                        <p class="first-para">Businesses often become known today through effective marketing. The
-                            marketing may be in the form of a regular news item or half column society news in the
-                            Sunday newspaper. The marketing may be in the form of a heart to heart talk with Mr. Brown
-                            on his prominent local television show. These are all advertising. Businesses cannot get
-                            away from the force of advertising. If they want to make their products known in the
-                            marketplace they have to use some</p>
-                        <p>Advertising is being more and more known as a reasonable and desirable business force. Letâs
-                            say you own a department store. The advertising manager of the store is like the managing
-                            editor of a daily newspaper with his group of reporters regularly bringing fresh matter to
-                            his</p>
+                    <h4>위치</h4>
+                    <div class="blog__sidebar__categories" id="map" style="width:700px;height:400px;">
+                    
                     </div>
                 </div>
             </div>
@@ -237,6 +235,51 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery.slicknav.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/owl.carousel.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/main.js"></script>
+     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=572342b1ef19fad40c1a5ac213542717&libraries=services"></script>
+     <script>
+     window.onload = function() {
+		
+		/* 화면에 랜더링 된 태그들이 존재하지 않는 경우 에러 발생 가능성이 있어서 if문으로 태그가 존재하는지 부터 확인하고 이벤트를 연결한다. */
+			
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		mapOption = {
+			center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			level: 3 // 지도의 확대 레벨
+		};  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${ address2 }', function(result, status) {
+	
+		// 정상적으로 검색이 완료됐으면 
+			if (status === kakao.maps.services.Status.OK) {
+								
+				var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			
+				// 결과값으로 받은 위치를 마커로 표시합니다
+				var marker = new kakao.maps.Marker({
+					map: map,
+					position: coords
+				});
+			
+				// 인포윈도우로 장소에 대한 설명을 표시합니다
+				var infowindow = new kakao.maps.InfoWindow({
+					content: '<div style="width:150px;text-align:center;padding:6px 0;">의뢰 장소</div>'
+				});
+				infowindow.open(map, marker);
+			
+				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				map.setCenter(coords);
+			} 
+		});
+     }
+
+    </script>
 </body>
 
 </html>

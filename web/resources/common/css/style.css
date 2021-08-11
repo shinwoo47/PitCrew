@@ -2187,7 +2187,7 @@ ol {
 }
 
 .blog__details__quote {
-	text-align: center;
+	text-align: left;
 	border: 1px solid #d8d8d8;
 	border-radius: 5px;
 	padding: 35px 35px 30px;
@@ -2195,10 +2195,10 @@ ol {
 }
 
 .blog__details__quote p {
-	font-size: 20px;
+	font-size: 15px;
 	color: #323232;
 	line-height: 32px;
-	font-style: italic;
+	font-style: verdana;
 	margin-bottom: 38px;
 }
 
@@ -2209,6 +2209,7 @@ ol {
 
 .blog__details__text {
 	margin-bottom: 65px;
+	border: 1px solid black;
 }
 
 .blog__details__text h4 {

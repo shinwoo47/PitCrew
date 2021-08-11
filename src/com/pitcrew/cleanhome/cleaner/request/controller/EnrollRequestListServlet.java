@@ -1,7 +1,10 @@
 package com.pitcrew.cleanhome.cleaner.request.controller;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +79,9 @@ public class EnrollRequestListServlet extends HttpServlet {
 		
 		/* 조회해온다 */
 		List<RequestDTO> requestList = requestService.selectRequestList(selectCriteria);
+		DateFormat format = new SimpleDateFormat("yyyyy.MMMMM.dd GGG hh:mm aaa");
+
+		
 		 
 		System.out.println("EnrollRequestListServlet requestList : " + requestList);
 		

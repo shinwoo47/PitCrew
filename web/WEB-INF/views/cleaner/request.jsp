@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>\
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -58,7 +59,7 @@
                         	<c:set var="address2" value="${ fn:substring(address1, 0, fn:indexOf(address1,'$')) }"/>
                             <h3><c:out value="${ address2 }"/></h3>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> <c:out value="${ request.reqDate }"/></li>
+                                <li><i class="fa fa-clock-o"></i> <fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy/MM/dd (E) hh시"/></li>
                                 <li>
                                 	<c:set var="sum" value="0"/>
                                 	<c:forEach var="product" items="${ request.productList }">
