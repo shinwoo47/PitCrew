@@ -9,8 +9,8 @@ import com.pitcrew.cleanhome.admin.user.model.dto.UserDTO;
 public class UserDAO {
 
 	public List<UserDTO> selectAllUserInfoList(SqlSession session) {
-
-		return session.selectList("UserDAO.selectAllUserInfoList") ;
+		return session.selectList("UserDAO.selectAllUserInfoList");
+		
 	}
 
 }

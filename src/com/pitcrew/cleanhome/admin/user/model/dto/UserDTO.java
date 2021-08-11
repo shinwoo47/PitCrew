@@ -2,7 +2,7 @@ package com.pitcrew.cleanhome.admin.user.model.dto;
 
 import java.sql.Date;
 
-public class UserDTO implements java.io.Serializable{
+public class UserDTO {
 	
 	private int memNo;
 	private String memName;
@@ -16,6 +16,8 @@ public class UserDTO implements java.io.Serializable{
 	private String memberRole;
 	private String entYn;
 	private java.sql.Date entDate;
+	
+	public UserDTO() {}
 	
 	public UserDTO(int memNo, String memName, String memId, String email, Date birth, String address, String memPwd,
 			String phone, Date enrollDate, String memberRole, String entYn, Date entDate) {

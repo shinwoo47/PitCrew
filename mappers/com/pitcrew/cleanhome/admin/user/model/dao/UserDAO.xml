@@ -4,8 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserDAO">
 	<resultMap type="com.pitcrew.cleanhome.admin.user.model.dto.UserDTO" id="userResultMap">
-		<id property="no" column="USER_NO"/>
-		<result property="memNo" column="MEM_NO"/>
+		<id property="memNo" column="MEM_NO"/>
 		<result property="memName" column="MEM_NAME"/>
 		<result property="memId" column="MEM_ID"/>
 		<result property="email" column="EMAIL"/>
@@ -35,6 +34,7 @@
 			 , A.ENT_DATE
 		  FROM MEMBER A
 		 WHERE A.MEMBER_ROLE = '사용자'
+		 ORDER BY A.MEM_NO ASC
 	</select>
 </mapper>
 
