@@ -16,6 +16,7 @@ public class RequestDTO implements Serializable{
 	private MemberDTO address;
 	private MemberDTO role;
 	private MemberDTO memName;
+	private MemberDTO phone;
 	private int memNoUser;
 	private String reqStatus;
 	private List<RequestAttachmentDTO> requestAttachmentList;
@@ -27,9 +28,15 @@ public class RequestDTO implements Serializable{
 	public RequestDTO() {}
 
 
+	
+
+
+
+
 	public RequestDTO(int reqNo, Date reqDate, String reqReq, int memNoCleaner, MemberDTO address, MemberDTO role,
-			MemberDTO memName, int memNoUser, String reqStatus, List<RequestAttachmentDTO> requestAttachmentList,
-			List<RequestStatusDTO> requestStatusList, List<ProductDTO> productList, List<ReportDTO> reportList) {
+			MemberDTO memName, MemberDTO phone, int memNoUser, String reqStatus,
+			List<RequestAttachmentDTO> requestAttachmentList, List<RequestStatusDTO> requestStatusList,
+			List<ProductDTO> productList, List<ReportDTO> reportList) {
 		super();
 		this.reqNo = reqNo;
 		this.reqDate = reqDate;
@@ -38,6 +45,7 @@ public class RequestDTO implements Serializable{
 		this.address = address;
 		this.role = role;
 		this.memName = memName;
+		this.phone = phone;
 		this.memNoUser = memNoUser;
 		this.reqStatus = reqStatus;
 		this.requestAttachmentList = requestAttachmentList;
@@ -45,6 +53,8 @@ public class RequestDTO implements Serializable{
 		this.productList = productList;
 		this.reportList = reportList;
 	}
+
+
 
 
 
@@ -256,15 +266,22 @@ public class RequestDTO implements Serializable{
 
 
 
+	public MemberDTO getPhone() {
+		return phone;
+	}
 
+
+	public void setPhone(MemberDTO phone) {
+		this.phone = phone;
+	}
 
 	@Override
 	public String toString() {
 		return "RequestDTO [reqNo=" + reqNo + ", reqDate=" + reqDate + ", reqReq=" + reqReq + ", memNoCleaner="
-				+ memNoCleaner + ", address=" + address + ", role=" + role + ", memName=" + memName + ", memNoUser="
-				+ memNoUser + ", reqStatus=" + reqStatus + ", requestAttachmentList=" + requestAttachmentList
-				+ ", requestStatusList=" + requestStatusList + ", productList=" + productList + ", reportList="
-				+ reportList + "]";
+				+ memNoCleaner + ", address=" + address + ", role=" + role + ", memName=" + memName + ", phone=" + phone
+				+ ", memNoUser=" + memNoUser + ", reqStatus=" + reqStatus + ", requestAttachmentList="
+				+ requestAttachmentList + ", requestStatusList=" + requestStatusList + ", productList=" + productList
+				+ ", reportList=" + reportList + "]";
 	}
 
 	

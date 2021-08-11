@@ -43,4 +43,60 @@ public class RequestService {
 		return requestList;
 	}
 
+	public int acceptRequest(RequestDTO requestDto) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = requestDAO.acceptRequest(session, requestDto);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public RequestDTO selectRequestDetail(RequestDTO requestDto) {
+		
+		SqlSession session = getSqlSession();
+		
+		RequestDTO requestDetail = requestDAO.selectRequestDetail(session, requestDto);
+		
+		session.close();
+		
+		return requestDetail;
+	}
+
+	public String selectRequestStatus(RequestDTO requestDto) {
+
+		SqlSession session = getSqlSession();
+		
+		String status = requestDAO.selectRequestStatus(session, requestDto);
+		
+		session.close();
+		
+		return status;
+	}
+
+	public int insertRequestStatusHistory(RequestDTO requestDto) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = requestDAO.insertRequestStatusHistory(session, requestDto);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

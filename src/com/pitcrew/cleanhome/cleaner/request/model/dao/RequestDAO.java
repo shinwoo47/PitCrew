@@ -21,4 +21,24 @@ public class RequestDAO {
 		return session.selectList("RequestDAO.selectRequestList", selectCriteria);
 	}
 
+	public int acceptRequest(SqlSession session, RequestDTO requestDto) {
+		
+		return session.update("RequestDAO.acceptRequest", requestDto);
+	}
+
+	public RequestDTO selectRequestDetail(SqlSession session, RequestDTO requestDto) {
+				
+		return session.selectOne("RequestDAO.selectRequestDetail", requestDto);
+	}
+
+	public String selectRequestStatus(SqlSession session, RequestDTO requestDto) {
+		
+		return session.selectOne("RequestDAO.selectRequestStatus", requestDto);
+	}
+
+	public int insertRequestStatusHistory(SqlSession session, RequestDTO requestDto) {
+		
+		return session.insert("RequestDAO.insertRequestStatusHistory", requestDto);
+	}
+
 }
