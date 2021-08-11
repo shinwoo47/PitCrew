@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/admin/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/admin/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/admin/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
+	<link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.css">
 <title>맡겨줘 홈즈 관리자 모드</title>
 
 </head>
@@ -267,7 +268,7 @@
                                 <div id="submenu-4" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4-2" aria-controls="submenu-4-2">의뢰 조회</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/request/list" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4-2" aria-controls="submenu-4-2">의뢰 조회</a>
                                             <div id="submenu-4-2" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
                                                        <li class="nav-item">
@@ -449,7 +450,9 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/admin/assets/vendor/charts/c3charts/d3-5.4.0.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/admin/assets/vendor/charts/c3charts/C3chartjs.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/admin/assets/libs/js/dashboard-ecommerce.js"></script>
-
+	<!-- summerNote js -->
+	<script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.js"></script>
+	<script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-ko-KR.js"></script>
 
 </body>
 </html>
