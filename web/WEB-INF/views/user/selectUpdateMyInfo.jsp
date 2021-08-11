@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
 <title>Insert title here</title>
 <style>
 
@@ -41,7 +42,7 @@ table.type09 td {
 	padding: 100px;
 }
 
-div.button {
+.updateButton {
 	text-align: center;
 	margin: auto;
 	width: 50%;
@@ -92,48 +93,78 @@ div.button {
      </header>   
 	<br><br><br><br>
 	<section class="section">
-	<h2 align="center">회원 정보</h2>
+	<h2 align="center">정보 수정</h2>
+	<br><br><br><br>
 	<table class="type09" align="center">
-        <c:forEach items="${ selectMyInfo }" var="myInfo">
+        <c:forEach items="${ selectUpdateMyInfo }" var="selectUpdateMyInfo">
         <tbody>        
             <tr>
                 <th scope="row">이름</th>
-                <td><c:out value="${ myInfo.memName }"/></td>
+                <td><c:out value="${ selectUpdateMyInfo.memName }"/></td>
             </tr>
             <tr>
                 <th scope="row">아이디</th>
-                <td><c:out value="${ myInfo.id }"/></td>
+                <td><c:out value="${ selectUpdateMyInfo.id }"/></td>
             </tr>
             <tr>
                 <th rowspan="3" scope="row">비밀번호 변경</th>
             </tr>
             <tr>
-                <td>새 비밀번호 <input type="text"></td>
+                <td><label>새 비밀번호 </label> <input type="password" name="newPwd" id="newPwd"></td>
             </tr>
             <tr>
-                <td>다시 입력 <input type="text"></td>
+                <td><label>다시 입력 </label> <input type="password" name="retypeNewPwd" id="retypeNewPwd"></td>
             </tr>
             <tr>
-                <th rowspan="2"  scope="row">집주소</th>
-                <td><c:out value="${ myInfo.address }"/></td>
+                <th rowspan="5"  scope="row">집주소</th>
+                <td><c:out value="${ fn:replace(selectUpdateMyInfo.address, \"$\" , \" \") }"/></td>
             </tr>
             <tr>
-                <td>변경할 주소 <input type="text"></td>
+                <td><label>변경할 주소 </label></td>
             </tr>
             <tr>
-                <th rowspan="2" scope="row">이메일변경</th>
-                <td><c:out value="${ myInfo.email }"/></td>
+            	<td><label>우편번호 </label>  <input type="text" name="zipCode" id="zipCode" readonly class="form-control2">
+                <input type="button" value="검색" class="btn btn-yg" id="searchZipCode">
+                </td>
             </tr>
             <tr>
-                <td>변경할 이메일 <input type="text"></td>
+            	<td><label>주소 </label>  <input type="text" name="address1" id="address1" readonly  class="form-control"></td>            
+            <tr>
+            	<td><label>상세주소 </label> <input type="text" name="address2" id="address2"  class="form-control">
+            	
+            <tr>
+                <th rowspan="3" scope="row">이메일변경</th>
+                <td>이메일 <c:out value="${ selectUpdateMyInfo.email }"/></td>
+            </tr>
+            <tr>
+                <td><label>변경할 이메일 </label> <input type="text" name="updateEmail"></td>
             </tr>
           </tbody>
           </c:forEach>
        </table>
      </section>
+       
        <br>
-       <br>
-       <div class="updateButton"><input type="button" value="수정하기"></div>
+       <div class="updateButton"><input type="button" value="수정하기" id="updateMyInfo"></div>
+	
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		const $searchZipCode = document.getElementById("searchZipCode");
+		
+		$searchZipCode.onclick = function() {
+		
+			//다음 우편번호 검색 창을 오픈하면서 동작할 콜백 메소드를 포함한 객체를 매개변수로 전달한다.
+			new daum.Postcode({
+				oncomplete: function(data){
+					//팝업에서 검색결과 항목을 클릭했을 시 실행할 코드를 작성하는 부분
+					document.getElementById("zipCode").value = data.zonecode;
+					document.getElementById("address1").value = data.address;
+					document.getElementById("address2").focus();
+				}
+			}).open();
+		}
+		
+	</script>
 		
 </body>
 </html>

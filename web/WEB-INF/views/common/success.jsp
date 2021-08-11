@@ -51,6 +51,9 @@
 					successMessage = "사용자 로그인 성공";
 					movePath = "${ pageContext.servletContext.contextPath }/user/home";
 					break;
+				case "updateUserInfo" :
+					successMessage = "회원 정보 젼경에 성공하셨습니다!";
+					movePath = "${ pageContext.servletContext.contextPath }/user/update/myInfo";
 			}
 
 			alert(successMessage);

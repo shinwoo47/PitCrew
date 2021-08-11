@@ -2,6 +2,7 @@ package com.pitcrew.cleanhome.admin.user.model.service;
 
 import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,5 +30,18 @@ public class UserService {
 		return userList;
 		
 	}
+	
+	public List<UserDTO> searchUserInfomation(String categoryType, String searchResult, Date enRollStartDate, Date enRollEndDate) {
+	
+		SqlSession session = getSqlSession();
+	
+		List<UserDTO> userList = userDAO.searchUserInfomation(session,categoryType,searchResult,enRollStartDate,enRollEndDate);
+
+		session.close();
+		
+		return userList;
+		
+	}
+
 
 }

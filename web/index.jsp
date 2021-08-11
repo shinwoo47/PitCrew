@@ -10,6 +10,5 @@
 	<h1>hi</h1>
 	<jsp:forward page="/WEB-INF/views/main/main.jsp"/>
 	
-	
 </body>
 </html>

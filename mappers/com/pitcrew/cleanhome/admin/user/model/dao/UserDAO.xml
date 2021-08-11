@@ -3,38 +3,126 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="UserDAO">
-	<resultMap type="com.pitcrew.cleanhome.admin.user.model.dto.UserDTO" id="userResultMap">
-		<id property="memNo" column="MEM_NO"/>
-		<result property="memName" column="MEM_NAME"/>
-		<result property="memId" column="MEM_ID"/>
-		<result property="email" column="EMAIL"/>
-		<result property="birth" column="BIRTH"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="memPwd" column="MEM_PWD"/>
-		<result property="phone" column="PHONE"/>
-		<result property="enrollDate" column="ENROLL_DATE"/>
-		<result property="memberRole" column="MEMBER_ROLE"/>
-		<result property="entYn" column="ENT_YN"/>
-		<result property="entDate" column="ENT_DATE"/>
+	<resultMap
+		type="com.pitcrew.cleanhome.admin.user.model.dto.UserDTO"
+		id="userResultMap">
+		<id property="memNo" column="MEM_NO" />
+		<result property="memName" column="MEM_NAME" />
+		<result property="memId" column="MEM_ID" />
+		<result property="email" column="EMAIL" />
+		<result property="birth" column="BIRTH" />
+		<result property="address" column="ADDRESS" />
+		<result property="memPwd" column="MEM_PWD" />
+		<result property="phone" column="PHONE" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="memberRole" column="MEMBER_ROLE" />
+		<result property="entYn" column="ENT_YN" />
+		<result property="entDate" column="ENT_DATE" />
 	</resultMap>
-	
+
 	<select id="selectAllUserInfoList" resultMap="userResultMap">
-        SELECT /* com.pitcrew.cleanhome.admin.user.model.dao.UserDAO#selectAllUserInfoList() */
-               A.MEM_NO
-		     , A.MEM_NAME
-			 , A.MEM_ID
-			 , A.EMAIL
-			 , A.BIRTH
-			 , A.ADDRESS
-			 , A.MEM_PWD
-			 , A.PHONE
-			 , A.ENROLL_DATE
-			 , A.MEMBER_ROLE
-			 , A.ENT_YN
-			 , A.ENT_DATE
-		  FROM MEMBER A
-		 WHERE A.MEMBER_ROLE = '사용자'
-		 ORDER BY A.MEM_NO ASC
+		SELECT /*
+		com.pitcrew.cleanhome.admin.user.model.dao.UserDAO#selectAllUserInfoList()
+		*/
+		A.MEM_NO
+		, A.MEM_NAME
+		, A.MEM_ID
+		, A.EMAIL
+		, A.BIRTH
+		, A.ADDRESS
+		,
+		A.MEM_PWD
+		, A.PHONE
+		, A.ENROLL_DATE
+		, A.MEMBER_ROLE
+		, A.ENT_YN
+		, A.ENT_DATE
+		FROM MEMBER A
+		WHERE A.MEMBER_ROLE = '사용자'
+		ORDER BY A.MEM_NO ASC
+	</select>
+
+	<select id="searchUserInfomation" resultMap="userResultMap">
+		SELECT /*
+		com.pitcrew.cleanhome.admin.user.model.dao.UserDAO#selectAllUserInfoList()
+		*/
+		A.MEM_NO
+		, A.MEM_NAME
+		, A.MEM_ID
+		, A.EMAIL
+		, A.BIRTH
+		, A.ADDRESS
+		,
+		A.MEM_PWD
+		, A.PHONE
+		, A.ENROLL_DATE
+		, A.MEMBER_ROLE
+		, A.ENT_YN
+		, A.ENT_DATE
+		FROM MEMBER A
+		<where>
+			<choose>
+				<when test="enRollStartDate != null and enRollEndDate != null">
+					<if test="categoryType == 'memNo'">
+						A.MEM_NO = #{ searchResult } 
+						  <![CDATA[
+        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+       					 ]]>
+					</if>
+					<if test="categoryType == 'memId'">
+						A.MEM_ID = #{ searchResult }
+								  <![CDATA[
+        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+       					 ]]>
+					</if>
+					<if test="categoryType == 'memName'">
+						A.MEM_NAME = #{ searchResult }
+								  <![CDATA[
+        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+       					 ]]>
+					</if>
+					<if test="categoryType == 'phone'">
+						A.PHONE = #{ searchResult }
+								  <![CDATA[
+        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+       					 ]]>
+					</if>
+					<if test="categoryType == 'address'">
+						A.ADDRESS = #{ searchResult }
+								  <![CDATA[
+        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+       					 ]]>
+					</if>
+					<if test="categoryType == 'entYn'">
+						A.ENT_YN = #{ searchResult }
+						<![CDATA[
+        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+       					 ]]>
+					</if>
+				</when>
+				<otherwise>
+					<if test="categoryType == 'memNo'">
+						A.MEM_NO = #{ searchResult }
+					</if>
+					<if test="categoryType == 'memId'">
+						A.MEM_ID = #{ searchResult }
+					</if>
+					<if test="categoryType == 'memName'">
+						A.MEM_NAME = #{ searchResult }
+					</if>
+					<if test="categoryType == 'phone'">
+						A.PHONE = #{ searchResult }
+					</if>
+					<if test="categoryType == 'address'">
+						A.ADDRESS = #{ searchResult }
+					</if>
+					<if test="categoryType == 'entYn'">
+						A.ENT_YN = #{ searchResult }
+					</if>
+				</otherwise>
+			</choose>
+
+		</where>
 	</select>
 </mapper>
 
