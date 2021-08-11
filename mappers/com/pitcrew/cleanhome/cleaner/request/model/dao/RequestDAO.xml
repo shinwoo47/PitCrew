@@ -14,6 +14,8 @@
 		<association property="address" resultMap="memberResultMap"/>
 		<association property="memName" resultMap="memberResultMap"/>
 		<association property="role" resultMap="memberResultMap"/>
+		
+		<collection property="productList" resultMap="productResultMap"/>	
 	</resultMap>
 	
 	<resultMap type="com.pitcrew.cleanhome.member.model.dto.MemberDTO" id="memberResultMap">
@@ -31,6 +33,15 @@
 		<result property="entDate" column="ENT_DATE"/>
 	</resultMap>
 	
+	<resultMap type="com.pitcrew.cleanhome.cleaner.request.model.dto.ProductDTO" id="productResultMap">
+		<id property="serNo" column="SER_NO"/>
+		<result property="serName" column="SER_NAME"/>
+		<result property="serContent" column="SER_CONTENT"/>
+		<result property="serTime" column="SER_TIME"/>
+		<result property="precSerNo" column="PREC_SER_NO"/>
+		<result property="serPrice" column="SER_PRICE"/>
+	</resultMap>
+	
 	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT 
                COUNT(*)
@@ -40,16 +51,57 @@
 	
 	<select id="selectRequestList" resultMap="RequestResultMap">
 	       SELECT
-	              A.REQ_NO
-	            , A.REQ_DATE
-	            , A.REQ_REQ
-	            , A.MEM_NO_CLEANER
-	            , A.MEM_NO_USER
-	            , A.REQ_STATUS
-	            , B.ADDRESS  
-	         FROM REQUEST_INFO A
-	         JOIN MEMBER B ON(A.MEM_NO_USER = B.MEM_NO)
-	         JOIN PRODUCT_BY_REQ C ON()
-	         JOIN PRODCUT_INFO D
+         	  A.RNUM 
+            , A.REQ_NO
+	        , A.REQ_DATE
+	        , A.REQ_REQ
+	        , A.MEM_NO_CLEANER
+	        , A.MEM_NO_USER
+	        , A.REQ_STATUS
+	        , A.ADDRESS 
+	        , F.SER_NAME
+	        , F.SER_TIME
+	        , F.SER_PRICE 
+         FROM (SELECT  ROWNUM RNUM
+                     , B.REQ_NO
+	            	 , B.REQ_DATE
+	            	 , B.REQ_REQ
+	            	 , B.MEM_NO_CLEANER
+	            	 , B.MEM_NO_USER
+	            	 , B.REQ_STATUS
+	            	 , B.ADDRESS
+                  FROM (SELECT C.REQ_NO
+	            	 		 , C.REQ_DATE
+	            	 		 , C.REQ_REQ
+	            	 		 , C.MEM_NO_CLEANER
+	            	 		 , C.MEM_NO_USER
+	            	 		 , C.REQ_STATUS
+	            	 		 , D.ADDRESS
+                          FROM REQUEST_INFO C
+    					  JOIN MEMBER D ON(C.MEM_NO_USER = D.MEM_NO)
+    					 <where>
+							<if test='searchDate != null and !"".equals(searchDate)'>
+							<![CDATA[
+	           				  C.REQ_DATE >= TO_DATE(#{ searchDate }, 'YYYY-MM-DD')
+                          AND C.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM-DD') + 1 
+                          
+                              ]]>
+							</if>
+							<if test='searchValue != null and !"".equals(searchValue)'>
+	           				AND D.ADDRESS LIKE '%' || #{ searchValue } || '%'	
+							</if>
+						   AND C.REQ_STATUS = '등록'
+    					</where>
+                         ORDER BY C.REQ_DATE DESC
+                        ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ endRow }
+                  ]]>
+               ) A
+          JOIN PRODUCT_BY_REQ E ON(E.REQ_NO = A.REQ_NO)
+	      JOIN PRODUCT_INFO F ON(F.SER_NO = E.SER_NO)
+         WHERE A.RNUM >= #{ startRow } 
 	</select>
+	
+	
 </mapper>

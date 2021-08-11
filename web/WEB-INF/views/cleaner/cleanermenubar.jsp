@@ -76,8 +76,13 @@
                     
                     <div class="col-lg-3">
                         <div class="header__top__language">
-                            <img src="img/flag.png" alt="">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속중</h3>
+                            <c:if test="${ empty sessionScope.loginMember }">
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
+                            </c:if>
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
+                            </c:if>
                         </div>
                     </div>
 
