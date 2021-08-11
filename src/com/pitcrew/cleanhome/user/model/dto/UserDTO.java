@@ -2,23 +2,27 @@ package com.pitcrew.cleanhome.user.model.dto;
 
 import java.sql.Date;
 
-public class UserDTO  implements java.io.Serializable {
+public class UserDTO implements java.io.Serializable {
 	
+	private int no;
 	private String userName;
 	private String userId;
 	private String email;
-	private java.sql.Date birth;
+	private Date birth;
 	private String address;
 	private String userPwd;
 	private String userPhone;
-	private java.sql.Date userEnrollDate;
+	private Date userEnrollDate;
 	private String role;
 	private String userEntYn; 
-	private java.sql.Date userEntDate;
+	private Date userEntDate;
 	
-	public UserDTO(String userName, String userId, String email, Date birth, String address, String userPwd,
+	public UserDTO() {}
+
+	public UserDTO(int no, String userName, String userId, String email, Date birth, String address, String userPwd,
 			String userPhone, Date userEnrollDate, String role, String userEntYn, Date userEntDate) {
 		super();
+		this.no = no;
 		this.userName = userName;
 		this.userId = userId;
 		this.email = email;
@@ -30,6 +34,14 @@ public class UserDTO  implements java.io.Serializable {
 		this.role = role;
 		this.userEntYn = userEntYn;
 		this.userEntDate = userEntDate;
+	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public String getUserName() {
@@ -56,11 +68,11 @@ public class UserDTO  implements java.io.Serializable {
 		this.email = email;
 	}
 
-	public java.sql.Date getBirth() {
+	public Date getBirth() {
 		return birth;
 	}
 
-	public void setBirth(java.sql.Date birth) {
+	public void setBirth(Date birth) {
 		this.birth = birth;
 	}
 
@@ -88,11 +100,11 @@ public class UserDTO  implements java.io.Serializable {
 		this.userPhone = userPhone;
 	}
 
-	public java.sql.Date getUserEnrollDate() {
+	public Date getUserEnrollDate() {
 		return userEnrollDate;
 	}
 
-	public void setUserEnrollDate(java.sql.Date userEnrollDate) {
+	public void setUserEnrollDate(Date userEnrollDate) {
 		this.userEnrollDate = userEnrollDate;
 	}
 
@@ -112,21 +124,21 @@ public class UserDTO  implements java.io.Serializable {
 		this.userEntYn = userEntYn;
 	}
 
-	public java.sql.Date getUserEntDate() {
+	public Date getUserEntDate() {
 		return userEntDate;
 	}
 
-	public void setUserEntDate(java.sql.Date userEntDate) {
+	public void setUserEntDate(Date userEntDate) {
 		this.userEntDate = userEntDate;
 	}
 
 	@Override
 	public String toString() {
-		return "UserDTO [userName=" + userName + ", userId=" + userId + ", email=" + email + ", birth=" + birth
-				+ ", address=" + address + ", userPwd=" + userPwd + ", userPhone=" + userPhone + ", userEnrollDate="
-				+ userEnrollDate + ", role=" + role + ", userEntYn=" + userEntYn + ", userEntDate=" + userEntDate + "]";
+		return "UserDTO [no=" + no + ", userName=" + userName + ", userId=" + userId + ", email=" + email + ", birth="
+				+ birth + ", address=" + address + ", userPwd=" + userPwd + ", userPhone=" + userPhone
+				+ ", userEnrollDate=" + userEnrollDate + ", role=" + role + ", userEntYn=" + userEntYn
+				+ ", userEntDate=" + userEntDate + "]";
 	}
-	
 	
 	
 	
