@@ -87,6 +87,8 @@
 		function pageButtonAction(text) {
 			location.href = link + "?currentPage=" + text + searchText;
 		}
+		
+		
 	</script>
 </body>
 </html>

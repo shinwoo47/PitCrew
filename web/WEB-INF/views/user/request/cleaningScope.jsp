@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
+
 </head>
 
 <body>
@@ -82,16 +83,18 @@
         </div>
     </header>
     <!-- Header Section End -->
-
-
+	<h1 align = "center">청소 선택</h1>
     <!-- Services Section Begin -->
     <section class="services spad">
         <div class="container">
             <div class="row">
+         
+	
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
                             <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/roomClean.png" alt="">
+                            <a href="${ pageContext.servletContext.contextPath }/clean/select"></a>
                         </div>
                         <div class="services__item__text">
                             <h4><span>01.</span>방청소</h4>
@@ -119,12 +122,9 @@
                     </div>
                 </div> 
             </div>
-    <div class="liness"></div><br>
-    <div class ="wqes"align ="center"><img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/roomClean.png" alt="" class="waes" ></div>
-    <br><h3 align = "center">방청소</h3>
-    <br><h4 align = "right">가격</h4>
-
+   
         </div>
+
   
     <!-- Services End -->
 
