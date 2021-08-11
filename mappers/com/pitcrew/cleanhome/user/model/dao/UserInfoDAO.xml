@@ -5,12 +5,12 @@
 <mapper namespace="UserInfoDAO">
 	<resultMap type="com.pitcrew.cleanhome.member.model.dto.MemberDTO" id="memberResultMap">
 		<id property="memNo" column="MEM_NO"/>
-		<result property="memName" column="MEM_NAME"/>
 		<result property="id" column="MEM_ID"/>
+		<result property="pwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
 		<result property="email" column="EMAIL"/>
 		<result property="birth" column="BIRTH"/>
 		<result property="address" column="ADDRESS"/>
-		<result property="pwd" column="MEM_PWD"/>
 		<result property="phone" column="PHONE"/>
 		<result property="enrollDate" column="ENROLL_DATE"/>
 		<result property="role" column="MEMBER_ROLE"/>
@@ -36,5 +36,13 @@
 		  FROM MEMBER A
 		 WHERE A.MEM_NO = #{ memNo }
 	</select>
-
+	
+	<update id="updateMyInfo" parameterType="com.pitcrew.cleanhome.member.model.dto.MemberDTO">
+	    UPDATE /* com.pitcrew.cleanhome.user.model.dao.UserInfoDAO#updateMyInfo() */
+			   MEMBER A
+		   SET A.MEM_PWD = #{ pwd }
+		     , A.ADDRESS = #{ address }
+		     , A.EMAIL = #{ email }
+		 WHERE A.MEM_NO = #{ memNo }
+	</update>
 </mapper>

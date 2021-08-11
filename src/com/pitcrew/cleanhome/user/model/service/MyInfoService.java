@@ -36,7 +36,26 @@ public class MyInfoService {
 		
 		List<MemberDTO> selectUpdateMyInfo = userInfoDAO.selectUpdateMyInfo(session, memNo);
 		
+		session.close();
+		
 		return selectUpdateMyInfo;
+	}
+
+	public int updateMyInfo(MemberDTO updateMember) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = userInfoDAO.updateMyInfo(session, updateMember);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
 	}
 	
 	

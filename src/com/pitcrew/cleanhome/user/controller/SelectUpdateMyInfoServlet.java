@@ -26,13 +26,15 @@ public class SelectUpdateMyInfoServlet extends HttpServlet {
 		
 		List<MemberDTO> selectUpdateMyInfo = new MyInfoService().selectUpdateMyInfo(memNo);
 		
-		System.out.println(selectUpdateMyInfo);
+		System.out.println("selectUpdateMyInfo : " + selectUpdateMyInfo );
 		
 		String path = "";
 		if(selectUpdateMyInfo != null) {
 			path = "/WEB-INF/views/user/selectUpdateMyInfo.jsp";
+			request.setAttribute("selectUpdateMyInfo", selectUpdateMyInfo);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
+			request.setAttribute("message", "회원정보 조회 실패!");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
