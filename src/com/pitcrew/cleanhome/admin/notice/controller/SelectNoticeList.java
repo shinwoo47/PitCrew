@@ -1,6 +1,8 @@
 package com.pitcrew.cleanhome.admin.notice.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,17 +22,19 @@ public class SelectNoticeList extends HttpServlet {
 		
 		System.out.println("controller 진입성공");
 		
-		List<NoticeDTO> noticeList = new NoticeService().selectAllNoticeList();
+		String forWho = "사용자";
+		List<NoticeDTO> noticeList = new NoticeService().selectAllNoticeList(forWho);
 		
 		System.out.println("controller : " + noticeList);
+		
 		
 		String path = "";
 		if(noticeList != null) {
 			path = "/WEB-INF/views/admin/notice/noticeList.jsp";
 			request.setAttribute("noticeList", noticeList);
 		} else {
-			path = "/WEB-INF/views/common/failed.jsp";
-			request.setAttribute("message", "조회에 실패했습니다. 다시 시도해주세요.");
+			path = "/WEB-INF/common/failed.jsp";
+			request.setAttribute("message", "조회에 실패했습니다.");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

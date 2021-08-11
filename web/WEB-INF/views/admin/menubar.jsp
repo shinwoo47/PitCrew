@@ -212,7 +212,7 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/cards.html">사용자 정보 조회 <span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/alluserinfo">사용자 정보 조회 <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/general.html">블랙리스트</a>
@@ -328,7 +328,7 @@
                                                         <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/notice/list">사용자 공지사항</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product.html">해결사 공지사항</a>
+                                                        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/cleanernotice/list">해결사 공지사항</a>
                                                     </li>                                                   
                                                 </ul>
                                             </div>

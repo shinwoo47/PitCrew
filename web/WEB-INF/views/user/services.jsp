@@ -101,7 +101,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="resources/user/img/user/infor.png" alt=""></a>  
+                        <a href="./index.html"><img src=" ${ pageContext.servletContext.contextPath }/resources/user/img/user/infor.png" alt="pit"></a>  
                     </div>
                 </div>
                 <div class="col-lg-9">

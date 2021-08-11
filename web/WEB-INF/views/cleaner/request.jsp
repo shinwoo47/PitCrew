@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>\
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Loanday | Template</title>
-
+	
    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
@@ -25,6 +26,12 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/slicknav.min.css" type="text/css"> 
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/style.css" type="text/css"> 
+    <style>
+    	.blog__item__text {
+	padding: 20px 20px 20px 20px;
+	margin : 20px 20px 20px 20px;
+}
+    </style>
 </head>
 
 <body>
@@ -42,19 +49,30 @@
             <div class="row">
                 <div class="col-lg-8 col-md-7">	
                     <div class="blog__item">
-                        <div class="blog__item__text">
-                        	<c:forEach var="request" items="${ requestScope.requestList }">
-                            <h3><c:out value="${ request.reqNo }"/></a></h3>
+                    <c:forEach var="request" items="${ requestScope.requestList }">
+                        <div style="height: auto; width: 100%; border:3px solid yellowgreen;" class="blog__item__text" id="request">
+                        	
+                        	<c:set var="address" value="${ request.address.address }"/>
+                        	<c:set var="address1" value="${ fn:substring(address, fn:indexOf(address,'$') + 1, 30) }"/>
+                        	<c:set var="address2" value="${ fn:substring(address1, 0, fn:indexOf(address1,'$')) }"/>
+                            <h3><c:out value="${ address2 }"/></h3>
                             <ul>
                                 <li><i class="fa fa-clock-o"></i> <c:out value="${ request.reqDate }"/></li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
+                                <li>
+                                	<c:set var="sum" value="0"/>
+                                	<c:forEach var="product" items="${ request.productList }">
+                                		<i class="fa fa-user"></i> 
+                                		<c:out value="${ product.serName }"/> 가격 : <c:out value="${ product.serPrice }"/>원 
+                                		<c:set var="sum" value="${ sum + product.serPrice }"/>
+                                	</c:forEach>
+                                </li>
                             </ul>
-                           
-                            <p>방청소</p>
-                            </c:forEach>
+                            
+                                                              합계 가격 : <c:out value="${ sum }"/> 원<br>
                             <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
                         	
                         </div>
+                        </c:forEach>
                     </div>
                     <div class="blog__item">
                         <div class="blog__item__img">
@@ -71,51 +89,7 @@
                             <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
                         </div>  
                     </div>
-                    <div class="blog__item">
-                        <div class="blog__item__img">
-                            <img src="img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <h3><a href="./blog-details.html">Freelance Design Tricks How To Get Away With Murder</a></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
-                                buying things online in</p>
-                            <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog__item">
-                        <div class="blog__item__img">
-                            <img src="img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <h3><a href="./blog-details.html">Freelance Design Tricks How To Get Away With Murder</a></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
-                                buying things online in</p>
-                            <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog__item">
-                        <div class="blog__item__img">
-                            <img src="img/blog/blog-4.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <h3><a href="./blog-details.html">Advertise No Matter If You Are Big Or Small</a></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
-                                buying things online in</p>
-                            <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
-                        </div>
-                    </div>
+                    
                     <div class="blog__pagination">
                         <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
                         	<jsp:include page="../common/paging.jsp"/>
@@ -124,75 +98,19 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">
+                    <form action="${ pageContext.servletContext.contextPath }/cleaner/request/enroll" method="get">
                         <div class="blog__sidebar__search">
                             <h5>Search</h5>
-                            <form action="#">
-                                <input type="text" placeholder="Searching...">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
+                           	<input type="date" id="searchDate" name="searchDate" class="fa fa-search" placeholder="날짜 선택">
+                           	<input type="text" id="searchValue" name="searchValue"/>   
+                           	<button type="submit">검색</button>  	   
                         </div>
-                        <div class="blog__sidebar__categories">
-                            <h5>Categories</h5>
-                            <ul>
-                                <li><a href="#">Finance <span>18</span></a></li>
-                                <li><a href="#">Business <span>20</span></a></li>
-                                <li><a href="#">Loan <span>07</span></a></li>
-                                <li><a href="#">Consulting <span>22</span></a></li>
-                                <li><a href="#">Credit <span>19</span></a></li>
-                            </ul>
+                        </form>
+                        <h3>지도</h3>	
+                        <div class="blog__sidebar__categories" id="map" style="width:300px;height:250px;">
+                            
                         </div>
-                        <div class="blog__sidebar__recent">
-                            <h5>Recent Post</h5>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="img/blog/br-1.jpg" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>Promote With Postcards</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="img/blog/br-2.jpg" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>Bidding Directories</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="img/blog/br-3.jpg" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <h6>Kook 2 Director Add Url</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="blog__sidebar__tags">
-                            <h5>Popular Tag</h5>
-                            <a href="#">Business</a>
-                            <a href="#">Marketing</a>
-                            <a href="#">Payment</a>
-                            <a href="#">Travel</a>
-                            <a href="#">Finance</a>
-                            <a href="#">Videos</a>
-                            <a href="#">Ideas</a>
-                            <a href="#">Unique</a>
-                            <a href="#">Music</a>
-                            <a href="#">Key</a>
-                        </div>
-                        <div class="blog__sidebar__social">
-                            <h5>Follow Us</h5>
-                            <div class="blog__sidebar__social__links">
-                                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="google"><i class="fa fa-google"></i></a>
-                                <a href="#" class="skype"><i class="fa fa-skype"></i></a>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -294,6 +212,56 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery.slicknav.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/owl.carousel.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/main.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=572342b1ef19fad40c1a5ac213542717&libraries=services"></script>
+	<script>
+	window.onload = function() {
+		
+		/* 화면에 랜더링 된 태그들이 존재하지 않는 경우 에러 발생 가능성이 있어서 if문으로 태그가 존재하는지 부터 확인하고 이벤트를 연결한다. */
+		if(document.getElementById("request")) {
+			const $request = document.getElementById("request");
+			$request.onclick = function() {
+				
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch('${ address2 }', function(result, status) {
+
+			    	// 정상적으로 검색이 완료됐으면 
+			    	 if (status === kakao.maps.services.Status.OK) {
+						
+			    	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+			    	    // 결과값으로 받은 위치를 마커로 표시합니다
+			    	    var marker = new kakao.maps.Marker({
+			    	        map: map,
+			    	        position: coords
+			    	    });
+
+			      	  	// 인포윈도우로 장소에 대한 설명을 표시합니다
+			       	 	var infowindow = new kakao.maps.InfoWindow({
+			      	    content: '<div style="width:150px;text-align:center;padding:6px 0;">의뢰 장소</div>'
+			        	});
+			        	infowindow.open(map, marker);
+
+			        	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        	map.setCenter(coords);
+			    	} 
+				});  
+			}
+		}
+	}
+	
+	</script>
 </body>
 
 </html>

@@ -51,6 +51,19 @@ h6 {
 	font-family: "Lato", sans-serif;
 }
 
+.liness {
+            float: center;
+              width: 1150px;
+            border: 1px solid rgba(0, 0, 0, 0.466);
+            
+        }
+.wqes {
+	float: center;
+	width: 40%;
+     height: 300px;
+}
+
+
 h1 {
 	font-size: 70px;
 }
