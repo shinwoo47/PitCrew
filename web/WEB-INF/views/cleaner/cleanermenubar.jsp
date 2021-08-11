@@ -100,7 +100,7 @@
                     <div class="header__nav">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
+                                <li class="active"><a href="${ pageContext.servletContext.contextPath }/cleaner/home">Home</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/enroll">청소 서비스</a></li>
                                 <li><a href="./services.html">일정 관리</a></li>
                                 <li><a href="./blog.html">Blog</a></li>

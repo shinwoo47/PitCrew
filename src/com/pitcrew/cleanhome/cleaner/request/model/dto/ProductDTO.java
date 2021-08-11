@@ -7,13 +7,13 @@ public class ProductDTO implements Serializable{
 	private int serNo;
 	private String serName;
 	private String serContent;
-	private int SerTime;
+	private double SerTime;
 	private int precSerNo;
 	private int serPrice;
 	
 	public ProductDTO () {}
 
-	public ProductDTO(int serNo, String serName, String serContent, int serTime, int precSerNo, int serPrice) {
+	public ProductDTO(int serNo, String serName, String serContent, double serTime, int precSerNo, int serPrice) {
 		super();
 		this.serNo = serNo;
 		this.serName = serName;
@@ -47,11 +47,11 @@ public class ProductDTO implements Serializable{
 		this.serContent = serContent;
 	}
 
-	public int getSerTime() {
+	public double getSerTime() {
 		return SerTime;
 	}
 
-	public void setSerTime(int serTime) {
+	public void setSerTime(double serTime) {
 		SerTime = serTime;
 	}
 

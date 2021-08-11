@@ -124,6 +124,7 @@ public class AuthenticationFilter implements Filter {
 		
 		cleanerPermitList.add("/cleaner/request/enroll");
 		cleanerPermitList.add("/cleaner/home");
+		cleanerPermitList.add("/cleaner/request/accept");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");

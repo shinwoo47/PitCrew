@@ -11,9 +11,11 @@
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
     <title>Loanday | Template</title>
-	
-   <!-- Google Font -->
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
@@ -25,99 +27,121 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/slicknav.min.css" type="text/css"> 
-    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/style.css" type="text/css"> 
-    <style>
-    	.blog__item__text {
-	padding: 20px 20px 20px 20px;
-	margin : 20px 20px 20px 20px;
-}
-    </style>
+    <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-   
-
+    
     <!-- 네비 -->
 	<jsp:include page="../cleaner/cleanermenubar.jsp"/>
 
     
 
-    <!-- Blog Section Begin -->
-    <section class="blog spad">
-    
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details spad">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-7">	
-                    <div class="blog__item">
-                    <c:forEach var="request" items="${ requestScope.requestList }">
-                        <div style="height: auto; width: 100%; border:3px solid yellowgreen;" class="blog__item__text" id="request">
-                        	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqNo }"/>
-                        	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqStatus }"/>
-                        	<c:set var="address" value="${ request.address.address }"/>
-                        	<c:set var="address1" value="${ fn:substring(address, fn:indexOf(address,'$') + 1, 30) }"/>
-                        	<c:set var="address2" value="${ fn:substring(address1, 0, fn:indexOf(address1,'$')) }"/>
-                            <h3><c:out value="${ address2 }"/></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> <c:out value="${ request.reqDate }"/></li>
-                                <li>
-                                	<c:set var="sum" value="0"/>
-                                	<c:forEach var="product" items="${ request.productList }">
-                                		<i class="fa fa-user"></i> 
-                                		<c:out value="${ product.serName }"/> 가격 : <c:out value="${ product.serPrice }"/>원 
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__details__title">
+                        <div class="container">
+							  <h2>의뢰 상세 내역</h2>
+							  <p>*확인 필수*</p>            
+							  <table class="table table-hover">
+							    <thead>
+							      <tr>
+							        <th>상세</th>
+							        <th>내용</th>
+							      </tr>
+							    </thead>
+							    <tbody>
+							      <tr>
+							        <td>장소</td>
+							        <td>${ fn:replace(requestDetail.address.address, "$", " ")}</td>
+							      </tr>
+							      <tr>
+							        <td>연락처</td>
+							        <td>${ requestDetail.phone.phone }</td>
+							      </tr>
+							      <tr>
+							        <td>일시</td>
+							        <td>${ requestDetail.reqDate }</td>
+							      </tr>
+							      <tr>
+							      <tr>
+							        <td>시간</td>
+							        <td><c:set var="sum2" value="0"/>
+							        	<c:forEach var="product" items="${ requestDetail.productList }">
+                                		<input type=hidden value="${ product.serTime}"/>
+                                		<c:set var="sum2" value="${ sum2 + product.serTime }"/>
+                                		</c:forEach>
+                                		<c:out value="${ sum2 }"/> 시간
+                                	</td>
+							      </tr>
+							      <tr>
+							        <td>청소종류</td>
+							        <td><c:set var="sum" value="0"/>
+                                	<c:forEach var="product" items="${ requestDetail.productList }">
+                                		<c:out value="${ product.serName }"/><input type=hidden value="${ product.serPrice }"/>
                                 		<c:set var="sum" value="${ sum + product.serPrice }"/>
                                 	</c:forEach>
-                                </li>
-                            </ul>
-                            
-                                                              합계 가격 : <c:out value="${ sum }"/> 원
-                            <button style="float: right;" class="primary-btn" id="ok">선택하기 </button>
-                        	
-                        </div>
-                        </c:forEach>
+                                	</td>
+							      </tr>
+							      <tr>
+							        <td>가격</td>
+							        <td><c:out value="${ sum }"/> 원</td>
+							      </tr>
+							      <tr>
+							        <td>의뢰상태</td>
+							        <td>${ requestDetail.reqStatus }</td> 
+							      </tr>
+							    </tbody>
+							  </table>
+							</div>
                     </div>
-                    <div class="blog__item">
-                        <div class="blog__item__img">
-                            <img src="img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <h3><a href="./blog-details.html">Internet Advertising Trends You Won T Be Disappointed</a></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
-                                buying things online in</p>
-                            <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
-                        </div>  
+                    <div class="blog__details__quote">
+                        <p>${ request.reqReq }</p>
+
                     </div>
-                    
-                    <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                        	<jsp:include page="../common/paging.jsp"/>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                    <div class="blog__details__text">
+                        <h4>1. Promotional Advertising Specialty You Ve Waited Long Enough</h4>
+                        <p class="first-para">Take it on a Thursday or Friday, when the big Sunday advertisements are in
+                            process construction, the scene is remarkably lively, and the man at the head of the
+                            advertising department has plenty</p>
+                        <p>He must have very clear-cut and definite ideas as to whatâs what, and no matter what
+                            influence may be brought to bear upon him by the different managers the advertising manager
+                            must have a stamina to select what he considers the best and arrange the same as he thinks
+                            wise, while at the same time he must have sufficient tact and skill to do these things
+                            without hurting the</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-5">
-                    <div class="blog__sidebar">
-                    <form action="${ pageContext.servletContext.contextPath }/cleaner/request/enroll" method="get">
-                        <div class="blog__sidebar__search">
-                            <h5>Search</h5>
-                           	<input type="date" id="searchDate" name="searchDate" class="fa fa-search" placeholder="날짜 선택">
-                           	<input type="text" id="searchValue" name="searchValue"/>   
-                           	<button type="submit">검색</button>  	   
-                        </div>
-                        </form>
-                        <h3>지도</h3>	
-                        <div class="blog__sidebar__categories" id="map" style="width:300px;height:250px;">
-                            
-                        </div>
-                        
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="blog__details__text">
+                        <h4>2. Advertising Relationships Vs Business Decisions</h4>
+                        <p class="first-para">Businesses often become known today through effective marketing. The
+                            marketing may be in the form of a regular news item or half column society news in the
+                            Sunday newspaper. The marketing may be in the form of a heart to heart talk with Mr. Brown
+                            on his prominent local television show. These are all advertising. Businesses cannot get
+                            away from the force of advertising. If they want to make their products known in the
+                            marketplace they have to use some</p>
+                        <p>Advertising is being more and more known as a reasonable and desirable business force. Letâs
+                            say you own a department store. The advertising manager of the store is like the managing
+                            editor of a daily newspaper with his group of reporters regularly bringing fresh matter to
+                            his</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Blog End -->
+    <!-- Blog Details Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer">
@@ -203,7 +227,7 @@
     </div>
     <!-- Search End -->
 
-    <!-- Js Plugins -->
+   <!-- Js Plugins -->
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery-3.3.1.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/bootstrap.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery.nice-select.min.js"></script>
@@ -213,82 +237,6 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery.slicknav.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/owl.carousel.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/main.js"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=572342b1ef19fad40c1a5ac213542717&libraries=services"></script>
-	<script>
-	window.onload = function() {
-		
-	/* 화면에 랜더링 된 태그들이 존재하지 않는 경우 에러 발생 가능성이 있어서 if문으로 태그가 존재하는지 부터 확인하고 이벤트를 연결한다. */
-		if(document.getElementById("request")) {
-			
-			const $request = document.getElementById("request");
-			
-				
-				$request.onclick = function() {
-					
-					console.log("hi")
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				    mapOption = {
-				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				        level: 3 // 지도의 확대 레벨
-				    };  
-	
-					// 지도를 생성합니다    
-					var map = new kakao.maps.Map(mapContainer, mapOption); 
-	
-					// 주소-좌표 변환 객체를 생성합니다
-					var geocoder = new kakao.maps.services.Geocoder();
-	
-					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('${ address2 }', function(result, status) {
-	
-				    	// 정상적으로 검색이 완료됐으면 
-				    	 if (status === kakao.maps.services.Status.OK) {
-							
-				    	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	
-				    	    // 결과값으로 받은 위치를 마커로 표시합니다
-				    	    var marker = new kakao.maps.Marker({
-				    	        map: map,
-				    	        position: coords
-				    	    });
-	
-				      	  	// 인포윈도우로 장소에 대한 설명을 표시합니다
-				       	 	var infowindow = new kakao.maps.InfoWindow({
-				      	    content: '<div style="width:150px;text-align:center;padding:6px 0;">의뢰 장소</div>'
-				        	});
-				        	infowindow.open(map, marker);
-	
-				        	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-				        	map.setCenter(coords);
-				    	} 
-					});  
-				}
-			
-		}
-		if(document.getElementById("ok")) {
-			
-			const $ok = document.getElementById("ok");
-			console.log($ok)
-			
-				$ok.onclick = function(){
-				
-					const no = this.parentNode.children[0].value;
-					const status = this.parentNode.children[1].value;
-        			console.log(status);
-		        	msg = "정말 선택 하시겠습니까?";
-		        	if (confirm(msg) == true) {	
-		        		
-		        		location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/accept?no=" + no + "&status=" + status;
-		        	} else {
-		           		return
-		        	}
-		    	}
-			
-		}
-	
-	}
-	
-	</script>
 </body>
 
 </html>
