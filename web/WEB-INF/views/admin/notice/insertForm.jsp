@@ -4,37 +4,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.js"></script>
-<script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-ko-KR.js"></script>
- <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>맡겨줘 홈즈 관리자 모드</title>
 </head>
 <body>
 	<jsp:include page="../menubar.jsp"/>
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
+         	<div style="display: block">
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
-            <h3>사용자 공지사항</h3><br>
-           
-		  <form method="post">
-		  <textarea id="summernote" name="editordata"></textarea>
-		</form>
-    </div> 
+          	</div>
+          	<div>
+          	<label class="custom-control custom-radio custom-control-inline">
+            	<input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">사용자</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">해결사</span>
+            </label>
+			</div>
+		  <div class="container">
+ 		 <textarea class="summernote" name="editordata"></textarea>    
+		 </div>
 
-    <script>
-    $(document).ready(function() {
-    	$('#summernote').summernote({
-    		  height: 150                 // 에디터 높이
-    		  minHeight: null,             // 최소 높이
-    		  maxHeight: null,             // 최대 높이
-    		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-    		  lang: "ko-KR",					// 한글 설정
-    		  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
-              
-    	});
-    });
-    
-    </script>
+
+<script>
+$('.summernote').summernote({
+	  height: 300,
+	  lang: "ko-KR"
+	});
+</script>
+    </div> 
+  </div> 
+   
 </body>
 </html>
