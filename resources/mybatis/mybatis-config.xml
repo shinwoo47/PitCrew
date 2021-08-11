@@ -23,6 +23,10 @@
 
 		<mapper resource="com/pitcrew/cleanhome/admin/notice/model/dao/NoticeDAO.xml"/>
 		
+
+		<mapper resource="com/pitcrew/cleanhome/user/model/dao/UserInfoDAO.xml"/>
+
 		<mapper resource="com/pitcrew/cleanhome/admin/user/model/dao/UserDAO.xml"/>
+
 	</mappers>
 </configuration>

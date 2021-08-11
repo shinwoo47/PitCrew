@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -84,9 +85,13 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="header__top__language">
-                            <img src="" alt="">
-                            <span></span>
-                            <i class="fa fa-angle-down"></i>
+                            <c:if test="${ empty sessionScope.loginMember }">
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
+                            </c:if>
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -113,9 +118,9 @@
                                 </li>
                                 <li><a href="./contact.html">MY</a>
                                     <ul class="dropdown">
-                                        <li><a href="./services.html">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
+                                        <li><a href="./services.html">의뢰내역</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/select/myInfo">정보수정</a></li>
+                                        <li><a href="./blog-details.html">로그아웃</a></li>
                                     </ul>
                                 </li>
                             </ul>
