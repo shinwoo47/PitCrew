@@ -6,14 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	.pagingArea{
-		margin-bottom: 100px;
-	}
-</style>
 </head>
 <body>
-	<div class="pagingArea">
+	<div class="pagingArea" align="center">
 		<!-- 맨 앞으로 이동 버튼 -->
 	    <button id="startPage"><<</button>
 		
