@@ -10,6 +10,7 @@
 	<result property="writerMemberNo" column="MEM_NO"/>
 	<result property="status" column="BOARD_CON"/>
 	<result property="count" column="BOARD_READ_COUNT"/>
+	<result property="forWho" column="BOARD_CATEGORY_STATUS"/>
 
 	<association property="writer" resultMap="memberResultMap"/>
 	<association property="role" resultMap="memberResultMap"/>
@@ -30,22 +31,56 @@
 	<result property="entireDate" column="ENT_DATE"/>
 	</resultMap>
 	
-	<select id="selectAllNoticeList" resultMap="noticeResultMap">
-		SELECT /**/
+	<select id="selectAllNoticeList" resultMap="noticeResultMap" parameterType="string">
+	SELECT /**/
 		        A.BOARD_NO
 		      , A.BOARD_TITLE
 		      , A.BOARD_BODY
 		      , A.BOARD_CATEGORY
 		      , A.BOARD_WRITE_DATE
 		      , A.MEM_NO
-		      , B.MEM_NAME
 		      , A.BOARD_CON
 		      , A.BOARD_READ_COUNT
-		      , B.MEMBER_ROLE
+		      , B.MEM_NAME
+		      , A.BOARD_CATEGORY_STATUS
 		 FROM BOARD A
 		 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
-		WHERE A.BOARD_CON = 'Y'
+		WHERE A.BOARD_CON = 'y'
 	      AND A.BOARD_CATEGORY = '공지'
-	    ORDER BY A.BOARD_WRITE_DATE DESC
+	    <if test="forWho == '사용자'">  
+	      AND A.BOARD_CATEGORY_STATUS = '사용자'
+		</if>
+  		<if test="forWho == '해결사'">
+	       AND A.BOARD_CATEGORY_STATUS = '해결사'
+		</if>
+		  ORDER BY A.BOARD_WRITE_DATE DESC -->
+	</select>
+	
+	<update id="incrementNoticeCount">
+		UPDATE /**/
+			   BOARD A
+		   SET A.BOARD_READ_COUNT = (SELECT B.BOARD_READ_COUNT
+                                       FROM BOARD B
+                                 WHERE B.BOARD_NO = #{ no }
+                               ) + 1
+         WHERE A.BOARD_NO = #{ no }
+	</update>
+	
+	<select id="selectNoticeDetail" resultMap="noticeResultMap">
+	SELECT /**/
+		        A.BOARD_NO
+		      , A.BOARD_TITLE
+		      , A.BOARD_BODY
+		      , A.BOARD_CATEGORY
+		      , A.BOARD_WRITE_DATE
+		      , A.MEM_NO
+		      , A.BOARD_CON
+		      , A.BOARD_READ_COUNT
+		      , B.MEM_NAME
+		      , A.BOARD_CATEGORY_STATUS
+		 FROM BOARD A
+		 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
+		WHERE A.BOARD_CON = 'y'
+	      AND A.BOARD_NO = #{ no }
 	</select>
 </mapper>
