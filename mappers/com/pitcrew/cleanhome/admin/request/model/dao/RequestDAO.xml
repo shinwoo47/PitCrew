@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RequestDAO">
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO" id="requestResultMap">
+		<id property="reqNo" column="REQ_NO"/>
+		<result property="serviceDate" column="REQ_DATE"/>
+		<result property="wantThing" column="REQ_REQ"/>
+		<result property="cleanerNo" column="MEM_NO_CLEANER"/>
+		<result property="userNo" column="MEM_NO_USER"/>
+		<result property="serviceDate" column="REQ_STATUS"/>
+		<result property="status" column="REQ_STATUS"/>
+	
+		<association property="cleanerNo" column="memberResultMap"/>
+		<association property="userNo" column="memberResultMap"/>
+		<association property="reqDate" column="reqInfoResultMap"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO" id="memberResultMap">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="name" column="MEM_NAME"/>
+		<result property="id" column="MEM_ID"/>
+		<result property="email" column="EMAIL"/>
+		<result property="bday" column="BIRTH"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="pwd" column="MEM_PWD"/>
+		<result property="phone" column="PHONE"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="role" column="MEMBER_ROLE"/>
+		<result property="status" column="ENT_YN"/>
+		<result property="entireDate" column="ENT_DATE"/>
+	</resultMap>
+		
+	<resultMap type="com.pitcrew.cleanhome.admin.request.model.dto.ReqInfoDTO" id="reqInfoResultMap">
+		<id property="reqInfoNo" column="REQ_CON_NO"/>
+		<result property="reqNo" column="REQ_NO"/>
+		<result property="status" column="REQ_CON"/>
+		<result property="date" column="REQ_DATE"/>
+	</resultMap>
+
+	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT /* */
+               COUNT(*)
+          FROM REQUEST_INFO A
+    	<if test="searchCondition == 'category'">
+	      JOIN TBL_CATEGORY B ON(A.CATEGORY_CODE = B.CATEGORY_CODE)
+    	</if>
+    	<if test="searchCondition == 'writer'">
+	      JOIN TBL_MEMBER B ON(A.BOARD_WRITER_MEMBER_NO = B.MEMBER_NO)
+    	</if>
+    	<where>
+			<if test="searchCondition == 'category'">
+	           B.CATEGORY_NAME = #{ searchValue }
+			</if>
+			<if test="searchCondition == 'writer'">
+	           B.NICKNAME LIKE '%' || #{ searchValue } || '%'	
+			</if>
+			<if test="searchCondition == 'title'">
+	           A.BOARD_TITLE LIKE '%' || #{ searchValue } || '%' 	
+			</if>
+			<if test="searchCondition == 'content'">
+	           A.BOARD_BODY LIKE '%' || #{ searchValue } || '%' 	
+			</if>
+	       AND A.BOARD_STATUS = 'Y'
+    	</where>
+	</select>
+	
+	<select id="selectBoardList" resultMap="generalBoardResultMap">
+         SELECT 
+               A.RNUM
+             , A.BOARD_NO
+             , A.BOARD_TYPE
+             , A.CATEGORY_CODE
+             , D.CATEGORY_NAME
+             , A.BOARD_TITLE
+             , A.BOARD_BODY
+             , A.BOARD_WRITER_MEMBER_NO
+             , E.NICKNAME
+             , A.BOARD_COUNT
+             , A.CREATED_DATE
+             , A.BOARD_STATUS
+          FROM (SELECT ROWNUM RNUM
+                     , B.BOARD_NO
+                     , B.BOARD_TYPE
+                     , B.CATEGORY_CODE
+                     , B.BOARD_TITLE
+                     , B.BOARD_BODY
+                     , B.BOARD_WRITER_MEMBER_NO
+                     , B.BOARD_COUNT
+                     , B.CREATED_DATE
+                     , B.BOARD_STATUS
+                  FROM (SELECT C.BOARD_NO
+                             , C.BOARD_TYPE
+                             , C.CATEGORY_CODE
+                             , C.BOARD_TITLE
+                             , C.BOARD_BODY
+                             , C.BOARD_WRITER_MEMBER_NO
+                             , C.BOARD_COUNT
+                             , C.CREATED_DATE
+                             , C.BOARD_STATUS
+                          FROM TBL_BOARD C
+                        <if test="searchCondition == 'category'">
+	      				  JOIN TBL_CATEGORY D ON(C.CATEGORY_CODE = D.CATEGORY_CODE)
+    					</if>
+    					<if test="searchCondition == 'writer'">
+	      				  JOIN TBL_MEMBER D ON(C.BOARD_WRITER_MEMBER_NO = D.MEMBER_NO)
+    					</if>
+    					<where>
+							<if test="searchCondition == 'category'">
+	           				   D.CATEGORY_NAME = #{ searchValue }
+							</if>
+							<if test="searchCondition == 'writer'">
+	           				   D.NICKNAME LIKE '%' || #{ searchValue } || '%'	
+							</if>
+							<if test="searchCondition == 'title'">
+	           				   C.BOARD_TITLE LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+							<if test="searchCondition == 'content'">
+	           				   C.BOARD_BODY LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+	       				   AND C.BOARD_STATUS = 'Y'
+    					</where>
+                         ORDER BY C.BOARD_NO DESC
+                        ) B
+                  <![CDATA[
+                  WHERE ROWNUM <= #{ endRow }
+                  ]]>
+               ) A
+          JOIN TBL_CATEGORY D ON (A.CATEGORY_CODE = D.CATEGORY_CODE)
+          JOIN TBL_MEMBER E ON(A.BOARD_WRITER_MEMBER_NO = E.MEMBER_NO)
+         WHERE A.RNUM >= #{ startRow }     
+         
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
