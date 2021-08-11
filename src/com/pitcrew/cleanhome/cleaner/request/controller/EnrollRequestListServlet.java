@@ -1,6 +1,7 @@
 package com.pitcrew.cleanhome.cleaner.request.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.service.RequestService;
-import com.pitcrew.cleanhome.common.paging.Pagenation;
-import com.pitcrew.cleanhome.common.paging.SelectCriteria;
+import com.pitcrew.cleanhome.cleaner.request.paging.Pagenation;
+import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
+
 
 @WebServlet("/cleaner/request/enroll")
 public class EnrollRequestListServlet extends HttpServlet {
@@ -30,18 +32,22 @@ public class EnrollRequestListServlet extends HttpServlet {
 		if(currentPage != null && !"".equals(currentPage)) {
 			pageNo = Integer.parseInt(currentPage);
 		}
-		
+	
 		/* 0보다 작은 숫자값을 입력해도 1페이지를 보여준다 */
 		if(pageNo <= 0) {
 			pageNo = 1;
 		}
 		
-		String searchCondition = request.getParameter("searchCondition");
 		String searchValue = request.getParameter("searchValue");
+		String searchDate = null;
+		if(request.getParameter("searchDate") != null && !"".equals(request.getParameter("searchDate"))) {
+			searchDate = (request.getParameter("searchDate"));
+		}
+		
 		
 		Map<String, String> searchMap = new HashMap<>();
-		searchMap.put("searchCondition", searchCondition);
 		searchMap.put("searchValue", searchValue);
+		searchMap.put("searchDate", searchDate);
 		
 		/* 전체 게시물 수가 필요하다.
 		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
@@ -60,18 +66,19 @@ public class EnrollRequestListServlet extends HttpServlet {
 		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
 		SelectCriteria selectCriteria = null;
 		
-		if(searchCondition != null && !"".equals(searchCondition)) {
-			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount, searchCondition, searchValue);
+		if((searchDate != null && !"".equals(searchDate)) || (searchValue != null && !"".equals(searchValue))) {
+			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount, searchValue, searchDate);
 		} else {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
 		
-		System.out.println(selectCriteria);
+		System.out.println("selectCriteria" + selectCriteria);
 		
 		/* 조회해온다 */
 		List<RequestDTO> requestList = requestService.selectRequestList(selectCriteria);
 		 
-		System.out.println("requestList : " + requestList);
+		System.out.println("EnrollRequestListServlet requestList : " + requestList);
+		
 		
 		String path = "";
 		if(requestList != null) {

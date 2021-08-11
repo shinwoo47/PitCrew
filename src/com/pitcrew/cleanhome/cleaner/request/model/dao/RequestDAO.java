@@ -6,7 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
-import com.pitcrew.cleanhome.common.paging.SelectCriteria;
+import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
+
 
 public class RequestDAO {
 
