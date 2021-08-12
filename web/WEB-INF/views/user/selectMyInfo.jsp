@@ -47,6 +47,7 @@ div.button {
 	margin: auto;
 	width: 50%;
 }
+
 </style> 
 	<meta charset="UTF-8">
     <meta name="description" content="Loanday Template">
@@ -93,6 +94,7 @@ div.button {
      </header>   
 	<br><br><br><br>
 	<section class="section">
+	<article class="article">
 	<h2 align="center">회원 정보</h2>
 	<table class="type09" align="center">
 	
@@ -121,11 +123,12 @@ div.button {
           </tbody>
           </c:forEach>
        </table>
+       </article>
      </section>
             <div class="button">
 <%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/select/update/myInfo">수정하기</button> --%>
-            	<input type="button" class="btn btn-yg" value="정보수정" id="selectUpdate">
-            	<input type="button" class="btn btn-yg" value="회원탈퇴" id="delete">
+            	<input type="button" class="btn1" value="정보수정" id="selectUpdate">
+            	<input type="button" class="btn2" value="회원탈퇴" id="delete">
 <%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/delete/myInfo">삭제하기</button> --%>
             </div>
 		

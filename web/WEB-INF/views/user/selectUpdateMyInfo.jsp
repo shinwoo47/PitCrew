@@ -95,6 +95,7 @@ table.type09 td {
 	<section class="section">
 	<h2 align="center">정보 수정</h2>
 	<br><br><br><br>
+	<form action="${ pageContext.servletContext.contextPath }/user/update/myInfo" method="post">
 	<table class="type09" align="center">
         <c:forEach items="${ selectUpdateMyInfo }" var="selectUpdateMyInfo">
         <tbody>        
@@ -142,10 +143,12 @@ table.type09 td {
           </tbody>
           </c:forEach>
        </table>
+       	<br>
+       	<div class="updateButton"><input type="submit" value="수정하기" id="updateMyInfo"></div>
+       </form>
      </section>
        
-       <br>
-       <div class="updateButton"><input type="button" value="수정하기" id="updateMyInfo"></div>
+       
 	
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
