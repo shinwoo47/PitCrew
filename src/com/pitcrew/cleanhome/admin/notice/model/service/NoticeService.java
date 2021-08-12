@@ -7,6 +7,7 @@ import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession;
 
 import com.pitcrew.cleanhome.admin.notice.model.dao.NoticeDAO;
 import com.pitcrew.cleanhome.admin.notice.model.dto.NoticeDTO;
+import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
 public class NoticeService {
 
@@ -28,6 +29,7 @@ public class NoticeService {
 		return noticeList;
 	}
 
+	/* 공지 세부 */
 	public NoticeDTO selectNoticeDetail(int no) {
 		SqlSession session = getSqlSession();
 
@@ -52,7 +54,41 @@ public class NoticeService {
 
 		return noticeDTO;
 	}
+
+	/* 관리자 회원번호 조회*/
+	public int selectMemberNo() {
+		
+		SqlSession session = getSqlSession();
+		
+		int adminNo = noticeDAO.selectMemberNo(session);
+		
+		return adminNo;
+	}
 	
 	
+	/* 공지사항 등록 */
+	public int insertNotice(NoticeDTO newNotice) {
+		SqlSession session = getSqlSession();
+
+		int result = noticeDAO.insertNotice(session, newNotice);
+
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+
+		session.close();
+
+		return result;
+	}
+
 	
+
+	
+
+	
+
+
+
 }
