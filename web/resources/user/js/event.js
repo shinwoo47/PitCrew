@@ -46,6 +46,14 @@ window.onload = function() {
 		}
 	}
 	
-		
+	$(document).ready(function(){
+		$('#clea').change(function(){ 
+		      if($('#clea').is(":checked")){ 
+		         alert('체크박스 체크함'); 
+		      }else{
+		         alert('체크박스 해제함'); 
+		      }
+		   });
+		});	
 }
 

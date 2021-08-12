@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
 	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<style>
 	.btn-yq {
 	 	width: 200px;
@@ -40,11 +41,30 @@
 		float: center;
 	}
 	.nss {
-		width: 1200px;
-	 	height: 2000px;
+		width: 800px;
+	 	height: 1700px;
 	    margin-right: auto;
         margin-left: auto;
-        background : red;
+        background: rgb(186, 237, 255);
+        font-size : 20px;
+	}
+	.line {
+         width: 800px;
+         border: 1px solid rgba(0, 0, 0, 0.466);
+         margin-right: auto;
+         margin-left: auto;
+     }
+    .btn_requ {
+	 	 width: 220px;
+	 	 height: 70px;
+	 	 background-color : red;
+	 	 font-size : 33px;
+	 	 color : white;
+	
+	}
+	.imgq {
+		 width: 600px;
+	 	 height: 400px;
 	}
 	</style>
 </head>
@@ -110,7 +130,7 @@
             <div class="row">
          
 	
-                <div class="col-lg-4 col-md-4 col-sm-6">
+               <!-- <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">
                             <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/roomClean.png" alt="">
@@ -150,14 +170,41 @@
                     </div>
                 </div> 
             </div>
-        </div>	
-        		<div class= "nss">
-       			<h1 align = "center"><c:out value="${ requestScope.clean.name }"/></h1>
-       			<h1 align = "right"><c:out value="${ requestScope.clean.name }"/></h1>
-        		
-        		
-        		
+        </div>	 -->
+        		<div class= "nss"><br><br><div align="center">
+        		<img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/${requestScope.clean.imgNo }" alt="" class= "imgq">
         		</div>
+       			<h1 align = "center"><c:out value="${ clean.name }"/></h1>
+       			<h2 align = "right">가격 : <c:out value="${ clean.cleanPrice }"/></h2><br>
+        		<div class="line"></div>
+        		<form align = "center"><br><br>
+        	    <input type="checkbox" name="hobby" value="washDish" id="clea" >
+      			<label for="baseball">설거지&nbsp;&nbsp;5000원</label>
+   				<br>
+        		<input type="checkbox" name="hobby" value="windowClean" id="cleb" >
+     		    <label for="football">창틀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000원
+						</label><br>
+     		    <br>
+     		    <label>시작일 &nbsp; </label><input type="date"><br><br>
+        		<label>시작시간 &nbsp; </label><input type="time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+        		<textarea name="content" id="content" cols="60" rows="15"></textarea><br><br>
+        		<h1 align = "left"><c:out value="${ requestScope.clean.name }"/></h1><br>
+        	    <h1 align = "left"><c:out value="${ requestScope.clean.name }"/></h1>
+      			<div class="Button"><input type="submit" value="주문하기" id="requestInfo" class="btn_requ"></div>
+        		</form>
+        		
+        		<script>
+        			$(document).ready(function(){
+        				$('#clea').change(function(){ 
+        				      if($('#clea').is(":checked")){ 
+        				         alert('체크박스 체크함'); 
+        				      }else{
+        				         alert('체크박스 해제함');
+        				      }
+        				   });
+        				});
+        		</script>
+        		
        			
         
         
