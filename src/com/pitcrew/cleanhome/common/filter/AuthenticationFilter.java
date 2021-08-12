@@ -107,6 +107,8 @@ public class AuthenticationFilter implements Filter {
 
 		adminPermitList.add("/admin/home");
 		adminPermitList.add("/admin/select/alluserinfo");
+		adminPermitList.add("/admin/product/list");
+		
 
 
 		
