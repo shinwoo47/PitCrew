@@ -22,6 +22,28 @@ window.onload = function() {
 			}
 		}
 	}
+	
+	if(document.getElementById("cleana")) {
+		const $cleana = document.getElementById("cleana");
+		$cleana.onclick = function() {
+			console.log(1);
+			location.href = "/pitcrew/user/clean/select?number=" + 1;
+			
+		}
+	}
+	if(document.getElementById("cleanb")) {
+		const $cleanb = document.getElementById("cleanb");
+		$cleanb.onclick = function() {
+			location.href = "/pitcrew/user/clean/select?number=" + 2;
+		}
+	}
+	if(document.getElementById("cleanc")) {
+		const $cleanc = document.getElementById("cleanc");
+		$cleanc.onclick = function() {
+			location.href = "/pitcrew/user/clean/select?number=" + 3;
+		}
+	}
+	
 		
 }
 

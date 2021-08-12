@@ -2,6 +2,7 @@ package com.pitcrew.cleanhome.user.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,31 +13,34 @@ import javax.servlet.http.HttpServletResponse;
 import com.pitcrew.cleanhome.user.model.dto.CleanDTO;
 import com.pitcrew.cleanhome.user.model.service.SelectCleanService;
 
-@WebServlet("/clean/select/")
+@WebServlet("/user/clean/select")
 public class SelectCleanServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				
-		int number = Integer.parseInt(request.getParameter("number"));
-		if(number == 1) {
-			//서비스이동
-			List<CleanDTO> cleanlist = new SelectCleanService().Cleaninformation();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+
+		CleanDTO clean = new CleanDTO();
+		int number = Integer.parseInt(request.getParameter("number")); 
+		if(number ==1) { 
+			System.out.println("1");
+			clean.setName("청소");
 		} else if(number == 2) {
-			
-		} else if(number == 3) {
-			
-		}
+			System.out.println("2"); 
+		} else if(number == 3) { 
+			System.out.println("3"); 
+		}	
 		String path = "";
-		if(clean != null) {
-			path = "/WEB-INF/views/user/selectcleaning.jsp";
+		if (number > 0) {
+			System.out.println("clean" + clean);
+			path = "/WEB-INF/views/user/request/selectcleaning.jsp";
 			request.setAttribute("clean", clean);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "청소 조회 실패");
 		}
-		
+
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
 
 }
