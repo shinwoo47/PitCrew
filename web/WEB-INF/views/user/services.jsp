@@ -108,7 +108,7 @@
                     <div class="header__nav">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="./services.html">서비스</a></li>
+                                <li><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
                                 <li><a href="#">고객지원센터</a>
                                     <ul class="dropdown">
                                         <li><a href="./services.html">공지사항</a></li>

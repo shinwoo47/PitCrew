@@ -24,7 +24,17 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
-
+	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
+	<style>
+	.btn-yq {
+	 	width: 200px;
+	 	height: 50px;
+	 	background-color : blue;
+	 	font-size : 28px;
+	 	color : white;
+	
+	}
+	</style>
 </head>
 
 <body>
@@ -54,7 +64,7 @@
                     <div class="header__nav">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="./services.html">서비스</a></li>
+                                <li class="active"><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
                                 <li><a href="#">고객지원센터</a>
                                     <ul class="dropdown">
                                         <li><a href="./services.html">공지사항</a></li>
@@ -94,10 +104,12 @@
                     <div class="services__item">
                         <div class="services__item__img">
                             <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/roomClean.png" alt="">
-                            <a href="${ pageContext.servletContext.contextPath }/clean/select"></a>
                         </div>
                         <div class="services__item__text">
                             <h4><span>01.</span>방청소</h4>
+                            <div class="button">
+                            <input type="button" class="btn-yq" value="선택" id="cleana">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,6 +120,9 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>02.</span>화장실 청소</h4>
+                            <div class="button">
+                            <input type="button" class="btn-yq" value="선택" id="cleanb">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,6 +133,9 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>03.</span>전체청소</h4>
+                            <div class="button">
+                            <input type="button" class="btn-yq" value="선택" id="cleanc">
+                            </div>
                         </div>
                     </div>
                 </div> 

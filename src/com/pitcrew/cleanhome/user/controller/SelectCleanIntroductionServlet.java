@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.pitcrew.cleanhome.user.model.dto.CleanDTO;
 import com.pitcrew.cleanhome.user.model.service.SelectCleanService;
 
-@WebServlet("/clean/list/")
+@WebServlet("/clean/list")
 public class SelectCleanIntroductionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class SelectCleanIntroductionServlet extends HttpServlet {
 			request.setAttribute("clean", clean);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
-			request.setAttribute("message", "청소 조회 실패");
+			request.setAttribute("message", "서비스이동실패");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
