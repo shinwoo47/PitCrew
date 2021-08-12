@@ -28,6 +28,21 @@ public class NoticeDAO {
 
 	}
 
+	/* 관리자 회원번호 조회 */
+	public int selectMemberNo(SqlSession session) {
+		
+		return session.selectOne("NoticeDAO.selectMemberNo");
+	}
+	
+	
+	public int insertNotice(SqlSession session, NoticeDTO newNotice) {
+		
+		
+		return session.insert("NoticeDAO.insertNotice", newNotice);
+	}
+
+	
+
 
 
 }

@@ -6,14 +6,15 @@
 		<id property="reqNo" column="REQ_NO"/>
 		<result property="serviceDate" column="REQ_DATE"/>
 		<result property="wantThing" column="REQ_REQ"/>
-		<result property="cleanerNo" column="MEM_NO_CLEANER"/>
-		<result property="userNo" column="MEM_NO_USER"/>
-		<result property="serviceDate" column="REQ_STATUS"/>
 		<result property="status" column="REQ_STATUS"/>
 	
 		<association property="cleanerNo" column="memberResultMap"/>
 		<association property="userNo" column="memberResultMap"/>
 		<association property="reqDate" column="reqInfoResultMap"/>
+		<collection property="productName" ofType="com.pitcrew.cleanhome.admin.product.model.dto.ProductInfoDTO">
+			<id property="productNo" column="SER_NO"/>
+			<result property="productName" column="SER_NAME"/>
+		</collection>
 	</resultMap>
 	
 	<resultMap type="com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO" id="memberResultMap">
@@ -42,18 +43,29 @@
         SELECT /* */
                COUNT(*)
           FROM REQUEST_INFO A
-    	<if test="searchCondition == 'category'">
-	      JOIN TBL_CATEGORY B ON(A.CATEGORY_CODE = B.CATEGORY_CODE)
+    	<if test="searchCondition == 'productName'">
+    	  JOIN PRODUCT_BY_REQ B ON(A.REQ_NO = B.REQ_NO)
+	      JOIN PRODUCT_INFO C ON(B.SER_NO = C.SER_NO)
     	</if>
-    	<if test="searchCondition == 'writer'">
-	      JOIN TBL_MEMBER B ON(A.BOARD_WRITER_MEMBER_NO = B.MEMBER_NO)
+    	<if test="searchCondition == 'reqDate'">
+	      JOIN REQ_INFO B ON(A.REQ_NO = B.REQ_NO)
     	</if>
     	<where>
-			<if test="searchCondition == 'category'">
-	           B.CATEGORY_NAME = #{ searchValue }
+			<if test="searchCondition == 'reqNo'">
+	           A.REQ_NO = #{ searchValue }
 			</if>
-			<if test="searchCondition == 'writer'">
-	           B.NICKNAME LIKE '%' || #{ searchValue } || '%'	
+			<if test="searchCondition == 'productName'">
+	           C.SER_NAME LIKE = #{ searchValue }  	
+			</if>
+			<if test="searchCondition == 'name'">
+	           C.SER_NAME LIKE = #{ searchValue }  	
+			</if>
+			<if test='searchCondition != null and !"".equals(searchCondition)'>
+				<![CDATA[
+	           	  A.REQ_DATE >= TO_DATE(#{ searchValue }, 'YYYY-MM-DD')
+              AND A.REQ_DATE < TO_DATE(#{ searchValue }, 'YYYY-MM-DD') + 1 
+                          
+                  ]]>
 			</if>
 			<if test="searchCondition == 'title'">
 	           A.BOARD_TITLE LIKE '%' || #{ searchValue } || '%' 	
@@ -132,7 +144,7 @@
          
 	</select>
 
-
+	
 
 
 

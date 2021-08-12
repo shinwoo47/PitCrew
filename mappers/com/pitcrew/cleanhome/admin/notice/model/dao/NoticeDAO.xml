@@ -31,6 +31,11 @@
 	<result property="entireDate" column="ENT_DATE"/>
 	</resultMap>
 	
+	<resultMap type="_int" id="member">
+	<id property="memNo" column="MEM_NO"/>
+	</resultMap>
+	
+	
 	<select id="selectAllNoticeList" resultMap="noticeResultMap" parameterType="string">
 	SELECT /**/
 		        A.BOARD_NO
@@ -67,20 +72,58 @@
 	</update>
 	
 	<select id="selectNoticeDetail" resultMap="noticeResultMap">
-	SELECT /**/
-		        A.BOARD_NO
-		      , A.BOARD_TITLE
-		      , A.BOARD_BODY
-		      , A.BOARD_CATEGORY
-		      , A.BOARD_WRITE_DATE
-		      , A.MEM_NO
-		      , A.BOARD_CON
-		      , A.BOARD_READ_COUNT
-		      , B.MEM_NAME
-		      , A.BOARD_CATEGORY_STATUS
-		 FROM BOARD A
-		 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
-		WHERE A.BOARD_CON = 'y'
-	      AND A.BOARD_NO = #{ no }
+		SELECT /**/
+			        A.BOARD_NO
+			      , A.BOARD_TITLE
+			      , A.BOARD_BODY
+			      , A.BOARD_CATEGORY
+			      , A.BOARD_WRITE_DATE
+			      , A.MEM_NO
+			      , A.BOARD_CON
+			      , A.BOARD_READ_COUNT
+			      , B.MEM_NAME
+			      , A.BOARD_CATEGORY_STATUS
+			 FROM BOARD A
+			 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
+			WHERE A.BOARD_CON = 'y'
+		      AND A.BOARD_NO = #{ no }
 	</select>
+	
+	<select id="selectMemberNo" resultMap="member">
+		SELECT /**/
+		       A.MEM_NO
+		  FROM MEMBER A
+	     WHERE A.MEMBER_ROLE = '관리자'
+	</select>
+	
+	<insert id="insertNotice">
+        INSERT /* */
+          INTO BOARD A
+        (
+          A.BOARD_NO
+        , A.BOARD_TITLE
+        , A.BOARD_BODY
+        , A.BOARD_CATEGORY
+        , A.BOARD_WRITE_DATE
+        , A.MEM_NO
+        , A.BOARD_CON
+        , A.BOARD_READ_COUNT
+        , A.WRITER
+        , A.BOARD_CATEGORY_STATUS
+        )
+        VALUES
+        (
+          SEQ_BOARD_NO.NEXTVAL
+        , #{ title }
+        , #{ content }
+        , '공지'
+        , SYSDATE
+        , #{ writerMemberNo }
+        , 'y'
+        , 0
+        , '관리자'
+        , #{ forWho }
+        )
+	</insert>
+	
 </mapper>
