@@ -12,20 +12,39 @@ import com.pitcrew.cleanhome.cleaner.request.model.dto.ProductDTO;
 public class ProductService {
 
 	private final ProductDAO productDAO;
-	
+
 	public ProductService() {
 		productDAO = new ProductDAO();
 	}
-	
+
 	public List<ProductDTO> selectAllProductList() {
 
 		SqlSession session = getSqlSession();
-		
+
 		List<ProductDTO> productList = productDAO.selectAllProductList(session);
-		
+
 		session.close();
-		
+
 		return productList;
 	}
+
+	public int insertProduct(com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO newProduct) {
+		SqlSession session = getSqlSession();
+
+		int result = productDAO.insertProduct(session, newProduct);
+
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+
+		session.close();
+
+		return result;
+	}
+
+
+
 
 }

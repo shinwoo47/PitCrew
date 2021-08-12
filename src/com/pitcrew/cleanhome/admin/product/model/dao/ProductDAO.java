@@ -12,4 +12,9 @@ public class ProductDAO {
 		return session.selectList("ProductDAO.selectAllProductList");
 	}
 
+	public int insertProduct(SqlSession session, com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO newProduct) {
+
+		return session.insert("ProductDAO.insertProduct", newProduct);
+	}
+
 }
