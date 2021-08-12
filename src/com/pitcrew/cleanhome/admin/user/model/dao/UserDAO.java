@@ -23,7 +23,6 @@ public class UserDAO {
 		searchMap.put("searchResult", searchResult);
 		searchMap.put("enRollStartDate", enRollStartDate);
 		searchMap.put("enRollEndDate", enRollEndDate);
-		System.out.println("송준일이이이이" + searchMap);
 		
 		return session.selectList("UserDAO.searchUserInfomation",searchMap);
 		

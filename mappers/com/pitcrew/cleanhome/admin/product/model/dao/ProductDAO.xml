@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductDAO">
+	<resultMap type="com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO" id="ProductResultMap">
+		<id property="serNo" column="SER_NO"/>
+		<result property="serName" column="SER_NAME"/>
+		<result property="serContent" column="SER_CONTENT"/>
+		<result property="serTime" column="SER_TIME"/>
+		<result property="serPrice" column="SER_PRICE"/>
+		<result property="serCategory" column="SER_CATEGORY"/>
+	</resultMap>
+	
+	<select id="selectAllProductList" resultMap="ProductResultMap">
+		SELECT /* com.pitcrew.cleanhome.admin.product.model.dao.ProductDAO#ProductResultMap() */
+		       A.SER_NO
+		     , A.SER_NAME
+		     , A.SER_CONTENT
+		     , A.SER_TIME
+		     , A.SER_PRICE
+		     , A.SER_CATEGORY
+		  FROM PRODUCT_INFO A
+		 ORDER BY A.SER_NO ASC
+	</select>
+
+
+
+
+
+</mapper>

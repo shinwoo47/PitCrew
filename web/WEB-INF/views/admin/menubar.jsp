@@ -356,7 +356,7 @@
                                 <div id="submenu-7" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/inbox.html">상품 추가 및 수정</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/product/list">상품 추가 및 수정</a>
                                         </li>                                      
                                     </ul>
                                 </div>
