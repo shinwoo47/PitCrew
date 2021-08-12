@@ -10,19 +10,28 @@
 	.pagingArea{
 		margin-bottom: 100px;
 	}
+	.blog__paging{
+	font-size: 20px;
+	color: #707070;
+	display: inline-block;
+	padding: 12px 20px 10px;
+	border-left: none;
+	margin-right: -5px;
+
+}
 </style>
 </head>
 <body>
-	<div class="pagingArea">
+	<div class="blog__paging">
 		<!-- 맨 앞으로 이동 버튼 -->
 	    <button id="startPage"><<</button>
 		
 		<!-- 이전 페이지 버튼 -->
 		<c:if test="${ requestScope.selectCriteria.pageNo <= 1 }">
-			<button disabled><</button>
+			<button disabled>Prev</button>
 		</c:if>
 		<c:if test="${ requestScope.selectCriteria.pageNo > 1 }">
-			<button id="prevPage"><</button>
+			<button id="prevPage">Prev</button>
 		</c:if>
 		
 		<!-- 숫자 버튼 -->
@@ -37,10 +46,10 @@
 		
 		<!-- 다음 페이지 버튼 -->
 		<c:if test="${ requestScope.selectCriteria.pageNo >= requestScope.selectCriteria.maxPage }">
-			<button disabled>></button>
+			<button disabled>Next</button>
 		</c:if>
 		<c:if test="${ requestScope.selectCriteria.pageNo < requestScope.selectCriteria.maxPage }">
-			<button id="nextPage">></button>
+			<button id="nextPage">Next</button>
 		</c:if>
 		
 		<!-- 마지막 페이지로 이동 버튼 -->
@@ -49,7 +58,7 @@
 	
 	<script>
 	
-		const link = "${ pageContext.servletContext.contextPath }/board/list";
+		const link = "${ pageContext.servletContext.contextPath }/cleaner/request/enroll";
 		let searchText = "";
 		
 		
