@@ -8,19 +8,21 @@ window.onload = function() {
 	}
 	
 	if(document.getElementById("updateMyInfo")) {
-
+		
+		const $updateMyInfo = document.getElementById("updateMyInfo");
 		var newPwd = document.getElementById("newPwd").value;
 		var retypeNewPwd = document.getElementById("retypeNewPwd").value;
-		if(newPwd != retypeNewPwd) {
-			$updateMyInfo.onclick = function() {
-				alert("비밀번호가 일치하지 않습니다.ㅃㅃ");
+		
+		$updateMyInfo.onclick = function() {
+			
+			if(newPwd != retypeNewPwd) {
+				alert("비밀번호가 일치하지 않습니다.");
 				return false;
-			}
-		} else {
-			$updateMyInfo.onclick = function() {
-				location.href ="/pitecrew/user/update/myInfo";
+			} else {
+				location.href = "/pitcrew/user/update/myInfo";
 			}
 		}
+
 	}
 	
 	if(document.getElementById("cleana")) {

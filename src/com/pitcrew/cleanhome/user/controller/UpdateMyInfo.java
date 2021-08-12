@@ -16,9 +16,6 @@ public class UpdateMyInfo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/user/services.jsp";
-		
-		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 
@@ -43,17 +40,25 @@ public class UpdateMyInfo extends HttpServlet {
 		
 		int result = new MyInfoService().updateMyInfo(updateMember);
 		
+		System.out.println("result : " + result);
+		
 		String page = "";
 		
 		if(result > 0) {
 			
 			page = "/WEB-INF/views/common/success.jsp";
 			
-			request.setAttribute("successCode", "updateMember");
+			request.setAttribute("successCode", "updateUserInfo");
+			
+		} else {
+			
+			page = "/WEB-INF/views/common/failed.jsp";
+			
+			request.setAttribute("message", "회원정보 실패!");
 			
 		}
 		
-		
+		request.getRequestDispatcher(page).forward(request, response);
 	
 	}
 
