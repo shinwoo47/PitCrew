@@ -25,6 +25,19 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
+	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>	
+	<style>
+		.btn_z {
+			width: 120px;
+			height: 40px;
+			color: #fff;
+			background: #004fff;
+			font_size: 16px;
+			positon: absolute;
+			
+}
+	</style>
+
 </head>
 
 <body>
@@ -158,7 +171,8 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>01.</span>방청소</h4>
-                            <a href="${ pageContext.servletContext.contextPath }/notice/list">Find Out More</a>
+                            <button id="popup" class="btn_z">자세히보기</button>
+                         
                         </div>
                     </div>
                 </div>
@@ -169,7 +183,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>02.</span>화장실 청소</h4>
-                            <a href="#">Find Out More</a>
+                            <a href="#">자세히 보기</a>
                         </div>
                     </div>
                 </div>
@@ -180,7 +194,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>03.</span>전체청소</h4>
-                            <a href="#">Find Out More</a>
+                            <a href="#">자세히 보기</a>
                         </div>
                     </div>
                 </div>
@@ -191,7 +205,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>04.</span>설거지</h4>
-                            <a href="#">Find Out More</a>
+                            <a href="#">자세히 보기</a>
                         </div>
                     </div>
                 </div>
@@ -202,7 +216,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>05.</span>창틀청소</h4>
-                            <a href="#">Find Out More</a>
+                            <a href="#">자세히 보기</a>
                         </div>
                     </div>
                 </div>

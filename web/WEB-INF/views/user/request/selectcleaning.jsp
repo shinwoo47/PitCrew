@@ -35,7 +35,13 @@
 	 	background-color : blue;
 	 	font-size : 28px;
 	 	color : white;
-	
+	}
+	.checa {
+		font-size : 30px;d
+	}
+	.checb {
+		width: 25px;
+	 	height: 25px;
 	}
 	.names {
 		float: center;
@@ -171,39 +177,75 @@
                 </div> 
             </div>
         </div>	 -->
+				<script>
+					var time = ${ clean.time }; 
+					var price = ${ clean.price };
+				</script>
         		<div class= "nss"><br><br><div align="center">
-        		<img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/${requestScope.clean.imgNo }" alt="" class= "imgq">
-        		</div>
+        		<img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/${clean.imgNo }" alt="" class= "imgq">
+        		</div><br>
        			<h1 align = "center"><c:out value="${ clean.name }"/></h1>
-       			<h2 align = "right">가격 : <c:out value="${ clean.cleanPrice }"/></h2><br>
+       			<h4 align = "right">가격 : <c:out value="${ clean.price }"/>&nbsp;원</h4><br>
         		<div class="line"></div>
         		<form align = "center"><br><br>
-        	    <input type="checkbox" name="hobby" value="washDish" id="clea" >
-      			<label for="baseball">설거지&nbsp;&nbsp;5000원</label>
+        		
+        		<c:if test="${ clean.cleanNo < 3 }">
+        		
+        	    <input type="checkbox" name="hobby" value="washDish" id="clea" class="checb">
+      			<label for="baseball" class="checa">설거지&nbsp;&nbsp;5000원</label>
    				<br>
-        		<input type="checkbox" name="hobby" value="windowClean" id="cleb" >
-     		    <label for="football">창틀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000원
-						</label><br>
-     		    <br>
+        		<input type="checkbox" name="hobby" value="windowClean" id="cleb" class="checb" >
+     		    <label for="football" class="checa">창틀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000원</label>
+				</c:if>
+     		    <br><br>
      		    <label>시작일 &nbsp; </label><input type="date"><br><br>
         		<label>시작시간 &nbsp; </label><input type="time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
         		<textarea name="content" id="content" cols="60" rows="15"></textarea><br><br>
-        		<h1 align = "left"><c:out value="${ requestScope.clean.name }"/></h1><br>
-        	    <h1 align = "left"><c:out value="${ requestScope.clean.name }"/></h1>
+        		<h4 align = "left" id="timea">예상소요시간 : <c:out value="${ clean.time }"/>시간</h4><br>
+        	    <h4 align = "left" id=pricea>예상금액 : &nbsp;<c:out value="${ clean.price }"/>원</h4>
       			<div class="Button"><input type="submit" value="주문하기" id="requestInfo" class="btn_requ"></div>
+      			<input type="hidden"  name="name" value="${ clean.price }"/>
         		</form>
         		
+        		
+        		
         		<script>
-        			$(document).ready(function(){
-        				$('#clea').change(function(){ 
-        				      if($('#clea').is(":checked")){ 
-        				         alert('체크박스 체크함'); 
-        				      }else{
-        				         alert('체크박스 해제함');
-        				      }
-        				   });
-        				});
+        		$(document).ready(function(){
+        			$('#clea').change(function(){ 
+        			      if($('#clea').is(":checked")){ 
+        			    	  time += 0.5;
+        			    	  price += 5000;
+        			    	  console.log(time)
+        			          $("#timea").html("예상소요시간 : " + time + "시간")
+        			          $("#pricea").html("예상금액 : " + price + "원")
+        			      }else{
+        			    	  time += - 0.5;
+        			    	  price -= 5000;
+        			    	  $("#timea").html("예상소요시간 : " + time + "시간")
+        			    	  $("#pricea").html("예상금액 : " + price + "원")
+        			      }
+        			   });
+        			});	
+        		
+        		$(document).ready(function(){
+        			$('#cleb').change(function(){ 
+        			      if($('#cleb').is(":checked")){ 
+        			    	  time +=  0.5;
+        			    	  price += 5000;
+        			    	  console.log(time)
+        			          $("#timea").html("예상소요시간 : " + time + "시간")
+        			          $("#pricea").html("예상금액 : " + price + "원")
+        			      }else{
+        			    	  time += - 0.5;
+        			    	  price -= 5000;
+        			    	  $("#timea").html("예상소요시간 : " + time + "시간")
+        			    	  $("#pricea").html("예상금액 : " + price + "원")
+        			      }
+        			   });
+        			});	
         		</script>
+        		
+        		
         		
        			
         
