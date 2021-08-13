@@ -26,17 +26,23 @@ public class SelectCleanServlet extends HttpServlet {
 			System.out.println("1번클릭");
 			clean.setImgNo("roomClean.png");
 			clean.setName("방청소");
-			clean.setCleanPrice(25000);
+			clean.setPrice(25000);
+			clean.setTime(2);
+			clean.setCleanNo(1);
 		} else if(number == 2) {
 			System.out.println("2번클릭"); 
 			clean.setImgNo("bathroomClean.png");
 			clean.setName("화장실");
-			clean.setCleanPrice(30000);
+			clean.setPrice(30000);
+			clean.setTime(2);
+			clean.setCleanNo(2);
 		} else if(number == 3) { 
 			System.out.println("3번클릭"); 
 			clean.setImgNo("allClean.png");
 			clean.setName("전체청소");
-			clean.setCleanPrice(55000);
+			clean.setPrice(55000);
+			clean.setTime(5);
+			clean.setCleanNo(3);
 		}	
 		String path = "";
 		if (number > 0) {
