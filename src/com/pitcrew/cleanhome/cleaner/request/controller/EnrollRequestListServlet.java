@@ -30,6 +30,7 @@ public class EnrollRequestListServlet extends HttpServlet {
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
 		 * */
 		String currentPage = request.getParameter("currentPage");
+		
 		int pageNo = 1;
 		
 		if(currentPage != null && !"".equals(currentPage)) {
