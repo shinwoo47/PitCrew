@@ -48,21 +48,28 @@ public class RequestService {
 		SqlSession session = getSqlSession();
 		
 		int result = requestDAO.acceptRequest(session, requestDto);
-		
-		if(result > 0) {
+
+		int result2 = requestDAO.insertRequestStatusHistory(session, requestDto);
+	
+		int resultCheck = 0;
+		if(result > 0 && result2 > 0) {
+			resultCheck = 1;
+		}
+		if(resultCheck > 0) {
 			session.commit();
 		} else {
 			session.rollback();
 		}
 		
-		session.close();
-		
-		return result;
+		return resultCheck;
 	}
 
 	public RequestDTO selectRequestDetail(RequestDTO requestDto) {
 		
 		SqlSession session = getSqlSession();
+		
+		String status = requestDAO.selectRequestStatus(session, requestDto);
+		requestDto.setReqStatus(status);
 		
 		RequestDTO requestDetail = requestDAO.selectRequestDetail(session, requestDto);
 		
@@ -71,32 +78,5 @@ public class RequestService {
 		return requestDetail;
 	}
 
-	public String selectRequestStatus(RequestDTO requestDto) {
-
-		SqlSession session = getSqlSession();
-		
-		String status = requestDAO.selectRequestStatus(session, requestDto);
-		
-		session.close();
-		
-		return status;
-	}
-
-	public int insertRequestStatusHistory(RequestDTO requestDto) {
-		
-		SqlSession session = getSqlSession();
-		
-		int result = requestDAO.insertRequestStatusHistory(session, requestDto);
-		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
-		
-		session.close();
-		
-		return result;
-	}
 
 }

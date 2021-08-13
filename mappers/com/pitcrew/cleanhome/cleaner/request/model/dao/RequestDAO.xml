@@ -108,6 +108,7 @@
 	    UPDATE
 	           REQUEST_INFO A
 	       SET A.REQ_STATUS = '매칭'
+	         , A.MEM_NO_CLEANER = #{ memNoCleaner }
 	     WHERE A.REQ_NO = #{ reqNo }
 	</update>
 	

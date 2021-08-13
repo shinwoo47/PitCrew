@@ -132,6 +132,9 @@ public class AuthenticationFilter implements Filter {
 		cleanerPermitList.add("/cleaner/home");
 		cleanerPermitList.add("/cleaner/request/accept");
 		cleanerPermitList.add("/cleaner/request/manage");
+		cleanerPermitList.add("/cleaner/account");
+		cleanerPermitList.add("/cleaner/account/regist");
+		cleanerPermitList.add("/cleaner/account/update");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");

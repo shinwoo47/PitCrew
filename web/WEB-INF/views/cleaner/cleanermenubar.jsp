@@ -103,11 +103,11 @@
                                 <li class="active"><a href="${ pageContext.servletContext.contextPath }/cleaner/home">Home</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/enroll">청소 서비스</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/manage">일정 관리</a></li>
-                                <li><a href="./blog.html">Blog</a></li>
+                                <li><a href="./google-calendar.html">Blog</a></li>
                                 <li><a href="#">MyPage</a>
                                     <ul class="dropdown">
                                         <li><a href="./services.html">회원정보</a></li>
-                                        <li><a href="./services-details.html">계좌</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/cleaner/account">계좌</a></li>
                                         <li><a href="./blog-details.html">정산내역</a></li>
                                     </ul>
                                 </li>

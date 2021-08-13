@@ -32,6 +32,15 @@
 	padding: 20px 20px 20px 20px;
 	margin : 20px 20px 20px 20px;
 }
+	.selectbtn {
+		font-size: 10px;
+		padding: 10px 10px 10px 10px;
+		color: #ffffff;
+
+		background: #20df29;
+		border-radius: 1px;
+		border-color: #ffff00;
+	}
     </style>
 </head>
 
@@ -51,7 +60,7 @@
                 <div class="col-lg-8 col-md-7">	
                     <div class="blog__item">
                     <c:forEach var="request" items="${ requestScope.requestList }">
-                        <div style="height: auto; width: 100%; border:3px solid yellowgreen;" class="blog__item__text" id="request">
+                        <div style="height: auto; width: 80%; border:3px solid yellowgreen;" class="blog__item__text" id="request+${status.count}">
                         	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqNo }"/>
                         	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqStatus }"/>
                         	<c:set var="address" value="${ request.address.address }"/>
@@ -60,42 +69,28 @@
                             <h3><c:out value="${ address2 }"/></h3>
                             <ul>
                                 <li><i class="fa fa-clock-o"></i> <fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy/MM/dd (E) hh시"/></li>
-                                <li>
-                                	<c:set var="sum" value="0"/>
-                                	<c:forEach var="product" items="${ request.productList }">
-                                		<i class="fa fa-user"></i> 
-                                		<c:out value="${ product.serName }"/> 가격 : <c:out value="${ product.serPrice }"/>원 
-                                		<c:set var="sum" value="${ sum + product.serPrice }"/>
+                                <li>  
+                                	<c:set var="sumPrice" value="0"/>
+                                	<c:set var="sumTime" value="0"/>
+                                	<i class="fa fa-user"></i> 
+                                	<c:forEach var="product" items="${ request.productList }">             		
+                                		<c:out value="${ product.serName } "/><c:set var="price" value="${ product.serPrice }"/>
+                                		<c:set var="sumPrice" value="${ sumPrice + product.serPrice }"/>
+                                		<c:set var="sumTime" value="${ sumTime + product.serTime }"/>
                                 	</c:forEach>
                                 </li>
                             </ul>
-                            
-                                                              합계 가격 : <c:out value="${ sum }"/> 원
-                            <button style="float: right;" class="primary-btn" id="ok">선택하기 </button>
+                                                            예상소요시간 :<c:out value="${ sumTime }"/> 시간<br>
+                                                              합계 가격 : <c:out value="${ sumPrice }"/> 원
+                            <button style="float: right;" class="selectbtn" id="ok">선택하기 </button>
                         	
                         </div>
                         </c:forEach>
                     </div>
-                    <div class="blog__item">
-                        <div class="blog__item__img">
-                            <img src="img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <h3><a href="./blog-details.html">Internet Advertising Trends You Won T Be Disappointed</a></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
-                                buying things online in</p>
-                            <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
-                        </div>  
-                    </div>
+                    
                     
                     <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
                         	<jsp:include page="../common/paging.jsp"/>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5">
@@ -218,16 +213,9 @@
 	<script>
 	window.onload = function() {
 		
-	/* 화면에 랜더링 된 태그들이 존재하지 않는 경우 에러 발생 가능성이 있어서 if문으로 태그가 존재하는지 부터 확인하고 이벤트를 연결한다. */
-		if(document.getElementById("request")) {
-			
-			const $request = document.getElementById("request");
-			
-				
-				$request.onclick = function() {
-					
-					console.log("hi")
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		$("body").on("click", "[id^=request]", function(){ 
+
+				  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = {
 				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 				        level: 3 // 지도의 확대 레벨
@@ -263,29 +251,22 @@
 				        	map.setCenter(coords);
 				    	} 
 					});  
-				}
-			
-		}
-		if(document.getElementById("ok")) {
-			
-			const $ok = document.getElementById("ok");
-			console.log($ok)
-			
-				$ok.onclick = function(){
-				
-					const no = this.parentNode.children[0].value;
+			 
+			});
+		
+		
+		$("body").on("click", "[id^=ok]", function() {
+				  	const no = this.parentNode.children[0].value;
 					const status = this.parentNode.children[1].value;
-        			console.log(status);
+      				console.log(status);
 		        	msg = "정말 선택 하시겠습니까?";
 		        	if (confirm(msg) == true) {	
-		        		
 		        		location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/accept?no=" + no + "&status=" + status;
 		        	} else {
 		           		return
 		        	}
-		    	}
 			
-		}
+		});
 	
 	}
 	
