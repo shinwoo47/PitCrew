@@ -41,6 +41,11 @@ public class NoticeDAO {
 		return session.insert("NoticeDAO.insertNotice", newNotice);
 	}
 
+	public List<NoticeDTO> selectAllFaqList(SqlSession session, String forWho) {
+		
+		return session.selectList("NoticeDAO.selectAllFaqList", forWho);
+	}
+
 	
 
 

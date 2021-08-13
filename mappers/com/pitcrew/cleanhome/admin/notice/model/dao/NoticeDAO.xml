@@ -125,5 +125,31 @@
         , #{ forWho }
         )
 	</insert>
+
+<select id="selectAllFaqList" resultMap="noticeResultMap" parameterType="string">
+	SELECT /**/
+		        A.BOARD_NO
+		      , A.BOARD_TITLE
+		      , A.BOARD_BODY
+		      , A.BOARD_CATEGORY
+		      , A.BOARD_WRITE_DATE
+		      , A.MEM_NO
+		      , A.BOARD_CON
+		      , A.BOARD_READ_COUNT
+		      , B.MEM_NAME
+		      , A.BOARD_CATEGORY_STATUS
+		 FROM BOARD A
+		 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
+		WHERE A.BOARD_CON = 'y'
+	      AND A.BOARD_CATEGORY = 'FAQ'
+	    <if test="forWho == '사용자'">  
+	      AND A.BOARD_CATEGORY_STATUS = '사용자'
+		</if>
+  		<if test="forWho == '해결사'">
+	       AND A.BOARD_CATEGORY_STATUS = '해결사'
+		</if>
+		  ORDER BY A.BOARD_WRITE_DATE DESC -->
+	</select>
+
 	
 </mapper>

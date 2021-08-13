@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO;
+import com.pitcrew.cleanhome.common.paging.SelectAdminCriteria;
 import com.pitcrew.cleanhome.common.paging.SelectCriteria;
 
 public class RequestDAO {
@@ -15,9 +16,9 @@ public class RequestDAO {
 		return session.selectOne("RequestDAO.selectAllCount", searchMap);
 	}
 
-	public List<RequestDTO> selectReqList(SqlSession session, SelectCriteria selectCriteria) {
+	public List<RequestDTO> selectReqList(SqlSession session, SelectAdminCriteria selectAdminCriteria) {
 		
-		return session.selectList("RequestDAO.selectReqList", selectCriteria);
+		return session.selectList("RequestDAO.selectReqList", selectAdminCriteria);
 	}
 
 }

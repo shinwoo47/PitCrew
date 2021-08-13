@@ -1,6 +1,6 @@
 package com.pitcrew.cleanhome.common.paging;
 
-public class SelectCriteria implements java.io.Serializable {
+public class SelectAdminCriteria implements java.io.Serializable {
 	
 	private int pageNo;					//요청한 페이지 번호
 	private int totalCount;				//전체 게시물 수
@@ -13,13 +13,18 @@ public class SelectCriteria implements java.io.Serializable {
 	private int endRow;					//DB 조회 시 최신글부터 조회해야 하는 행의 마지막 수
 	private String searchCondition;		//검색 조건
 	private String searchValue;			//검색어
-		
+	private String searchStartDate;     //검색 시작일
+	private String searchEndDate;   	//검색 종료일
+	private String searchStatus; 		//상태 검색
+	private String searchStatusValue;	//상태 검색값
 	
-	public SelectCriteria() {}
+	
+	public SelectAdminCriteria() {}
 
 
-	public SelectCriteria(int pageNo, int totalCount, int limit, int buttonAmount, int maxPage, int startPage,
-			int endPage, int startRow, int endRow, String searchCondition, String searchValue) {
+	public SelectAdminCriteria(int pageNo, int totalCount, int limit, int buttonAmount, int maxPage, int startPage,
+			int endPage, int startRow, int endRow, String searchCondition, String searchValue, String searchStartDate,
+			String searchEndDate, String searchStatus, String searchStatusValue) {
 		super();
 		this.pageNo = pageNo;
 		this.totalCount = totalCount;
@@ -32,6 +37,10 @@ public class SelectCriteria implements java.io.Serializable {
 		this.endRow = endRow;
 		this.searchCondition = searchCondition;
 		this.searchValue = searchValue;
+		this.searchStartDate = searchStartDate;
+		this.searchEndDate = searchEndDate;
+		this.searchStatus = searchStatus;
+		this.searchStatusValue = searchStatusValue;
 	}
 
 
@@ -145,14 +154,54 @@ public class SelectCriteria implements java.io.Serializable {
 	}
 
 
+	public String getSearchStartDate() {
+		return searchStartDate;
+	}
+
+
+	public void setSearchStartDate(String searchStartDate) {
+		this.searchStartDate = searchStartDate;
+	}
+
+
+	public String getSearchEndDate() {
+		return searchEndDate;
+	}
+
+
+	public void setSearchEndDate(String searchEndDate) {
+		this.searchEndDate = searchEndDate;
+	}
+
+
+	public String getSearchStatus() {
+		return searchStatus;
+	}
+
+
+	public void setSearchStatus(String searchStatus) {
+		this.searchStatus = searchStatus;
+	}
+
+
+	public String getSearchStatusValue() {
+		return searchStatusValue;
+	}
+
+
+	public void setSearchStatusValue(String searchStatusValue) {
+		this.searchStatusValue = searchStatusValue;
+	}
+
+
 	@Override
 	public String toString() {
 		return "SelectCriteria [pageNo=" + pageNo + ", totalCount=" + totalCount + ", limit=" + limit
 				+ ", buttonAmount=" + buttonAmount + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
 				+ endPage + ", startRow=" + startRow + ", endRow=" + endRow + ", searchCondition=" + searchCondition
-				+ ", searchValue=" + searchValue + "]";
+				+ ", searchValue=" + searchValue + ", searchStartDate=" + searchStartDate + ", searchEndDate="
+				+ searchEndDate + ", searchStatus=" + searchStatus + ", searchStatusValue=" + searchStatusValue + "]";
 	}
-
 
 	
 	
