@@ -22,7 +22,7 @@
 		<mapper resource="com/pitcrew/cleanhome/cleaner/request/model/dao/RequestDAO.xml"/>
 
 		<mapper resource="com/pitcrew/cleanhome/admin/notice/model/dao/NoticeDAO.xml"/>
-<!--  		<mapper resource="com/pitcrew/cleanhome/admin/request/model/dao/RequestDAO.xml"/>-->
+  		<mapper resource="com/pitcrew/cleanhome/admin/request/model/dao/RequestDAO.xml"/>
 
 		<mapper resource="com/pitcrew/cleanhome/user/model/dao/UserInfoDAO.xml"/>
 

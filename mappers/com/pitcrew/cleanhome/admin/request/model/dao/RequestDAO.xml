@@ -8,16 +8,17 @@
 		<result property="wantThing" column="REQ_REQ"/>
 		<result property="status" column="REQ_STATUS"/>
 	
-		<association property="cleanerNo" column="memberResultMap"/>
-		<association property="userNo" column="memberResultMap"/>
-		<association property="reqDate" column="reqInfoResultMap"/>
-		<collection property="productName" ofType="com.pitcrew.cleanhome.admin.product.model.dto.ProductInfoDTO">
+		<association property="cleaner" column="memberResultMap"/>
+		<association property="user" column="memberResultMap"/>
+		<association property="pay" column="payResultMap"/>		
+		
+		<collection property="product" ofType="com.pitcrew.cleanhome.admin.product.model.dto.ProductInfoDTO">
 			<id property="productNo" column="SER_NO"/>
 			<result property="productName" column="SER_NAME"/>
 		</collection>
 	</resultMap>
 	
-	<resultMap type="com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO" id="memberResultMap">
+	<resultMap type="com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO" id="memberMapForReq">
 		<id property="memNo" column="MEM_NO"/>
 		<result property="name" column="MEM_NAME"/>
 		<result property="id" column="MEM_ID"/>
@@ -39,26 +40,35 @@
 		<result property="date" column="REQ_DATE"/>
 	</resultMap>
 
-	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+	<resultMap type="com.pitcrew.cleanhome.admin.pay.model.dto.PayDTO" id="payResultMap">
+		<id property="payNo" column="PAY_NO"/>
+		<result property="card" column="PAY_CARD"/>
+		<result property="price" column="PAY_PRICE"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="approvedNo" column="PAY_APPROVAL_NO"/>
+		<result property="reqNo" column="REQ_NO"/>
+	</resultMap>
+
+	<select id="selectAllCount" resultType="_int" parameterType="hashmap">
         SELECT /* */
                COUNT(*)
           FROM REQUEST_INFO A
-    	<if test="searchCondition == 'productName'">
+    	<if test="searchCondition == 'product'">
     	  JOIN PRODUCT_BY_REQ B ON(A.REQ_NO = B.REQ_NO)
 	      JOIN PRODUCT_INFO C ON(B.SER_NO = C.SER_NO)
     	</if>
-    	<if test="searchCondition == 'reqDate'">
-	      JOIN REQ_INFO B ON(A.REQ_NO = B.REQ_NO)
+    	<if test="searchCondition == 'user'">
+	      JOIN MEMBER B ON(A.MEM_NO_USER = B.MEM_NO)
     	</if>
     	<where>
 			<if test="searchCondition == 'reqNo'">
 	           A.REQ_NO = #{ searchValue }
 			</if>
-			<if test="searchCondition == 'productName'">
+			<if test="searchCondition == 'product'">
 	           C.SER_NAME LIKE = #{ searchValue }  	
 			</if>
-			<if test="searchCondition == 'name'">
-	           C.SER_NAME LIKE = #{ searchValue }  	
+		  	<if test="searchCondition == 'user'">
+		       B.MEM_NAME = #{ searchValue }  	
 			</if>
 			<if test='searchCondition != null and !"".equals(searchCondition)'>
 				<![CDATA[
@@ -67,81 +77,74 @@
                           
                   ]]>
 			</if>
-			<if test="searchCondition == 'title'">
-	           A.BOARD_TITLE LIKE '%' || #{ searchValue } || '%' 	
+			<if test="searchCondition == 'status'">
+	           A.REQ_STATUS LIKE '%' || #{ searchValue } || '%' 	
 			</if>
-			<if test="searchCondition == 'content'">
-	           A.BOARD_BODY LIKE '%' || #{ searchValue } || '%' 	
-			</if>
-	       AND A.BOARD_STATUS = 'Y'
     	</where>
 	</select>
 	
-	<select id="selectBoardList" resultMap="generalBoardResultMap">
-         SELECT 
-               A.RNUM
-             , A.BOARD_NO
-             , A.BOARD_TYPE
-             , A.CATEGORY_CODE
-             , D.CATEGORY_NAME
-             , A.BOARD_TITLE
-             , A.BOARD_BODY
-             , A.BOARD_WRITER_MEMBER_NO
-             , E.NICKNAME
-             , A.BOARD_COUNT
-             , A.CREATED_DATE
-             , A.BOARD_STATUS
-          FROM (SELECT ROWNUM RNUM
-                     , B.BOARD_NO
-                     , B.BOARD_TYPE
-                     , B.CATEGORY_CODE
-                     , B.BOARD_TITLE
-                     , B.BOARD_BODY
-                     , B.BOARD_WRITER_MEMBER_NO
-                     , B.BOARD_COUNT
-                     , B.CREATED_DATE
-                     , B.BOARD_STATUS
-                  FROM (SELECT C.BOARD_NO
-                             , C.BOARD_TYPE
-                             , C.CATEGORY_CODE
-                             , C.BOARD_TITLE
-                             , C.BOARD_BODY
-                             , C.BOARD_WRITER_MEMBER_NO
-                             , C.BOARD_COUNT
-                             , C.CREATED_DATE
-                             , C.BOARD_STATUS
-                          FROM TBL_BOARD C
-                        <if test="searchCondition == 'category'">
-	      				  JOIN TBL_CATEGORY D ON(C.CATEGORY_CODE = D.CATEGORY_CODE)
-    					</if>
-    					<if test="searchCondition == 'writer'">
-	      				  JOIN TBL_MEMBER D ON(C.BOARD_WRITER_MEMBER_NO = D.MEMBER_NO)
-    					</if>
-    					<where>
-							<if test="searchCondition == 'category'">
-	           				   D.CATEGORY_NAME = #{ searchValue }
+	<select id="selectReqList" resultMap="requestResultMap">
+         SELECT
+         	  A.RNUM 
+            , A.REQ_NO
+	        , A.REQ_DATE
+	        , A.REQ_REQ
+	        , G.SER_NAME
+	        , A.REQ_STATUS
+	        , A.MEM_NO_USER
+	        , A.MEM_NO_CLEANER
+	        , A.PAY_DATE
+         FROM (SELECT  ROWNUM RNUM
+                     , B.REQ_NO
+	            	 , B.REQ_DATE
+	            	 , B.REQ_REQ
+	            	 , B.MEM_NO_CLEANER
+	            	 , B.MEM_NO_USER
+	            	 , B.REQ_STATUS
+	            	 , B.PAY_DATE
+                  FROM (SELECT C.REQ_NO
+	            	 		 , C.REQ_DATE
+	            	 		 , C.REQ_REQ
+	            	 		 , C.MEM_NO_CLEANER
+	            	 		 , C.MEM_NO_USER
+	            	 		 , C.REQ_STATUS
+	            	 		 , E.PAY_DATE
+                          FROM REQUEST_INFO C
+    					  JOIN MEMBER D ON(C.MEM_NO_USER = D.MEM_NO)
+    					  JOIN PAY_HISTORY E ON(E.REQ_NO = C.REQ_NO)
+    					  <if test="searchCondition == 'product'">
+    	  					JOIN PRODUCT_BY_REQ F ON(F.REQ_NO = C.REQ_NO)
+	      					JOIN PRODUCT_INFO G ON(G.SER_NO = F.SER_NO)
+    					  </if>
+    					  <where>
+							<if test="searchCondition == 'reqNo'">
+					           C.REQ_NO = #{ searchValue }
 							</if>
-							<if test="searchCondition == 'writer'">
-	           				   D.NICKNAME LIKE '%' || #{ searchValue } || '%'	
+							<if test="searchCondition == 'product'">
+					           G.SER_NAME LIKE = #{ searchValue }  	
 							</if>
-							<if test="searchCondition == 'title'">
-	           				   C.BOARD_TITLE LIKE '%' || #{ searchValue } || '%' 	
+						  	<if test="searchCondition == 'user'">
+						       D.MEM_NAME = #{ searchValue }  	
 							</if>
-							<if test="searchCondition == 'content'">
-	           				   C.BOARD_BODY LIKE '%' || #{ searchValue } || '%' 	
+							<if test='searchCondition != null and !"".equals(searchCondition)'>
+								<![CDATA[
+					           	  C.REQ_DATE >= TO_DATE(#{ searchValue }, 'YYYY-MM-DD')
+				              AND C.REQ_DATE < TO_DATE(#{ searchValue }, 'YYYY-MM-DD') + 1      
+				                  ]]>
 							</if>
-	       				   AND C.BOARD_STATUS = 'Y'
-    					</where>
-                         ORDER BY C.BOARD_NO DESC
-                        ) B
-                  <![CDATA[
+							<if test="searchCondition == 'status'">
+					           C.REQ_STATUS LIKE '%' || #{ searchValue } || '%' 	
+							</if>
+				    	  </where>
+    					  ORDER BY E.PAY_DATE DESC
+    					  ) B
+                        <![CDATA[
                   WHERE ROWNUM <= #{ endRow }
                   ]]>
                ) A
-          JOIN TBL_CATEGORY D ON (A.CATEGORY_CODE = D.CATEGORY_CODE)
-          JOIN TBL_MEMBER E ON(A.BOARD_WRITER_MEMBER_NO = E.MEMBER_NO)
+          JOIN PRODUCT_BY_REQ F ON(F.REQ_NO = A.REQ_NO)
+	      JOIN PRODUCT_INFO G ON(G.SER_NO = F.SER_NO)
          WHERE A.RNUM >= #{ startRow }     
-         
 	</select>
 
 	

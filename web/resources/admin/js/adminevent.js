@@ -7,5 +7,11 @@ window.onload = function() {
 		}
 	}
 	
+	if(document.getElementById("requestList")) {
+		const $requestList = document.getElementById("requestList");
+		$requestList.onclick = function() {
+			location.href = "${ pageContext.servletContext.contextPath }/admin/request/list";
+		}
+	}
 	
 }

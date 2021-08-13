@@ -24,7 +24,7 @@ public class RequestService {
 	public int selectTotalCount(Map<String, String> searchMap) {
 
 		SqlSession session = getSqlSession();
-		int totalCount = requestDAO.selectTotalCount(session, searchMap);
+		int totalCount = requestDAO.selectAllCount(session, searchMap);
 
 		session.close();
 
@@ -36,7 +36,7 @@ public class RequestService {
 		
 		SqlSession session = getSqlSession();
 
-		List<RequestDTO> requestList = requestDAO.selectRequestList(session, selectCriteria);
+		List<RequestDTO> requestList = requestDAO.selectReqList(session, selectCriteria);
 
 		System.out.println("서비스 리턴값 체크 " + requestList);
 		session.close();

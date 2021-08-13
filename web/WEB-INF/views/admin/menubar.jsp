@@ -268,10 +268,13 @@
                                 <div id="submenu-4" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/request/list" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4-2" aria-controls="submenu-4-2">의뢰 조회</a>
+                                            <a class="nav-link" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4-2" aria-controls="submenu-4-2">의뢰 조회</a>
                                             <div id="submenu-4-2" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
-                                                       <li class="nav-item">
+                                                	<li class="nav-item">
+                                                        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/request/list">의뢰 검색</a>
+                                                    </li>
+                                                    <li class="nav-item">
                                                         <a class="nav-link" href="ecommerce-product.html">의뢰 히스토리</a>
                                                     </li>
                                                     <li class="nav-item">
