@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.admin.request.model.dao.RequestDAO;
 import com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO;
+import com.pitcrew.cleanhome.common.paging.SelectAdminCriteria;
 import com.pitcrew.cleanhome.common.paging.SelectCriteria;
 
 public class RequestService {
@@ -32,11 +33,11 @@ public class RequestService {
 	}
 
 	/* 의뢰 전체 조회용 메소드*/
-	public List<RequestDTO> selectRequestList(SelectCriteria selectCriteria) {
+	public List<RequestDTO> selectRequestList(SelectAdminCriteria selectAdminCriteria) {
 		
 		SqlSession session = getSqlSession();
 
-		List<RequestDTO> requestList = requestDAO.selectReqList(session, selectCriteria);
+		List<RequestDTO> requestList = requestDAO.selectReqList(session, selectAdminCriteria);
 
 		System.out.println("서비스 리턴값 체크 " + requestList);
 		session.close();

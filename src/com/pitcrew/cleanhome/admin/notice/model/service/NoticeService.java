@@ -83,6 +83,17 @@ public class NoticeService {
 		return result;
 	}
 
+	public List<NoticeDTO> selectAllFaqList(String forWho) {
+		SqlSession session = getSqlSession();
+
+		List<NoticeDTO> faqList = noticeDAO.selectAllFaqList(session, forWho);
+
+		System.out.println("서비스 리턴값 체크 " + faqList);
+		session.close();
+
+		return faqList;
+	}
+
 	
 
 	
