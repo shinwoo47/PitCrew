@@ -33,8 +33,8 @@
 		 	</div>
 		 	
 			<div style="text-align:center; padding: 10px; justify-content: space-between;">
-         			<button type="submit" style="background-color: #02A79D; color: white">작성완료</button>
-         			<button type="reset" style="background-color: #02A79D; color: white">목록으로</button>
+         			<button type="submit" style="background-color: #02A79D; color: white;border-color:transparent; border-radius:0.3rem;">작성완료</button>
+         			<button type="reset" style="background-color: #02A79D; color: white; border-color:transparent; border-radius:0.3rem;">목록으로</button>
          	</div>
          </form>
     </div> 

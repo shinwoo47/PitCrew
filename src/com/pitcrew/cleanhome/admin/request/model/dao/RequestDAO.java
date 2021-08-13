@@ -10,14 +10,14 @@ import com.pitcrew.cleanhome.common.paging.SelectCriteria;
 
 public class RequestDAO {
 
-	public int selectTotalCount(SqlSession session, Map<String, String> searchMap) {
+	public int selectAllCount(SqlSession session, Map<String, String> searchMap) {
 		
-		return session.selectOne("RequestDAO.selectTotalCount", searchMap);
+		return session.selectOne("RequestDAO.selectAllCount", searchMap);
 	}
 
-	public List<RequestDTO> selectRequestList(SqlSession session, SelectCriteria selectCriteria) {
+	public List<RequestDTO> selectReqList(SqlSession session, SelectCriteria selectCriteria) {
 		
-		return session.selectList("RequestDAO.selectBoardList", selectCriteria);
+		return session.selectList("RequestDAO.selectReqList", selectCriteria);
 	}
 
 }

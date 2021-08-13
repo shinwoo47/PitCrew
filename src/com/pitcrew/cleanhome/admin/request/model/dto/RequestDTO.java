@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO;
+import com.pitcrew.cleanhome.admin.pay.model.dto.PayDTO;
 import com.pitcrew.cleanhome.admin.product.model.dto.ProductInfoDTO;
 import com.pitcrew.cleanhome.admin.product.model.dto.ProductReqDTO;
 
@@ -12,25 +13,25 @@ public class RequestDTO {
 	private int reqNo;
 	private java.sql.Date serviceDate;
 	private String wantThing;
-	private MemberDTO cleanerNo;
-	private ReqInfoDTO reqDate;
-	private MemberDTO userNo;
+	private MemberDTO cleaner;
+	private MemberDTO user;
 	private String status;
-	private List<ProductInfoDTO> productName;
+	private List<ProductInfoDTO> product;
+	private PayDTO pay;
 	
 	public RequestDTO() {}
 
-	public RequestDTO(int reqNo, Date serviceDate, String wantThing, MemberDTO cleanerNo, ReqInfoDTO reqDate,
-			MemberDTO userNo, String status, List<ProductInfoDTO> productName) {
+	public RequestDTO(int reqNo, Date serviceDate, String wantThing, MemberDTO cleaner, MemberDTO user, String status,
+			List<ProductInfoDTO> product, PayDTO pay) {
 		super();
 		this.reqNo = reqNo;
 		this.serviceDate = serviceDate;
 		this.wantThing = wantThing;
-		this.cleanerNo = cleanerNo;
-		this.reqDate = reqDate;
-		this.userNo = userNo;
+		this.cleaner = cleaner;
+		this.user = user;
 		this.status = status;
-		this.productName = productName;
+		this.product = product;
+		this.pay = pay;
 	}
 
 	public int getReqNo() {
@@ -57,28 +58,20 @@ public class RequestDTO {
 		this.wantThing = wantThing;
 	}
 
-	public MemberDTO getCleanerNo() {
-		return cleanerNo;
+	public MemberDTO getCleaner() {
+		return cleaner;
 	}
 
-	public void setCleanerNo(MemberDTO cleanerNo) {
-		this.cleanerNo = cleanerNo;
+	public void setCleaner(MemberDTO cleaner) {
+		this.cleaner = cleaner;
 	}
 
-	public ReqInfoDTO getReqDate() {
-		return reqDate;
+	public MemberDTO getUser() {
+		return user;
 	}
 
-	public void setReqDate(ReqInfoDTO reqDate) {
-		this.reqDate = reqDate;
-	}
-
-	public MemberDTO getUserNo() {
-		return userNo;
-	}
-
-	public void setUserNo(MemberDTO userNo) {
-		this.userNo = userNo;
+	public void setUser(MemberDTO user) {
+		this.user = user;
 	}
 
 	public String getStatus() {
@@ -89,21 +82,30 @@ public class RequestDTO {
 		this.status = status;
 	}
 
-	public List<ProductInfoDTO> getProductName() {
-		return productName;
+	public List<ProductInfoDTO> getProduct() {
+		return product;
 	}
 
-	public void setProductName(List<ProductInfoDTO> productName) {
-		this.productName = productName;
+	public void setProduct(List<ProductInfoDTO> product) {
+		this.product = product;
+	}
+
+	public PayDTO getPay() {
+		return pay;
+	}
+
+	public void setPay(PayDTO pay) {
+		this.pay = pay;
 	}
 
 	@Override
 	public String toString() {
-		return "RequestDTO [reqNo=" + reqNo + ", serviceDate=" + serviceDate + ", wantThing=" + wantThing
-				+ ", cleanerNo=" + cleanerNo + ", reqDate=" + reqDate + ", userNo=" + userNo + ", status=" + status
-				+ ", productName=" + productName + "]";
+		return "RequestDTO [reqNo=" + reqNo + ", serviceDate=" + serviceDate + ", wantThing=" + wantThing + ", cleaner="
+				+ cleaner + ", user=" + user + ", status=" + status + ", product=" + product + ", pay=" + pay + "]";
 	}
 
+	
+	
 	
 	
 	

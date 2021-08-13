@@ -7,8 +7,109 @@
 <meta charset="UTF-8">
 <title>맡겨줘 홈즈 관리자 모드</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
+<jsp:include page="../menubar.jsp"/>
+ <div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+       <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+             <br><h2 class="pageheader-title">의뢰 조회 </h2><br>
+			 <form method="post">
+			 <div style="color: black;">
+			 <label style=" margin: 5px; padding: 10px;">검  색 : </label>
+			 <select style="padding:5px;" id="searchCondition" name="searchCondition">
+				<option value="reqNo">의뢰번호</option>
+				<option value="product">상품명</option>
+				<option value="user">이용자명</option>
+				<option value="cleaner">청소 해결사명</option>
+			 </select>
+			 	<input type="text" placeholder="검색어를 입력하세요" id="searchValue" name="searchValue" 
+			 		    style="width: 300px; margin: 10px;" >	                       
+             </div>  
+             <div style="color: black;">
+             <label style="padding:10px;">의뢰일 : </label>
+             <input type="date" id="searchValue" name="searchValue"> ~ <input type="date" id="searchValue" name="searchValue">
+             </div>
+             <div style="color: black;">
+             <label style="margin: 5px;" id="searchCondition">의뢰 상태 : </label>
+          	<label class="custom-control custom-radio custom-control-inline">
+            	<input type="radio" class="custom-control-input" id="searchValue" name="searchValue" value="status">
+            	<span class="custom-control-label">전체</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue"  value="status">
+                 <span class="custom-control-label">매칭 신청</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue"  value="status">
+                 <span class="custom-control-label">매칭 완료</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" class="custom-control-input"  id="searchValue" name="searchValue" value="status">
+                 <span class="custom-control-label">종료된 의뢰</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" class="custom-control-input"  id="searchValue" name="searchValue" value="status">
+                 <span class="custom-control-label">취소 요청</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" class="custom-control-input"  id="searchValue" name="searchValue" value="status">
+                 <span class="custom-control-label">의뢰 취소</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue" value="status">
+                 <span class="custom-control-label">수정 요청</span>
+            </label>
+            <label class="custom-control custom-radio custom-control-inline">
+                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue" value="status">
+                 <span class="custom-control-label">수정된 의뢰</span>
+            </label>
+            <br><br>
+             </div>
+             <div class="text-center">
+             	<button type="submit" style="background-color: #02A79D; color: white; border-color:transparent; border-radius:0.3rem;">검색</button>
+             </div><hr>
+             </form>
+         	<br>
+             <table class="text-center" id="requestList">
+         	<tr height="15" style="font-size: 15px">
+         		<th width="150px">의뢰 번호</th>
+         		<th width="150px">이용자</th>
+   				<th width="150px">상품명</th>
+   				<th width="150px">의뢰 일시</th>
+   				<th width="150px">청소 해결사</th>
+   				<th width="150px">주문 일자</th>
+   				<th width="150px">의뢰 상태</th>
+   				<th width="150px">상세 보기</th>
+         	</tr>
+         	<tr></tr>
+         	<c:forEach items="${ requestScope.requestList }" var="request">
+					<tr>
+						<td><c:out value="${ request.reqNo }"/></td>
+						<td><c:out value="${ request.user.name }"/></td>
+						<td><c:out value="${ request.product.productName }"/></td>
+						<td><c:out value="${ request.serviceDate }"/></td>
+						<td><c:out value="${ request.cleaner.name }"/></td>
+						<td><c:out value="${ request.pay.payDate }"/></td>
+						<td><c:out value="${ request.status }"/></td>
+						<td><button type="button">자세히</button></td>
+					</tr>
+			</c:forEach>	
+         	
+         </table>         
+             
+              <jsp:include page="/WEB-INF/views/common/paging.jsp"/> 
+             
+             
+             
+                      
+            </div>
+         </div>
+      </div>
 
+
+	</div>
 </body>
 </html>
