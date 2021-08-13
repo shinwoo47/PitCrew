@@ -69,7 +69,7 @@
                             <h3><c:out value="${ address2 }"/></h3>
                             <ul>
                                 <li><i class="fa fa-clock-o"></i> <fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy/MM/dd (E) hh시"/></li>
-                                <li>
+                                <li> 
                                 	<c:set var="sumPrice" value="0"/>
                                 	<c:set var="sumTime" value="0"/>
                                 	<i class="fa fa-user"></i> 
