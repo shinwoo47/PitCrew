@@ -118,7 +118,7 @@
                                 </li>
                                 <li><a href="./contact.html">MY</a>
                                     <ul class="dropdown">
-                                        <li><a href="./services.html">의뢰내역</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/select/myRequest">의뢰내역</a></li>
                                         <li><a href="${ pageContext.servletContext.contextPath }/user/select/myInfo">정보수정</a></li>
                                         <li><a href="./blog-details.html">로그아웃</a></li>
                                     </ul>
