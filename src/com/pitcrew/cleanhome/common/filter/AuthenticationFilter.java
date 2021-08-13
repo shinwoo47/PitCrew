@@ -103,7 +103,9 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/notice/detail");
 		adminPermitList.add("/admin/cleanernotice/detail");
 		adminPermitList.add("/admin/notice/insert");
+		adminPermitList.add("/admin/faq/list");
 		adminPermitList.add("/admin/request/list");
+		adminPermitList.add("/admin/request/detail");
 		adminPermitList.add("/notice/update");
 
 		adminPermitList.add("/admin/home");
@@ -127,8 +129,9 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/user/update/myInfo");
 		memberPermitList.add("/user/clean/services");
 		memberPermitList.add("/user/clean/select");
+
 		memberPermitList.add("/user/select/myRequest");
-		
+		memberPermitList.add("/user/clean/list");
 		
 		cleanerPermitList.add("/cleaner/request/enroll");
 		cleanerPermitList.add("/cleaner/home");
@@ -137,6 +140,7 @@ public class AuthenticationFilter implements Filter {
 		cleanerPermitList.add("/cleaner/account");
 		cleanerPermitList.add("/cleaner/account/regist");
 		cleanerPermitList.add("/cleaner/account/update");
+		cleanerPermitList.add("/cleaner/request/ajax");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");

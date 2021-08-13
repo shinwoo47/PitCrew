@@ -59,8 +59,8 @@
             <div class="row">
                 <div class="col-lg-8 col-md-7">	
                     <div class="blog__item">
-                    <c:forEach var="request" items="${ requestScope.requestList }">
-                        <div style="height: auto; width: 80%; border:3px solid yellowgreen;" class="blog__item__text" id="request+${status.count}">
+                    <c:forEach var="request" items="${ requestScope.requestList }" varStatus="status">
+                        <div style="height: auto; width: 80%; border:3px solid yellowgreen;" class="blog__item__text" id="request${status.count}">
                         	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqNo }"/>
                         	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqStatus }"/>
                         	<c:set var="address" value="${ request.address.address }"/>
@@ -215,7 +215,8 @@
 		
 		$("body").on("click", "[id^=request]", function(){ 
 
-				  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					var address = $(this).children("h3").text();
+				  	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				    mapOption = {
 				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 				        level: 3 // 지도의 확대 레벨
@@ -228,7 +229,7 @@
 					var geocoder = new kakao.maps.services.Geocoder();
 	
 					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch('${ address2 }', function(result, status) {
+					geocoder.addressSearch(address, function(result, status) {
 	
 				    	// 정상적으로 검색이 완료됐으면 
 				    	 if (status === kakao.maps.services.Status.OK) {

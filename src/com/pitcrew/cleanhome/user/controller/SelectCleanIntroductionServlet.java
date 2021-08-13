@@ -9,17 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pitcrew.cleanhome.user.model.dto.CleanDTO;
-import com.pitcrew.cleanhome.user.model.service.SelectCleanService;
+import com.pitcrew.cleanhome.user.model.service.CleanService;
 
-@WebServlet("/clean/list")
+@WebServlet("/user/clean/list")
 public class SelectCleanIntroductionServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-		
-		
+		int num = Integer.parseInt(request.getParameter("number"));  
+		CleanDTO clean = new CleanDTO();
+		System.out.println("num : " + num);
+		if(num == 1) {
+			clean = new CleanService().selectClean(num);
+		}
 		String path = "";
-		if(clean != null) {
+		if(num > 0) {
 			path = "/WEB-INF/views/user/information.jsp";
 			request.setAttribute("clean", clean);
 		} else {

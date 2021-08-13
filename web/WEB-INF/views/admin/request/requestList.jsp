@@ -20,6 +20,7 @@
 			 <div style="color: black;">
 			 <label style=" margin: 5px; padding: 10px;">검  색 : </label>
 			 <select style="padding:5px;" id="searchCondition" name="searchCondition">
+				<option></option>
 				<option value="reqNo">의뢰번호</option>
 				<option value="product">상품명</option>
 				<option value="user">이용자명</option>
@@ -30,40 +31,40 @@
              </div>  
              <div style="color: black;">
              <label style="padding:10px;">의뢰일 : </label>
-             <input type="date" id="searchValue" name="searchValue"> ~ <input type="date" id="searchValue" name="searchValue">
+             <input type="date" id="searchStartDate" name="searchStartDate"> ~ <input type="date" id="searchEndDate" name="searchEndDate">
              </div>
              <div style="color: black;">
-             <label style="margin: 5px;" id="searchCondition">의뢰 상태 : </label>
+             <label style="margin: 5px;">의뢰 상태 : </label>
           	<label class="custom-control custom-radio custom-control-inline">
-            	<input type="radio" class="custom-control-input" id="searchValue" name="searchValue" value="status">
+            	<input type="radio" class="custom-control-input" id="statusValue" name="statusValue">
             	<span class="custom-control-label">전체</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue"  value="status">
+                 <input type="radio" class="custom-control-input" id="statusValue" name="statusValue"  value="매칭 신청">
                  <span class="custom-control-label">매칭 신청</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue"  value="status">
+                 <input type="radio" class="custom-control-input" id="statusValue" name="statusValue"  value="매칭 완료">
                  <span class="custom-control-label">매칭 완료</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input"  id="searchValue" name="searchValue" value="status">
+                 <input type="radio" class="custom-control-input"  id="statusValue" name="statusValue" value="종료된 의뢰">
                  <span class="custom-control-label">종료된 의뢰</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input"  id="searchValue" name="searchValue" value="status">
+                 <input type="radio" class="custom-control-input"  id="statusValue" name="statusValue" value="취소 요청">
                  <span class="custom-control-label">취소 요청</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input"  id="searchValue" name="searchValue" value="status">
+                 <input type="radio" class="custom-control-input"  id="statusValue" name="statusValue" value="의뢰 취소">
                  <span class="custom-control-label">의뢰 취소</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue" value="status">
+                 <input type="radio" class="custom-control-input" id="statusValue" name="statusValue" value="수정 요청">
                  <span class="custom-control-label">수정 요청</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input" id="searchValue" name="searchValue" value="status">
+                 <input type="radio" class="custom-control-input" id="statusValue" name="statusValue" value="수정된 의뢰">
                  <span class="custom-control-label">수정된 의뢰</span>
             </label>
             <br><br>

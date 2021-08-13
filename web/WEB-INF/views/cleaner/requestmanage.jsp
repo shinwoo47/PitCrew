@@ -35,48 +35,49 @@
 	<script src='${ pageContext.servletContext.contextPath }/resources/packages/daygrid/main.js'></script>
 	<script src='${ pageContext.servletContext.contextPath }/resources/packages/list/main.js'></script>
 	<script src='${ pageContext.servletContext.contextPath }/resources/packages/google-calendar/main.js'></script>
-   
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.min.js" integrity="sha256-8nl2O4lMNahIAmUnxZprMxJIBiPv+SzhMuYwEuinVM0=" crossorigin="anonymous"></script>
+   	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.9.0/main.css" integrity="sha256-z7G6BBWwBOXahthaod21GyxfNhxiQFBVn6WQYHRs9W8=" crossorigin="anonymous">
+
+
 	<script>
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-
-      plugins: [ 'interaction', 'dayGrid', 'list', 'googleCalendar' ],
-
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,listYear'
-      },
-
-      displayEventTime: false, // don't show the time column in list view
-
-      // THIS KEY WON'T WORK IN PRODUCTION!!!
-      // To make your own Google API key, follow the directions here:
-      // http://fullcalendar.io/docs/google_calendar/
-      googleCalendarApiKey: 'AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE',
-
-      // US Holidays
-      events: 'en.usa#holiday@group.v.calendar.google.com',
-
-      eventClick: function(arg) {
-        // opens events in a popup window
-        window.open(arg.event.url, 'google-calendar-event', 'width=700,height=600');
-
-        arg.jsEvent.preventDefault() // don't navigate in main tab
-      },
-
-      loading: function(bool) {
-        document.getElementById('loading').style.display =
-          bool ? 'block' : 'none';
-      }
-
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
+      });
+      calendar.render();
+      $(".fc-button-group").click(function() {
+          var date = $('.fc-toolbar-title')[0].innerText
+      		console.log(date)
+          $.ajax({
+  			url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax",
+  			type: "get",
+  			data: {
+  				date : date
+  			},
+  			success: function(data, textStatus, xhr) {
+  				console.log(data);
+  				
+  				for(var i in data) {
+  					var request = data[i];
+  					
+  					var $div = $("<div>");
+  					$div.append($("<h6>").text(request.address.address));
+  					
+  	  				$(".blog__sidebar").append($div);
+  				}
+  				
+  			},
+  			error: function(xhr, status, error) {
+  				console.log(xhr);
+  			}
+  		});
+      });
     });
 
-    calendar.render();
-  });
+  </script>
 
 </script>
     <style>
@@ -102,36 +103,48 @@
             <div class="row">
                 <div class="col-lg-8 col-md-7">	
                     <div class="blog__item">
-                    
-                    	<!-- 달력  --> 
+                   		<!-- 달력  -->
                     	<div id="calendar">
                     	</div>
-                    	
                     </div>
-                    <div class="blog__item">
-                        <div class="blog__item__img">
-                            <img src="img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <h3><a href="./blog-details.html">Internet Advertising Trends You Won T Be Disappointed</a></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
-                                <li><i class="fa fa-user"></i> John Smith</li>
-                            </ul>
-                            <p>More than 1 billion people frequent the Internet daily. Americans alone spent $69 billion
-                                buying things online in</p>
-                            <a href="#" class="read__more">Continue Reading <i class="fa fa-long-arrow-right"></i></a>
-                        </div>  
-                    </div>
-                    
-                    
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">  
-                        <div class="blog__pagination">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
+                    
+                        <c:forEach var="request" items="${ requestScope.requestList }" varStatus="status">
+                        <div style="height: auto; width: 80%; border:3px solid yellowgreen;" class="blog__item__text" id="request${status.count}">
+                        	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqNo }"/>
+                        	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqStatus }"/>
+                        	<c:set var="address" value="${ request.address.address }"/>
+                        	<c:set var="address1" value="${ fn:substring(address, fn:indexOf(address,'$') + 1, 30) }"/>
+                        	<c:set var="address2" value="${ fn:substring(address1, 0, fn:indexOf(address1,'$')) }"/>
+                            <h3><c:out value="${ address2 }"/></h3>
+                            <ul>
+                                <li><i class="fa fa-clock-o"></i> <fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy/MM/dd (E) hh시"/></li>
+                                <li>  
+                                	<c:set var="sumPrice" value="0"/>
+                                	<c:set var="sumTime" value="0"/>
+                                	<i class="fa fa-user"></i> 
+                                	<c:forEach var="product" items="${ request.productList }">             		
+                                		<c:out value="${ product.serName } "/><c:set var="price" value="${ product.serPrice }"/>
+                                		<c:set var="sumPrice" value="${ sumPrice + product.serPrice }"/>
+                                		<c:set var="sumTime" value="${ sumTime + product.serTime }"/>
+                                	</c:forEach>
+                                </li>
+                            </ul>
+                                                            예상소요시간 :<c:out value="${ sumTime }"/> 시간<br>
+                                                              합계 가격 : <c:out value="${ sumPrice }"/> 원
+                            <button style="float: right;" class="selectbtn" id="ok">선택하기 </button>
+                        	
+                        </div>
+                        </c:forEach>
+                    </div>
+                    
+                    
+                    <div class="blog__pagination">
                         	<jsp:include page="../common/paging.jsp"/>
-                        <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
                     </div>
                     </div>
                 </div>
@@ -223,6 +236,26 @@
         </div>
     </div>
     <!-- Search End -->
+    <script>
+    $(".fc-button-group").click(function() {
+    	console.log("hi")
+        var date = $('.fc-center')[0].innerText
+        $.ajax({
+			url: "${ pageContext.servletContext.contextPath }/cleaner/request/manage",
+			type: "get",
+			data: {
+				date : date
+			},
+			success: function(data, textStatus, xhr) {
+				console.log("hi");
+			},
+			error: function(xhr, status, error) {
+				console.log(xhr);
+			}
+		});
+    });
+
+    </script>
 
     <!-- Js Plugins -->
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery-3.3.1.min.js"></script>

@@ -41,4 +41,9 @@ public class RequestDAO {
 		return session.insert("RequestDAO.insertRequestStatusHistory", requestDto);
 	}
 
+	public int selectCleanerTotalCount(SqlSession session, Map<String, String> searchMap) {
+		
+		return session.selectOne("RequestDAO.selectCleanerTotalCount", searchMap);
+	}
+
 }
