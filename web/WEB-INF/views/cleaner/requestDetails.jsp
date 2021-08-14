@@ -135,6 +135,15 @@
                     <div class="blog__sidebar__categories" id="map" style="width:700px;height:400px;">
                     
                     </div>
+                    <div><button id="report">신고 하기</button></div>
+                    <div>
+	                    <form action="${ pageContext.servletContext.contextPath }/cleaner/request/attach" method="post" encType="multipart/form-data">
+	                    <input type="hidden" name="reqNo" id="reqNo" value="${ requestDetail.reqNo }"/>
+						<input type="file" name="before" multiple><br>
+						<input type="file" name="after" multiple><br>
+						<button type="submit">전송</button>
+					</form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -276,6 +285,13 @@
 				// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 				map.setCenter(coords);
 			} 
+		});
+		
+		$("#report").on("click", function(){ 
+			const no = $("#reqNo").val();
+			console.log(no)
+			location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/report?no=" + no;
+
 		});
      }
 

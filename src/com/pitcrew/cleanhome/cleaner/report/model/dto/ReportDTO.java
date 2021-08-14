@@ -9,30 +9,27 @@ public class ReportDTO {
 
 	private int reportNo;
 	private String reportBody;
-	private MemberDTO memNoReporter;
-	private MemberDTO memNoSucpect;
-	private ReportCategoryDTO reportCategoryCode;
-	private PenaltyDTO penaltyCategoryCode;
-	private RequestDTO reqNo;
+	private int memNoReporter;
+	private int memNoSuspect;
+	private int reportCategoryCode;
+	private int penaltyCategoryCode;
+	private int reqNo;
 	private List<ReportAttachmentDTO> reportAttachmentList;
 	
 	public ReportDTO() {}
 
-	public ReportDTO(int reportNo, String reportBody, MemberDTO memNoReporter, MemberDTO memNoSucpect,
-			ReportCategoryDTO reportCategoryCode, PenaltyDTO penaltyCategoryCode, RequestDTO reqNo,
-			List<ReportAttachmentDTO> reportAttachmentList) {
+	public ReportDTO(int reportNo, String reportBody, int memNoReporter, int memNoSuspect, int reportCategoryCode,
+			int penaltyCategoryCode, int reqNo, List<ReportAttachmentDTO> reportAttachmentList) {
 		super();
 		this.reportNo = reportNo;
 		this.reportBody = reportBody;
 		this.memNoReporter = memNoReporter;
-		this.memNoSucpect = memNoSucpect;
+		this.memNoSuspect = memNoSuspect;
 		this.reportCategoryCode = reportCategoryCode;
 		this.penaltyCategoryCode = penaltyCategoryCode;
 		this.reqNo = reqNo;
 		this.reportAttachmentList = reportAttachmentList;
 	}
-
-
 
 	public int getReportNo() {
 		return reportNo;
@@ -50,47 +47,46 @@ public class ReportDTO {
 		this.reportBody = reportBody;
 	}
 
-	public MemberDTO getMemNoReporter() {
+	public int getMemNoReporter() {
 		return memNoReporter;
 	}
 
-	public void setMemNoReporter(MemberDTO memNoReporter) {
+	public void setMemNoReporter(int memNoReporter) {
 		this.memNoReporter = memNoReporter;
 	}
 
-	public MemberDTO getMemNoSucpect() {
-		return memNoSucpect;
+	public int getMemNoSucpect() {
+		return memNoSuspect;
 	}
 
-	public void setMemNoSucpect(MemberDTO memNoSucpect) {
-		this.memNoSucpect = memNoSucpect;
+	public void setMemNoSucpect(int memNoSucpect) {
+		this.memNoSuspect = memNoSucpect;
 	}
 
-	public ReportCategoryDTO getReportCategoryCode() {
+	public int getReportCategoryCode() {
 		return reportCategoryCode;
 	}
 
-	public void setReportCategoryCode(ReportCategoryDTO reportCategoryCode) {
+	public void setReportCategoryCode(int reportCategoryCode) {
 		this.reportCategoryCode = reportCategoryCode;
 	}
 
-	public PenaltyDTO getPenaltyCategoryCode() {
+	public int getPenaltyCategoryCode() {
 		return penaltyCategoryCode;
 	}
 
-	public void setPenaltyCategoryCode(PenaltyDTO penaltyCategoryCode) {
+	public void setPenaltyCategoryCode(int penaltyCategoryCode) {
 		this.penaltyCategoryCode = penaltyCategoryCode;
 	}
 
-	public RequestDTO getReqNo() {
+	public int getReqNo() {
 		return reqNo;
 	}
 
-	public void setReqNo(RequestDTO reqNo) {
+	public void setReqNo(int reqNo) {
 		this.reqNo = reqNo;
 	}
 
-	
 	public List<ReportAttachmentDTO> getReportAttachmentList() {
 		return reportAttachmentList;
 	}
@@ -102,8 +98,12 @@ public class ReportDTO {
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", reportBody=" + reportBody + ", memNoReporter=" + memNoReporter
-				+ ", memNoSucpect=" + memNoSucpect + ", reqNo=" + reqNo + "]";
+				+ ", memNoSucpect=" + memNoSuspect + ", reportCategoryCode=" + reportCategoryCode
+				+ ", penaltyCategoryCode=" + penaltyCategoryCode + ", reqNo=" + reqNo + ", reportAttachmentList="
+				+ reportAttachmentList + "]";
 	}
+
+	
 	
 	
 }

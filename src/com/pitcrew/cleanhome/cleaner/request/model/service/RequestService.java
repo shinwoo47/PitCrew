@@ -78,13 +78,22 @@ public class RequestService {
 		return requestDetail;
 	}
 
-	public int selectCleanerTotalCount(Map<String, String> searchMap) {
+	public int selectCleanerTotalCount(Map<String, Object> searchMap) {
 		
 		SqlSession session = getSqlSession();
 		
 		int totalCount = requestDAO.selectCleanerTotalCount(session, searchMap);
 		
 		return totalCount;
+	}
+
+	public List<RequestDTO> selectCleanerRequestList(Map<String, Object> searchMap) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<RequestDTO> requestList = requestDAO.selectCleanerRequestList(session, searchMap);
+		
+		return requestList;
 	}
 
 

@@ -57,6 +57,9 @@
 				case "insertAccount" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/account";
 					successMessage = "회원 정보 변경에 성공하셨습니다!";
+				case "insertReport" :
+					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
+					successMessage = "신고 등록에 성공하셨습니다!";
 			}
 
 			alert(successMessage);

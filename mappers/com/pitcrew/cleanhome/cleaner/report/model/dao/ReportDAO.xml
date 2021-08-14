@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReportDAO">
+	<resultMap type="com.pitcrew.cleanhome.cleaner.report.model.dto.ReportDTO" id="ReportResultMap">
+		<id property="reportNo" column="REPORT_NO"/>
+		<result property="reportBody" column="REPORT_BODY"/>
+		<result property="memNoReporter" column="MEM_NO_REPORTER"/>
+		<result property="memNoSucpect" column="MEM_NO_SUSPECT"/>
+		<result property="reportCategoryCode" column="REPORT_CATEGORY_CODE"/>
+		<result property="penaltyCategoryCode" column="PENALTY_CATEGORY_CODE"/>
+		<result property="reqNo" column="REQ_STATUS"/>
+		
+		<association property="memNoUser" resultMap="memberResultMap"/>
+		<association property="memNoCleaner" resultMap="memberResultMap"/>
+		<association property="reportCategoryNo" resultMap="reportCategoryResultMap"/>
+		<association property="reqNo" resultMap="requestResultMap"/>
+		
+		<collection property="reportAttachNo" resultMap="reportAttachResultMap"/>	
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.member.model.dto.MemberDTO" id="memberResultMap">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="id" column="MEM_ID"/>
+		<result property="pwd" column="MEM_PWD"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="phone" column="PHONE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="role" column="MEMBER_ROLE"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="entYn" column="ENT_YN"/>
+		<result property="entDate" column="ENT_DATE"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.cleaner.report.model.dto.ReportAttachmentDTO" id="reportAttachResultMap">
+		<id property="reportAttachNo" column="REPORT_ATTATCH_NO"/>
+		<result property="reportNo" column="REPORT_NO"/>
+		<result property="originalName" column="ORIGINAL_NAME"/>
+		<result property="savedName" column="SAVED_NAME"/>
+		<result property="savePath" column="SAVE_PATH"/>
+		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
+		<result property="attachCategory" column="ATTACH_CATEGORY"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.cleaner.report.model.dto.ReportCategoryDTO" id="reportCategoryResultMap">
+		<id property="reportCategoryCode" column="REPORT_CATEGORY_CODE"/>
+		<result property="reportCategoryClass" column="REPORT_CATEGORY_CLASS"/>
+		<result property="reportCategoryName" column="REPORT_CATEGORY_NAME"/>
+		<result property="reportCategoryYn" column="REPORT_CATEGORY_YN"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO" id="RequestResultMap">
+		<id property="reqNo" column="REQ_NO"/>
+		<result property="reqDate" column="REQ_DATE"/>
+		<result property="reqReq" column="REQ_REQ"/>
+		<result property="memNoCleaner" column="MEM_NO_CLEANER"/>
+		<result property="memNoUser" column="MEM_NO_USER"/>
+		<result property="reqStatus" column="REQ_STATUS"/>
+	</resultMap>
+	
+	<select id="selectUserNo" parameterType="_int" resultMap="RequestResultMap">
+	    SELECT
+	           A.MEM_NO_USER
+	      FROM REQUEST_INFO A
+	     WHERE A.REQ_NO = #{ reqNo }
+	</select>
+	
+	<insert id="insertReport">
+	    INSERT
+	      INTO REPORT A
+	    (
+	      A.REPORT_NO
+	    , A.REPORT_BODY
+	    , A.MEM_NO_REPORTER
+	    , A.MEM_NO_SUSPECT
+	    , A.REPORT_CATEGORY_CODE
+	    , A.REQ_NO
+	    )
+	    VALUES
+	    (
+	      SEQ_REPORT.NEXTVAL
+	    , #{ reportBody }
+	    , #{ memNoReporter }
+	    , #{ memNoSuspect }
+	    , #{ reportCategoryCode }
+	    , #{ reqNo }
+	    )
+	</insert>
+	
+	<insert id="insertAttachment">
+	    INSERT
+	      INTO REPORT_ATTACH A
+	    (
+	      A.REPORT_ATTATCH_NO
+	    , A.REPORT_NO
+	    , A.ORIGINAL_NAME
+	    , A.SAVED_NAME
+	    , A.SAVE_PATH
+	    , A.ATTACH_CATEGORY
+	    )
+	    VALUES
+	    (
+	      SEQ_REPORT_ATTACH.NEXTVAL
+	    , #{ reportNo }
+	    , #{ originalName }
+	    , #{ savedName }
+	    , #{ savePath }
+	    , #{ attachCategory }
+	    )
+	</insert>
+	
+	<select id="selectReportNo" resultType="_int">
+	    SELECT
+	           A.REPORT_NO
+	      FROM REPORT A
+	     WHERE A.REQ_NO = #{ reqNo }
+	</select>
+</mapper>
