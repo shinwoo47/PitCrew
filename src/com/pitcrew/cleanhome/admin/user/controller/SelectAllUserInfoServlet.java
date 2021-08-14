@@ -65,12 +65,10 @@ public class SelectAllUserInfoServlet extends HttpServlet {
          
            List<UserDTO> userList = new UserService().searchUserInfomation(searchCondition, searchResult, date, endDate);
            
-           System.out.println("송준일" + userList);
-           
            String path = "";
          if(userList != null) {
             path = "/WEB-INF/views/admin/user/userList.jsp";
-            request.setAttribute("userList", userList);
+            request.setAttribute("userList", "userList");
          } else {
             path = "/WEB-INF/views/common/failed.jsp";
             request.setAttribute("message", "사용자 정보 조회 실패!");

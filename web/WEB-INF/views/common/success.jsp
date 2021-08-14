@@ -57,6 +57,9 @@
 				case "insertAccount" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/account";
 					successMessage = "회원 정보 변경에 성공하셨습니다!";
+				case "insertProduct" : "상품 추가 성공"
+					movePath = "${ pageContext.servletContext.contextPath }/product/list";
+					successMessage = "상품 추가에 성공하셨습니다!";
 			}
 
 			alert(successMessage);

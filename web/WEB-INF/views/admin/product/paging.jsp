@@ -13,9 +13,8 @@
 </style>
 </head>
 <body>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 	<div class="pagingArea" align="center">
 		<!-- 맨 앞으로 이동 버튼 -->
 	    <button id="startPage"><<</button>

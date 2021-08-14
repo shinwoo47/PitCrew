@@ -22,7 +22,28 @@
 		  FROM PRODUCT_INFO A
 		 ORDER BY A.SER_NO ASC
 	</select>
-
+	
+	<insert id="insertProduct">
+		INSERT
+		  INTO PRODUCT_INFO A
+		(
+		  A.SER_NO
+		, A.SER_NAME
+		, A.SER_CONTENT
+		, A.SER_TIME
+		, A.SER_PRICE
+		, A.SER_CATEGORY
+		)
+		VALUES
+		(
+		  #{ serNo }
+		, #{ serName }
+		, #{ serContent }
+		, #{ serTime }
+		, #{ serPrice }
+		, #{ serCategory }
+		)
+	</insert>
 
 
 
