@@ -166,8 +166,7 @@
 	       AND A.REQ_DATE >= TO_DATE(#{ searchDate }, 'YYYY-MM-DD')
            AND A.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM-DD') + 31
            ]]>
-	</select>
-		
+	</select>		
 		       
 	<select id="selectCleanerRequestList" resultMap="RequestResultMap">
 	    SELECT
