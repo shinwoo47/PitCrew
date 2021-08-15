@@ -30,6 +30,9 @@
 		<mapper resource="com/pitcrew/cleanhome/admin/cleaner/model/dao/CleanerDAO.xml"/>
 		
 		<mapper resource="com/pitcrew/cleanhome/admin/product/model/dao/ProductDAO.xml"/>
+		
+		<mapper resource="com/pitcrew/cleanhome/user/request/model/dao/UserReqDAO.xml"/>
+
 
 	</mappers>
 </configuration>
