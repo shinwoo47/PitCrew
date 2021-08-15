@@ -47,17 +47,18 @@ window.onload = function() {
 		}
 	}
 	
+	
+	
 	if(document.getElementById("popup")) {
-		const $popup = document.getElementById("popup");
-		$popup.onclick = function() {
-			var url = "/pitcrew/user/clean/list?number=" + 1;
-			var name = "test";
-			var option = "width = 700, height = 600, top = 100, " +
-					"left = 300, location = no "
-			window.open(url, name, option);
-			window.open;
-		}
-	}
+	      const $popup = document.getElementById("popup");
+	      $popup.onclick = function() {
+	         var url = "/pitcrew/user/clean/list?number=" + 1;
+	         var name = "test";
+	         var option = "width = 700, height = 600, top = 100, " +
+	            	"left = 300, location = no "
+	         window.open(url, name, option);
+	      }
+	   }
 	
 	if(document.getElementById("popup2")) {
 		const $popup2 = document.getElementById("popup2");
@@ -66,7 +67,6 @@ window.onload = function() {
 			var name = "test";
 			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
-			window.open;
 		}
 	}
 	
@@ -77,7 +77,6 @@ window.onload = function() {
 			var name = "test";
 			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
-			window.open;
 		}
 	}
 	
@@ -88,7 +87,6 @@ window.onload = function() {
 			var name = "test";
 			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
-			window.open;
 		}
 	}
 	
@@ -99,8 +97,28 @@ window.onload = function() {
 			var name = "test";
 			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
-			window.open;
 		}
 	}
+	
+	if(document.getElementById("information")) {
+		const $information = document.getElementById("information");
+		$information.onclick = function() {
+			var url = "/pitcrew/user/clean/informa";
+			var name = "test";
+			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
+			window.open(url, name, option);
+		}
+	}
+	
+	if(document.getElementById("payment")) {
+		const $payment = document.getElementById("payment");
+		$payment.onclick = function() {
+			location.href = "/pitcrew/user/clean/payment";
+		}
+	}
+	
+	
+	
+
 }
 
