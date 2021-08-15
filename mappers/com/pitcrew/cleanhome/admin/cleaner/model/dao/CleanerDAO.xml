@@ -118,7 +118,7 @@
 				<otherwise>
 						A.ENT_YN = #{ searchResult }				
 				</otherwise> -->
-					<if test="categoryType == 'memNo'">
+					<!-- <if test="categoryType == 'memNo'">
 						A.MEM_NO = #{ searchResult }
 					</if>
 					<if test="categoryType == 'memId'">
@@ -132,7 +132,7 @@
 					</if>
 					<if test="categoryType == 'entYn'">
 						A.ENT_YN = #{ searchResult }
-					</if>
+					</if> -->
 
 				<!-- </otherwise>-->
 
