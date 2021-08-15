@@ -18,13 +18,10 @@ public class CleanService {
 	
 	public CleanDTO selectClean(int num) {
 		
-		System.out.println("체크 1 ");
 		SqlSession session = getSqlSession();
-		System.out.println("체크 2 ");
 		CleanDTO clean = null;
 		
 		clean = cleanDAO.selectClean(session, num);
-		System.out.println("체크3");
 		System.out.println("clean : " + clean);
 		
 		session.close();

@@ -21,9 +21,24 @@ public class SelectCleanIntroductionServlet extends HttpServlet {
 		System.out.println("num : " + num);
 		if(num == 1) {
 			clean = new CleanService().selectClean(num);
+			clean.setImgNo("roomClean.png");
+		} else if(num== 2) {
+			clean = new CleanService().selectClean(num);
+			clean.setImgNo("bathroomClean.png");
+		} else if(num== 3) {
+			clean = new CleanService().selectClean(num);
+			clean.setImgNo("allClean.png");
+		} else if(num== 4) {
+			clean = new CleanService().selectClean(num);
+			clean.setImgNo("washDish.png");
+		} else if(num== 5) {
+			clean = new CleanService().selectClean(num);
+			clean.setImgNo("windowClean.png");
 		}
 		String path = "";
+	
 		if(num > 0) {
+			System.out.println(clean.getContent());
 			path = "/WEB-INF/views/user/information.jsp";
 			request.setAttribute("clean", clean);
 		} else {
@@ -33,6 +48,7 @@ public class SelectCleanIntroductionServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
+
 
 
 }

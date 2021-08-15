@@ -203,7 +203,6 @@
         		<textarea name="content" id="content" cols="60" rows="15"></textarea><br><br>
         		<h4 align = "left" id="timea">예상소요시간 : <c:out value="${ clean.time }"/>시간</h4><br>
         	    <h4 align = "left" id=pricea>예상금액 : &nbsp;<c:out value="${ clean.price }"/>원</h4>
-      			<div class="Button"><input type="submit" value="주문하기" id="requestInfo" class="btn_requ"></div>
       			<input type="hidden"  name="name" value="${ clean.price }"/>
         		</form>
         		
