@@ -35,7 +35,7 @@ public class UserService {
 	
 		SqlSession session = getSqlSession();
 	
-		List<UserDTO> userList = userDAO.searchUserInfomation(session,categoryType,searchResult,enRollStartDate,enRollEndDate);
+		List<UserDTO> userList = userDAO.searchUserInfomation(session, categoryType, searchResult, enRollStartDate, enRollEndDate);
 
 		session.close();
 		

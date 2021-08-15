@@ -25,13 +25,11 @@
   		<mapper resource="com/pitcrew/cleanhome/admin/request/model/dao/RequestDAO.xml"/>
 
 		<mapper resource="com/pitcrew/cleanhome/user/model/dao/UserInfoDAO.xml"/>
-		<mapper resource="com/pitcrew/cleanhome/user/model/dao/CleanDAO.xml"/>
 
 		<mapper resource="com/pitcrew/cleanhome/admin/user/model/dao/UserDAO.xml"/>
+		<mapper resource="com/pitcrew/cleanhome/admin/cleaner/model/dao/CleanerDAO.xml"/>
 		
 		<mapper resource="com/pitcrew/cleanhome/admin/product/model/dao/ProductDAO.xml"/>
-		
-<!-- 		<mapper resource="com/pitcrew/cleanhome/user/request/model/dao/UserReqDAO.xml"/> -->
 
 	</mappers>
 </configuration>
