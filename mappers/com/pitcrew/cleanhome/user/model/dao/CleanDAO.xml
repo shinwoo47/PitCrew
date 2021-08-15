@@ -15,7 +15,10 @@
 	
 	<select id="selectClean" resultMap="cleanResultMap">
 		SELECT 
-			   A.SER_CONTENT
+			   A.SER_NAME
+			 , A.SER_CONTENT
+			 , SER_PRICE
+			 , SER_TIME
 		  FROM PRODUCT_INFO A
 		 WHERE A.SER_NO = #{ num }
 	</select>
