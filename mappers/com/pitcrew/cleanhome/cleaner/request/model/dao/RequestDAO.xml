@@ -46,7 +46,7 @@
 	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT 
                COUNT(*)
-          FROM REQUEST_INFO A
+          FROM REQUEST_INFO A 
 		  
 	</select>
 	
