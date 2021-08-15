@@ -21,7 +21,6 @@
 			 <label style=" margin: 5px; padding: 10px;">검  색 : </label>
 			 <select style="padding:5px;" id="searchCondition" name="searchCondition">
 				<option></option>
-				<option value="reqNo">의뢰번호</option>
 				<option value="product">상품명</option>
 				<option value="user">이용자명</option>
 				<option value="cleaner">청소 해결사명</option>
@@ -90,27 +89,35 @@
 					<tr>
 						<td><c:out value="${ request.reqNo }"/></td>
 						<td><c:out value="${ request.user.name }"/></td>
-						<td><c:out value="${ request.product.productName }"/></td>
+						<td><c:out value="${ request.product.ProductInfo.productName }"/></td>
 						<td><c:out value="${ request.serviceDate }"/></td>
 						<td><c:out value="${ request.cleaner.name }"/></td>
-						<td><c:out value="${ request.pay.payDate }"/></td>
-						<td><c:out value="${ request.status }"/></td>
-						<td><button type="button">자세히</button></td>
+						<td><c:out value="${ request.pay.PayDTO.payDate.date }"/></td>
+						<td><c:out value="${ request.reqStatusHistory.ReqInfoDTO.status }"/></td>
+						<td><button type="button" id="detail" style="background-color: #D9D9D9; border-color:transparent; 
+									border-radius:0.3rem;">자세히</button></td>
 					</tr>
 			</c:forEach>	
          	
          </table>         
              
               <jsp:include page="/WEB-INF/views/common/paging.jsp"/> 
-             
-             
-             
-                      
             </div>
          </div>
       </div>
-
-
 	</div>
+<script>
+	    $("[id^=detail]").on('click', function(event) {
+	    	
+	    	let id = $(this).attr("id");
+	    	let number = id.replace("btn", "");
+	    	// 이렇게 적으면 생성된 버튼에 클릭함수를 거는거랬는데 어떻게 경로와 파라미터를 주지?
+	    	let reqNo = this.parentNode.children[0].innerText;
+			location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;	    
+	    });
+    
+    
+    </script>	
+	
 </body>
 </html>

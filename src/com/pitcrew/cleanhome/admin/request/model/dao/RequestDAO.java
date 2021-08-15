@@ -20,5 +20,11 @@ public class RequestDAO {
 		
 		return session.selectList("RequestDAO.selectReqList", selectAdminCriteria);
 	}
+	
+	/* 의뢰 히스토리 조회 메소드 */
+	public RequestDTO selectReqHistory(SqlSession session, int reqNo) {
+		
+		return session.selectOne("RequestDAO.selectReqHistory", reqNo);
+	}
 
 }

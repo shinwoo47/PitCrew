@@ -94,6 +94,48 @@ public class NoticeService {
 		return faqList;
 	}
 
+	/* faq 세부 조회*/
+	public NoticeDTO selectFaqDetail(int no) {
+		SqlSession session = getSqlSession();
+
+		NoticeDTO faqDTO = null;
+
+		int result = noticeDAO.incrementNoticeCount(session, no);
+
+		if(result > 0) {
+			faqDTO = noticeDAO.selectNoticeDetail(session, no);
+			System.out.println("서비스 리턴값 체크 " + faqDTO);
+
+			if(faqDTO != null) {
+				session.commit();
+			} else {
+				session.rollback();
+			} 
+
+		} else {
+			session.rollback();
+		}
+		session.close();
+
+		return faqDTO;
+	}
+
+	public int insertFaq(NoticeDTO newFaq) {
+		SqlSession session = getSqlSession();
+
+		int result = noticeDAO.insertFaq(session, newFaq);
+
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+
+		session.close();
+
+		return result;
+	}
+
 	
 
 	

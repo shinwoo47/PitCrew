@@ -17,12 +17,13 @@ public class RequestDTO {
 	private MemberDTO user;
 	private String status;
 	private List<ProductInfoDTO> product;
-	private PayDTO pay;
+	private List<PayDTO> pay;
+	private List<ReqInfoDTO> reqStatusHistory;
 	
 	public RequestDTO() {}
 
 	public RequestDTO(int reqNo, Date serviceDate, String wantThing, MemberDTO cleaner, MemberDTO user, String status,
-			List<ProductInfoDTO> product, PayDTO pay) {
+			List<ProductInfoDTO> product, List<PayDTO> pay, List<ReqInfoDTO> reqStatusHistory) {
 		super();
 		this.reqNo = reqNo;
 		this.serviceDate = serviceDate;
@@ -32,6 +33,7 @@ public class RequestDTO {
 		this.status = status;
 		this.product = product;
 		this.pay = pay;
+		this.reqStatusHistory = reqStatusHistory;
 	}
 
 	public int getReqNo() {
@@ -90,19 +92,30 @@ public class RequestDTO {
 		this.product = product;
 	}
 
-	public PayDTO getPay() {
+	public List<PayDTO> getPay() {
 		return pay;
 	}
 
-	public void setPay(PayDTO pay) {
+	public void setPay(List<PayDTO> pay) {
 		this.pay = pay;
+	}
+
+	public List<ReqInfoDTO> getReqStatusHistory() {
+		return reqStatusHistory;
+	}
+
+	public void setReqStatusHistory(List<ReqInfoDTO> reqStatusHistory) {
+		this.reqStatusHistory = reqStatusHistory;
 	}
 
 	@Override
 	public String toString() {
 		return "RequestDTO [reqNo=" + reqNo + ", serviceDate=" + serviceDate + ", wantThing=" + wantThing + ", cleaner="
-				+ cleaner + ", user=" + user + ", status=" + status + ", product=" + product + ", pay=" + pay + "]";
+				+ cleaner + ", user=" + user + ", status=" + status + ", product=" + product + ", pay=" + pay
+				+ ", reqStatusHistory=" + reqStatusHistory + "]";
 	}
+
+	
 
 	
 	

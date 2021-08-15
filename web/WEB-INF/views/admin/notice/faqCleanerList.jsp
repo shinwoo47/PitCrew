@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,13 +14,13 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../menubar.jsp"/>
+<jsp:include page="../menubar.jsp"/>
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
-                	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
-            <h3>사용자 공지사항</h3><br>
-            
-          <button type="button" id="writeBoard">글쓰기</button>
+                	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/faq.png">
+            <h3>해결사 FAQ</h3><br>
+          <button type="button" id="writeFaq">글쓰기</button> 
+         <div style="display: block; padding: 10px;"> 
          <table id="boardList">
          	<tr>
          		<th class="hidden" width="100px">NO</th>
@@ -30,17 +30,18 @@
    				<th>조회</th>
          	</tr>
          	<tr></tr>
-         	<c:forEach items="${ requestScope.noticeList }" var="notice">
+         	<c:forEach items="${ requestScope.faqCleanerList }" var="faq">
 					<tr>
-						<td class="hidden"><c:out value="${ notice.no }"/></td>
-						<td><c:out value="${ notice.title }"/></td>
-						<td><c:out value="${ notice.writer.name }"/></td>
-						<td><c:out value="${ notice.writeDate }"/></td>
-						<td><c:out value="${ notice.count }"/></td>
+						<td class="hidden"><c:out value="${ faq.no }"/></td>
+						<td><c:out value="${ faq.title }"/></td>
+						<td><c:out value="${ faq.writer.name }"/></td>
+						<td><c:out value="${ faq.writeDate }"/></td>
+						<td><c:out value="${ faq.count }"/></td>
 					</tr>
 			</c:forEach>	
          	
-         </table>         
+         </table>
+         </div>         
          </div>
     </div>
     <script>
@@ -65,18 +66,14 @@
 			
 		}
     
-	    if(document.getElementById("writeBoard")) {
-			const $writeNotice = document.getElementById("writeBoard");
-			$writeNotice.onclick = function() {
-				location.href = "${ pageContext.servletContext.contextPath }/admin/notice/insert";
+	    if(document.getElementById("writeFaq")) {
+			const $writeFaq = document.getElementById("writeFaq");
+			$writeFaq.onclick = function() {
+				location.href = "${ pageContext.servletContext.contextPath }/admin/faq/insert";
 			}
 		}
     
     
     </script>
-    
-    
-    
-    
 </body>
 </html>

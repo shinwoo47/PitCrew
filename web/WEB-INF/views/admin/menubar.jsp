@@ -319,7 +319,7 @@
                                                         <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/faq/list">사용자 FAQ</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product.html">해결사 FAQ</a>
+                                                        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/cleanerfaq/list">해결사 FAQ</a>
                                                     </li>                                                   
                                                 </ul>
                                             </div>

@@ -34,7 +34,7 @@ public class RequestService {
 
 	/* 의뢰 전체 조회용 메소드*/
 	public List<RequestDTO> selectRequestList(SelectAdminCriteria selectAdminCriteria) {
-		
+
 		SqlSession session = getSqlSession();
 
 		List<RequestDTO> requestList = requestDAO.selectReqList(session, selectAdminCriteria);
@@ -43,6 +43,19 @@ public class RequestService {
 		session.close();
 
 		return requestList;
+	}
+
+	/* 의뢰 히스토리 조회용 */
+	public RequestDTO selectReqHistory(int reqNo) {
+
+		SqlSession session = getSqlSession();
+
+		RequestDTO reqDetailDTO = requestDAO.selectReqHistory(session, reqNo);
+		System.out.println("서비스 리턴값 체크 " + reqDetailDTO);
+
+		session.close();
+
+		return reqDetailDTO;
 	}
 
 }
