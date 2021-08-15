@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class ReportAttachmentDTO implements Serializable{
 
 	private int reportAttachNo;
-	private ReportDTO reportNo;
+	private int reportNo;
 	private String originalName;
 	private String savedName;
 	private String savePath;
@@ -14,8 +14,8 @@ public class ReportAttachmentDTO implements Serializable{
 	
 	public ReportAttachmentDTO() {}
 
-	public ReportAttachmentDTO(int reportAttachNo, ReportDTO reportNo, String originalName, String savedName,
-			String savePath, String thumbnailPath, String attachCategory) {
+	public ReportAttachmentDTO(int reportAttachNo, int reportNo, String originalName, String savedName, String savePath,
+			String thumbnailPath, String attachCategory) {
 		super();
 		this.reportAttachNo = reportAttachNo;
 		this.reportNo = reportNo;
@@ -34,11 +34,11 @@ public class ReportAttachmentDTO implements Serializable{
 		this.reportAttachNo = reportAttachNo;
 	}
 
-	public ReportDTO getReportNo() {
+	public int getReportNo() {
 		return reportNo;
 	}
 
-	public void setReportNo(ReportDTO reportNo) {
+	public void setReportNo(int reportNo) {
 		this.reportNo = reportNo;
 	}
 
@@ -88,6 +88,8 @@ public class ReportAttachmentDTO implements Serializable{
 				+ originalName + ", savedName=" + savedName + ", savePath=" + savePath + ", thumbnailPath="
 				+ thumbnailPath + ", attachCategory=" + attachCategory + "]";
 	}
+
+	
 	
 	
 }
