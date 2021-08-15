@@ -1,4 +1,4 @@
-package com.pitcrew.cleanhome.admin.notice.controller;
+package com.pitcrew.cleanhome.cleaner.notice.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 public class NoticeSelectList extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
