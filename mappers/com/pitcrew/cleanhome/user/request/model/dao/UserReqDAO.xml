@@ -69,7 +69,6 @@
          JOIN PRODUCT_INFO C ON(C.SER_NO = B.SER_NO)
          JOIN MEMBER D ON(A.MEM_NO_USER = D.MEM_NO)
         WHERE A.MEM_NO_USER = #{ memNoUser }
-          AND C.SER_CATEGORY = '메인'
           AND A.REQ_STATUS = '등록'
 	</select>
 		
