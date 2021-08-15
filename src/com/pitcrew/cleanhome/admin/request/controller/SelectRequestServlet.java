@@ -122,6 +122,8 @@ public class SelectRequestServlet extends HttpServlet {
 			request.setAttribute("message", "목록 조회 실패!");
 		}
 
+		
+		
 		request.getRequestDispatcher(path).forward(request, response);
 
 	}
