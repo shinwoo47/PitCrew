@@ -52,7 +52,8 @@ window.onload = function() {
 		$popup.onclick = function() {
 			var url = "/pitcrew/user/clean/list?number=" + 1;
 			var name = "test";
-			var option = "width = 700, height = 600, top = 100, left = 300, location = no"
+			var option = "width = 700, height = 600, top = 100, " +
+					"left = 300, location = no "
 			window.open(url, name, option);
 			window.open;
 		}
@@ -63,7 +64,7 @@ window.onload = function() {
 		$popup2.onclick = function() {
 			var url = "/pitcrew/user/clean/list?number=" + 2;
 			var name = "test";
-			var option = "width = 700, height = 600, top = 100, left = 300, location = no"
+			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
 			window.open;
 		}
@@ -74,7 +75,7 @@ window.onload = function() {
 		$popup3.onclick = function() {
 			var url = "/pitcrew/user/clean/list?number=" + 3;
 			var name = "test";
-			var option = "width = 700, height = 600, top = 100, left = 300, location = no"
+			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
 			window.open;
 		}
@@ -85,7 +86,7 @@ window.onload = function() {
 		$popup4.onclick = function() {
 			var url = "/pitcrew/user/clean/list?number=" + 4;
 			var name = "test";
-			var option = "width = 700, height = 600, top = 100, left = 300, location = no"
+			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
 			window.open;
 		}
@@ -96,7 +97,7 @@ window.onload = function() {
 		$popup5.onclick = function() {
 			var url = "/pitcrew/user/clean/list?number=" + 5;
 			var name = "test";
-			var option = "width = 700, height = 600, top = 100, left = 300, location = no"
+			var option = "width = 700, height = 800, top = 100, left = 300, location = no"
 			window.open(url, name, option);
 			window.open;
 		}

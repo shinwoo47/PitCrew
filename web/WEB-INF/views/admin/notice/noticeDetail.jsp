@@ -36,7 +36,7 @@
          <div style="text-align:center";>
          <button type="submit" style="background-color: #02A79D; color: white">수정하기</button>
          <button type="submit" style="background-color: #02A79D; color: white">삭제하기</button>
-         <button type="submit" style="background-color: #02A79D; color: white">목록으로</button>
+         <button type="reset" style="background-color: #02A79D; color: white">목록으로</button>
          </div>       
 
     </div>

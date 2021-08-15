@@ -151,5 +151,34 @@
 		  ORDER BY A.BOARD_WRITE_DATE DESC -->
 	</select>
 
+<insert id="insertFaq">
+        INSERT /* */
+          INTO BOARD A
+        (
+          A.BOARD_NO
+        , A.BOARD_TITLE
+        , A.BOARD_BODY
+        , A.BOARD_CATEGORY
+        , A.BOARD_WRITE_DATE
+        , A.MEM_NO
+        , A.BOARD_CON
+        , A.BOARD_READ_COUNT
+        , A.WRITER
+        , A.BOARD_CATEGORY_STATUS
+        )
+        VALUES
+        (
+          SEQ_BOARD_NO.NEXTVAL
+        , #{ title }
+        , #{ content }
+        , 'FAQ'
+        , SYSDATE
+        , #{ writerMemberNo }
+        , 'y'
+        , 0
+        , '관리자'
+        , #{ forWho }
+        )
+	</insert>
 	
 </mapper>

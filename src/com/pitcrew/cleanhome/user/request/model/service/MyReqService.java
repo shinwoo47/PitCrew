@@ -19,15 +19,27 @@ public class MyReqService {
 		
 	}
 
-//	public List<UserRequestDTO> selectMyAllReq(int memNo) {
-//		
-//		SqlSession session = getSqlSession();
-//		
-//		List<UserRequestDTO> selectMyAllReq = userReqDAO.selectMyAllReq(session, memNo);
-//		
-//		session.close();
-//		
-//		return selectMyAllReq;
-//	}
+	public List<UserRequestDTO> selectMyAllReq(int memNoUser) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<UserRequestDTO> selectMyAllReq = userReqDAO.selectMyAllReq(session, memNoUser);
+		
+		session.close();
+		
+		return selectMyAllReq;
+	}
+
+	public List<UserRequestDTO> myRegistRequest(int memNoUser) {
+
+		SqlSession session = getSqlSession();
+		
+		List<UserRequestDTO> myRegistRequest = userReqDAO.myRegistRequest(session, memNoUser);
+		
+		session.close();
+		
+		return myRegistRequest;
+	
+	}
 
 }

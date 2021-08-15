@@ -183,7 +183,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>02.</span>화장실 청소</h4>
-                            <a href="#">자세히 보기</a>
+                             <button id="popup2" class="btn_z">자세히보기</button>
                         </div>
                     </div>
                 </div>
@@ -194,7 +194,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>03.</span>전체청소</h4>
-                            <a href="#">자세히 보기</a>
+                             <button id="popup3" class="btn_z">자세히보기</button>
                         </div>
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>04.</span>설거지</h4>
-                            <a href="#">자세히 보기</a>
+                             <button id="popup4" class="btn_z">자세히보기</button>
                         </div>
                     </div>
                 </div>
@@ -216,7 +216,7 @@
                         </div>
                         <div class="services__item__text">
                             <h4><span>05.</span>창틀청소</h4>
-                            <a href="#">자세히 보기</a>
+                             <button id="popup5" class="btn_z">자세히보기</button>
                         </div>
                     </div>
                 </div>

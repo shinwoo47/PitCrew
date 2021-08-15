@@ -19,18 +19,26 @@ public class SelectMyRequestServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		HttpSession session = request.getSession();
-//		
-//		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-//		
-//		int memNo = loginMember.getMemNo();
-//		
-//		List<UserRequestDTO> selectMyAllReq = new MyReqService().selectMyAllReq(memNo);
+		HttpSession session = request.getSession();
 		
+		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		
+		int memNoUser = loginMember.getMemNo();
+		
+		List<UserRequestDTO> selectMyAllReq = new MyReqService().selectMyAllReq(memNoUser);
+		
+		System.out.println(selectMyAllReq.getClass().getName());
+		 		
 		String path = "";
 		
-		path = "/WEB-INF/views/user/request/myRequest.jsp";
+		if(selectMyAllReq != null) {
+			path = "/WEB-INF/views/user/request/myRequest.jsp";
+			request.setAttribute("selectMyAllReq", selectMyAllReq);
+			
+		} else {
+			path ="/WEB-INF/views/common/failed.jsp";
+			request.setAttribute("message", "의뢰 조회 실패하셨습니다 !!!");
+		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		

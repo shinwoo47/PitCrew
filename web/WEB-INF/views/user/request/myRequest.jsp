@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,7 +81,7 @@
 		border: 2px solid darkgray;
 		border-radius: 20px;
 		width: 100%;
-		height: 200px;
+		height: 300px;
 		margin-bottom: 10px;
 	}
 	.containerp-top {
@@ -179,39 +182,42 @@
     <!-- Section Section Start -->
 	<section class="blog">
 		<div class="nav-container">
-			<input type="button" class="nav-req-btn" id="btn1" value="전체" onclick="changeNavList(this);"> 
-			<input type="button" class="nav-req-btn" id="btn2" value="매칭신청" onclick="changeNavList(this);"> 
-			<input type="button" class="nav-req-btn" id="btn3" value="매칭완료" onclick="changeNavList(this);"> 
-			<input type="button" class="nav-req-btn" id="btn4" value="종료된의뢰" onclick="changeNavList(this);"> 
+			<input type="button" class="nav-req-btn" id="btn1" value="전체" > 
+			<input type="button" class="nav-req-btn" id="btn2" value="매칭신청" > 
+			<input type="button" class="nav-req-btn" id="btn3" value="매칭완료" > 
+			<input type="button" class="nav-req-btn" id="btn4" value="종료된의뢰"> 
 		</div>
 		<div class="req-list-container">
-			<div class="containerp-list">
-			
-				<div class="containerp">
-					<div class="containerp-top">
-						<div>테스트</div>
-						<div class="req_detail">
-							<a href="">의뢰상세보기 ></a>
-						</div>
-					</div>
-					<div class="containerp-section">
-						<div class="req-name-container">
-							<div>상품명 : </div>
-							<div>가격 : </div>
-							<div>전화번호 :</div>
-						</div>
-						<div class="req-object-container">
-							<div>방청소</div>
-							<div>30000</div>
-							<div>010-1234-1234</div>
-						</div>
-					</div>
-					<div class="containerp-bottom">
-						<button class="req-work-btn req-revise-btn">수정하기</button>
-						<button class="req-work-btn req-report-btn">신고하기</button>
-					</div>
-				</div>
-				
+			<div id="containerp-list" class="containerp-list">
+
+<%-- 			<c:forEach items="${ requestScope.selectMyAllReq }" var="myAllReq"> --%>
+<!-- 				<div class="containerp"> -->
+<!-- 					<div class="containerp-top"> -->
+<%-- 						<div> <c:out value="${ myAllReq.reqDate }"/> <c:out value="${ myAllReq.reqStatus }"/> </div> --%>
+<!-- 						<div class="req_detail"> -->
+<!-- 							<a href="">의뢰상세보기 ></a> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				<c:forEach items="${ myAllReq.productList }" var="product"> --%>
+<!-- 					<div class="containerp-section"> -->
+<!-- 						<div class="req-name-container"> -->
+<!-- 							<div>상품명 : </div> -->
+<!-- 							<div>가격 : </div> -->
+<!-- 							<div>전화번호 : </div> -->
+<!-- 						</div> -->
+<!-- 						<div class="req-object-container"> -->
+<%-- 							<div> <c:out value="${ product.serName }"/></div> --%>
+<%-- 							<div> <c:out value="${ product.serPrice }"/></div> --%>
+<%-- 							<div> <c:out value="${ myAllReq.phone.phone }"/></div> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<%-- 				</c:forEach> --%>
+<!-- 					<div class="containerp-bottom"> -->
+<!-- 						<button class="req-work-btn req-revise-btn">수정하기</button> -->
+<!-- 						<button class="req-work-btn req-report-btn">신고하기</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<%-- 				</c:forEach> --%>
 			</div>
 		</div>
 	</section>
@@ -219,28 +225,73 @@
 </body>
 
 	<script>
-		$(document).ready(function() {
-			$(".nav-req-btn").on("click", function(t) {
-// 				$('.btn1').css("backgroundColor", "white");
-// 				t.target.style.backgroundColor = "red";
-			})
-			
-			var reqWorkBtns = document.getElementsByClassName("req-work-btn");
-			var reqReviseBtns = document.getElementsByClassName("req-revise-btn");
-		});
+	<c:forEach var="products" items="${requestScope.selectMyAllReq}" varStatus="status">
+		var grpName = "";
+		var grpPrice = 0;
+		var grpPhone = "";
+		var grpReqDate = "";
+		var grpReqStatus = "";
 		
-		function changeNavList(t) {
-			let target = $(t);
-			console.log(t)
-			console.log(target);
-			$('.nav-req-btn').css("backgroundColor", "white");
-			$('.nav-req-btn').css("color", "black");
-			target.css("backgroundColor", "yellowgreen");
-			target.css("color", "white");
-// 			target.style.backgroundColor = "red";
-		}
-	</script>
+     	<c:forEach var="product" items="${products.productList}" varStatus="st">
+     		grpName += "${product.serName}"
+     		grpName += " ";
+     		grpPrice += parseInt("${product.serPrice}");
+     		grpPhone = "${products.phone.phone}";
+     		grpReqDate = "${products.reqDate}";
+     		grpReqStatus = "${products.reqStatus}";
+     	</c:forEach>
+     	
+     	$("#containerp-list").append(
+	     	'<div class="containerp">'
+			+ 	'<div class="containerp-top">'
+			+ 		'<div> ' + grpReqDate + ' ' + grpReqStatus + '</div>'
+			+ 		'<div class="req_detail">'
+			+ 			'<a href="">의뢰상세보기 ></a>'
+			+ 		'</div>'
+			+ 	'</div>'
+			+ 	'<div class="containerp-section">'
+			+ 		'<div class="req-name-container">'
+			+ 			'<div>상품명 : </div>'
+			+ 			'<div>가격 : </div>'
+			+ 			'<div>전화번호 : </div>'
+			+ 		'</div>'
+			+ 		'<div class="req-object-container">'
+			+ 			'<div>' + grpName + '</div>'
+			+ 			'<div>' + grpPrice + '</div>'
+			+ 			'<div>' + grpPhone + '</div>'
+			+ 		'</div>'
+			+ 	'</div>'
+			+ 	'<div class="containerp-bottom">'
+			+ 		'<button class="req-work-btn req-revise-btn">수정하기</button>'
+			+ 		'<button class="req-work-btn req-report-btn">신고하기</button>'
+			+ 	'</div>'
+			+ '</div>'
+     	);
+     	
+	</c:forEach>
+	
+     if(document.getElementById("btn2")) {
+		 const $registRequest = document.getElementById("btn2");
+		 $registRequest.onclick = function() {
+			 location.href = "/pitcrew/user/regist/request";
+		 }
+     }
      
+     if(document.getElementById("btn3")) {
+         const $endRegistRequest = document.getElementById("btn3");
+    	 $endRegistRequest.onclick = function() {
+			 location.href = "/pitcrew/user/end/regist/request";
+		 }
+     } 
+
+     if(document.getElementById("btn4")) {
+    	 const $endRequest = document.getElementById("btn4");
+    	 $endRequest.onclick = function() {
+			 location.href = "/pitcrew/user/end/request";
+		 }
+     } 
+     
+     </script>
      
      
 </body>
