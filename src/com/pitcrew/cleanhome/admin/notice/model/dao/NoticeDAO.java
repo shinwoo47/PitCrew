@@ -41,10 +41,18 @@ public class NoticeDAO {
 		return session.insert("NoticeDAO.insertNotice", newNotice);
 	}
 
+	/* FAQ 리스트 조회 */
 	public List<NoticeDTO> selectAllFaqList(SqlSession session, String forWho) {
 		
 		return session.selectList("NoticeDAO.selectAllFaqList", forWho);
 	}
+
+	public int insertFaq(SqlSession session, NoticeDTO newFaq) {
+		
+		return session.insert("NoticeDAO.insertFaq", newFaq);
+	}
+
+	
 
 	
 
