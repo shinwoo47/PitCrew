@@ -5,13 +5,13 @@ public class ProductDTO {
 	private int serNo;
 	private String serName;
 	private String serContent;
-	private int serTime;
+	private double serTime;
 	private int serPrice;
 	private String serCategory;
 	
 	public ProductDTO() {}
 
-	public ProductDTO(int serNo, String serName, String serContent, int serTime, int serPrice, String serCategory) {
+	public ProductDTO(int serNo, String serName, String serContent, double serTime, int serPrice, String serCategory) {
 		super();
 		this.serNo = serNo;
 		this.serName = serName;
@@ -45,11 +45,11 @@ public class ProductDTO {
 		this.serContent = serContent;
 	}
 
-	public int getSerTime() {
+	public double getSerTime() {
 		return serTime;
 	}
 
-	public void setSerTime(int serTime) {
+	public void setSerTime(double serTime) {
 		this.serTime = serTime;
 	}
 
@@ -74,6 +74,8 @@ public class ProductDTO {
 		return "ProductDTO [serNo=" + serNo + ", serName=" + serName + ", serContent=" + serContent + ", serTime="
 				+ serTime + ", serPrice=" + serPrice + ", serCategory=" + serCategory + "]";
 	}
+
+	
 	
 	
 }

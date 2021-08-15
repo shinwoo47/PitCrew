@@ -17,11 +17,9 @@
 <jsp:include page="../menubar.jsp"/>
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
-         <div class="row">
-          <div style="display: block"> 
-                	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/faq.png">
+        	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/faq.png">
             <h3>사용자 FAQ</h3><br>
-          <button type="button" id="writeBoard">글쓰기</button></div> 
+          <button type="button" id="writeFaq">글쓰기</button>
          <div style="display: block; padding: 10px;"> 
          <table id="boardList">
          	<tr>
@@ -45,8 +43,9 @@
          </table>
          </div>         
          </div>
+
     </div>
-    </div>
+
     <script>
 	    if(document.getElementsByTagName("td")) {
 			
@@ -62,17 +61,17 @@
 				}
 				$tds[i].onclick = function() {
 					const no = this.parentNode.children[0].innerText;
-					location.href = "${ pageContext.servletContext.contextPath }/admin/notice/detail?no=" + no;
+					location.href = "${ pageContext.servletContext.contextPath }/admin/faq/detail?no=" + no;
 				}
 				
 			}
 			
 		}
     
-	    if(document.getElementById("writeBoard")) {
-			const $writeNotice = document.getElementById("writeBoard");
-			$writeNotice.onclick = function() {
-				location.href = "${ pageContext.servletContext.contextPath }/admin/notice/insert";
+	    if(document.getElementById("writeFaq")) {
+			const $writeFaq = document.getElementById("writeFaq");
+			$writeFaq.onclick = function() {
+				location.href = "${ pageContext.servletContext.contextPath }/admin/faq/insert";
 			}
 		}
     

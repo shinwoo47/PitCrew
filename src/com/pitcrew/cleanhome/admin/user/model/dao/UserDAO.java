@@ -22,7 +22,7 @@ public class UserDAO {
 		searchMap.put("categoryType", categoryType);
 		searchMap.put("searchResult", searchResult);
 		searchMap.put("enRollStartDate", enRollStartDate);
-		searchMap.put("enRollEndDate", enRollEndDate);
+		searchMap.put("enRollEndDate", enRollEndDate); 
 		
 		return session.selectList("UserDAO.searchUserInfomation",searchMap);
 		

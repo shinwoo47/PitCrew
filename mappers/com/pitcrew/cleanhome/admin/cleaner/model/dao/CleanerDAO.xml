@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="UserDAO">
-	<resultMap type="com.pitcrew.cleanhome.admin.user.model.dto.UserDTO" id="userResultMap">
+<!-- <mapper namespace="CleanerDAO">
+	<resultMap type="com.pitcrew.cleanhome.admin.cleaner.model.dto.CleanerDTO" id="cleanerResultMap">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="identifyYn" column="IDENTIFY_YN" />
+		<result property="educateYn" column="EDUCATE_YN" />
+		<result property="identifyDate" column="IDENTIFY_DATE" />
+		<result property="educateDate" column="EDUCATE_DATE" />
+		<result property="accountNo" column="ACCOUNT_NO" />
+		<result property="backName" column="BANK_NAME" />
+		<result property="accountHolder" column="ACCOUNT_HOLDER" />
+	</resultMap> -->
+
+<mapper namespace="CleanerDAO">
+	<resultMap type="com.pitcrew.cleanhome.admin.cleaner.model.dto.CleanerDTO" id="cleanerResultMap">
 		<id property="memNo" column="MEM_NO" />
 		<result property="memName" column="MEM_NAME" />
 		<result property="memId" column="MEM_ID" />
@@ -16,8 +28,8 @@
 		<result property="entDate" column="ENT_DATE" />
 	</resultMap>
 
-	<select id="selectAllUserInfoList" resultMap="userResultMap">
-		SELECT /* com.pitcrew.cleanhome.admin.user.model.dao.UserDAO#selectAllUserInfoList() */
+	<select id="selectAllCleanerInfoList" resultMap="cleanerResultMap">
+		SELECT /* com.pitcrew.cleanhome.admin.cleaner.model.dao.CleanerDAO#selectAllCleanerInfoList() */
 		       A.MEM_NO
 		     , A.MEM_NAME
 		     , A.MEM_ID
@@ -31,12 +43,12 @@
 		     , A.ENT_YN
 		     , A.ENT_DATE
 		  FROM MEMBER A
-		 WHERE A.MEMBER_ROLE = '사용자'
+		 WHERE A.MEMBER_ROLE = '해결사'
 		 ORDER BY A.MEM_NO ASC
 	</select>
-
-	<select id="searchUserInfomation" resultMap="userResultMap">
-		SELECT /* com.pitcrew.cleanhome.admin.user.model.dao.UserDAO#selectAllUserInfoList()	*/
+	
+	<select id="searchCleanerInfomation" resultMap="cleanerResultMap">
+		SELECT /* com.pitcrew.cleanhome.admin.cleaner.model.dao.CleanerDAO#searchCleanerInfomation() */
 		       A.MEM_NO
 		     , A.MEM_NAME
 		     , A.MEM_ID
@@ -50,9 +62,9 @@
 		     , A.ENT_YN
 		     , A.ENT_DATE
 		  FROM MEMBER A
-		<where>
-			<choose>
-				<when test="enRollStartDate != null and enRollEndDate != null">
+			<where>
+
+				<!--<when test="enRollStartDate != null and enRollEndDate != null">
 					<if test="categoryType == 'memNo'">
 						A.MEM_NO = #{ searchResult } 
 						  <![CDATA[
@@ -90,8 +102,23 @@
        					 ]]>
 					</if>
 				</when>
+				<otherwise> -->
+				<!-- <<when test="categoryType == 'memNo'">
+						A.MEM_NO = #{ searchResult }
+				</when>
+				<when test="categoryType == 'memId'">
+						A.MEM_NO = #{ searchResult }
+				</when>
+				<when test="categoryType == 'memName'">
+						A.MEM_NAME = #{ searchResult }
+				</when>
+				<when test="categoryType == 'phone'">
+						A.PHONE = #{ searchResult }
+				</when>
 				<otherwise>
-					<if test="categoryType == 'memNo'">
+						A.ENT_YN = #{ searchResult }				
+				</otherwise> -->
+					<!-- <if test="categoryType == 'memNo'">
 						A.MEM_NO = #{ searchResult }
 					</if>
 					<if test="categoryType == 'memId'">
@@ -103,15 +130,12 @@
 					<if test="categoryType == 'phone'">
 						A.PHONE = #{ searchResult }
 					</if>
-					<if test="categoryType == 'address'">
-						A.ADDRESS = #{ searchResult }
-					</if>
 					<if test="categoryType == 'entYn'">
 						A.ENT_YN = #{ searchResult }
-					</if>
-				</otherwise>
-			</choose>
+					</if> -->
+
+				<!-- </otherwise>-->
+
 		</where>
 	</select>
 </mapper>
-

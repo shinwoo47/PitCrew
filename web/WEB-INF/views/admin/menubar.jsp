@@ -242,7 +242,7 @@
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-c3.html">해결사 정보 조회</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/allcleanerinfo">해결사 정보 조회</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/chart-chartist.html">블랙리스트</a>
@@ -319,7 +319,7 @@
                                                         <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/faq/list">사용자 FAQ</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product.html">해결사 FAQ</a>
+                                                        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/cleanerfaq/list">해결사 FAQ</a>
                                                     </li>                                                   
                                                 </ul>
                                             </div>
