@@ -100,10 +100,7 @@
 							<c:forEach items="${ request.pay }" var="pay">
 							<c:out value="${ pay.payDate }"/> 
 						</c:forEach></td>
-						<td>
-							<c:forEach items="${ request.reqStatusHistory }" var="reqHistory">
-						    <c:out value="${ reqHistory.status }"/> 
-						</c:forEach></td>
+						<td><c:out value="${ request.status }"/></td>
 						<td><button type="button" id="detail" style="background-color: #D9D9D9; border-color:transparent; 
 									border-radius:0.3rem;">자세히</button></td>
 					</tr>
@@ -117,16 +114,23 @@
       </div>
 	</div>
 <script>
-	    $("[id^=detail]").on('click', function(event) {
-	    	
-	    	let id = $(this).attr("id");
-	    	let number = id.replace("btn", "");
-	    	// 이렇게 적으면 생성된 버튼에 클릭함수를 거는거랬는데 어떻게 경로와 파라미터를 주지?
-	    	let reqNo = this.parentNode.children[0].innerText;
-			location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;	    
-	    });
+
+	    
     
-    
+	if(document.getElementsByTagName("td")) {
+		
+		const $tds = document.getElementsByTagName("td");
+		for(let i = 0; i < $tds.length; i++) {	
+			$tds[i].onclick = function() {
+				const reqNo = this.parentNode.children[0].innerText;
+				location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;
+			}
+			
+		}
+		
+	}
+
+	    
     </script>	
 	
 </body>

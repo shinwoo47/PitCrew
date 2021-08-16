@@ -10,18 +10,18 @@
 
 
 	<select id="selectCalSetting">
-		SELECT
-		       A.MEM_NO
-		     , A.MEM_NAME
-		     , A.ENROLL_DATE
-		     , B.REQ_NO
-		     , C.PAY_PRICE
-		 FROM MEMBER A
-		 JOIN REQUEST_INFO B ON (B.MEM_NO_CLEANER = A.MEM_NO)
-		 JOIN PAY_HISTORY C ON (C.REQ_NO = B.REQ_NO)
-		WHERE A.MEM_ROLE = '해결사'
-		  AND A.MEM_NO = (SELECT 
-		  )  
+	SELECT
+          A.MEM_NO
+        , A.MEM_NAME
+        , A.ENROLL_DATE
+	    , B.REQ_NO
+        , B.REQ_DATE
+	    , C.PAY_PRICE
+     FROM MEMBER A
+     JOIN REQUEST_INFO B ON (B.MEM_NO_CLEANER = A.MEM_NO)
+     JOIN PAY_HISTORY C ON (C.REQ_NO = B.REQ_NO)
+    WHERE B.REQ_DATE BETWEEN TO_DATE('210801000000', 'RRMMDDHH24MISS') AND TO_DATE('210831235959', 'RRMMDDHH24MISS')
+      AND A.MEMBER_ROLE = '해결사';
 	</select>
 
 
