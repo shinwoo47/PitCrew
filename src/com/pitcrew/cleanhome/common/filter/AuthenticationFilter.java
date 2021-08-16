@@ -119,6 +119,7 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/select/allcleanerinfo");
 		adminPermitList.add("/admin/product/list");
 		adminPermitList.add("/admin/product/insert");
+		adminPermitList.add("/admin/product/update");
 		adminPermitList.add("/admin/select/allblacklist");
 		
 

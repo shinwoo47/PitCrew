@@ -17,4 +17,9 @@ public class ProductDAO {
 		return session.insert("ProductDAO.insertProduct", newProduct);
 	}
 
+	public int updateProduct(SqlSession session, com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO updateProduct) {
+		System.out.println("박박박");
+		return session.update("ProductDAO.updateProduct", updateProduct);
+	}
+
 }

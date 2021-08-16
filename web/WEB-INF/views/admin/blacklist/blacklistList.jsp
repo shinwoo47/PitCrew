@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 table {
-	margin:25px;
+	margin-right:100px;
 }
 </style>
 </head>
@@ -46,6 +46,7 @@ table {
 			<tr>
 				<th width="120px" style="text-align: center; font-size: 20pt;">회원번호</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">가입일</th>
+				<th width="200px" style="text-align: center; font-size: 20pt;">회원 분류</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">아이디</th>
 				<th width="120px" style="text-align: center; font-size: 20pt;">이름</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">휴대폰 번호</th>
@@ -59,6 +60,7 @@ table {
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memNo }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.enrollDate }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memberRole }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memId }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memName }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.phone }"></c:out></td>

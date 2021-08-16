@@ -44,6 +44,23 @@ public class ProductService {
 		return result;
 	}
 
+	public int updateProduct(com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO updateProduct) {
+
+		SqlSession session = getSqlSession();
+		
+		int result = productDAO.updateProduct(session, updateProduct);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 
 
 
