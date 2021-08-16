@@ -89,11 +89,21 @@
 					<tr>
 						<td><c:out value="${ request.reqNo }"/></td>
 						<td><c:out value="${ request.user.name }"/></td>
-						<td><c:out value="${ request.product.ProductInfo.productName }"/></td>
+						<td>
+							<c:forEach items="${ request.product }" var="product">
+								<c:out value="${ product.productName }"/><br>
+							</c:forEach>
+						</td>
 						<td><c:out value="${ request.serviceDate }"/></td>
 						<td><c:out value="${ request.cleaner.name }"/></td>
-						<td><c:out value="${ request.pay.PayDTO.payDate.date }"/></td>
-						<td><c:out value="${ request.reqStatusHistory.ReqInfoDTO.status }"/></td>
+						<td>
+							<c:forEach items="${ request.pay }" var="pay">
+							<c:out value="${ pay.payDate }"/> 
+						</c:forEach></td>
+						<td>
+							<c:forEach items="${ request.reqStatusHistory }" var="reqHistory">
+						    <c:out value="${ reqHistory.status }"/> 
+						</c:forEach></td>
 						<td><button type="button" id="detail" style="background-color: #D9D9D9; border-color:transparent; 
 									border-radius:0.3rem;">자세히</button></td>
 					</tr>

@@ -17,11 +17,12 @@ public class NoticeDTO {
 	private int count;
 	private MemberDTO role;
 	private String forWho;
+	private int replyCount;
 	
 	public NoticeDTO() {}
 
 	public NoticeDTO(int no, String title, String content, String category, Date writeDate, int writerMemberNo,
-			MemberDTO writer, String status, int count, MemberDTO role, String forWho) {
+			MemberDTO writer, String status, int count, MemberDTO role, String forWho, int replyCount) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -34,6 +35,7 @@ public class NoticeDTO {
 		this.count = count;
 		this.role = role;
 		this.forWho = forWho;
+		this.replyCount = replyCount;
 	}
 
 	public int getNo() {
@@ -68,7 +70,7 @@ public class NoticeDTO {
 		this.category = category;
 	}
 
-	public java.util.Date getWriteDate() {
+	public java.sql.Date getWriteDate() {
 		return writeDate;
 	}
 
@@ -124,12 +126,23 @@ public class NoticeDTO {
 		this.forWho = forWho;
 	}
 
+	public int getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(int replyCount) {
+		this.replyCount = replyCount;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeDTO [no=" + no + ", title=" + title + ", content=" + content + ", category=" + category
 				+ ", writeDate=" + writeDate + ", writerMemberNo=" + writerMemberNo + ", writer=" + writer + ", status="
-				+ status + ", count=" + count + ", role=" + role + ", forWho=" + forWho + "]";
+				+ status + ", count=" + count + ", role=" + role + ", forWho=" + forWho + ", replyCount=" + replyCount
+				+ "]";
 	}
+
+	
 
 	
 	

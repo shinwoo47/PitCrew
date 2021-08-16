@@ -12,22 +12,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.pitcrew.cleanhome.admin.notice.model.dto.NoticeDTO;
 import com.pitcrew.cleanhome.admin.notice.model.service.NoticeService;
 
-@WebServlet("/admin/faq/list")
-public class SelectFaqServlet extends HttpServlet {
+
+@WebServlet("/admin/reply/list")
+public class PersonalQnaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("controller 진입성공");
 
 		String forWho = "사용자";
-		List<NoticeDTO> faqList = new NoticeService().selectAllFaqList(forWho);
+		List<NoticeDTO> personalList = new NoticeService().selectAllPersonalList(forWho);
 
-		System.out.println("controller : " + faqList);
+		System.out.println("controller : " + personalList);
 
 
 		String path = "";
-		if(faqList != null) {
-			path = "/WEB-INF/views/admin/notice/faqList.jsp";
-			request.setAttribute("faqList", faqList);
+		if(personalList != null) {
+			path = "/WEB-INF/views/admin/personalQna/personalList.jsp";
+			request.setAttribute("personalList", personalList);
 		} else {
 			path = "/WEB-INF/common/failed.jsp";
 			request.setAttribute("message", "조회에 실패했습니다.");
