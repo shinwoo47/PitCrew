@@ -46,7 +46,7 @@
 	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT 
                COUNT(*)
-          FROM REQUEST_INFO A 
+          FROM REQUEST_INFO A
 		  
 	</select>
 	
@@ -140,7 +140,7 @@
 	     WHERE A.REQ_NO = #{ reqNo }
 	</select>
 	
-	<insert id="insertRequestStatusHistory">
+	<insert id="insertRequestStatusHistory" >
 	    INSERT
 	      INTO REQ_INFO A
 	    (
@@ -160,12 +160,34 @@
 	    SELECT
 	           COUNT(*)
 	      FROM REQUEST_INFO A
-	     WHERE A.MEM_NO_CLEANER = #{ memNo }
+	     WHERE A.MEM_NO_CLEANER = #{ memNoCleaner }
 	       AND A.REQ_STATUS = #{ reqStatus }
 	      <![CDATA[
 	       AND A.REQ_DATE >= TO_DATE(#{ searchDate }, 'YYYY-MM-DD')
-           AND A.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM-DD') + 31 
+           AND A.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM-DD') + 31
            ]]>
 	</select>
-	
+		
+		       
+	<select id="selectCleanerRequestList" resultMap="RequestResultMap">
+	    SELECT
+	           A.REQ_NO
+	         , A.REQ_DATE
+	         , A.REQ_STATUS
+	         , C.SER_NAME
+	         , C.SER_TIME
+	         , C.SER_PRICE
+	         , D.ADDRESS
+	     FROM REQUEST_INFO A
+	     JOIN PRODUCT_BY_REQ B ON(B.REQ_NO = A.REQ_NO)
+	     JOIN PRODUCT_INFO C ON(C.SER_NO = B.SER_NO)
+	     JOIN MEMBER D ON(A.MEM_NO_USER = D.MEM_NO)
+	    WHERE A.MEM_NO_CLEANER = #{ memNoCleaner }
+	      AND A.REQ_STATUS = #{ reqStatus }
+	      <![CDATA[
+	      AND A.REQ_DATE >= TO_DATE(#{ searchDate }, 'YYYY-MM-DD')
+          AND A.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM-DD') + 31
+           ]]>
+	    ORDER BY A.REQ_DATE DESC
+	</select>
 </mapper>

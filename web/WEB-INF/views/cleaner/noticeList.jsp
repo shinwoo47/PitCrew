@@ -31,17 +31,15 @@
 <body>
 	<!-- 네비 -->
 	<jsp:include page="../cleaner/cleanermenubar.jsp"/>
-	<div class="dashboard-wrapper">
+	<div align="center" class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
-            <h3>사용자 공지사항</h3><br>
           <!--  <div class="row" style="background-color: #02A79D">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <h3 style="color:#fff">No</h3>
                     </div>
             </div>-->
-            
-          <button type="button" id="writeBoard">글쓰기</button>
+            <button type="button" id="writeBoard">글쓰기</button>
          <table id="boardList">
          	<tr>
          		<th class="hidden" width="100px">NO</th>
@@ -50,7 +48,6 @@
    				<th width="100px">등록일</th>
    				<th>조회</th>
          	</tr>
-         	<tr></tr>
          	<c:forEach items="${ requestScope.noticeList }" var="notice">
 					<tr>
 						<td class="hidden"><c:out value="${ notice.no }"/></td>
@@ -64,36 +61,36 @@
          </table>         
          </div>
     </div>
-    <script>
-	    if(document.getElementsByTagName("td")) {
+    <script>	
+    
+    if(document.getElementsByTagName("td")) {
+		
+		const $tds = document.getElementsByTagName("td");
+		for(let i = 0; i < $tds.length; i++) {
 			
-			const $tds = document.getElementsByTagName("td");
-			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onmouseenter = function() {
-					this.parentNode.style.backgroundColor = "#00C1B6";
-					this.parentNode.style.cursor = "pointer";
-				}
-				$tds[i].onmouseout = function() {
-					this.parentNode.style.backgroundColor = "#fff";
-				}
-				$tds[i].onclick = function() {
-					const no = this.parentNode.children[0].innerText;
-					location.href = "${ pageContext.servletContext.contextPath }/admin/notice/detail?no=" + no;
-				}
-				
+			$tds[i].onmouseenter = function() {
+				this.parentNode.style.backgroundColor = "#00C1B6";
+				this.parentNode.style.cursor = "pointer";
+			}
+			$tds[i].onmouseout = function() {
+				this.parentNode.style.backgroundColor = "#fff";
+			}
+			$tds[i].onclick = function() {
+				const no = this.parentNode.children[0].innerText;
+				location.href = "${ pageContext.servletContext.contextPath }/cleaner/notice/detail?no=" + no;
 			}
 			
 		}
-    
+		
+	}
+	    
 	    if(document.getElementById("writeBoard")) {
 			const $writeNotice = document.getElementById("writeBoard");
 			$writeNotice.onclick = function() {
-				location.href = "${ pageContext.servletContext.contextPath }/admin/notice/insert";
+				location.href = "${ pageContext.servletContext.contextPath }/cleaner/notice/insert";
 			}
 		}
-    
-    
+ 
     </script>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery-3.3.1.min.js"></script>
