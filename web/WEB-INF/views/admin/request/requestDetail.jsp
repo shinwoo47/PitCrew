@@ -37,19 +37,23 @@
          	</tr>
          	<tr></tr>
 					<tr>
-						<td><c:out value="${ requestScope.requestDetail.reqNo }"/></td>
-						<td><c:out value="${ requestScope.requestDetail.user.id }"/></td>
-						<td><c:out value="${ requestScope.requestDetail.user.phone }"/></td>
-						<td><c:out value="${ requestScope.requestDetail.serviceDate }"/></td>
-						<td><c:out value="${ requestScope.requestDetail.status }"/></td>
-						<td><c:out value="${ requestScope.requestDetail.cleaner.name }"/></td>
-						<td><c:out value="${ requestScope.requestDetail.cleaner.phone }"/></td>
-						<td><c:out value="${ requestScope.requestDetail.pay.payDate }"/></td>
+						<td><c:out value="${ reqDetailDTO.reqNo }"/></td>
+						<td><c:out value="${ reqDetailDTO.user.name }"/></td>
+						<td><c:out value="${ reqDetailDTO.user.id }"/></td>
+						<td><c:out value="${ reqDetailDTO.user.phone }"/></td>
+						<td><c:out value="${ reqDetailDTO.serviceDate }"/></td>
+						<td><c:out value="${ reqDetailDTO.status }"/></td>
+						<td><c:out value="${ reqDetailDTO.cleaner.name }"/></td>
+						<td><c:out value="${ reqDetailDTO.cleaner.phone }"/></td>
+						<td>
+						<c:forEach items="${ reqDetailDTO.pay }" var="pay">
+						<c:out value="${ pay.payDate }"/>						
+						</c:forEach></td>
 					</tr>         	
          </table>         
         <hr>
         <br><h2 class="pageheader-title">의뢰 히스토리 </h2><br>   
-          <table>
+          <table class="text-center">
          	<tr>
          		<th class="hidden" width="100px">의뢰번호</th>
    				<th width="100px">상품코드</th>
@@ -60,19 +64,28 @@
    				<th width="100px">상태 변경일시</th>
          	</tr>
          	<tr></tr>
-         	<c:forEach items="${ requestScope.requestDetail }" var="reqDetail">
 					<tr>
-						<td class="hidden"><c:out value="${ reqDetail.reqNo }"/></td>
-						<td><c:out value="${ reqDetail.product.productNo }"/></td>
-						<td><c:out value="${ reqDetail.product.productName }"/></td>
-						<td><c:out value="${ reqDetail.serviceDate }"/></td>
-						<td><c:out value="${ reqDetail.reqStatusHistory.status }"/></td>
-						<td><c:out value="${ reqDetail.cleaner.name }"/></td>
-						<td><c:out value="${ reqDetail.reqStatusHistory.date }"/></td>
-					</tr>
-			</c:forEach>	       	
+						<td class="hidden"><c:out value="${ reqDetailDTO.reqNo }"/></td>
+						<td>
+						<c:forEach items="${ reqDetailDTO.product}" var="product">
+						<c:out value="${ product.productNo }"/><br>				
+						</c:forEach></td>
+						<td>	
+						<c:forEach items="${ reqDetailDTO.product}" var="product">
+						<c:out value="${ product.productName }"/><br>				
+						</c:forEach></td>
+						<td><c:out value="${ reqDetailDTO.serviceDate }"/></td>
+						<td>
+						<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
+						<c:out value="${ reqStatusHistory.status }"/><br>
+						</c:forEach></td>
+						<td><c:out value="${ reqDetailDTO.cleaner.name }"/></td>
+						<td><c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
+						<c:out value="${ reqStatusHistory.date }"/><br>
+						</c:forEach></td>
+					</tr>	       	
          </table>            
-          <div style="text-align:center; padding: 10px; justify-content: space-between;">
+          <div style="text-align:center; padding: 20px; justify-content: space-between;">
          			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyReqModal" 
          			   style="background-color: #02A79D; color: white;border-color:transparent; border-radius:0.3rem;">의뢰 변경</button>
          	</div>
@@ -98,10 +111,13 @@
 			         	</tr>
 			         	<tr></tr>
 								<tr>
-									<td><c:out value="${ requestScope.requestDetail.reqNo }"/></td>
-									<td><c:out value="${ requestScope.requestDetail.product.productName }"/></td>
-									<td><c:out value="${ requestScope.requestDetail.serviceDate }"/></td>
-									<td><c:out value="${ requestScope.requestDetail.cleaner.name }"/></td>
+									<td><c:out value="${ requestScope.reqDetailDTO.reqNo }"/></td>
+									<td>
+									<c:forEach items="${ reqDetail.product}" var="product">
+									<c:out value="${ product.productName }"/><br>				
+									</c:forEach></td>
+									<td><c:out value="${ requestScope.reqDetailDTO.serviceDate }"/></td>
+									<td><c:out value="${ requestScope.reqDetailDTO.cleaner.name }"/></td>
 								</tr>         	
 			         </table>
                    	  

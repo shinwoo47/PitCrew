@@ -112,6 +112,7 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/reply/list");
 
 		adminPermitList.add("/admin/request/list");
+		adminPermitList.add("/admin/request/detail");
 		adminPermitList.add("/notice/update");
 
 		adminPermitList.add("/admin/home");
