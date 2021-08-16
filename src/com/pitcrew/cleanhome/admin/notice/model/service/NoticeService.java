@@ -136,6 +136,27 @@ public class NoticeService {
 		return result;
 	}
 
+	/* 1:1 문의사항 리스트 조회*/
+	public List<NoticeDTO> selectAllPersonalList(String forWho) {
+		
+		SqlSession session = getSqlSession();
+
+		List<NoticeDTO> personalList = noticeDAO.selectAllPersonalList(session, forWho);
+
+		System.out.println("서비스 리턴값 체크 " + personalList);
+		session.close();
+
+		return personalList;
+	}
+	
+	/* 1:1 문의사항 세부내역 */
+	public NoticeDTO selectPersonalDetail(int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
 	
 
 	

@@ -342,7 +342,7 @@
                                             <div id="submenu-6-3" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="index.jsp">사용자 1:1문의</a>
+                                                        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/reply/list">사용자 1:1문의</a>
                                                     </li>
                                                     <li class="nav-item">
                                                         <a class="nav-link" href="ecommerce-product.html">해결사 1:1문의</a>

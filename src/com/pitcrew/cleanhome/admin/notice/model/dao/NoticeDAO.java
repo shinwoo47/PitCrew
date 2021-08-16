@@ -52,6 +52,13 @@ public class NoticeDAO {
 		return session.insert("NoticeDAO.insertFaq", newFaq);
 	}
 
+	/* 1:1 문의사항 리스트 조회 */
+	public List<NoticeDTO> selectAllPersonalList(SqlSession session, String forWho) {
+		
+		
+		return session.selectList("NoticeDAO.selectAllPersonalList", forWho);
+	}
+
 	
 
 	

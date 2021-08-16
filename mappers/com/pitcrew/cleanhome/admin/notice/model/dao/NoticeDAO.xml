@@ -16,6 +16,24 @@
 	<association property="role" resultMap="memberResultMap"/>
 	</resultMap>
 	
+	<resultMap type="com.pitcrew.cleanhome.admin.notice.model.dto.NoticeDTO" id="personalResultMap">
+	<id property="no" column="BOARD_NO"/>
+	<result property="title" column="BOARD_TITLE"/>
+	<result property="content" column="BOARD_BODY"/>
+	<result property="category" column="BOARD_CATEGORY"/>
+	<result property="writeDate" column="BOARD_WRITE_DATE"/>
+	<result property="writerMemberNo" column="MEM_NO"/>
+	<result property="status" column="BOARD_CON"/>
+	<result property="count" column="BOARD_READ_COUNT"/>
+	<result property="forWho" column="BOARD_CATEGORY_STATUS"/>
+	
+
+	<association property="writer" resultMap="memberResultMap"/>
+	<association property="role" resultMap="memberResultMap"/>
+	<association property="replyCount" resultMap="replyResultMap"/>
+	</resultMap>
+	
+	
 	<resultMap type="com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO" id="memberResultMap">
 	<id property="memNo" column="MEM_NO"/>
 	<result property="name" column="MEM_NAME"/>
@@ -34,7 +52,12 @@
 	<resultMap type="_int" id="member">
 	<id property="memNo" column="MEM_NO"/>
 	</resultMap>
-	
+
+<!-- 
+	<resultMap type="_int" id="replyResultMap">
+	<id property="replyCount" />
+	<result property=/>
+	</resultMap> -->	
 	
 	<select id="selectAllNoticeList" resultMap="noticeResultMap" parameterType="string">
 	SELECT /**/
@@ -181,4 +204,30 @@
         )
 	</insert>
 	
+<select id="selectAllPersonalList" resultMap="personalResultMap" parameterType="string">
+	SELECT /**/
+		        A.BOARD_NO
+		      , A.BOARD_TITLE
+		      , A.BOARD_BODY
+		      , A.BOARD_CATEGORY
+		      , A.BOARD_WRITE_DATE
+		      , A.MEM_NO
+		      , A.BOARD_CON
+		      , A.BOARD_READ_COUNT
+		      , B.MEM_NAME
+		      , A.BOARD_CATEGORY_STATUS
+		      , NVL((SELECT COUNT(*) FROM ANSWER C1 WHERE C1.BOARD_NO = A.BOARD_NO), '0') AS REPLYCOUNT
+		 FROM BOARD A
+		 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
+		 LEFT JOIN ANSWER C ON (C.BOARD_NO = A.BOARD_NO)
+		WHERE A.BOARD_CON = 'y'
+	      AND A.BOARD_CATEGORY = 'PERSONAL'
+	    <if test="forWho == '사용자'">  
+	      AND A.BOARD_CATEGORY_STATUS = '사용자'
+		</if>
+  		<if test="forWho == '해결사'">
+	       AND A.BOARD_CATEGORY_STATUS = '해결사'
+		</if>
+		  ORDER BY A.BOARD_WRITE_DATE DESC 
+	</select>	
 </mapper>

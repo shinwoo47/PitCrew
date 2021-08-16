@@ -1,5 +1,6 @@
 package com.pitcrew.cleanhome.admin.request.model.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import com.pitcrew.cleanhome.admin.pay.model.dto.PayDTO;
 import com.pitcrew.cleanhome.admin.product.model.dto.ProductInfoDTO;
 import com.pitcrew.cleanhome.admin.product.model.dto.ProductReqDTO;
 
-public class RequestDTO {
+public class RequestDTO implements Serializable{
 	
 	private int reqNo;
 	private java.sql.Date serviceDate;
