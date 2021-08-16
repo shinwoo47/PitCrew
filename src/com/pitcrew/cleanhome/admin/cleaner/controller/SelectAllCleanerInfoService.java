@@ -16,7 +16,6 @@ import com.pitcrew.cleanhome.admin.cleaner.model.service.CleanerService;
 public class SelectAllCleanerInfoService extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// 관리자 검색 카테고리 
 	    String searchCondition = "";
 	    if (request.getParameter("searchCondition") !=  null) {
@@ -52,11 +51,10 @@ public class SelectAllCleanerInfoService extends HttpServlet {
 			 */
 	         
 			List<CleanerDTO> cleanerList = new CleanerService().searchCleanerInfomation(searchCondition, searchResult/* , date, endDate */);
-	           
-	           String path = "";
+	        String path = "";
 	         if(cleanerList != null) {
 	            path = "/WEB-INF/views/admin/cleaner/cleanerList.jsp";
-	            request.setAttribute("cleanerList", "cleanerList");
+	            request.setAttribute("cleanerList", cleanerList);
 	         } else {
 	            path = "/WEB-INF/views/common/failed.jsp";
 	            request.setAttribute("message", "사용자 정보 조회 실패!");

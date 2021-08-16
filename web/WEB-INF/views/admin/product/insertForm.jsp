@@ -35,12 +35,12 @@
 				</tr>
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serNo"></td>
-					<td style="text-align: center; font-size: 20pt;"> 
-					<select id="searchCondition" name="searchCondition" style="text-align: center; font-size: 20pt; margin: 10px;">
+					<td style="text-align: center; font-size: 20pt;"> <input type="text" name="serCategory">
+					<!-- <select id="searchCondition" name="searchCondition" style="text-align: center; font-size: 20pt; margin: 10px;">
 						<option>==선택하세요==</option>
 						<option value="메인">메인</option>
 						<option value="옵션">옵션</option>
-					</select>
+					</select> -->
 					</td>
 					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serName"></td>
 					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serContent"></td>

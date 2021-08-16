@@ -216,7 +216,7 @@
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/alluserinfo">사용자 정보 조회 <span class="badge badge-secondary">New</span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/general.html">블랙리스트</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/allblacklist">블랙리스트</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/carousel.html">신고 요청</a>

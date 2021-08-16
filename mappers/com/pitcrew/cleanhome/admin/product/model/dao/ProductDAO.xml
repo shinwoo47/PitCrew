@@ -4,11 +4,11 @@
 <mapper namespace="ProductDAO">
 	<resultMap type="com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO" id="ProductResultMap">
 		<id property="serNo" column="SER_NO"/>
+		<result property="serCategory" column="SER_CATEGORY"/>
 		<result property="serName" column="SER_NAME"/>
 		<result property="serContent" column="SER_CONTENT"/>
 		<result property="serTime" column="SER_TIME"/>
 		<result property="serPrice" column="SER_PRICE"/>
-		<result property="serCategory" column="SER_CATEGORY"/>
 	</resultMap>
 	
 	<select id="selectAllProductList" resultMap="ProductResultMap">
@@ -28,20 +28,20 @@
 		  INTO PRODUCT_INFO A
 		(
 		  A.SER_NO
+		, A.SER_CATEGORY
 		, A.SER_NAME
 		, A.SER_CONTENT
 		, A.SER_TIME
 		, A.SER_PRICE
-		, A.SER_CATEGORY
 		)
 		VALUES
 		(
 		  #{ serNo }
+		, #{ serCategory }
 		, #{ serName }
 		, #{ serContent }
 		, #{ serTime }
 		, #{ serPrice }
-		, #{ serCategory }
 		)
 	</insert>
 
