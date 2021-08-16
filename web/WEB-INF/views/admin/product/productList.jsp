@@ -24,13 +24,12 @@
 				<tr>
 					<th width="120px" style="text-align: center; font-size: 20pt;">상품 번호</th>
 					<th width="200px" style="text-align: center; font-size: 20pt;">상품 카테고리</th>
-					<th width="100px" style="text-align: center; font-size: 20pt;">상품명</th>
+					<th width="120px" style="text-align: center; font-size: 20pt;">상품명</th>
 					<th width="500px" style="text-align: center; font-size: 20pt;">상품 내용</th>
 					<th width="120px" style="text-align: center; font-size: 20pt;">시간</th>
 					<th width="120px" style="text-align: center; font-size: 20pt;">가격</th>
 					<th width="120px" style="text-align: center; font-size: 20pt;">히스토리</th>
-					<!-- <th width="200px" style="text-align: center; font-size: 20pt;">주문가능여부</th> -->
-					<th width="100px" style="text-align: center; font-size: 20pt;">수정</th>
+					<th width="120px" style="text-align: center; font-size: 20pt;">상품 수정</th>
 					<th><button type="button" id="insertProduct">상품 추가</button></th>
 				</tr>
 			<c:forEach items="${ productList }" var="product">
@@ -42,8 +41,7 @@
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ product.serTime }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ product.serPrice }"></c:out></td>
 					<td align="center" style="text-align: center; font-size: 15pt;"><button>상세</button></td>
-					<%-- <td style="text-align: center; font-size: 20pt;"><c:out	value="${ 'Y' }"></c:out></td> --%>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button>수정</button></td>
+					<td style="text-align: center; font-size: 15pt;"><button type="button" id="updateProduct">수정</button></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -56,6 +54,13 @@
 		const $addProdcut = document.getElementById("insertProduct");
 		$addProdcut.onclick = function() {
 			location.href = "${ pageContext.servletContext.contextPath }/admin/product/insert";
+		}
+	}
+	
+	if(document.getElementById("updateProduct")) {
+		const $modifyProdcut = document.getElementById("updateProduct");
+		$modifyProdcut.onclick = function() {
+			location.href = "${ pageContext.servletContext.contextPath }/admin/product/update";
 		}
 	}
 	</script>

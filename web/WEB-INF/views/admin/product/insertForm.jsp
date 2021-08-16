@@ -7,20 +7,18 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-	.table-area{
-		position: absolute;
-		top: 10%;
-		height: 100px;
-		margin-left: 300px;
-		margin-top: 200px;
+	table{
+		margin-left: 200px;
+		margin-top: 100px;
 	}
 	#insertProduct{
-		margin-left: 300px;
+		margin-left: 1517px;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../menubar.jsp" /> 
+	<div class="dashboard-wrapper">
 	<div class="table-area">
 		<form action="${ pageContext.servletContext.contextPath }/admin/product/insert" method="post">
 		<table id="listArea" border="1">
@@ -34,23 +32,24 @@
 					<!-- <th width="200px" style="text-align: center; font-size: 20pt;">주문가능여부</th> -->
 				</tr>
 				<tr>
-					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serNo"></td>
-					<td style="text-align: center; font-size: 20pt;"> <input type="text" name="serCategory">
+					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serNo"></td>
+					<td style="text-align: center; font-size: 15pt;"> <input type="text" name="serCategory">
 					<!-- <select id="searchCondition" name="searchCondition" style="text-align: center; font-size: 20pt; margin: 10px;">
 						<option>==선택하세요==</option>
 						<option value="메인">메인</option>
 						<option value="옵션">옵션</option>
 					</select> -->
 					</td>
-					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serName"></td>
-					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serContent"></td>
-					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serTime"></td>
-					<td style="text-align: center; font-size: 20pt;"><input type="text" name="serPrice"></td>
+					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serName"></td>
+					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serContent"></td>
+					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serTime"></td>
+					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serPrice"></td>
 					<!-- <td style="text-align: center; font-size: 20pt;"><input type="text" name="serOrderable"></td> -->
 				</tr>
 		</table>
-				<button type="submit" id="insertProduct">완료</button>
+				<button type="submit" id="insertProduct">추가 완료</button>
 		</form>
+	</div>
 	</div>
 </body>
 </html>

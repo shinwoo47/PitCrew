@@ -44,7 +44,17 @@
 		, #{ serPrice }
 		)
 	</insert>
-
+	
+	<update id="updateProduct">
+        UPDATE PRODUCT_INFO A
+           SET A.SER_CATEGORY = #{ serCategory }
+		     , A.SER_NAME = #{ serName }
+	       	 , A.SER_CONTENT = #{ serContent }
+		     , A.SER_TIME = #{ serTime }
+		     , A.SER_PRICE = #{ serPrice }
+		 WHERE A.SER_NO = #{ serNo }
+	</update>
+	
 
 
 
