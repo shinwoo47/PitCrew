@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h2>결제 페이지</h2>
 </body>
 </html>
