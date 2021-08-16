@@ -22,7 +22,7 @@
          </div>
          <table>
          	<tr id="detailhead">
-         		<th class="hidden">${ noticeDTO.no }</th>
+         		<th class="hidden" id="no">${ noticeDTO.no }</th>
          		<th width="500px">제목 : ${ noticeDTO.title }</th>
    				<th width="100px">작성자 : ${ noticeDTO.writer.name }</th>
    				<th width="100px">작성일: ${ noticeDTO.writeDate }</th>
@@ -35,37 +35,15 @@
          </table>  
          <div style="text-align:center";>
          <button type="submit" style="background-color: #02A79D; color: white">수정하기</button>
-         <button type="submit" style="background-color: #02A79D; color: white">삭제하기</button>
-         <button type="reset" style="background-color: #02A79D; color: white">목록으로</button>
+         <button class="delete" style="background-color: #02A79D; color: white">삭제하기</button>
+         <button class="reset" style="background-color: #02A79D; color: white">목록으로</button>
          </div>       
 
     </div>
- <!--    <script>
-	    if(document.getElementsByTagName("td")) {
-			
-			const $tds = document.getElementsByTagName("td");
-			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onmouseenter = function() {
-					this.parentNode.style.backgroundColor = "#00C1B6";
-					this.parentNode.style.cursor = "pointer";
-				}
-				$tds[i].onmouseout = function() {
-					this.parentNode.style.backgroundColor = "#fff";
-				}
-				$tds[i].onclick = function() {
-					const no = this.parentNode.children[0].innerText;
-					location.href = "${ pageContext.servletContext.contextPath }/admin/notice/detail?no=" + no;
-				}
-				
-			}
-			
-		}
+    <script>
+	    
     
     
-    
-    
-    
-    </script> -->
+    </script>
 </body>
 </html>

@@ -23,7 +23,7 @@
 		<mapper resource="com/pitcrew/cleanhome/cleaner/account/model/dao/AccountDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/admin/notice/model/dao/NoticeDAO.xml"/>
   		<mapper resource="com/pitcrew/cleanhome/admin/request/model/dao/RequestDAO.xml"/>
-
+		<mapper resource="com/pitcrew/cleanhome/cleaner/notice/model/dao/NoticeDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/user/model/dao/UserInfoDAO.xml"/>
 
 		<mapper resource="com/pitcrew/cleanhome/admin/user/model/dao/UserDAO.xml"/>
