@@ -25,7 +25,7 @@
          	<tr id="detailhead">
          		<th class="hidden" id="no">${ noticeDTO.no }</th>
          		<th width="250px">제목 : ${ noticeDTO.title }</th>
-   				<th width="200px">작성자 : ${ noticeDTO.writer.name }</th>
+   				<th width="200px">작성자 : ${ noticeDTO.writer }</th>
    				<th width="200px">작성일: ${ noticeDTO.writeDate }</th>
    				<th>조회 : ${ noticeDTO.count }</th>
          	</tr>
@@ -34,11 +34,13 @@
          	<label>${ noticeDTO.content }</label>
          </div>  
          <div style="text-align:center";>
+         <c:if test="${ category == 'PERSONAL' }">
 	         <form action="${ pageContext.servletContext.contextPath }/cleaner/notice/delete" method="post">
 	         <input type="hidden" name="no" value="${ noticeDTO.no }">
 	         <button id="update" style="background-color: #02A79D; color: white">수정하기</button>  
 	         <button type="submit" style="background-color: #02A79D; color: white">삭제하기</button>
-	         </form>        
+	         </form>  
+	     </c:if>      
          </div>       
     </div>
 	<script>

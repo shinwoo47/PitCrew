@@ -12,7 +12,7 @@ public class NoticeDTO {
 	private String category;
 	private java.sql.Date writeDate;
 	private int writerMemberNo;
-	private MemberDTO writer;
+	private String writer;
 	private String status;
 	private int count;
 	private MemberDTO role;
@@ -21,7 +21,7 @@ public class NoticeDTO {
 	public NoticeDTO() {}
 
 	public NoticeDTO(int no, String title, String content, String category, Date writeDate, int writerMemberNo,
-			MemberDTO writer, String status, int count, MemberDTO role, String forWho) {
+			String writer, String status, int count, MemberDTO role, String forWho) {
 		super();
 		this.no = no;
 		this.title = title;
@@ -84,11 +84,11 @@ public class NoticeDTO {
 		this.writerMemberNo = writerMemberNo;
 	}
 
-	public MemberDTO getWriter() {
+	public String getWriter() {
 		return writer;
 	}
 
-	public void setWriter(MemberDTO writer) {
+	public void setWriter(String writer) {
 		this.writer = writer;
 	}
 

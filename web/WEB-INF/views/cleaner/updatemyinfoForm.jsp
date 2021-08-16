@@ -91,7 +91,7 @@ table.type09 td {
                 <th rowspan="3" scope="row">비밀번호 변경</th>
             </tr>
             <tr>
-                <td><label>새 비밀번호 </label> <input type="password" name="newPwd" id="newPwd"></td>
+                <td><label>새 비밀번호 </label> <input type="password" name="memberPwd" id="memberPwd"></td>
             </tr>
             <tr>
                 <td><label>다시 입력 </label> <input type="password" name="retypeNewPwd" id="retypeNewPwd"></td>

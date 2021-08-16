@@ -24,12 +24,15 @@ public class NoticeDetailServlet extends HttpServlet {
 		NoticeService noticeService = new NoticeService();
 		NoticeDTO noticeDetail = noticeService.selectNoticeDetail(no);
 		
+		
 		System.out.println("noticeDeatil :" + noticeDetail);
 		
 		String path = "";
 		if(noticeDetail != null) {
+			String category = noticeDetail.getCategory();
 			path = "/WEB-INF/views/cleaner/noticeDetail.jsp";
 			request.setAttribute("noticeDTO", noticeDetail);
+			request.setAttribute("category", category);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "공지사항 상세조회 실패");

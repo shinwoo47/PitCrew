@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,9 @@
                         <h3 style="color:#fff">No</h3>
                     </div>
             </div>-->
+           <c:if test="${ category == 'PERSONAL' }">
             <button type="button" id="writeBoard">글쓰기</button>
+            </c:if>
          <table id="boardList">
          	<tr>
          		<th class="hidden" width="100px">NO</th>
@@ -52,7 +55,7 @@
 					<tr>
 						<td class="hidden"><c:out value="${ notice.no }"/></td>
 						<td><c:out value="${ notice.title }"/></td>
-						<td><c:out value="${ notice.writer.name }"/></td>
+						<td><c:out value="${ notice.writer }"/></td>
 						<td><c:out value="${ notice.writeDate }"/></td>
 						<td><c:out value="${ notice.count }"/></td>
 					</tr>

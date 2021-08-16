@@ -40,7 +40,7 @@ public class UpdateMemberInfo extends HttpServlet {
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		
 		int memNo = loginMember.getMemNo();
-		String pwd = request.getParameter("newPwd");
+		String pwd = request.getParameter("memberPwd");
 		String address = request.getParameter("zipCode") + "$" + request.getParameter("address1") + "$" + request.getParameter("address2");
 		String email = request.getParameter("updateEmail");
 		
@@ -62,7 +62,7 @@ public class UpdateMemberInfo extends HttpServlet {
 			
 			page = "/WEB-INF/views/common/success.jsp";
 			
-			request.setAttribute("successCode", "updateUserInfo");
+			request.setAttribute("successCode", "updateCleanerInfo");
 			
 		} else {
 			

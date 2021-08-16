@@ -36,7 +36,6 @@ public class PasswordEncryptFilter implements Filter {
 		if(!"/login".equals(intent)) {
 			
 			EncryptRequestWrapper wrapper = new EncryptRequestWrapper(hrequest);
-			
 			chain.doFilter(wrapper, response);
 		} else {
 			chain.doFilter(request, response);

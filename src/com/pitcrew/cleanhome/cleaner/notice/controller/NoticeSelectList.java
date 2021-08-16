@@ -32,6 +32,7 @@ public class NoticeSelectList extends HttpServlet {
 		if(noticeList != null) {
 			path = "/WEB-INF/views/cleaner/noticeList.jsp";
 			request.setAttribute("noticeList", noticeList);
+			request.setAttribute("category", category);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "공지사항 조회 실패");
