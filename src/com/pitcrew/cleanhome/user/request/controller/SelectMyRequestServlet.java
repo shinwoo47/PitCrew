@@ -36,6 +36,7 @@ public class SelectMyRequestServlet extends HttpServlet {
 			request.setAttribute("selectMyAllReq", selectMyAllReq);
 			
 		} else {
+			
 			path ="/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "의뢰 조회 실패하셨습니다 !!!");
 		}
