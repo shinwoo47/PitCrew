@@ -30,12 +30,13 @@ public class InsertProductServlet extends HttpServlet {
 		double serTime = Double.parseDouble(request.getParameter("serTime"));
 		
 		ProductDTO newProduct = new ProductDTO();
-		newProduct.setSerName(serName);
+		newProduct.setSerNo(serNo);
 		newProduct.setSerCategory(serCategory);
 		newProduct.setSerName(serName);
 		newProduct.setSerPrice(serPrice);
 		newProduct.setSerContent(serContent);
 		newProduct.setSerTime(serTime);
+		
 		
 		ProductService productService = new ProductService();
 		

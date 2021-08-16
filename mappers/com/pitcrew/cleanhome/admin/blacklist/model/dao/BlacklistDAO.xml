@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BlacklistDAO">
+	<resultMap type="com.pitcrew.cleanhome.admin.blacklist.model.dto.UserDTO" id="blacklistResultMap">
+		<id property="memNo" column="MEM_NO" />
+		<result property="memName" column="MEM_NAME"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="email" column="EMAIL"/>
+		<result property="birth" column="BIRTH"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="memPwd" column="MEM_PWD"/>
+		<result property="phone" column="PHONE"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="memberRole" column="MEMBER_ROLE"/>
+		<result property="entYn" column="ENT_YN"/>
+		<result property="entDate" column="ENT_DATE"/>
+		<result property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/>
+		<!-- <collection property="blacklist" resultMap="com.pitcrew.cleanhome.admin.blacklist.model.dto.BlacklistDTO">
+			<id property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/>
+		</collection> -->
+	<!--  <association property="blacklist" resultMap="blacklistMap"/>  -->
+<!-- 	<association property="blacklist" resultMap="blacklistMap">
+		 	<id property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/> 
+	</association>  -->
+	</resultMap>
+	
+<!-- 	<resultMap type="com.pitcrew.cleanhome.admin.blacklist.model.dto.BlacklistDTO" id="blacklistMap">
+		<id property="memNo" column="MEM_NO" />
+		<result property="blacklistNo" column="BLACKLIST_NO"/>
+		<result property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/>
+	</resultMap> -->
+	
+	<select id="selectAllBlacklist" resultMap="blacklistResultMap">
+		SELECT 
+		       A.MEM_NO
+		     , A.MEM_NAME
+		     , A.MEM_ID
+		     , A.EMAIL
+		     , A.BIRTH
+		     , A.ADDRESS
+		     , A.MEM_PWD
+		     , A.PHONE
+		     , A.ENROLL_DATE
+		     , A.MEMBER_ROLE
+		     , A.ENT_YN
+		     , A.ENT_DATE
+		     , B.PENALTY_SCORE_SUM
+		  FROM MEMBER A
+          JOIN BLACKLIST B ON (B.MEM_NO = A.MEM_NO)
+	</select>
+</mapper>
