@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -20,46 +21,23 @@ import com.google.gson.Gson;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.service.RequestService;
-import com.pitcrew.cleanhome.cleaner.request.paging.Pagenation;
-import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
 
-@WebServlet("/cleaner/request/ajax")
-public class RequestAjax extends HttpServlet {
-   
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+@WebServlet("/cleaner/request/ajax2")
+public class RequestAjax2 extends HttpServlet {
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
 		HttpSession session = request.getSession();
 		MemberDTO member =((MemberDTO) session.getAttribute("loginMember"));
 		int memNo = member.getMemNo();
-		
-		String requestStatus = request.getParameter("status");
-		System.out.println("status : " + requestStatus);
-		if(requestStatus == null) {
-			requestStatus = "매칭              ";
-		}
-		
 		String cleanerMemNo = String.valueOf(memNo);
 		
-		String date = (request.getParameter("date"));
-		System.out.println("searchDate : " + date);
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date2;
-		String searchDate = null;
-		try {
-			date2 = simpleDateFormat.parse(date);
-			searchDate = simpleDateFormat.format(date2);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-		System.out.println("serachDate : " + searchDate);
-		
 		Map<String, Object> searchMap = new HashMap<>();
-		searchMap.put("searchDate", searchDate);
-		searchMap.put("reqStatus", requestStatus);
 		searchMap.put("memNoCleaner",cleanerMemNo);
 		
 		/* 전체 게시물 수가 필요하다.
@@ -68,16 +46,29 @@ public class RequestAjax extends HttpServlet {
 		 * */
 		RequestService requestService = new RequestService();
 
-
+		String FormDate = "";
+		Date date3;
 		
-		/* 조회해온다 */
-		List<RequestDTO> requestList = requestService.selectCleanerRequestList(searchMap);
-		System.out.println("requestList : " + requestList);
+		List <FullCalendarDTO> calendarList = requestService.selectCalendar(searchMap);     //캘린더에 추가할 일정 조회
 		
+		for(int i = 0; i < calendarList.size(); i++) {
+			try {
+				date3 = format.parse(calendarList.get(i).getStart());
+				FormDate = format.format(date3);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			calendarList.get(i).setStart(FormDate);
+			if(calendarList.get(i).getBackgroundColor().equals("매칭              ")) {
+				calendarList.get(i).setBackgroundColor("blue");
+			} else if(calendarList.get(i).getBackgroundColor().equals("완료              ")) {
+				calendarList.get(i).setBackgroundColor("green");
+			} else if(calendarList.get(i).getBackgroundColor().equals("수정              ")) {
+				calendarList.get(i).setBackgroundColor("red");
+			}
+		}
 		
-
-		
-		String jsonString = new Gson().toJson(requestList);
+		String jsonString = new Gson().toJson(calendarList);
 		
 		System.out.println(jsonString);
 		
@@ -88,12 +79,6 @@ public class RequestAjax extends HttpServlet {
 		
 		out.flush();
 		out.close();
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

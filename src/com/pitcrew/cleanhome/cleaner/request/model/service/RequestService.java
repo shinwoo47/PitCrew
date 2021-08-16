@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.cleaner.request.model.dao.RequestDAO;
+import com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
 
@@ -95,6 +96,40 @@ public class RequestService {
 		
 		return requestList;
 	}
+
+	public List<FullCalendarDTO> selectCalendar(Map<String, Object> searchMap) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<FullCalendarDTO> calendarList = requestDAO.selectCalendar(session, searchMap);
+		
+		session.close();
+		
+		return calendarList;
+	}
+
+	public int completeRequest(RequestDTO requestDto) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = requestDAO.completeRequest(session, requestDto);  //의뢰 완료상태로 변경
+
+		int result2 = requestDAO.insertRequestStatusHistory(session, requestDto);  //의뢰 상태변경 히스토리에 기록
+	
+		int resultCheck = 0;
+		if(result > 0 && result2 > 0) {
+			resultCheck = 1;
+		}
+		if(resultCheck > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		return resultCheck;
+	}
+
+	
 
 
 }

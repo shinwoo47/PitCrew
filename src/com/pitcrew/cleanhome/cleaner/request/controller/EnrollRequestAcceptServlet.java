@@ -24,20 +24,18 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 @WebServlet("/cleaner/request/accept")
 public class EnrollRequestAcceptServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int no = Integer.parseInt(request.getParameter("no"));                 //의뢰 번호
-		String status = request.getParameter("status");                        //의뢰 상태
+                     //의뢰 상태
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		
 		RequestDTO requestDto = new RequestDTO();
 		requestDto.setReqNo(no);
-		requestDto.setReqStatus(status);
+		requestDto.setReqStatus("매칭              ");
 		requestDto.setMemNoCleaner(member.getMemNo());
 
-		System.out.println(status);
 		System.out.println("reqNo : " + no);
 
 		RequestService requestService = new RequestService();

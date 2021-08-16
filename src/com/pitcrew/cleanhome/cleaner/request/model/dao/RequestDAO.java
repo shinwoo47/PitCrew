@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
 
@@ -49,6 +50,16 @@ public class RequestDAO {
 	public List<RequestDTO> selectCleanerRequestList(SqlSession session, Map<String, Object> searchMap) {
 		
 		return session.selectList("RequestDAO.selectCleanerRequestList", searchMap);
+	}
+
+	public List<FullCalendarDTO> selectCalendar(SqlSession session, Map<String, Object> searchMap) {
+		
+		return session.selectList("RequestDAO.selectCalendar", searchMap);
+	}
+
+	public int completeRequest(SqlSession session, RequestDTO requestDto) {
+		
+		return session.update("RequestDAO.completeRequest", requestDto);
 	}
 
 }

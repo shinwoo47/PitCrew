@@ -43,6 +43,12 @@
 		<result property="serPrice" column="SER_PRICE"/>
 	</resultMap>
 	
+	<resultMap type="com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO" id="fullCalendarResultMap">
+	    <result property="title" column="SER_NAME"/>
+		<result property="start" column="REQ_DATE"/>
+		<result property="backgroundColor" column="REQ_STATUS"/>	
+	</resultMap>
+	
 	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT 
                COUNT(*)
@@ -112,6 +118,14 @@
 	     WHERE A.REQ_NO = #{ reqNo }
 	</update>
 	
+	<update id="completeRequest">
+	    UPDATE
+	           REQUEST_INFO A
+	       SET A.REQ_STATUS = '완료'
+	         , A.MEM_NO_CLEANER = #{ memNoCleaner }
+	     WHERE A.REQ_NO = #{ reqNo }
+	</update>
+	
 	<select id="selectRequestDetail" resultMap="RequestResultMap">
 		SELECT 
               A.REQ_NO
@@ -163,8 +177,8 @@
 	     WHERE A.MEM_NO_CLEANER = #{ memNoCleaner }
 	       AND A.REQ_STATUS = #{ reqStatus }
 	      <![CDATA[
-	       AND A.REQ_DATE >= TO_DATE(#{ searchDate }, 'YYYY-MM-DD')
-           AND A.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM-DD') + 31
+	       AND A.REQ_DATE >= TO_DATE(#{ searchDate }, 'YYYY-MM')
+           AND A.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM') + 1
            ]]>
 	</select>
 		
@@ -189,5 +203,17 @@
           AND A.REQ_DATE < TO_DATE(#{ searchDate }, 'YYYY-MM-DD') + 31
            ]]>
 	    ORDER BY A.REQ_DATE DESC
+	</select>
+	
+	<select id="selectCalendar" resultMap="fullCalendarResultMap">
+	    SELECT
+	           A.REQ_DATE
+	         , A.REQ_STATUS
+	         , C.SER_NAME
+	      FROM REQUEST_INFO A
+	      JOIN PRODUCT_BY_REQ B ON(B.REQ_NO = A.REQ_NO)
+	      JOIN PRODUCT_INFO C ON(C.SER_NO = B.SER_NO)
+	     WHERE A.MEM_NO_CLEANER = #{ memNoCleaner }
+	     
 	</select>
 </mapper>
