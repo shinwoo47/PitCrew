@@ -7,5 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h2>의뢰 상세</h2>
 </body>
 </html>

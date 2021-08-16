@@ -4,6 +4,9 @@
 <html>
 
 <head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
     <meta charset="UTF-8">
     <meta name="description" content="Loanday Template">
     <meta name="keywords" content="Loanday, unica, creative, html">
@@ -193,4 +196,5 @@ table.type05 td {
             </tr>
             </table>
       </div>
+
 </html>
