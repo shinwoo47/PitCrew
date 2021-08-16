@@ -24,7 +24,7 @@ public class SelectCleanServlet extends HttpServlet {
 		int number = Integer.parseInt(request.getParameter("number")); 
 		if(number ==1) { 
 			System.out.println("1번클릭");
-			 
+			clean.setImgNo("roomClean.png");
 			clean.setName("방청소");
 			clean.setPrice(25000);
 			clean.setTime(2);

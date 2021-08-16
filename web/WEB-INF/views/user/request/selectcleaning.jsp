@@ -187,23 +187,27 @@
        			<h1 align = "center"><c:out value="${ clean.name }"/></h1>
        			<h4 align = "right">가격 : <c:out value="${ clean.price }"/>&nbsp;원</h4><br>
         		<div class="line"></div>
-        		<form align = "center"><br><br>
-        		
+        		<form align = "center" action="${ pageContext.servletContext.contextPath }/user/clean/payment" method="post">
+        		<br><br>
         		<c:if test="${ clean.cleanNo < 3 }">
         		
-        	    <input type="checkbox" name="hobby" value="washDish" id="clea" class="checb">
+        	    <input type="checkbox" name="optionNo1" value="4" id="clea" class="checb">
       			<label for="baseball" class="checa">설거지&nbsp;&nbsp;5000원</label>
    				<br>
-        		<input type="checkbox" name="hobby" value="windowClean" id="cleb" class="checb" >
+        		<input type="checkbox" name="optionNo2" value="5" id="cleb" class="checb" >
      		    <label for="football" class="checa">창틀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000원</label>
 				</c:if>
      		    <br><br>
-     		    <label>시작일 &nbsp; </label><input type="date"><br><br>
-        		<label>시작시간 &nbsp; </label><input type="time">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-        		<textarea name="content" id="content" cols="60" rows="15"></textarea><br><br>
-        		<h4 align = "left" id="timea">예상소요시간 : <c:out value="${ clean.time }"/>시간</h4><br>
+     		    <label>시작일 &nbsp; </label><input type="date" name="start"><br><br>
+        		<label>시작시간 &nbsp; </label><input type="time" name="startTime" value="startTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+        		<textarea name="content" id="content" cols="60" rows="15" ></textarea><br><br>
+        		<h4 align = "left" id="timea" >예상소요시간 : <c:out value="${ clean.time }"/>시간</h4><br>
         	    <h4 align = "left" id=pricea>예상금액 : &nbsp;<c:out value="${ clean.price }"/>원</h4>
-      			<input type="hidden"  name="name" value="${ clean.price }"/>
+      			
+      			<input type="hidden"  name="cleanNo" value= "${ clean.cleanNo }"/>
+      			<input type="hidden"  name="CleanPrice" value= "${ clean.price }"/>
+      		
+      			<button type="submit" class="btn_requ" value="주문하기" id="payment">주문하기</button>
         		</form>
         		
         		

@@ -42,8 +42,6 @@
 	.imgqa {
 		width:
 	}
-	background : blue;
-	
 	
 	
 </style>
@@ -62,18 +60,6 @@
 	<h3 align="center"><c:out value="${ clean.price }"/>원<br>
 	<c:out value="${ clean.time }"/>시간</h3>
 	
-
-
-
-	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery-3.3.1.min.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/bootstrap.min.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery.nice-select.min.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery-ui.min.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery.nicescroll.min.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery.magnific-popup.min.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery.slicknav.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/owl.carousel.min.js"></script>
-    <script src="${ pageContext.servletContext.contextPath }/resources/user/js/main.js"></script>
 	</div>
 </body>
 </html>
