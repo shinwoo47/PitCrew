@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <!DOCTYPE html>
 <html>
 
@@ -95,7 +97,21 @@ table.type05 td {
 	 	background-color : blue;
 	 	font-size : 28px;
 	 	color : white;
-}    
+}  
+.btn_requ {
+	 	 width: 220px;
+	 	 height: 70px;
+	 	 background-color : red;
+	 	 font-size : 33px;
+	 	 color : white;
+	
+	} 
+.btn_q {
+	 margin: auto;
+
+ 	  width: 10%;
+     
+}
 </style>
 </head>
 
@@ -166,35 +182,43 @@ table.type05 td {
            <table class="type05" >
                <tr>
                     <th scope="row" >이름</th>
-                    <td><c:out value="${ clean.time }"/></td>
+                    <td><c:out value="${ clean.memName }"/></td>
                </tr>
                <tr>
                     <th scope="row">이메일</th>
-                    <td>내용이 들어갑니다.</td>
+                    <td><c:out value="${ clean.email }"/></td>
                </tr>
                <tr>
                     <th scope="row">휴대폰 번호</th>
-                    <td>내용이 들어갑니다.</td>
+                    <td><c:out value="${ clean.phone }"/></td>
                </tr>
          </table>
          
-       
+   <br>
    <div class="article"></div>
       <h2>결제정보</h2>
          <table class="type05">
             <tr>
                     <th scope="row">시작일</th>
-                    <td>내용이 들어갑니다.</td>
+                    <td><c:out value="${ clean.rewDate }"/>&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;(<c:out value="${ clean.time }"/>)시간</td>
                </tr>
                 <tr>
-                    <th scope="row">장소</th>
-                    <td>내용이 들어갑니다.</td>
+                    <th scope="row">주소</th>
+                    <td><c:out value="${ fn:replace(clean.address, \"$\" , \" \") }"/></td>
+                    
                </tr>
                 <tr>
                     <th scope="row">가격</th>
-                    <td>내용이 들어갑니다.</td>
+                    <td><c:out value="${ clean.price }"/></td>
+                    
             </tr>
             </table>
+      <br><br>
       </div>
+      <div class="btn_q">
+      <button type="submit" class="btn_requ" value="주문하기" id="paymenta" >결제하기</button>
+      </div>
+      
 
 </html>
