@@ -30,7 +30,7 @@ public class ProductService {
 
 	public int insertProduct(com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO newProduct) {
 		SqlSession session = getSqlSession();
-
+		
 		int result = productDAO.insertProduct(session, newProduct);
 
 		if(result > 0) {

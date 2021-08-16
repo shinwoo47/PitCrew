@@ -106,29 +106,25 @@
                                 <li><a href="./google-calendar.html">Blog</a></li>
                                 <li><a href="#">MyPage</a>
                                     <ul class="dropdown">
-                                        <li><a href="./services.html">회원정보</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/cleaner/member/select">회원정보</a></li>
                                         <li><a href="${ pageContext.servletContext.contextPath }/cleaner/account">계좌</a></li>
                                         <li><a href="./blog-details.html">정산내역</a></li>
                                     </ul>
                                 </li>
                                  <li><a href="#">고객센터</a>
                                     <ul class="dropdown">
-                                        <li><a href="./services.html">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=공지 ">공지사항</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=FAQ">FAQ</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL">문의사항</a></li>
                                     </ul>
                                 </li>
                             </ul>
                         </nav>
-                        <div class="header__search">
-                            <i class="fa fa-search search-switch"></i>
-                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="canvas__open">
-                <span class="fa fa-bars"></span>
-            </div>
+
         </div>
     </header>
     <!-- Header Section End -->

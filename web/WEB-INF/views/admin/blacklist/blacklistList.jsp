@@ -6,11 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자모드 사용자 정보 조회</title>
+<title>관리자모드 블랙리스트 조회</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 table {
-	margin-right: 80px;
+	margin:25px;
 }
 </style>
 </head>
@@ -24,7 +24,6 @@ table {
 			<option value="memId"${ requestScope.selectCriteria.searchCondition eq "memId"? "selected": "" }>아아디</option>
 			<option value="memName"${ requestScope.selectCriteria.searchCondition eq "memName"? "selected": "" }>이름</option>
 			<option value="phone"${ requestScope.selectCriteria.searchCondition eq "phone"? "selected": "" }>휴대폰 번호</option>
-			<option value="address"${ requestScope.selectCriteria.searchCondition eq "address"? "selected": "" }>거주지역</option>
 			<option value="entYn"${ requestScope.selectCriteria.searchCondition eq "entYn"? "selected": "" }>탈퇴여부</option>
 		</select> 
 		<input type="text" style="text-align: center; font-size: 20pt;" id="searchResult" name="searchResult"/>
@@ -50,28 +49,27 @@ table {
 				<th width="200px" style="text-align: center; font-size: 20pt;">아이디</th>
 				<th width="120px" style="text-align: center; font-size: 20pt;">이름</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">휴대폰 번호</th>
-				<th width="450px" style="text-align: center; font-size: 20pt;">거주지역</th>
 				<th width="140px" style="text-align: center; font-size: 20pt;">최근 의뢰 일자</th>
-				<th width="150px" style="text-align: center; font-size: 20pt;">블랙리스트 추가</th>
-				<!-- <th width="100px" style="text-align: center; font-size: 20pt;">자세히</th> -->
+				<th width="140px" style="text-align: center; font-size: 20pt;">패널티 점수</th>
+				<th width="150px" style="text-align: center; font-size: 20pt;">블랙리스트 삭제</th>
+				<th width="100px" style="text-align: center; font-size: 20pt;">자세히</th>
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
 			</tr>
-			<c:forEach items="${ userList }" var="user">
+			<c:forEach items="${ blacklistList }" var="blacklist">
 				<tr>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.memNo }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.enrollDate }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.memId }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.memName }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.phone }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ fn:replace(user.address, \"$\", \" \") }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><%-- <c:out value="${  }"></c:out> --%></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button>추가</button></td>
-					<!-- <td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td> -->
-					<td style="text-align: center; font-size: 20pt;"><c:out value="${ user.entYn }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memNo }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.enrollDate }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memId }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memName }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.phone }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out value="${ blacklist.penaltyScoreSum }"></c:out></td>
+					<td align="center" style="text-align: center; font-size: 15pt;"><button>삭제</button></td>
+					<td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out value="${ blacklist.entYn }"></c:out></td>
 				</tr>
 			</c:forEach>
 		</table>
-			<jsp:include page="paging.jsp" />
 	</div>
 </body>
 </html>

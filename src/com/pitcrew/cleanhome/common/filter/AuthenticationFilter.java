@@ -118,6 +118,7 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/select/allcleanerinfo");
 		adminPermitList.add("/admin/product/list");
 		adminPermitList.add("/admin/product/insert");
+		adminPermitList.add("/admin/select/allblacklist");
 		
 
 
@@ -142,6 +143,8 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/user/regist/request");
 		memberPermitList.add("/user/end/regist/request");
 		memberPermitList.add("/user/end/request");
+		memberPermitList.add("/user/clean/informa");
+		memberPermitList.add("/user/clean/payment");
 		
 		cleanerPermitList.add("/cleaner/request/enroll");
 		cleanerPermitList.add("/cleaner/home");
@@ -155,6 +158,13 @@ public class AuthenticationFilter implements Filter {
 		cleanerPermitList.add("/cleaner/request/detail");
 		cleanerPermitList.add("/cleaner/request/attach");
 		cleanerPermitList.add("/cleaner/request/report");
+		cleanerPermitList.add("/cleaner/notice/list");
+		cleanerPermitList.add("/cleaner/notice/detail");
+		cleanerPermitList.add("/cleaner/notice/insert");
+		cleanerPermitList.add("/cleaner/notice/update");
+		cleanerPermitList.add("/cleaner/notice/delete");
+		cleanerPermitList.add("/cleaner/member/select");
+		cleanerPermitList.add("/cleaner/member/update");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");

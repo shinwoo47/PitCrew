@@ -6,26 +6,23 @@
 <head>
 <meta charset="UTF-8">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.css">
+ <script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.js"></script>
+<script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-ko-KR.js"></script>
 <title>맡겨줘 홈즈 관리자 모드</title>
 </head>
 <body>
-	<jsp:include page="../menubar.jsp"/>
+	<!-- 네비 -->
+	<jsp:include page="../cleaner/cleanermenubar.jsp"/>
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
          	<div style="display: block">
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
           	</div>
-          <form action="${ pageContext.servletContext.contextPath }/cleaner/notice/insert" method="post">
-          	<div>
-          	<label class="custom-control custom-radio custom-control-inline">
-            	<input type="radio" class="custom-control-input" name="forWho" value="사용자"><span class="custom-control-label">사용자</span>
-            </label>
-            <label class="custom-control custom-radio custom-control-inline">
-                 <input type="radio" class="custom-control-input" name="forWho" value="해결사"><span class="custom-control-label">해결사</span>
-            </label>
-            <br><br></div>
-			
+          <form action="${ pageContext.servletContext.contextPath }/cleaner/notice/update" method="post">
+          	
 		  	<div class="container" style="padding: 20px;">
+		  	<input type="hidden" name="no" value="${ no }">
 		  	<label class="col-form-label">제목 :</label>
             <input type="text" name="title" style="width: 1000px; height: 50px;">
             <hr>

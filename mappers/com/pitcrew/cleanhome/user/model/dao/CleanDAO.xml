@@ -17,8 +17,8 @@
 		SELECT 
 			   A.SER_NAME
 			 , A.SER_CONTENT
-			 , SER_PRICE
-			 , SER_TIME
+			 , A.SER_PRICE
+			 , A.SER_TIME
 		  FROM PRODUCT_INFO A
 		 WHERE A.SER_NO = #{ num }
 	</select>
