@@ -29,6 +29,8 @@ public class InsertQuestionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		int memNo = member.getMemNo();
+		String writer = member.getMemName();
+		System.out.println("writer : " + writer);
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("editordata");
@@ -43,6 +45,7 @@ public class InsertQuestionServlet extends HttpServlet {
 		newNotice.setTitle(title);
 		newNotice.setContent(content);
 		newNotice.setWriterMemberNo(memNo);
+		newNotice.setWriter(writer);
 		newNotice.setForWho("해결사");
 		int result = noticeService.insertQeustion(newNotice);
 		

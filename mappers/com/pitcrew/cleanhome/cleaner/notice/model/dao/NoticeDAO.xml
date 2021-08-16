@@ -13,8 +13,8 @@
 	<result property="status" column="BOARD_CON"/>
 	<result property="count" column="BOARD_READ_COUNT"/>
 	<result property="forWho" column="BOARD_CATEGORY_STATUS"/>
-
-	<association property="writer" resultMap="memberResultMap"/>
+	<result property="writer" column="WRITER"/>
+	
 	<association property="role" resultMap="memberResultMap"/>
 	</resultMap>
 		
@@ -28,12 +28,11 @@
 		      , A.MEM_NO
 		      , A.BOARD_CON
 		      , A.BOARD_READ_COUNT
-		      , B.MEM_NAME
+		      , A.WRITER
 		      , A.BOARD_CATEGORY_STATUS
 		 FROM BOARD A
-		 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
 		WHERE A.BOARD_CON = 'y'
-	      AND A.BOARD_CATEGORY = 'PERSONAL'
+	      AND A.BOARD_CATEGORY = #{ category }
 	      AND A.BOARD_CATEGORY_STATUS = '해결사'
 		ORDER BY A.BOARD_WRITE_DATE DESC
 	</select>
@@ -48,10 +47,9 @@
 			      , A.MEM_NO
 			      , A.BOARD_CON
 			      , A.BOARD_READ_COUNT
-			      , B.MEM_NAME
+			      , A.WRITER
 			      , A.BOARD_CATEGORY_STATUS
 			 FROM BOARD A
-			 JOIN MEMBER B ON (A.WRITER = B.MEM_NAME)
 			WHERE A.BOARD_CON = 'y'
 		      AND A.BOARD_NO = #{ no }
 	</select>
@@ -81,7 +79,7 @@
         , #{ writerMemberNo }
         , 'y'
         , 0
-        , '해결사'
+        , #{ writer }
         , #{ forWho }
         )
 	</insert>

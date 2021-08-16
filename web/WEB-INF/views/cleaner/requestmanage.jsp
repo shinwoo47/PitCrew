@@ -41,13 +41,70 @@
 
 
 	<script>
-
+	
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth'
+        initialView: 'dayGridMonth';
+        
+        	events: [
+                {
+                    title : 'evt1',
+                    start : '2019-09-03'
+                }
+            ]
       });
+      
       calendar.render();
+      
+      var date = calendar.getDate();
+      var searchDate = date.toISOString();
+        console.log(searchDate);
+        $.ajax({
+			url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax",
+			type: "get",
+			data: {
+				date : searchDate
+			},
+			success: function(data, textStatus, xhr) {
+				console.log(data);
+				removeDiv();
+				createDiv(data)
+				
+				
+			},
+			error: function(xhr, status, error) {
+				console.log(xhr);
+			}
+    	});
+        
+        $("#match").on("click", function(){ 
+			const status = this.value;
+	        var date = calendar.getDate();
+	        var searchDate = date.toISOString();
+			console.log(status);
+			console.log(searchDate)
+			$.ajax({
+    			url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax",
+    			type: "get",
+    			data: {
+    				date : searchDate,
+					status : status
+    			},
+    			success: function(data, textStatus, xhr) {
+    				console.log(data);
+    				removeDiv();
+    				createDiv(data)
+    				
+    				
+    			},
+    			error: function(xhr, status, error) {
+    				console.log(xhr);
+    			}
+        	});
+
+		});
+
 
       $(".fc-button-group").click(function() {
           var date = calendar.getDate();
@@ -105,38 +162,9 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5">
-                    <div class="blog__sidebar">  
-                    
-                        <c:forEach var="request" items="${ requestScope.requestList }" varStatus="status">
-                        <div style="height: auto; width: 80%; border:3px solid yellowgreen;" class="blog__item__text" id="request${status.count}">
-                        	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqNo }"/>
-                        	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqStatus }"/>
-                        	<c:set var="address" value="${ request.address.address }"/>
-                        	<c:set var="address1" value="${ fn:substring(address, fn:indexOf(address,'$') + 1, 30) }"/>
-                        	<c:set var="address2" value="${ fn:substring(address1, 0, fn:indexOf(address1,'$')) }"/>
-                            <h3><c:out value="${ address2 }"/></h3>
-                            <ul>
-                                <li><i class="fa fa-clock-o"></i> <fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy/MM/dd (E) hh시"/></li>
-                                <li>  
-                                	<c:set var="sumPrice" value="0"/>
-                                	<c:set var="sumTime" value="0"/>
-                                	<i class="fa fa-user"></i> 
-                                	<c:forEach var="product" items="${ request.productList }">             		
-                                		<c:out value="${ product.serName } "/><c:set var="price" value="${ product.serPrice }"/>
-                                		<c:set var="sumPrice" value="${ sumPrice + product.serPrice }"/>
-                                		<c:set var="sumTime" value="${ sumTime + product.serTime }"/>
-                                	</c:forEach>
-                                </li>
-                            </ul>
-                                                            예상소요시간 :<c:out value="${ sumTime }"/> 시간<br>
-                                                              합계 가격 : <c:out value="${ sumPrice }"/> 원
-                            <button style="float: right;" class="selectbtn" id="ok">선택하기 </button>
-                        	
-                        </div>
-                        </c:forEach>
-                    </div>
-                </div>
-                    </div>
+                	<button id="match" name="match" value="등록              ">매칭된 의뢰</button><button>완료된 의뢰</button>
+                    <div class="blog__sidebar">   
+                        
                     </div>
                 </div>
             </div>
@@ -182,6 +210,10 @@
 			location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/detail?no=" + no + "&status=" + status;
 
 		});
+		
+		
+		
+		 
 	}
 	function removeDiv(){
 

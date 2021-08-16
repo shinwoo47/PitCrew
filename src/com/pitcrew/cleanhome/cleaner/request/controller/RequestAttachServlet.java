@@ -91,7 +91,7 @@ public class RequestAttachServlet extends HttpServlet {
 				/* 위에서 출력해본 모든 item들을 다 처리할 것이다. */
 				for(int i = 0; i < fileItems.size(); i++) {
 					FileItem item = fileItems.get(i);
-					
+					System.out.println("item : " + item);
 					if(!item.isFormField()) {
 						
 						/* 파일 데이터인 경우 */

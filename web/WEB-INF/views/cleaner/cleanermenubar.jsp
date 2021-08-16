@@ -103,7 +103,7 @@
                                 <li class="active"><a href="${ pageContext.servletContext.contextPath }/cleaner/home">Home</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/enroll">청소 서비스</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/manage">일정 관리</a></li>
-                                <li><a href="./google-calendar.html">Blog</a></li>
+                               
                                 <li><a href="#">MyPage</a>
                                     <ul class="dropdown">
                                         <li><a href="${ pageContext.servletContext.contextPath }/cleaner/member/select">회원정보</a></li>

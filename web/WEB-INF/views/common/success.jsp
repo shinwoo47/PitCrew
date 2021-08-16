@@ -71,6 +71,9 @@
 				case "cleanerupdateQuestion" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 수정 성공!";
+				case "updateCleanerInfo" : 
+					movePath = "${ pageContext.servletContext.contextPath }/cleaner/member/selects";
+					successMessage = "회원정보 수정 성공!";
 
 			}
 
