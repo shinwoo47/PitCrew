@@ -11,6 +11,10 @@
 		<result property="time" column="SER_TIME"/>
 		<result property="price" column="SER_PRICE"/>
 		<result property="category" column="SER_CATEGORY"/>
+		<result property="memName" column="MEM_NAME"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="address" column="ADDRESS"/>
 	</resultMap>
 	
 	<select id="selectClean" resultMap="cleanResultMap">
@@ -21,6 +25,18 @@
 			 , A.SER_TIME
 		  FROM PRODUCT_INFO A
 		 WHERE A.SER_NO = #{ num }
+	</select>
+	
+	<select id="selectUser" resultMap="cleanResultMap">
+		SELECT
+			   A.MEM_NAME
+			 , A.EMAIL
+			 , A.PHONE
+			 , A.ADDRESS
+		  FROM MEMBER A
+		 WHERE A.MEM_NO = #{ member.getMemNo() }
+		  
+		
 	</select>
 	
 	

@@ -134,54 +134,13 @@
     <section class="services spad">
         <div class="container">
             <div class="row">
-         
-	
-               <!-- <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="services__item">
-                        <div class="services__item__img">
-                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/roomClean.png" alt="">
-                        </div>
-                        <div class="services__item__text">
-                            <h4><span>01.</span>방청소</h4>
-                            <div class="button">
-                            <input type="button" class="btn-yq" value="선택" id="cleana">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="services__item">
-                        <div class="services__item__img">
-                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/bathroomClean.png" alt="">
-                        </div>
-                        <div class="services__item__text">
-                            <h4><span>02.</span>화장실 청소</h4>
-                            <div class="button">
-                            <input type="button" class="btn-yq" value="선택" id="cleanb">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="services__item">
-                        <div class="services__item__img">
-                            <img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/allClean.png" alt="">
-                        </div>
-                        <div class="services__item__text">
-                            <h4><span>03.</span>전체청소</h4>
-                            <div class="button">
-                            <input type="button" class="btn-yq" value="선택" id="cleanc">
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-        </div>	 -->
+    
 				<script>
 					var time = ${ clean.time }; 
 					var price = ${ clean.price };
+					var opt1 = 0;
 				</script>
-        		<div class= "nss"><br><br><div align="center">
+				<div class="nss"><br><br><div align="center">
         		<img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/${clean.imgNo }" alt="" class= "imgq">
         		</div><br>
        			<h1 align = "center"><c:out value="${ clean.name }"/></h1>
@@ -199,13 +158,14 @@
 				</c:if>
      		    <br><br>
      		    <label>시작일 &nbsp; </label><input type="date" name="start"><br><br>
-        		<label>시작시간 &nbsp; </label><input type="time" name="startTime" value="startTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+        		<label>시작시간 &nbsp; </label><input type="time" name="startTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
         		<textarea name="content" id="content" cols="60" rows="15" ></textarea><br><br>
         		<h4 align = "left" id="timea" >예상소요시간 : <c:out value="${ clean.time }"/>시간</h4><br>
         	    <h4 align = "left" id=pricea>예상금액 : &nbsp;<c:out value="${ clean.price }"/>원</h4>
       			
       			<input type="hidden"  name="cleanNo" value= "${ clean.cleanNo }"/>
       			<input type="hidden"  name="CleanPrice" value= "${ clean.price }"/>
+      			<input type="hidden"  name="CleanTime" value= "${ clean.time }"/>
       		
       			<button type="submit" class="btn_requ" value="주문하기" id="payment">주문하기</button>
         		</form>
