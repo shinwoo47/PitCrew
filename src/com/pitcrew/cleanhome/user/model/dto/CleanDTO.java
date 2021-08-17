@@ -16,8 +16,6 @@ public class CleanDTO implements java.io.Serializable {
 	private int optionNo2;		//옵션번호2
 	private int proPrice;		//의뢰가격
 	
-	private String demand;		//요구사항
-	
 	private int reqNo;			//의뢰번호
 	private java.util.Date reqDate;		//의뢰일시
 	private String rewDate;		//의뢰일시 사용자 보여주기

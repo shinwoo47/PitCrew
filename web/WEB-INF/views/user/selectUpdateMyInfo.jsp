@@ -87,7 +87,7 @@ table.type09 td {
                             </c:if>
                         </div>
                     </div>
-                </div>
+                </div>																																																																																																																																																																						
             </div>
         </div>
      </header>   
