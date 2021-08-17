@@ -99,13 +99,39 @@
 		   AND mid = ?
 	</select>
 	
-	<update id="deleteMember">		
-		UPDATE /* com.greedy.jsp.member.model.dao.MemberDAO#deleteMember() */
-		       member
-		   SET status = 'N'
-		 WHERE status = 'Y'
-		   AND mid = ?
-		   AND member_pwd = ?
+	<select id="idCheck" resultType="_int">
+	    SELECT
+	           COUNT(*)
+	      FROM MEMBER A
+	     WHERE A.MEM_ID = #{ id }
+	</select>
+	
+	<insert id="registCleaner">
+	    INSERT
+	      INTO CLEANER_INFO A
+	    (
+	      A.MEM_NO
+	    , A.IDENTIFY_YN
+	    , A.EDUCATE_YN
+	    )
+	    VALUES
+	    (
+	      #{ memNo }
+	    , #{ identifyYn }
+	    , #{ educateYn }
+	    )
+	</insert>
+	
+	<select id="selectMemNo" resultType="_int">
+	    SELECT
+	           SEQ_MEMBER_NO.CURRVAL
+	      FROM DUAL  
+	</select>
+	
+	<update id="deleteMember">
+	    UPDATE MEMBER A
+	       SET A.ENT_YN = 'Y'
+	         , A.ENT_DATE = SYSDATE
+	     WHERE A.MEM_NO = { memNo }
 	</update>
-
 </mapper>

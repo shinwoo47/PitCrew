@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.pitcrew.cleanhome.member.model.dao.MemberDAO;
+import com.pitcrew.cleanhome.member.model.dto.CleanerInfoDTO;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
 public class MemberService {
@@ -24,6 +25,22 @@ public class MemberService {
 		SqlSession session = getSqlSession();
 		
 		int result = memberDAO.insertMember(session, requestMember);
+		
+		if((requestMember.getRole()).equals("해결사")) {
+			
+			int memNo = memberDAO.selectMemNo(session, requestMember.getId());
+			
+			CleanerInfoDTO cleaner = new CleanerInfoDTO();
+			cleaner.setEducateYn("N");
+			cleaner.setIdentifyYn("N");
+			cleaner.setMemNo(memNo);
+			int result2 = memberDAO.registCleaner(session, cleaner);
+			if(result2 > 0) {
+				result = 1;
+			} else {
+				result = 0;
+			}
+		}
 		if(result > 0) {
 			session.commit();
 		} else {
@@ -62,9 +79,10 @@ public class MemberService {
 		MemberDTO changedMemberInfo = null;
 		
 		int result = memberDAO.updateMember(session, requestMember);
+		
 		if(result > 0) {
 			session.commit();
-			changedMemberInfo = memberDAO.selectChangedMemberInfo(session, requestMember.getNo());
+			changedMemberInfo = memberDAO.selectChangedMemberInfo(session, requestMember.getMemNo());
 		} else {
 			session.rollback();
 		}
@@ -88,6 +106,38 @@ public class MemberService {
 		session.close();
 		
 		return result;
+	}
+
+	public int idCheck(String id) {
+		
+		SqlSession session = getSqlSession();
+		
+		int idCount = memberDAO.idCheck(session, id);
+				
+		session.close();
+		
+		return idCount;
+	}
+
+	public int registCleaner(CleanerInfoDTO cleaner, String memberId) {
+		
+		SqlSession session = getSqlSession();
+		
+		
+		
+		int result = memberDAO.registCleaner(session, cleaner);
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int deleteMember(MemberDTO member) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.deleteMember(session, member);
+		return 0;
 	}
 
 }

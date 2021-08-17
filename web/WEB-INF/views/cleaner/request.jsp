@@ -62,7 +62,8 @@
                     <c:forEach var="request" items="${ requestScope.requestList }" varStatus="status">
                         <div style="height: auto; width: 80%; border:3px solid yellowgreen;" class="blog__item__text" id="request${status.count}">
                         	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqNo }"/>
-                        	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqStatus }"/>
+                        	<input type="hidden" name="reqStatus" id="reqStatus" value="${ request.reqStatus }"/>
+                        	<input type="hidden" name="reqDate" id="reqDate" value="${ request.reqDate }"/>
                         	<c:set var="address" value="${ request.address.address }"/>
                         	<c:set var="address1" value="${ fn:substring(address, fn:indexOf(address,'$') + 1, 30) }"/>
                         	<c:set var="address2" value="${ fn:substring(address1, 0, fn:indexOf(address1,'$')) }"/>
@@ -211,63 +212,91 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/main.js"></script>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=572342b1ef19fad40c1a5ac213542717&libraries=services"></script>
 	<script>
-	window.onload = function() {
+		window.onload = function() {
 		
-		$("body").on("click", "[id^=request]", function(){ 
+			$("body").on("click", "[id^=request]", function(){ 
 
-					var address = $(this).children("h3").text();
-				  	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				    mapOption = {
-				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				        level: 3 // 지도의 확대 레벨
-				    };  
+				var address = $(this).children("h3").text();
+				var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				mapOption = {
+				    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				    level: 3 // 지도의 확대 레벨
+			    };  
 	
-					// 지도를 생성합니다    
-					var map = new kakao.maps.Map(mapContainer, mapOption); 
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
-					// 주소-좌표 변환 객체를 생성합니다
-					var geocoder = new kakao.maps.services.Geocoder();
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
 	
-					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch(address, function(result, status) {
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch(address, function(result, status) {
 	
-				    	// 정상적으로 검색이 완료됐으면 
-				    	 if (status === kakao.maps.services.Status.OK) {
+				    // 정상적으로 검색이 완료됐으면 
+				    if (status === kakao.maps.services.Status.OK) {
 							
-				    	    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				    	var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 	
-				    	    // 결과값으로 받은 위치를 마커로 표시합니다
-				    	    var marker = new kakao.maps.Marker({
-				    	        map: map,
-				    	        position: coords
-				    	    });
+				    	// 결과값으로 받은 위치를 마커로 표시합니다
+				    	var marker = new kakao.maps.Marker({
+				    	    map: map,
+				    	    position: coords
+				    	});
 	
-				      	  	// 인포윈도우로 장소에 대한 설명을 표시합니다
-				       	 	var infowindow = new kakao.maps.InfoWindow({
-				      	    content: '<div style="width:150px;text-align:center;padding:6px 0;">의뢰 장소</div>'
-				        	});
-				        	infowindow.open(map, marker);
+				      	// 인포윈도우로 장소에 대한 설명을 표시합니다
+				       	var infowindow = new kakao.maps.InfoWindow({
+				      	content: '<div style="width:150px;text-align:center;padding:6px 0;">의뢰 장소</div>'
+				        });
+				        infowindow.open(map, marker);
 	
-				        	// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-				        	map.setCenter(coords);
-				    	} 
-					});  
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				        map.setCenter(coords);
+				    } 
+				});  
 			 
-			});
-		
-		
-		$("body").on("click", "[id^=ok]", function() {
-				  	const no = this.parentNode.children[0].value;
-					const status = this.parentNode.children[1].value;
-      				console.log(status);
-		        	msg = "정말 선택 하시겠습니까?";
-		        	if (confirm(msg) == true) {	
-		        		location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/accept?no=" + no + "&status=" + status;
-		        	} else {
-		           		return
-		        	}
+			});		
 			
-		});
+			$("body").on("click", "[id^=ok]", function() {
+				const no = this.parentNode.children[0].value;
+				const status = this.parentNode.children[1].value;
+				const reqDate = this.parentNode.children[2].value;
+				
+				var year = reqDate.getFullYear();
+		      	var month = reqDate.getMonth();
+		      	var date = reqDate.getDate();
+		      	console.log(year)
+		      	console.log(month)
+		      	var rDate = new Date(year + "-" + (month + 1) + "-" + date)
+      			console.log(status);
+      			console.log(date)
+      			
+      			$.ajax({
+    				url : "${pageContext.request.contextPath}/cleaner/request/accept/check",
+    				type : 'get',
+    				data : {
+    					date : rDate
+    				},
+    				success : function(data) {
+    					console.log(data);							
+    					
+    					if (data != 1) {
+    							alert("선택할 수 없습니다. 시간 간격이 최소 6시간입니다.")
+    							return;
+    						} 
+    					}, 
+    				error : function() {
+    						return
+    						console.log("실패");
+    				}
+    			});
+		        msg = "정말 선택 하시겠습니까?";
+		        if (confirm(msg) == true) {	
+		        	location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/accept?no=" + no + "&status=" + status;
+		        } else {
+		           	return
+		        }
+			
+			});
 	
 	}
 	

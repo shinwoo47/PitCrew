@@ -57,29 +57,37 @@
 				case "insertAccount" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/account";
 					successMessage = "계좌 정보 등록에 성공하셨습니다!";
+					break;
 
 				case "insertReport" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
 					successMessage = "신고 등록에 성공하셨습니다!";
+					break;
 
 				case "insertProduct" : "상품 추가 성공"
 					movePath = "${ pageContext.servletContext.contextPath }/product/list";
 					successMessage = "상품 추가에 성공하셨습니다!";
+					break;
 				case "deleteBlacklist" : "블랙리스트 삭제 성공"
 					movePath = "${ pageContext.servletContext.contextPath }/blacklist/list";
 					successMessage = "상품 추가에 성공하셨습니다!";
+					break;
 				case "cleanerinsertQuestion" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 등록 성공!";
+					break;
 				case "cleanerupdateQuestion" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 수정 성공!";
+					break;
 				case "updateCleanerInfo" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/member/select";
 					successMessage = "회원정보 수정 성공!";
+					break;
 				case "completeRequest" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/request/manage";
 					successMessage = "의뢰 완료 성공";
+					break;
 
 			}
 

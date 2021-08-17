@@ -74,7 +74,7 @@ body {
 <!------ Include the above in your HEAD tag ---------->
 
 	<div class="container">
-            <form class="form-horizontal" role="form" form id="joinForm" action="${ pageContext.servletContext.contextPath }/cleaner/account/regist" method="post">
+            <form class="form-horizontal" role="form" id="joinForm" onsubmit="return check()" action="${ pageContext.servletContext.contextPath }/cleaner/account/regist" method="post">
                 <h2>계좌 등록</h2>
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label">예금주</label>
@@ -126,8 +126,29 @@ body {
 	 $('#authorizeFrm').click(function(){
          window.open('', '_authForm');
      })
+     
 
 
+	 function check() {
+  	      if($("#accountHolder")[0].value == ""){
+  		        alert("예금주명을 입력해 주세요");
+  		        $("#accountHolder").focus();
+  		        return false;
+  	      }
+  	      
+  	      if($("#bank")[0].value == ""){
+		        alert("은행을 입력해 주세요");
+		        $("#bank").focus();
+		        return false;
+	      }
+	      
+	      if($("#accountNumber")[0].value == ""){
+		        alert("계좌번호를 입력해 주세요");
+		        $("#accountNumber").focus();
+		        return false;
+	      }
+	      return true;
+     }
 	
 
 

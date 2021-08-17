@@ -173,10 +173,14 @@ public class AuthenticationFilter implements Filter {
 		cleanerPermitList.add("/cleaner/member/select");
 		cleanerPermitList.add("/cleaner/member/update");
 		cleanerPermitList.add("/cleaner/request/complete");
+		cleanerPermitList.add("/cleaner/member/delete");
+		cleanerPermitList.add("/cleaner/request/complete/check");
+		cleanerPermitList.add("/cleaner/request/accept/check");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");
 		allPermitList.add("/member/logout");
+		allPermitList.add("/member/idCheck");
 		
 		permitURIList.put("adminPermitList", adminPermitList);
 		permitURIList.put("memberPermitList", memberPermitList);

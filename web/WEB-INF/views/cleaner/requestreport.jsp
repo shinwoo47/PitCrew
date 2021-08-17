@@ -59,7 +59,7 @@
                 <div class="col-lg-8">
                     <div class="blog__details__title">
                         <div class="container">
-                        <form action="${ pageContext.servletContext.contextPath }/cleaner/request/report" method="post" encType="multipart/form-data">
+                        <form action="${ pageContext.servletContext.contextPath }/cleaner/request/report" method="post" onsubmit="return check()" encType="multipart/form-data">
 							  <h2 style="padding-bottom:100px;">신고 작성</h2>      
 							  <table class="table table-hover">
 							    <tbody>
@@ -67,7 +67,6 @@
 							        <td>신고 사유</td>
 							        <td>
 							        	<select style="padding:5px;" id="reportCategory" name="reportCategory">
-											<option></option>
 											<option value="1">폭언 폭행</option>
 											<option value="2">과도한 서비스 요구</option>
 											<option value="3">서비스 범위초과</option>
@@ -85,7 +84,7 @@
 							      <tr>
 							        <td>상세 내용</td>
 							       	<td colspan="3">
-										<textarea name="body" cols="60" rows="15" style="resize:none;"></textarea>
+										<textarea id="body" name="body" cols="60" rows="15" style="resize:none;"></textarea>
 									</td>
 							      </tr>
 							    </tbody>
@@ -197,9 +196,17 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/main.js"></script>
      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=572342b1ef19fad40c1a5ac213542717&libraries=services"></script>
      <script>
+     
+     function check() {
+  	      if($("#body")[0].value == ""){
+  		        alert("내용을 입력해 주세요");
+  		        $("#body").focus();
+  		        return false;
+  	      }
+  	      return true;
+     }
      window.onload = function() {
-		
-		
+
 		
 		$("#report").on("click", function(){ 
 			const no = $("#reqNo").val();

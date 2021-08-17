@@ -18,8 +18,13 @@ public class AccountDAO {
 	}
 
 	public int insertAccountHistory(SqlSession session, AccountDTO accountHistory) {
-		// TODO Auto-generated method stub
+		
 		return session.insert("AccountDAO.insertAccountHistory", accountHistory);
+	}
+
+	public int insertAccount(SqlSession session, CleanerInfoDTO account) {
+		
+		return session.insert("AccountDAO.insertAccount", account);
 	}
 
 }

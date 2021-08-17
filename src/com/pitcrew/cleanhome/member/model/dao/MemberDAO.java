@@ -2,6 +2,7 @@ package com.pitcrew.cleanhome.member.model.dao;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.pitcrew.cleanhome.member.model.dto.CleanerInfoDTO;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
 
@@ -36,9 +37,24 @@ public class MemberDAO {
 		return null;
 	}
 
-	public int deleteMember(SqlSession session, MemberDTO requestMember) {
+	public int deleteMember(SqlSession session, MemberDTO member) {
 		
-		return 0;
+		return session.update("MemberDAO.deleteMember", member);
+	}
+
+	public int idCheck(SqlSession session, String id) {
+		
+		return session.selectOne("MemberDAO.idCheck", id);
+	}
+
+	public int registCleaner(SqlSession session, CleanerInfoDTO cleaner) {
+		
+		return session.insert("MemberDAO.registCleaner", cleaner);
+	}
+
+	public int selectMemNo(SqlSession session, String memberId) {
+		
+		return session.selectOne("MemberDAO.selectMemNo");
 	}
 
 }
