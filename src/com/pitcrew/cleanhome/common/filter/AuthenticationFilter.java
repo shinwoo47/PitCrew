@@ -158,6 +158,7 @@ public class AuthenticationFilter implements Filter {
 		cleanerPermitList.add("/cleaner/account/update");
 
 		cleanerPermitList.add("/cleaner/request/ajax");
+		cleanerPermitList.add("/cleaner/request/ajax2");
 		cleanerPermitList.add("/cleaner/request/detail");
 		cleanerPermitList.add("/cleaner/request/attach");
 		cleanerPermitList.add("/cleaner/request/report");
@@ -168,6 +169,7 @@ public class AuthenticationFilter implements Filter {
 		cleanerPermitList.add("/cleaner/notice/delete");
 		cleanerPermitList.add("/cleaner/member/select");
 		cleanerPermitList.add("/cleaner/member/update");
+		cleanerPermitList.add("/cleaner/request/complete");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");

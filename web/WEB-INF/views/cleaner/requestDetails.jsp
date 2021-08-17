@@ -143,6 +143,7 @@
 						<input type="file" name="after" multiple><br>
 						<button type="submit">전송</button>
 					</form>
+					<button id="complete">완료처리</button>
                     </div>
                 </div>
             </div>
@@ -292,6 +293,18 @@
 			console.log(no)
 			location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/report?no=" + no;
 
+		});
+		
+		$("#complete").on("click", function(){ 
+			const no = $("#reqNo").val();
+			console.log(no)
+        	msg = "의뢰 완료 하시겠습니까?";
+        	if (confirm(msg) == true) {	
+        		location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/complete?no=" + no;
+        	} else {
+           		return
+        	}
+	
 		});
      }
 

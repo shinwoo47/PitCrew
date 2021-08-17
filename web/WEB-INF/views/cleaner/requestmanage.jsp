@@ -45,20 +45,33 @@
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth';
+        initialView: 'dayGridMonth',
         
-        	events: [
-                {
-                    title : 'evt1',
-                    start : '2019-09-03'
-                }
-            ]
+        events: [
+            {
+              title: 'Event1',
+              start: '2011-04-04'
+            },
+            {
+              title: 'Event2',
+              start: '2011-05-05'
+            }
+            // etc...
+          ],
+          backgroundColor: 'yellow',   // an option!
+          textColor: 'white' // an option!
       });
       
       calendar.render();
       
       var date = calendar.getDate();
-      var searchDate = date.toISOString();
+      	var year = date.getFullYear();
+      	var month = date.getMonth();
+      	console.log(year)
+      	console.log(month)
+      	var firstDate = new Date(year + "-" + (month + 1) + "-" + "02")
+      	console.log("firstDate" + firstDate)
+      var searchDate = firstDate.toISOString();
         console.log(searchDate);
         $.ajax({
 			url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax",
@@ -77,13 +90,46 @@
 				console.log(xhr);
 			}
     	});
+        var arr = getCalendarDataInDB();
+        
+        function getCalendarDataInDB(){
+    	    //배열 초기화
+
+    	      console.log("ajax2 : " + searchDate)
+    	    var arr = [];
+    	    $.ajax({
+
+    	        url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax2",
+    	        type:'post',
+    	        success:function(data){
+    	        	for(var i in data) {
+    	    			var calendar2 = data[i];
+						console.log(calendar2)
+						calendar.addEvent( calendar2);
+    	        	}
+    	        	
+    	        },
+    	        error:function(){
+    	            alert('저장 중 에러가 발생했습니다. 다시 시도해 주세요.');
+    	        }
+    	    });
+    	    
+    	    return arr;
+    	}
+
+  	      calendar.render();
         
         $("#match").on("click", function(){ 
 			const status = this.value;
-	        var date = calendar.getDate();
-	        var searchDate = date.toISOString();
-			console.log(status);
-			console.log(searchDate)
+			var date = calendar.getDate();
+	      	var year = date.getFullYear();
+	      	var month = date.getMonth();
+	      	console.log(year)
+	      	console.log(month)
+	      	var firstDate = new Date(year + "-" + (month + 1) + "-" + "02")
+	      	console.log("firstDate" + firstDate)
+	      var searchDate = firstDate.toISOString();
+	        console.log(searchDate);
 			$.ajax({
     			url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax",
     			type: "get",
@@ -102,6 +148,40 @@
     				console.log(xhr);
     			}
         	});
+			
+
+		});
+        
+        $("#complete").on("click", function(){ 
+			const status = this.value;
+			var date = calendar.getDate();
+	      	var year = date.getFullYear();
+	      	var month = date.getMonth();
+	      	console.log(year)
+	      	console.log(month)
+	      	var firstDate = new Date(year + "-" + (month + 1) + "-" + "02")
+	      	console.log("firstDate" + firstDate)
+	      var searchDate = firstDate.toISOString();
+	        console.log(searchDate);
+			$.ajax({
+    			url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax",
+    			type: "get",
+    			data: {
+    				date : searchDate,
+					status : status
+    			},
+    			success: function(data, textStatus, xhr) {
+    				console.log(data);
+    				removeDiv();
+    				createDiv(data)
+    				
+    				
+    			},
+    			error: function(xhr, status, error) {
+    				console.log(xhr);
+    			}
+        	});
+			
 
 		});
 
@@ -127,8 +207,12 @@
     				console.log(xhr);
     			}
         	});
+            
+            
   		});
-      });
+      
+	     
+    });
     
 
   </script>
@@ -162,7 +246,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5">
-                	<button id="match" name="match" value="등록              ">매칭된 의뢰</button><button>완료된 의뢰</button>
+                	<button id="match" name="match" value="매칭              ">매칭된 의뢰</button><button id="complete" name="complete" value="완료              ">완료된 의뢰</button>
                     <div class="blog__sidebar">   
                         
                     </div>
@@ -244,6 +328,8 @@
 				$(".blog__sidebar").append($div);
 		}
 	}
+	
+	
     </script>
     
 </body>

@@ -56,7 +56,7 @@
 					successMessage = "회원 정보 변경에 성공하셨습니다!";
 				case "insertAccount" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/account";
-					successMessage = "회원 정보 변경에 성공하셨습니다!";
+					successMessage = "계좌 정보 등록에 성공하셨습니다!";
 
 				case "insertReport" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
@@ -72,8 +72,11 @@
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 수정 성공!";
 				case "updateCleanerInfo" : 
-					movePath = "${ pageContext.servletContext.contextPath }/cleaner/member/selects";
+					movePath = "${ pageContext.servletContext.contextPath }/cleaner/member/select";
 					successMessage = "회원정보 수정 성공!";
+				case "completeRequest" : 
+					movePath = "${ pageContext.servletContext.contextPath }/cleaner/request/manage";
+					successMessage = "의뢰 완료 성공";
 
 			}
 
