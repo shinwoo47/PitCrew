@@ -65,7 +65,7 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.phone }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ fn:replace(user.address, \"$\", \" \") }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><%-- <c:out value="${  }"></c:out> --%></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button>추가</button></td>
+					<td align="center" style="text-align: center; font-size: 15pt;"><button type="button" id="insertBlacklist">추가</button></td>
 					<!-- <td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td> -->
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ user.entYn }"></c:out></td>
 				</tr>
@@ -73,5 +73,13 @@ table {
 		</table>
 			<jsp:include page="paging.jsp" />
 	</div>
+	<script>
+	if(document.getElementById("insertBlacklist")) {
+		const $addBlacklist = document.getElementById("insertBlacklist");
+		$addBlacklist.onclick = function() {
+			location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/insert";
+		}
+	}
+	</script>
 </body>
 </html>

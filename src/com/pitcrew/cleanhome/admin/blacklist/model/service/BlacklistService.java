@@ -28,4 +28,40 @@ public class BlacklistService {
 		return blacklistList;
 	}
 
+	public int insertBlacklist(UserDTO newBlacklist) {
+
+		SqlSession session = getSqlSession();
+		
+		int result = blacklistDAO.insertBlacklist(session, newBlacklist);
+		
+		if(result > 0) {
+			System.out.println("서비스1" + result);
+			session.commit();
+		} else {
+			System.out.println("서비스0" + result);
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
+	public int deleteBlacklist(int memNo) {
+
+		SqlSession session = getSqlSession();
+		
+		int result = blacklistDAO.deleteBlacklist(session, memNo);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

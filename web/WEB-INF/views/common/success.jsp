@@ -65,6 +65,9 @@
 				case "insertProduct" : "상품 추가 성공"
 					movePath = "${ pageContext.servletContext.contextPath }/product/list";
 					successMessage = "상품 추가에 성공하셨습니다!";
+				case "deleteBlacklist" : "블랙리스트 삭제 성공"
+					movePath = "${ pageContext.servletContext.contextPath }/blacklist/list";
+					successMessage = "상품 추가에 성공하셨습니다!";
 				case "cleanerinsertQuestion" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 등록 성공!";

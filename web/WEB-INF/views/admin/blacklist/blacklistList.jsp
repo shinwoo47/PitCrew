@@ -66,12 +66,20 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.phone }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ blacklist.penaltyScoreSum }"></c:out></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button>삭제</button></td>
+					<td align="center" style="text-align: center; font-size: 15pt;"><button type="button" id="deleteBlacklist">삭제</button></td>
 					<td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ blacklist.entYn }"></c:out></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	<script>
+	if(document.getElementById("deleteBlacklist")) {
+		const $delBlacklist = document.getElementById("deleteBlacklist");
+		$delBlacklist.onclick = function() {
+			location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/delete";
+		}
+	}
+	</script>
 </body>
 </html>

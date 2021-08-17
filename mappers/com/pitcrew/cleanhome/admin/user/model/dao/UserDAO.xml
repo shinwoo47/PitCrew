@@ -32,7 +32,7 @@
 		     , A.ENT_DATE
 		  FROM MEMBER A
 		 WHERE A.MEMBER_ROLE = '사용자'
-		 ORDER BY A.MEM_NO ASC
+		 ORDER BY A.MEM_NO DESC
 	</select>
 
 	<select id="searchUserInfomation" resultMap="userResultMap">
