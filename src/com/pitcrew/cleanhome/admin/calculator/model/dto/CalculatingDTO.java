@@ -9,23 +9,20 @@ import com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO;
 public class CalculatingDTO implements Serializable{
 	
 	private int calNo;
-	private MemberDTO cleaner;
+	private int memNo;
 	private int calPrice;
-	private int transferPrice;
+	private int calTransferPrice;
 	private java.sql.Date calDate;
-	private RequestDTO requestInfo;
 	
 	public CalculatingDTO() {}
 
-	public CalculatingDTO(int calNo, MemberDTO cleaner, int calPrice, int transferPrice, Date calDate,
-			RequestDTO requestInfo) {
+	public CalculatingDTO(int calNo, int memNo, int calPrice, int calTransferPrice, Date calDate) {
 		super();
 		this.calNo = calNo;
-		this.cleaner = cleaner;
+		this.memNo = memNo;
 		this.calPrice = calPrice;
-		this.transferPrice = transferPrice;
+		this.calTransferPrice = calTransferPrice;
 		this.calDate = calDate;
-		this.requestInfo = requestInfo;
 	}
 
 	public int getCalNo() {
@@ -36,12 +33,12 @@ public class CalculatingDTO implements Serializable{
 		this.calNo = calNo;
 	}
 
-	public MemberDTO getCleaner() {
-		return cleaner;
+	public int getMemNo() {
+		return memNo;
 	}
 
-	public void setCleaner(MemberDTO cleaner) {
-		this.cleaner = cleaner;
+	public void setMemNo(int memNo) {
+		this.memNo = memNo;
 	}
 
 	public int getCalPrice() {
@@ -52,12 +49,12 @@ public class CalculatingDTO implements Serializable{
 		this.calPrice = calPrice;
 	}
 
-	public int getTransferPrice() {
-		return transferPrice;
+	public int getCalTransferPrice() {
+		return calTransferPrice;
 	}
 
-	public void setTransferPrice(int transferPrice) {
-		this.transferPrice = transferPrice;
+	public void setCalTransferPrice(int calTransferPrice) {
+		this.calTransferPrice = calTransferPrice;
 	}
 
 	public java.sql.Date getCalDate() {
@@ -68,20 +65,12 @@ public class CalculatingDTO implements Serializable{
 		this.calDate = calDate;
 	}
 
-	public RequestDTO getRequestInfo() {
-		return requestInfo;
-	}
-
-	public void setRequestInfo(RequestDTO requestInfo) {
-		this.requestInfo = requestInfo;
-	}
-
 	@Override
 	public String toString() {
-		return "CalculatingDTO [calNo=" + calNo + ", cleaner=" + cleaner + ", calPrice=" + calPrice + ", transferPrice="
-				+ transferPrice + ", calDate=" + calDate + ", requestInfo=" + requestInfo + "]";
+		return "CalculatingDTO [calNo=" + calNo + ", memNo=" + memNo + ", calPrice=" + calPrice + ", calTransferPrice="
+				+ calTransferPrice + ", calDate=" + calDate + "]";
 	}
-	
+
 	
 	
 }
