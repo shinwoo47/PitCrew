@@ -2,6 +2,7 @@ package com.pitcrew.cleanhome.admin.calculator.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO;
+import com.pitcrew.cleanhome.admin.calculator.model.dto.DeductRateDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.service.CalculatingService;
 import com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.common.paging.AdminPagenation;
@@ -23,9 +26,62 @@ public class SelectCalculating extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("controller 진입 성공");
 
-		/* 계산할 금액들을 불러온다*/
+		/* 입력받은 정산 기간을 hashMap에 넣기*/
+		String searchStartDate = null;
+		if(request.getParameter("searchStartDate") != null && !"".equals(request.getParameter("searchStartDate"))) {
+			searchStartDate = (request.getParameter("searchStartDate"));
+		}
+		
+		String searchEndDate = null;
+		if(request.getParameter("searchEndDate") != null && !"".equals(request.getParameter("searchEndDate"))) {
+			searchEndDate = (request.getParameter("searchEndDate"));
+		}
+		
+		Map<String, String> searchMap = new HashMap<>();
+		searchMap.put("searchStartDate", searchStartDate); // 날짜 조회
+		searchMap.put("searchEndDate", searchEndDate); // 날짜 조회
+		
+		
+		/* 해당 기간에 맞는, 계산할 금액들을 불러온다*/
 		CalculatingService calculatingService = new CalculatingService();
-		List<CalculatingDTO> calSettingList = calculatingService.selectCalSetting();
+		List<CalSettingDTO> calSettingList = calculatingService.selectCalSetting(searchMap);
+		System.out.println("controller calSettingList : " + calSettingList);
+		
+		List<DeductRateDTO> deductRateList = calculatingService.selectDeductRate();
+		System.out.println("controller rate List : " + deductRateList);
+		
+		for(int i = 0; i < calSettingList.size(); i++) {
+			int deductSum = 0;
+			int calPrice = calSettingList.get(i).getPay().getPrice();
+			for(int j = 0; j < deductRateList.size(); j++) {
+				if((deductRateList.get(j).getDeductName()).equals("VAT")) {
+					float vat = deductRateList.get(j).getRate();
+					int supplyPrice = (int) (calPrice - (calPrice/(1+vat)));
+				}
+				deductSum += (calPrice * vat); 
+			}
+			int calTransferPrice = calPrice - deductSum;
+			System.out.println("for문 정산 금액 : " + calTransferPrice);
+		}
+		
+		
+		/* 계산할 금액과 공제율을 꺼낸다 
+		Iterator<CalculatingDTO> iter = calSettingList.iterator();
+		Iterator<DeductRateDTO> drate = deductRateList.iterator();
+		
+		
+		while(iter.hasNext()) {
+			while(drate.hasNext()) {
+				String deductName = drate.next().getDeductName(); 
+			System.out.println(deductName);
+			}
+			
+		}*/
+		
+		
+		
+		
+		
 		
 		
 		
@@ -39,16 +95,16 @@ public class SelectCalculating extends HttpServlet {
 				
 		
 		
-		
-		/* 페이징 처리 */
+	
+		/* 페이징 처리 
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 
 		if(currentPage != null && !"".equals(currentPage)) {
 			pageNo = Integer.parseInt(currentPage);
 		}
-
-		/* 0보다 작은 숫자값을 입력해도 1페이지를 보여준다 */
+*/
+		/* 0보다 작은 숫자값을 입력해도 1페이지를 보여준다 
 		if(pageNo <= 0) {
 			pageNo = 1;
 		}
@@ -76,9 +132,9 @@ public class SelectCalculating extends HttpServlet {
 		
 		
 		String searchStatus = request.getParameter("searchStatus");
-		String searchStatusValue = null;
+		String searchStatusValue = null;*/
 		
-		/* 정산상태 db랑 텍스트 일치 시키기 */
+		/* 정산상태 db랑 텍스트 일치 시키기 
 		if(request.getParameter("statusValue") != null && !"".equals(request.getParameter("statusValue"))) {
 			switch(request.getParameter("statusValue")) {
 				case "매칭 신청" : searchStatusValue = "등록"; break;
@@ -99,23 +155,23 @@ public class SelectCalculating extends HttpServlet {
 		searchMap.put("searchStartDate", searchStartDate); // 날짜 조회
 		searchMap.put("searchEndDate", searchEndDate); // 날짜 조회
 		searchMap.put("searchStatus", searchStatus); // 상태 선택
-		searchMap.put("searchStatusValue", searchStatusValue);
+		searchMap.put("searchStatusValue", searchStatusValue);*/
 		
 		/* 전체 게시물 수가 필요하다.
 		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
 		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
-		 * */
+		 * 
 		
 		int totalCount = calculatingService.selectTotalCount(searchMap);
 
-		System.out.println("totalCount : " + totalCount);
+		System.out.println("totalCount : " + totalCount);*/
 
-		/* 한 페이지에 보여 줄 게시물 수 */
-		int limit = 15;		
-		/* 한 번에 보여질 페이징 버튼의 갯수 */
-		int buttonAmount = 5;
+		/* 한 페이지에 보여 줄 게시물 수 
+		int limit = 15;	*/	
+		/* 한 번에 보여질 페이징 버튼의 갯수
+		int buttonAmount = 5; */
 
-		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
+		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다.
 		SelectAdminCriteria selectAdminCriteria = null;
 
 		if(searchCondition != null && !"".equals(searchCondition)) {
@@ -125,9 +181,9 @@ public class SelectCalculating extends HttpServlet {
 			selectAdminCriteria = AdminPagenation.getSelectAdminCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
 
-		System.out.println(selectAdminCriteria);
+		System.out.println(selectAdminCriteria); */
 
-		/* 조회해온다 */
+		/* 조회해온다 
 		List<CalculatingDTO> calList = calculatingService.selectCalList(selectAdminCriteria);
 
 		System.out.println("calList : " + calList);
@@ -135,7 +191,7 @@ public class SelectCalculating extends HttpServlet {
 		
 		
 		
-		String path = "";
+		String path = "";*/
 		
 		/*		
 		if(calList != null) {
@@ -146,10 +202,10 @@ public class SelectCalculating extends HttpServlet {
 			path = "/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "목록 조회 실패!");
 		}
-*/
+
 		
 		
-		request.getRequestDispatcher(path).forward(request, response);
+		request.getRequestDispatcher(path).forward(request, response);*/
 
 	}
 

@@ -22,6 +22,12 @@
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
              <br><h2 class="pageheader-title">정산 조회 </h2><br>
 			 <form method="post">
+			 
+			 <div style="color: black;">
+             <label style="padding:10px;">* 정산일자 : </label>
+             <input type="date" id="searchStartDate" name="searchStartDate"> ~ <input type="date" id="searchEndDate" name="searchEndDate">
+             </div>
+			 
 			 <div style="color: black;">
 			 <label style=" margin: 5px; padding: 10px;">검  색 : </label>
 			 <select style="padding:5px;" id="searchCondition" name="searchCondition">
@@ -29,13 +35,10 @@
 				<option value="cleanerId">해결사 아이디</option>
 				<option value="cleanerName">청소 해결사명</option>
 			 </select>
-			 	<input type="text" placeholder="검색어를 입력하세요" id="searchValue" name="searchValue" 
+			 	<input type="text" id="searchValue" name="searchValue" 
 			 		    style="width: 300px; margin: 10px;" >	                       
              </div>  
-             <div style="color: black;">
-             <label style="padding:10px;">정산일자 : </label>
-             <input type="date" id="searchStartDate" name="searchStartDate"> ~ <input type="date" id="searchEndDate" name="searchEndDate">
-             </div>
+             
              <div style="color: black;">
              <label style="margin: 5px;">정산 상태 : </label>
             <label class="custom-control custom-radio custom-control-inline">
