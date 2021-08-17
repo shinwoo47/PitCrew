@@ -12,9 +12,6 @@ public class SelectMyEndRequest extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String path = "/WEB-INF/views/user/request/paymentProceed.jsp";
-		
-		request.getRequestDispatcher(path).forward(request, response);
 		
 	}
 

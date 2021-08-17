@@ -182,10 +182,10 @@
     <!-- Section Section Start -->
 	<section class="blog">
 		<div class="nav-container">
-			<input type="button" class="nav-req-btn" id="btn1" value="전체" > 
-			<input type="button" class="nav-req-btn" id="btn2" value="매칭신청" > 
-			<input type="button" class="nav-req-btn" id="btn3" value="매칭완료" > 
-			<input type="button" class="nav-req-btn" id="btn4" value="종료된의뢰"> 
+			<input type="button" class="nav-req-btn" id="allReqBtn" value="전체" > 
+			<input type="button" class="nav-req-btn" id="registReqBtn" value="매칭신청" > 
+			<input type="button" class="nav-req-btn" id="endRegistReqBtn" value="매칭완료" > 
+			<input type="button" class="nav-req-btn" id="endReqBtn" value="종료된의뢰"> 
 		</div>
 		<div class="req-list-container">
 			<div id="containerp-list" class="containerp-list">
@@ -270,22 +270,22 @@
      	
 	</c:forEach>
 	
-     if(document.getElementById("btn2")) {
-		 const $registRequest = document.getElementById("btn2");
+     if(document.getElementById("registReqBtn")) {
+		 const $registRequest = document.getElementById("registReqBtn");
 		 $registRequest.onclick = function() {
 			 location.href = "/pitcrew/user/regist/request";
 		 }
      }
      
-     if(document.getElementById("btn3")) {
-         const $endRegistRequest = document.getElementById("btn3");
+     if(document.getElementById("endRegistReqBtn")) {
+         const $endRegistRequest = document.getElementById("endRegistReqBtn");
     	 $endRegistRequest.onclick = function() {
 			 location.href = "/pitcrew/user/end/regist/request";
 		 }
      } 
 
-     if(document.getElementById("btn4")) {
-    	 const $endRequest = document.getElementById("btn4");
+     if(document.getElementById("endReqBtn")) {
+    	 const $endRequest = document.getElementById("endReqBtn");
     	 $endRequest.onclick = function() {
 			 location.href = "/pitcrew/user/end/request";
 		 }

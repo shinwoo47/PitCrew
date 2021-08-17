@@ -42,4 +42,13 @@ public class MyReqService {
 	
 	}
 
+//	public UserRequestDTO payRequest(UserRequestDTO payRequestInfo) {
+//		
+//		SqlSession session = getSqlSession();
+//		
+//		int result = UserDAO.payRequest
+//		
+//		return null;
+//	}
+
 }
