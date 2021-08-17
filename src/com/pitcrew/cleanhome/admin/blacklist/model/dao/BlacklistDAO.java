@@ -12,4 +12,13 @@ public class BlacklistDAO {
 		return session.selectList("BlacklistDAO.selectAllBlacklist");
 	}
 
+	public int insertBlacklist(SqlSession session, UserDTO newBlacklist) {
+		return session.insert("BlacklistDAO.insertBlacklist", newBlacklist);
+	}
+
+	public int deleteBlacklist(SqlSession session, int memNo) {
+		
+		return session.delete("BlacklistDAO.deleteBlacklist", memNo);
+	}
+
 }

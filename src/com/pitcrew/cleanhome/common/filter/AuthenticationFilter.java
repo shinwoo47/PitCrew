@@ -123,6 +123,8 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/product/insert");
 		adminPermitList.add("/admin/product/update");
 		adminPermitList.add("/admin/select/allblacklist");
+		adminPermitList.add("/admin/blacklist/insert");
+		adminPermitList.add("/admin/blacklist/delete");
 		
 
 

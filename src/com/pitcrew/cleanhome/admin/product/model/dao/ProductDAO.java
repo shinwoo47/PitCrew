@@ -18,7 +18,7 @@ public class ProductDAO {
 	}
 
 	public int updateProduct(SqlSession session, com.pitcrew.cleanhome.admin.product.model.dto.ProductDTO updateProduct) {
-		System.out.println("박박박");
+
 		return session.update("ProductDAO.updateProduct", updateProduct);
 	}
 

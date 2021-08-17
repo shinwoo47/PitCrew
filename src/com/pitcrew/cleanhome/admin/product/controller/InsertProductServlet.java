@@ -22,6 +22,9 @@ public class InsertProductServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.out.println("asldkjal;iksjdl;okijasd;lkj");
+		
 		int serNo = Integer.parseInt(request.getParameter("serNo"));
 		String serCategory = request.getParameter("serCategory");
 		String serName = request.getParameter("serName");

@@ -34,8 +34,6 @@ public class SelectAllUserInfoServlet extends HttpServlet {
       if (searchCondition.equals("")) { // 사용자 관리 페이지에 처음 들어왔을 경우,
          List<UserDTO> userList = new UserService().selectAllUserInfoList();
 
-         System.out.println("서블릿 유저리스트 : " + userList);
-         
          String path = "";
          if(userList != null) {
             path = "/WEB-INF/views/admin/user/userList.jsp";

@@ -48,4 +48,26 @@
 		  FROM MEMBER A
           JOIN BLACKLIST B ON (B.MEM_NO = A.MEM_NO)
 	</select>
+	
+	<insert id="insertBlacklist">
+        INSERT
+          INTO BLACKLIST A
+          (
+            A.BLACKLIST_NO
+          , A.PENALTY_SCORE_SUM
+          , A.MEM_NO
+          )
+          VALUES
+          (
+            2
+          , #{ penaltyScoreSum }
+          , #{ memNo }
+          )
+	</insert>
+	
+	<delete id="deleteBlacklist">
+		DELETE
+		  FROM BLACKLIST
+		 WHERE MEM_NO = #{ memNo }
+	</delete>
 </mapper>
