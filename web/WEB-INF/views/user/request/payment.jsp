@@ -259,13 +259,11 @@ table.type05 td {
 			*/
 			name: '주문명:결제테스트',
 			//결제창에서 보여질 이름
-			amount: "${ clean.proPrice }",
+			amount: '100',
 			//가격
 			buyer_email: "${ clean.email }",
 			buyer_name: "${ clean.memName}",
 			buyer_tel: "${ clean.phone }",
-			buyer_addr: "${ fn:replace(clean.address, \"$\" , \" \") }",
-			buyer_postcode: '123-456',			
 			/*
 			모바일 결제시,
 			결제가 끝나고 랜딩되는 URL을 지정
@@ -274,6 +272,7 @@ table.type05 td {
 		}, function (rsp) {
 			console.log(rsp);
 			if (rsp.success) {
+				console.log("${ clean.reqDate }");
 				$.ajax({
 					url: "${PageContext.servletContext.contextPath}/user/pay/request",
 					type: 'POST',
@@ -281,10 +280,10 @@ table.type05 td {
 						reqNo: rsp.imp_uid,
 						serPrice: rsp.paid_amount,
 						reqDate: "${ clean.reqDate }",
-						reqOption: "${ clean.productNo}",
-						reqOption1: "${ clean.optionNo1}",
-						reqOption2: "${ clean.optionNo2}",
-						reqContent: "${ clean.content}",												
+						productNo: "${ clean.productNo }",
+						reqOption1: "${ clean.optionNo1 }",
+						reqOption2: "${ clean.optionNo2 }",
+						reqReq: "${ clean.reqReq }",
 					},
 					
 					success : function(data, textStatus, xhr) {

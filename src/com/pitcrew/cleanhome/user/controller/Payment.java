@@ -57,7 +57,7 @@ public class Payment extends HttpServlet {
 			System.out.println(productNo.get(2));
 		}
 		//내용
-		clean.setDemand(request.getParameter("content"));
+		clean.setReqReq(request.getParameter("content"));
 		
 		String ta = request.getParameter("start");
 		String tb = request.getParameter("startTime");

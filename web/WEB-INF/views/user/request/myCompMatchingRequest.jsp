@@ -7,7 +7,6 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
     <meta name="description" content="Loanday Template">
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -252,7 +251,7 @@
 </body>
 
      <script>
-	<c:forEach var="products" items="${requestScope.myRegistRequest}" varStatus="status">
+	<c:forEach var="products" items="${requestScope.selectMyAllReq}" varStatus="status">
 		var grpName = "";
 		var grpPrice = 0;
 		var grpPhone = "";

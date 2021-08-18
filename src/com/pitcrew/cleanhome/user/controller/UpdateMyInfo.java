@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 import com.pitcrew.cleanhome.user.model.service.MyInfoService;
 
-@WebServlet("/user/update/myInfo")
+@WebServlet("/user/member/updateInfo")
 public class UpdateMyInfo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class UpdateMyInfo extends HttpServlet {
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		
 		int memNo = loginMember.getMemNo();
-		String pwd = request.getParameter("newPwd");
+		String pwd = request.getParameter("memberPwd");
 		String address = request.getParameter("zipCode") + "$" + request.getParameter("address1") + "$" + request.getParameter("address2");
 		String email = request.getParameter("updateEmail");
 		

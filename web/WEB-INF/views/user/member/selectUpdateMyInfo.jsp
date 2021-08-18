@@ -95,7 +95,7 @@ table.type09 td {
 	<section class="section">
 	<h2 align="center">정보 수정</h2>
 	<br><br><br><br>
-	<form action="${ pageContext.servletContext.contextPath }/user/update/myInfo" method="post">
+	<form name="updateInfo" action="${ pageContext.servletContext.contextPath }/user/member/updateInfo" method="post">
 	<table class="type09" align="center">
         <c:forEach items="${ selectUpdateMyInfo }" var="selectUpdateMyInfo">
         <tbody>        
@@ -111,7 +111,7 @@ table.type09 td {
                 <th rowspan="3" scope="row">비밀번호 변경</th>
             </tr>
             <tr>
-                <td><label>새 비밀번호 </label> <input type="password" name="newPwd" id="newPwd"></td>
+                <td><label>새 비밀번호 </label> <input type="password" name="memberPwd" id="memberPwd"></td>
             </tr>
             <tr>
                 <td><label>다시 입력 </label> <input type="password" name="retypeNewPwd" id="retypeNewPwd"></td>
