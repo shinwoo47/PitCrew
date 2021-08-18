@@ -306,30 +306,30 @@
 		
 		$("#complete").on("click", function(){ 
 			const no = $("#reqNo").val();
-			
-			$.ajax({
-				url : "${pageContext.request.contextPath}/cleaner/request/complete/check?no=" + no,
-				type : 'get',
-				data: {
-					reqNo : no
-				},
-				success : function(data) {
-					console.log(data);							
-					
-					if (data != 1) {
-							alert("아직 완료할 수 없습니다. 청소시작 시간 기준 하루가 지나야 가능합니다.")
-							return;
-						} 
-					}, 
-				error : function() {
-						return
-						console.log("실패");
-				}
-			});
 			console.log(no)
         	msg = "의뢰 완료 하시겠습니까?";
         	if (confirm(msg) == true) {	
-        		location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/complete?no=" + no;
+        		$.ajax({
+    				url : "${pageContext.request.contextPath}/cleaner/request/complete/check?no=" + no,
+    				type : 'get',
+    				data: {
+    					reqNo : no
+    				},
+    				success : function(data) {
+    					console.log(data);							
+    					
+    					if (data != 1) {
+    							alert("아직 완료할 수 없습니다. 청소시작 시간 기준 하루가 지나야 가능합니다.")
+    							return;
+    						} else {
+    							location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/complete?no=" + no;
+    						}
+    					}, 
+    				error : function() {
+    						return
+    						console.log("실패");
+    				}
+    			});
         	} else {
            		return
         	}

@@ -229,5 +229,6 @@
 	      FROM REQUEST_INFO A
 	      JOIN MEMBER B ON (A.MEM_NO_CLEANER = B.MEM_NO)
 	     WHERE B.MEM_NO = #{ memNo }
+	       AND A.REQ_STATUS = '매칭'
 	</select>
 </mapper>
