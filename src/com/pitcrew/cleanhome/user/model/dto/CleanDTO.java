@@ -15,6 +15,7 @@ public class CleanDTO implements java.io.Serializable {
 	private int optionNo1;		//옵션번호1
 	private int optionNo2;		//옵션번호2
 	private int proPrice;		//의뢰가격
+	private String impUid;
 	
 	private String demand;		//요구사항
 	
@@ -42,9 +43,9 @@ public class CleanDTO implements java.io.Serializable {
 
 
 	public CleanDTO(int cleanNo, String name, String content, double time, int price, String category, String imgNo,
-			int productNo, int optionNo1, int optionNo2, int proPrice, String demand, int reqNo, Date reqDate,
-			String rewDate, String reqReq, int memNoUser, String reqCon, String memName, String email, String phone,
-			String address) {
+			int productNo, int optionNo1, int optionNo2, int proPrice, String impUid, String demand, int reqNo,
+			Date reqDate, String rewDate, String reqReq, int memNoUser, String reqCon, String memName, String email,
+			String phone, String address) {
 		super();
 		this.cleanNo = cleanNo;
 		this.name = name;
@@ -57,6 +58,7 @@ public class CleanDTO implements java.io.Serializable {
 		this.optionNo1 = optionNo1;
 		this.optionNo2 = optionNo2;
 		this.proPrice = proPrice;
+		this.impUid = impUid;
 		this.demand = demand;
 		this.reqNo = reqNo;
 		this.reqDate = reqDate;
@@ -227,6 +229,20 @@ public class CleanDTO implements java.io.Serializable {
 
 
 
+	public String getImpUid() {
+		return impUid;
+	}
+
+
+
+
+	public void setImpUid(String impUid) {
+		this.impUid = impUid;
+	}
+
+
+
+
 	public String getDemand() {
 		return demand;
 	}
@@ -366,29 +382,30 @@ public class CleanDTO implements java.io.Serializable {
 
 
 
-
 	public String getAddress() {
 		return address;
 	}
-
-
-
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
 
-
-
 	@Override
 	public String toString() {
 		return "CleanDTO [cleanNo=" + cleanNo + ", name=" + name + ", content=" + content + ", time=" + time
 				+ ", price=" + price + ", category=" + category + ", imgNo=" + imgNo + ", productNo=" + productNo
-				+ ", optionNo1=" + optionNo1 + ", optionNo2=" + optionNo2 + ", proPrice=" + proPrice + ", demand="
-				+ demand + ", reqNo=" + reqNo + ", reqDate=" + reqDate + ", rewDate=" + rewDate + ", reqReq=" + reqReq
-				+ ", memNoUser=" + memNoUser + ", reqCon=" + reqCon + ", memName=" + memName + ", email=" + email
-				+ ", phone=" + phone + ", address=" + address + "]";
+				+ ", optionNo1=" + optionNo1 + ", optionNo2=" + optionNo2 + ", proPrice=" + proPrice + ", impUid="
+				+ impUid + ", demand=" + demand + ", reqNo=" + reqNo + ", reqDate=" + reqDate + ", rewDate=" + rewDate
+				+ ", reqReq=" + reqReq + ", memNoUser=" + memNoUser + ", reqCon=" + reqCon + ", memName=" + memName
+				+ ", email=" + email + ", phone=" + phone + ", address=" + address + "]";
 	}
+
+
+
+	
+
+
+
 	
 }

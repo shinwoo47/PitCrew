@@ -1,7 +1,8 @@
 package com.pitcrew.cleanhome.user.request.controller;
 
-import java.io.IOException;
-import java.sql.Date;
+import java.io.IOException; 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,72 +12,99 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
-import com.pitcrew.cleanhome.user.model.dto.CleanDTO;
-import com.pitcrew.cleanhome.user.request.model.dto.UserRequestDTO;
-import com.pitcrew.cleanhome.user.request.model.service.MyReqService;
+import com.pitcrew.cleanhome.user.request.model.dto.PaymentDTO;
+import com.pitcrew.cleanhome.user.request.model.service.PayServices;
 
 @WebServlet("/user/pay/request")
 public class UserPayRequestServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		
-		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
-		
-//		int memNoUser = loginMember.getMemNo();
-		String reqNo = request.getParameter("reqNo");
-		int serPrice = Integer.parseInt(request.getParameter("serPrice"));
-		Date reqDate = Date.valueOf(request.getParameter("reqDate"));
-		int productNo = Integer.parseInt(request.getParameter("reqOptionNo"));
-		int optionNo1 = Integer.parseInt(request.getParameter("reqOptionNo1"));
-		int optionNo2 = Integer.parseInt(request.getParameter("reqOptionNo2"));
-		
-		System.out.println("reqNo");
-		
-		CleanDTO payReqInfo = new CleanDTO();
-		payReqInfo.setMemNoUser(loginMember.getMemNo());
-//		payReqInfo.setReqNo(reqNo);
-		payReqInfo.setProPrice(serPrice);
-		payReqInfo.setReqDate(reqDate);
-		payReqInfo.setProductNo(productNo);
-		payReqInfo.setOptionNo1(optionNo1);
-		payReqInfo.setOptionNo2(optionNo2);
-		
-		System.out.println("payReqInfo : " + payReqInfo);
-		
-		
-//		int result = new MyReqService().payRequest(payReqInfo);
-		
-		String path = "";
-		if(payReqInfo != null) {
-			path = "/WEB-INF/views/user/services.jsp";
-			
-		} else {
-			System.out.println("에러 ㅋ");
-		}
-		
-		request.getRequestDispatcher(path).forward(request, response);
-		
-		
-		
-		
-		
-//		int memNoUser = loginMember.getMemNo();
-//		int reqNo = Integer.parseInt(request.getParameter("reqNo"));
-//		int serPrice = Integer.parseInt(request.getParameter("serPrice"));
-//		Date reqDate = Date.valueOf(request.getParameter("reqDate"));
-//		
-//		CleanDTO payReqInfo = new CleanDTO();
-//		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      
+      HttpSession session = request.getSession();
+      
+      MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
+
+      PaymentDTO payment = new PaymentDTO();
+      
+//      int memNoUser = loginMember.getMemNo();
+      int productNo = Integer.parseInt(request.getParameter("productNo"));
+      int optionNo1 = Integer.parseInt(request.getParameter("reqOption1"));
+      int optionNo2 = Integer.parseInt(request.getParameter("reqOption2"));
+      int price = Integer.parseInt(request.getParameter("serPrice"));
+      String impUid = request.getParameter("impUid");
+      int serPrice = Integer.parseInt(request.getParameter("serPrice"));
+      String reqDate = request.getParameter("reqDate");
+      String reqReq = request.getParameter("reqReq");
+      
+      SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+      System.out.println("reqDate : " + reqDate);
+      System.out.println("impUid : " + impUid);
+      System.out.println("reqNo");
+      
+      /* RequestInfoDTO */
+      try {
+         payment.setReqDate(format2.parse(reqDate));
+      } catch (ParseException e) {
+         e.printStackTrace();
+      }
+      payment.setReqReq(reqReq);
+      payment.setMemNoUser(loginMember.getMemNo());
+      
+      //상품번호
+      int number[] = new int[3];
+      number[0] = productNo;
+      number[1] = optionNo1;
+      number[2] = optionNo2;
+      
+      
+      payment.setSerNo(number);
+      //결제번호
+      payment.setPayApprovalNo(impUid);
+      //결제금액
+      payment.setPayPrice(serPrice);
+     /*ProductByReqDTO*/
+      PayServices payServices = new PayServices();
+      
+      int result = 0;
+      payment = payServices.insertIndirect(payment);
+      result += payServices.insertRequest(payment);
+      result += payServices.insertReqInfo(payment);
+      result += payServices.insertPayHistory(payment);
+      result += payServices.insertProductByReq(payment);
+      
+      System.out.println("insert 값 = " + result);
+      String path = "";
+      
+      if(result >= 5) {
+         System.out.println("서블릿 result = " + result);
+         path = "/WEB-INF/views/user/services.jsp";
+      } else {
+         path ="/WEB-INF/views/common/failed.jsp";
+         request.setAttribute("message", "insert실패");
+      }
+         
+      
+      request.getRequestDispatcher(path).forward(request, response);
+      
+      
+      
+      
+      
+//      int memNoUser = loginMember.getMemNo();
+//      int reqNo = Integer.parseInt(request.getParameter("reqNo"));
+//      int serPrice = Integer.parseInt(request.getParameter("serPrice"));
+//      Date reqDate = Date.valueOf(request.getParameter("reqDate"));
+//      
+//      CleanDTO payReqInfo = new CleanDTO();
+//      
+      
+      
+      
+      
+      
+      
+      
+      
+   }
 
 }

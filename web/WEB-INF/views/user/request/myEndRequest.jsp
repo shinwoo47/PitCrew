@@ -66,7 +66,7 @@
 		background: white;
 		text-align: center;
 	}
-	.nav-req-btn:nth-child(1) {
+	.nav-req-btn:nth-child(2) {
 		color: white;
 		background-color: yellowgreen;
 	}
@@ -217,15 +217,15 @@
 		<div class="req-list-container">
 			<div id="containerp-list" class="containerp-list">
 
-<%-- 			<c:forEach items="${ requestScope.selectMyAllReq }" var="myAllReq"> --%>
+<%-- 			<c:forEach items="${ requestScope.myRegistRequest }" var="myRegistReq"> --%>
 <!-- 				<div class="containerp"> -->
 <!-- 					<div class="containerp-top"> -->
-<%-- 						<div> <c:out value="${ myAllReq.reqDate }"/> <c:out value="${ myAllReq.reqStatus }"/> </div> --%>
+<%-- 						<div> <c:out value="${ myRegistReq.reqDate }"/> <c:out value="${ myRegistReq.reqStatus }"/> </div> --%>
 <!-- 						<div class="req_detail"> -->
 <!-- 							<a href="">의뢰상세보기 ></a> -->
 <!-- 						</div> -->
 <!-- 					</div> -->
-<%-- 				<c:forEach items="${ myAllReq.productList }" var="product"> --%>
+<%-- 				<c:forEach items="${ myRegistReq.productList }" var="product"> --%>
 <!-- 					<div class="containerp-section"> -->
 <!-- 						<div class="req-name-container"> -->
 <!-- 							<div>상품명 : </div> -->
@@ -251,8 +251,8 @@
     <!-- Search End -->
 </body>
 
-	<script>
-	<c:forEach var="products" items="${requestScope.selectMyAllReq}" varStatus="status">
+     <script>
+	<c:forEach var="products" items="${requestScope.myeEndRequest}" varStatus="status">
 		var grpName = "";
 		var grpPrice = 0;
 		var grpPhone = "";
@@ -266,7 +266,6 @@
      		grpPhone = "${products.phone.phone}";
      		grpReqDate = "${products.reqDate}";
      		grpReqStatus = "${products.reqStatus}";
-     		grpNo = "${ products.reqNo}"
      	</c:forEach>
      	
      	$("#containerp-list").append(
@@ -274,7 +273,6 @@
 			+ 	'<div class="containerp-top">'
 			+ 		'<div> ' + grpReqDate + ' ' + grpReqStatus + '</div>'
 			+ 		'<div class="req_detail">'
-			+			'<input type="hidden" id="reqNo" value=' + grpNo + '>'
 			+ 			'<button id="req_detailBtn">의뢰상세보기 ></button>'
 			+ 		'</div>'
 			+ 	'</div>'
@@ -299,6 +297,13 @@
      	
 	</c:forEach>
 	
+     if(document.getElementById("allReqBtn")) {
+		 const $registRequest = document.getElementById("allReqBtn");
+		 $registRequest.onclick = function() {
+			 location.href = "/pitcrew/user/select/myRequest";
+		 }
+     }
+     
      if(document.getElementById("registReqBtn")) {
 		 const $registRequest = document.getElementById("registReqBtn");
 		 $registRequest.onclick = function() {
@@ -319,24 +324,7 @@
 			 location.href = "/pitcrew/user/end/request";
 		 }
      } 
-	 
-     window.onload = function() {
-    	 
-    	 const $detail = $("div > #req_detailBtn");
-    	 const $reqNo = $("div > #reqNo");
-    	 
-    	 console.log("hi")
-    	 console.log($detail)
-    	 console.log($reqNo)
-    	 $detail.on("click", function(){ 
-    		 	const no = this.parentNode.children[0].value;
-				console.log(no)
- 			location.href = "${ pageContext.servletContext.contextPath }/user/request/detail?no=" + no;
-
- 		});
-     }
-      
-      
+     
      </script>
      
      

@@ -27,7 +27,7 @@ public class SelectMyRequestServlet extends HttpServlet {
 		
 		List<UserRequestDTO> selectMyAllReq = new MyReqService().selectMyAllReq(memNoUser);
 		
-		System.out.println(selectMyAllReq.getClass().getName());
+		System.out.println(selectMyAllReq);
 		 		
 		String path = "";
 		

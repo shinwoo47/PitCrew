@@ -1,4 +1,4 @@
-package com.pitcrew.cleanhome.user.controller;
+package com.pitcrew.cleanhome.user.request.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -27,7 +27,6 @@ public class UserRequestDetailServlet extends HttpServlet {
 		
 		UserRequestDTO userRequestDTO = new UserRequestDTO();
 		userRequestDTO.setReqNo(no);
-		userRequestDTO.setReqStatus(status);
 		userRequestDTO.setMemNoUser(member.getMemNo());
 		
 		UserRequestDTO requestDetail = new MyReqService().selectRequestDetail(userRequestDTO);
