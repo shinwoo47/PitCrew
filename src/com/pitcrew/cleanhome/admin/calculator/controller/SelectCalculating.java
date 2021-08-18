@@ -87,7 +87,7 @@ public class SelectCalculating extends HttpServlet {
 					} 
 				}
 
-				supplyPrice = (int)(Math.floor((calPrice/(1+vat)) / 10)) * 10; // 공급가액
+				supplyPrice = (int)(Math.floor((calPrice/(1+vat)) / 10)   ) * 10; // 공급가액
 
 				System.out.println("공급가액 : " + supplyPrice);
 

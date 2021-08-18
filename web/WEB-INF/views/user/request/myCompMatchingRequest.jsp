@@ -272,7 +272,7 @@
 			+ 	'<div class="containerp-top">'
 			+ 		'<div> ' + grpReqDate + ' ' + grpReqStatus + '</div>'
 			+ 		'<div class="req_detail">'
-			+ 			'<a href="">의뢰상세보기 ></a>'
+			+ 			'<button id="req_detailBtn">의뢰상세보기 ></button>'
 			+ 		'</div>'
 			+ 	'</div>'
 			+ 	'<div class="containerp-section">'

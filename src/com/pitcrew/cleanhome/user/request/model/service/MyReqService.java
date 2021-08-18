@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.pitcrew.cleanhome.user.model.dto.CleanDTO;
 import com.pitcrew.cleanhome.user.request.model.dao.UserReqDAO;
 import com.pitcrew.cleanhome.user.request.model.dto.UserRequestDTO;
 
@@ -55,7 +54,16 @@ public class MyReqService {
 		return compRegistReq;
 	}
 
+	public List<UserRequestDTO> myeEndRequest(int memNoUser) {
 	
+		SqlSession session = getSqlSession();
+		
+		List<UserRequestDTO> myeEndRequest = userReqDAO.myeEndRequest(session, memNoUser);
+		
+		session.close();
+		
+		return myeEndRequest;
+	}
 	
 	public UserRequestDTO selectRequestDetail(UserRequestDTO userRequestDTO) {
 		
@@ -66,26 +74,9 @@ public class MyReqService {
 		
 		UserRequestDTO requestDetail = userReqDAO.selectRequestDetail(session, userRequestDTO);
 		
-		return requestDetail;
-	}
-
-
-	public int payRequest(CleanDTO payReqInfo) {
-
-		SqlSession session = getSqlSession();
-		
-		int result = userReqDAO.payRequestInfo(session, payReqInfo);
-		
-		if(result > 0) {
-			session.commit();
-		} else {
-			session.rollback();
-		}
-		
 		session.close();
 		
-		return result;
+		return requestDetail;
 	}
-
 
 }

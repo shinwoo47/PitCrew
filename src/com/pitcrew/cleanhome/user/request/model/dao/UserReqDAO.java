@@ -25,6 +25,11 @@ public class UserReqDAO {
 
 		return session.selectList("UserReqDAO.compRegistReq", memNoUser);
 	}
+	
+	public List<UserRequestDTO> myeEndRequest(SqlSession session, int memNoUser) {
+		
+		return session.selectList("UserReqDAO.myeEndRequest", memNoUser);
+	}
 
 	public String selectRequestStatus(SqlSession session, UserRequestDTO userRequestDTO) {
 		
@@ -34,11 +39,6 @@ public class UserReqDAO {
 	public UserRequestDTO selectRequestDetail(SqlSession session, UserRequestDTO userRequestDTO) {
 
 		return session.selectOne("UserReqDAO.selectRequestDetail", userRequestDTO);
-	}
-
-	public int payRequestInfo(SqlSession session, CleanDTO payReqInfo) {
-
-		return session.insert("UserReqDAO.payRequestInfo", payReqInfo);
 	}
 
 }

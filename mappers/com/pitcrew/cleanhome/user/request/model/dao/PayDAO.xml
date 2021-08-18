@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="PayDAO">
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO" id="CalSettingResultMap">
+	<id property="reqNo" column="REQ_NO"/>
+	<result property="reqDate" column="REQ_DATE"/>
+	<association property="cleaner" resultMap="memberMapForCleaner"/>
+	<association property="pay" resultMap="payResultMap"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO" id="memberMapForCleaner">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="name" column="MEM_NAME"/>
+		<result property="id" column="MEM_ID"/>
+		<result property="enrollDate" column="ENROLL_DATE"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="phone" column="PHONE"/>
+		<result property="role" column="MEMBER_ROLE"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.pay.model.dto.PayDTO" id="payResultMap">
+			<id property="payNo" column="PAY_NO"/>
+			<result property="card" column="PAY_CARD"/>
+			<result property="price" column="PAY_PRICE"/>
+			<result property="payDate" column="PAY_DATE"/>
+			<result property="approvedNo" column="PAY_APPROVAL_NO"/>
+			<result property="reqNo" column="REQ_NO"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.DeductRateDTO" id="deductRateResultMap">
+		<id property="deductNo" column="DEDUCT_NO"/>
+		<result property="deductName" column="DEDUCT_NAME"/>
+		<result property="rate" column="DEDUCT_RATE"/>
+	</resultMap>
+	
+	<select id="selectdeductRate" resultMap="deductRateResultMap">
+       SELECT
+	          A.DEDUCT_NO
+		    , A.DEDUCT_NAME
+		    , A.DEDUCT_RATE
+	     FROM SET_DEDUCT_RATE A	
+	</select>
+</mapper>

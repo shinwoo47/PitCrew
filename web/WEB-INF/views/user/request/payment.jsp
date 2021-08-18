@@ -274,12 +274,12 @@ table.type05 td {
 			if (rsp.success) {
 				console.log("${ clean.reqDate }");
 				$.ajax({
-					url: "${PageContext.servletContext.contextPath}/user/pay/request",
+					url: "${pageContext.servletContext.contextPath}/user/pay/request",
 					type: 'POST',
 					data: {
-						reqNo: rsp.imp_uid,
+						impUid : rsp.imp_uid,
 						serPrice: rsp.paid_amount,
-						reqDate: "${ clean.reqDate }",
+						reqDate: "${ clean.rewDate }",
 						productNo: "${ clean.productNo }",
 						reqOption1: "${ clean.optionNo1 }",
 						reqOption2: "${ clean.optionNo2 }",
@@ -293,6 +293,7 @@ table.type05 td {
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						msg += '카드 승인번호 : ' + rsp.apply_num;												
 						alert(msg);
+						location.href = "${pageContext.servletContext.contextPath}/user/home"; 
 					},
 					
 					error: function(xhr, status, error){}
