@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
-
 import com.pitcrew.cleanhome.user.request.model.dto.PaymentDTO;
 import com.pitcrew.cleanhome.user.request.model.service.PayServices;
-
 
 @WebServlet("/user/pay/request")
 public class UserPayRequestServlet extends HttpServlet {
@@ -68,6 +66,7 @@ public class UserPayRequestServlet extends HttpServlet {
       PayServices payServices = new PayServices();
       
       int result = 0;
+      payment = payServices.insertIndirect(payment);
       result += payServices.insertRequest(payment);
       result += payServices.insertReqInfo(payment);
       result += payServices.insertPayHistory(payment);
@@ -75,14 +74,16 @@ public class UserPayRequestServlet extends HttpServlet {
       
       System.out.println("insert 값 = " + result);
       String path = "";
-      if(result >= 4) {
+      
+      if(result >= 5) {
+         System.out.println("서블릿 result = " + result);
          path = "/WEB-INF/views/user/services.jsp";
       } else {
          path ="/WEB-INF/views/common/failed.jsp";
          request.setAttribute("message", "insert실패");
       }
          
-       
+      
       request.getRequestDispatcher(path).forward(request, response);
       
       

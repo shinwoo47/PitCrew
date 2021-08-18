@@ -1,8 +1,6 @@
 package com.pitcrew.cleanhome.user.request.model.service;
 
-import com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.DeductRateDTO;
-import com.pitcrew.cleanhome.admin.calculator.model.service.CalculatingService;
 import com.pitcrew.cleanhome.user.request.model.dao.PayDAO;
 import com.pitcrew.cleanhome.user.request.model.dto.PaymentDTO;
 
@@ -50,16 +48,16 @@ public class PayServices {
          int deductPrice1  = (int)(Math.floor((calPrice/(1+vat)) / 10)) * 10; // 공급가액
          result += payDAO.insertDeductPrice1(session, payment, deductPrice1);
          
-         int deductPrice2  = (int)(Math.floor((calPrice/(1+cardrate)) / 10)) * 10; // 공급가액
+         int deductPrice2  =  (int) (calPrice * cardrate); // 공급가액
          result += payDAO.insertDeductPrice2(session, payment, deductPrice1);
          
-         int deductPrice3  = (int)(Math.floor((calPrice/(1+marginrate)) / 10)) * 10; // 공급가액
+         int deductPrice3  = (int) (calPrice * marginrate); // 공급가액
          result += payDAO.insertDeductPrice3(session, payment, deductPrice1);
          
          
          System.out.println("공급가액 : " + supplyPrice);
          
-         deductSum = (int) ((calPrice - supplyPrice) + (calPrice * cardrate) + (calPrice * marginrate)); //부가세 + 카드수수료율 + 운영비  
+         deductSum = (int) ((calPrice - supplyPrice) + (deductPrice2) + (deductPrice3)); //부가세 + 카드수수료율 + 운영비  
 
          cleanerincome = calPrice - deductSum;   //해결사 지급 총액
 
@@ -87,6 +85,16 @@ public class PayServices {
       
       int result = 0;
       
+      result = payDAO.insertRequest(session, payment);
+      
+      if(result > 0 ) {
+         session.commit();
+         System.out.println("insertRequest 성공");
+      } else {
+         session.rollback();
+         System.out.println("insertRequest 실패");
+      }
+      
       session.close();
       
       return result;
@@ -98,6 +106,16 @@ public class PayServices {
       
       int result = 0;
       
+      result = payDAO.insertReqInfo(session, payment);
+      
+      if(result > 0 ) {
+         session.commit();
+         System.out.println("insertReqInfo 성공");
+      } else {
+         session.rollback();
+         System.out.println("insertReqInfo 실패");
+      }
+      
       session.close();
       
       return result;
@@ -107,6 +125,16 @@ public class PayServices {
       SqlSession session = getSqlSession();
       
       int result = 0;
+      
+      result = payDAO.insertPayHistory(session, payment);
+      
+      if(result > 0 ) {
+         session.commit();
+         System.out.println("insertPayHistory 성공");
+      } else {
+         session.rollback();
+         System.out.println("insertPayHistory 실패");
+      }
       
       session.close();
       
@@ -118,6 +146,16 @@ public class PayServices {
       SqlSession session = getSqlSession();
       
       int result = 0;
+      
+      result = payDAO.insertProductByReq(session, payment);
+      
+      if(result > 0 ) {
+         session.commit();
+         System.out.println("insertProductByReq 성공");
+      } else {
+         session.rollback();
+         System.out.println("insertProductByReq 실패");
+      }
       
       session.close();
       

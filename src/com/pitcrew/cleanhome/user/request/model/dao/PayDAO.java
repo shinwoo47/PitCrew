@@ -29,5 +29,26 @@ public class PayDAO {
       return 0;
    }
 
+   public int insertRequest(SqlSession session, PaymentDTO payment) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+   public int insertReqInfo(SqlSession session, PaymentDTO payment) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+   public int insertPayHistory(SqlSession session, PaymentDTO payment) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+   public int insertProductByReq(SqlSession session, PaymentDTO payment) {
+      // TODO Auto-generated method stub
+      return 0;
+   }
+
+
 
 }
