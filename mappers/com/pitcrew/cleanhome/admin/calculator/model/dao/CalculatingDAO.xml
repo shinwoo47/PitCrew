@@ -225,26 +225,26 @@
 						            , C.INCOME_TAX
 						            , C.RESIDENT_TAX
 						            , C.CAL_TRANSFER_PRICE
-						            , G.CAL_CON_CHANGE
+						            , F.CAL_CON_CHANGE
 						         FROM SET_HISTORY C
 						         JOIN MEMBER D ON(D.MEM_NO = C.MEM_NO)
-						  	     JOIN REQUEST_INFO F ON (F.MEM_NO_CLEANER = C.MEM_NO)
-							     JOIN SET_STATUS_HISTORY G ON(G.CAL_NO = C.CAL_NO)
+						  	     JOIN REQUEST_INFO E ON (E.MEM_NO_CLEANER = C.MEM_NO)
+							     JOIN SET_STATUS_HISTORY F ON(F.CAL_NO = C.CAL_NO)
 						   	   <where>
-						    		  E.MEMBER_ROLE = '해결사' 	
+						    		  D.MEMBER_ROLE = '해결사' 	
 								<if test="searchCondition=='cleanerId'">
-							          E.MEM_NO = #{ searchValue }
+							          D.MEM_NO = #{ searchValue }
 								</if>
 								<if test="searchCondition == 'cleanerName'">
-						    	      E.MEM_NAME = #{ searchValue }  
+						    	      D.MEM_NAME = #{ searchValue }  
 								</if>
 								<if test='(searchStartDate != null and !"".equals(searchStartDate)) 
 														or (searchEndDate != null and !"".equals(searchEndDate)) '>
-								      F.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
+								      E.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
 						    						 AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
 								</if>
 								<if test="searchStatusValue != null and !''.equals(searchStatusValue)">
-							          G.CAL_CON_CHANGE LIKE '%' || #{ searchStatusValue } || '%' 	
+							          F.CAL_CON_CHANGE LIKE '%' || #{ searchStatusValue } || '%' 	
 								</if>
 						    	</where>
 						        ORDER BY C.CAL_PRICE DESC
