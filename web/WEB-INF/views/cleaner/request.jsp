@@ -63,13 +63,13 @@
                         <div style="height: auto; width: 80%; border:3px solid yellowgreen;" class="blog__item__text" id="request${status.count}">
                         	<input type="hidden" name="reqNo" id="reqNo" value="${ request.reqNo }"/>
                         	<input type="hidden" name="reqStatus" id="reqStatus" value="${ request.reqStatus }"/>
-                        	<input type="hidden" name="reqDate" id="reqDate" value="${ request.reqDate }"/>
+                        	<input type="hidden" name="reqDate" id="reqDate" value=<fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy-MM-dd(E)hh시"/>>
                         	<c:set var="address" value="${ request.address.address }"/>
                         	<c:set var="address1" value="${ fn:substring(address, fn:indexOf(address,'$') + 1, 30) }"/>
                         	<c:set var="address2" value="${ fn:substring(address1, 0, fn:indexOf(address1,'$')) }"/>
                             <h3><c:out value="${ address2 }"/></h3>
                             <ul>
-                                <li><i class="fa fa-clock-o"></i> <fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy/MM/dd (E) hh시"/></li>
+                                <li><i class="fa fa-clock-o"></i> <fmt:formatDate value="${ request.reqDate }" type="date" pattern="yyyy/MM/dd(E) hh시"/></li>
                                 <li>  
                                 	<c:set var="sumPrice" value="0"/>
                                 	<c:set var="sumTime" value="0"/>
@@ -257,44 +257,46 @@
 			});		
 			
 			$("body").on("click", "[id^=ok]", function() {
+				
 				const no = this.parentNode.children[0].value;
 				const status = this.parentNode.children[1].value;
 				const reqDate = this.parentNode.children[2].value;
 				
-				var year = reqDate.getFullYear();
-		      	var month = reqDate.getMonth();
-		      	var date = reqDate.getDate();
-		      	console.log(year)
-		      	console.log(month)
-		      	var rDate = new Date(year + "-" + (month + 1) + "-" + date)
+				
       			console.log(status);
-      			console.log(date)
+      			console.log(reqDate)
       			
-      			$.ajax({
-    				url : "${pageContext.request.contextPath}/cleaner/request/accept/check",
-    				type : 'get',
-    				data : {
-    					date : rDate
-    				},
-    				success : function(data) {
-    					console.log(data);							
-    					
-    					if (data != 1) {
-    							alert("선택할 수 없습니다. 시간 간격이 최소 6시간입니다.")
-    							return;
-    						} 
-    					}, 
-    				error : function() {
-    						return
-    						console.log("실패");
-    				}
-    			});
-		        msg = "정말 선택 하시겠습니까?";
+      			msg = "정말 선택 하시겠습니까?";      			
 		        if (confirm(msg) == true) {	
-		        	location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/accept?no=" + no + "&status=" + status;
+		        	
+		        	$.ajax({
+	    				url : "${pageContext.request.contextPath}/cleaner/request/accept/check",
+	    				type : 'get',
+	    				data : {
+	    					date : reqDate
+	    				},
+	    				success : function(data) {
+	    					console.log(data);							
+	    					
+	    					if (data == 1) {
+	    							alert("선택할 수 없습니다. 시간 간격이 최소 6시간입니다.")
+	    							return false;
+	    						} else {
+	    							location.href = "${ pageContext.servletContext.contextPath }/cleaner/request/accept?no=" + no + "&status=" + status;
+	    						}
+	    					}, 
+	    				error : function() {
+	    						return
+	    						console.log("실패");
+	    				}
+	    			});
+		        	
 		        } else {
 		           	return
 		        }
+		        
+      			
+		        
 			
 			});
 	

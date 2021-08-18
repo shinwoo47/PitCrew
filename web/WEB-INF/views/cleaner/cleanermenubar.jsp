@@ -108,7 +108,7 @@
                                     <ul class="dropdown">
                                         <li><a href="${ pageContext.servletContext.contextPath }/cleaner/member/select">회원정보</a></li>
                                         <li><a href="${ pageContext.servletContext.contextPath }/cleaner/account">계좌</a></li>
-                                        <li><a href="./blog-details.html">정산내역</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/cleaner/calculate">정산내역</a></li>
                                     </ul>
                                 </li>
                                  <li><a href="#">고객센터</a>
