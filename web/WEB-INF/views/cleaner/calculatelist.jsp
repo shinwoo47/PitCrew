@@ -43,13 +43,22 @@
 		}
 		.calculate {
 		display: inline-block;
-		margin-right: 100px;
+		margin-right: 90px;
+		
+		margin-top: 50px;
+		
 		}
 		.detail{
 		margin-right: 100px;
 		}
 		.sum {
-		background-color: yellowgreen;
+		background-color: #1BAC89;
+		}
+		th {
+		background-color: #20EBBA;		
+		}
+		.text {
+		background-color: #EAEE34;		
 		}
   	</style>
 </head>
@@ -68,10 +77,13 @@
                 <div class="col-lg-8">
                     <div class="blog__details__title">
                         <div class="container">
-                        	<div>     
+                        	<div>
+                        	
+                        	<input type="date" style="margin-bottom: 50px;"> 정산 월 선택 
 							  <table class="table table-hover">
 							    <thead>
-							    <h4>개인 정보</h4>
+							    <h4 style="margin-bottom: 20px;">개인 정보</h4>
+							    
 							      <tr>
 							        <th>이름</th>
 							        <th>은행명</th>
@@ -81,9 +93,9 @@
 							    </thead>
 							    <tbody>
 							      <tr>
-							        <td>${ requestScope.account.accountHolder }</td>
-							        <td>${ requestScope.account.bankName }</td>
-							        <td>${ requestScope.account.accountNo }</td>
+							        <td>${ calculate.accountHolder }</td>
+							        <td>${ calculate.bankName }</td>
+							        <td>${ calculate.accountNo }</td>
 							        <td> 10일 </td>
 							      </tr>
 							      
@@ -100,20 +112,20 @@
 							    </thead>
 							    <tbody>
 							      <tr>
-							        <td>방청소</td>
-							        <td>100</td>
+							        <td class="text">방청소</td>
+							        <td>${ productSum.room } 회</td>
 							      </tr>
 							      <tr>
-							        <td>화장실</td>
-							        <td>${ requestScope.account.bankName }</td>
+							        <td class="text">화장실</td>
+							        <td>${ productSum.bathroom } 회</td>
 							      </tr>
 							      <tr>
-							        <td>전체청소</td>
-							        <td>${ requestScope.account.bankName }</td>
+							        <td class="text">전체청소</td>
+							        <td>${ productSum.all } 회</td>
 							      </tr> 
 							      <tr>
-							        <td>옵션</td>
-							        <td>${ requestScope.account.bankName }</td>
+							        <td class="text">옵션</td>
+							        <td>${ productSum.window + productSum.dishes } 회</td>
 							      </tr>
 							    </tbody>
 							  </table>
@@ -130,36 +142,30 @@
 							    </thead>
 							    <tbody>
 							      <tr>
-							        <td rowspan="4">정산금액</td>
-							        <td rowspan="4">122000</td>
+							        <td rowspan="4" class="text">정산금액</td>
+							        <td rowspan="4">${ calculate.calPrice } 원</td>
 							      </tr>
 							      <tr>
-							        <td>소득세</td>
-							        <td>4100</td>
+							        <td class="text">소득세</td>
+							        <td>${ calculate.incomeTax } 원</td>
 							      </tr>
 							      <tr>
-							        <td>주민세</td>
-							        <td>410</td>
+							        <td class="text">주민세</td>
+							        <td>${ calculate.residentTax } 원</td>
 							      </tr>
 							      <tr>
 							        <td class="sum">공제액계</td>
-							        <td>140000</td>
+							        <td>${ calculate.incomeTax + calculate.residentTax } 원</td>
 							      </tr>
 							      <tr>
 							        <td class="sum">지급액계</td>
-							        <td>140000</td>
+							        <td>${ calculate.calPrice } 원</td>
 							        <td class="sum">차인지급액</td>
-							        <td>140000</td>
-							      </tr>
-							      
+							        <td>${ calculate.calTransferPrice } 원</td>
+							      </tr>							      
 							    </tbody>
 							  </table>
                         	</div>
-							  
-							  
-							  <form>
-							  	<input type="button" class="account-btn" value="등록 및 수정" id="regist">
-							  </form>
 						</div>
                     </div>
                     
