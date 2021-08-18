@@ -43,11 +43,11 @@
              <label style="margin: 5px;">정산 상태 : </label>
             <label class="custom-control custom-radio custom-control-inline">
                  <input type="radio" class="custom-control-input" id="statusValue" name="statusValue"  value="정산 대기">
-                 <span class="custom-control-label">정산 대기</span>
+                 <span class="custom-control-label">정산대기</span>
             </label>
             <label class="custom-control custom-radio custom-control-inline">
                  <input type="radio" class="custom-control-input" id="statusValue" name="statusValue"  value="정산 완료">
-                 <span class="custom-control-label">정산 완료</span>
+                 <span class="custom-control-label">정산완료</span>
             </label>
             <br><br>
              </div>

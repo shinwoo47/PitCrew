@@ -41,8 +41,28 @@
 		<id property="deductNo" column="DEDUCT_NO"/>
 		<result property="deductName" column="DEDUCT_NAME"/>
 		<result property="rate" column="DEDUCT_RATE"/>
+	</resultMap>	
+	
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO" id="calculatingResultMap">
+		<id property="calNo" column="CAL_NO"/>
+		<result property="cleanerNo" column="MEM_NO"/>
+		<result property="cleanerIncome" column="CAL_PRICE"/>
+		<result property="cleanerTransferPrice" column="CAL_TRANSFER_PRICE"/>
+		<result property="calDate" column="CAL_DATE"/>
+		<result property="incometax" column="INCOME_TAX"/>
+		<result property="residenttax" column="RESIDENT_TAX"/>
 	</resultMap>
 	
+	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO" id="reqSetPeriodResultMap">
+		<id property="calNo" column="CAL_NO"/>
+		<id property="reqNo" column="REQ_NO"/>
+	</resultMap>
+	
+	<select id="selectCalCheck"  resultMap="CalSettingResultMap">
+	    SELECT A.REQ_NO
+	      FROM REQUEST_SET_PERIOD A
+	</select>
 	
 	<select id="selectCalSetting" resultMap="CalSettingResultMap" parameterType="hashmap">
 		SELECT
@@ -74,6 +94,167 @@
 	      FROM SET_DEDUCT_RATE A	
 	</select>
 
+	<select id="selectCalNum" resultType="_int">
+      SELECT
+             LAST_NUMBER
+   		FROM USER_SEQUENCES
+ 	   WHERE SEQUENCE_NAME = 'SEQ_SET_HISTORY'
+	    
+   </select>
 
+   <insert id="insertCal">
+        INSERT /* */
+          INTO SET_HISTORY A
+        (
+          A.CAL_NO
+        , A.MEM_NO
+        , A.CAL_PRICE
+        , A.CAL_TRANSFER_PRICE
+        , A.CAL_DATE
+        , A.INCOME_TAX
+        , A.RESIDENT_TAX
+        )
+        VALUES
+        (
+          SEQ_SET_HISTORY.NEXTVAL
+        , #{ cleanerNo }
+        , #{ cleanerIncome }
+        , #{ cleanerTransferPrice }
+        , SYSDATE
+        , #{ incometax }
+        , #{ residenttax }
+        )
+	</insert>
+	
+	<insert id="insertReqNum">
+        INSERT /* */
+          INTO REQUEST_SET_PERIOD A
+        (
+          A.REQ_NO
+        , A.CAL_NO
+        )
+        VALUES
+        (
+          #{ calReqNo }
+        , #{ calNo }
+        )
+	</insert>
+
+	<insert id="insertStatus">
+        INSERT /* */
+          INTO SET_STATUS_HISTORY A
+        (
+          A.CAL_CON_CHANGE_NO
+        , A.CAL_NO
+        , A.CAL_CON_CHANGE_DATE
+        , A.CAL_CON_CHANGE
+        )
+        VALUES
+        (
+          SEQ_SET_STATUS_HISTORY.NEXTVAL
+        , #{ calNo }
+        , SYSDATE
+        , '정산대기'
+        )
+	</insert>
+
+	<select id="selectAllCount" resultType="_int" parameterType="hashmap">
+		SELECT /* */
+               COUNT(*)
+          FROM SET_HISTORY A
+    	<if test="searchCondition == 'cleanerId'">
+    	  JOIN MEMBER B ON(A.MEM_NO = B.MEM_NO)
+    	</if>
+    	<if test="searchCondition == 'cleanerName'">
+	      JOIN MEMBER B ON(A.MEM_NO = B.MEM_NO)
+    	</if>
+    	<if test="searchStatusValue != null and !''.equals(searchStatusValue)">
+	      JOIN SET_STATUS_HISTORY C ON(C.CAL_NO = A.CAL_NO)
+    	</if>
+    	<where>
+			<if test="searchCondition=='cleanerId'">
+	           B.MEM_NO = #{ searchValue }
+			</if>
+			<if test="searchCondition == 'cleanerName'">
+		           B.MEM_NAME = #{ searchValue } 
+		       AND B.MEMBER_ROLE = '해결사' 	
+			</if>
+			<if test='(searchStartDate != null and !"".equals(searchStartDate)) 
+								or (searchEndDate != null and !"".equals(searchEndDate)) '>
+		       	  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
+    						 AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
+			</if>
+			<if test="searchStatusValue != null and !''.equals(searchStatusValue)">
+				   C.CAL_CON_CHANGE LIKE '%' || #{ searchStatusValue } || '%' 	
+			</if>
+    	</where>	
+		</select>
+		
+		<select id="selectCalList" resultMap="calculatingResultMap">
+     	   	   SELECT A.RNUM
+		            , A.CAL_NO
+			        , A.MEM_NO
+			        , A.MEM_ID
+			        , A.MEM_NAME
+			        , A.ENROLL_DATE
+			        , A.CAL_DATE
+			        , A.CAL_PRICE
+			        , A.INCOME_TAX
+			        , A.RESIDENT_TAX
+			        , A.CAL_TRANSFER_PRICE
+			        , A.CAL_CON_CHANGE
+				FROM  (SELECT ROWNUM RNUM
+					        , B.CAL_NO
+			                , B.MEM_NO
+			                , B.MEM_ID
+			                , B.MEM_NAME
+			                , B.ENROLL_DATE
+			                , B.CAL_DATE
+			                , B.CAL_PRICE
+			                , B.INCOME_TAX
+			                , B.RESIDENT_TAX
+			                , B.CAL_TRANSFER_PRICE
+			                , B.CAL_CON_CHANGE
+ 				 	    FROM  (SELECT C.CAL_NO
+					          		, C.MEM_NO
+					          	    , D.MEM_ID
+						            , D.MEM_NAME
+						            , D.ENROLL_DATE
+						            , C.CAL_DATE
+						            , C.CAL_PRICE
+						            , C.INCOME_TAX
+						            , C.RESIDENT_TAX
+						            , C.CAL_TRANSFER_PRICE
+						            , G.CAL_CON_CHANGE
+						         FROM SET_HISTORY C
+						         JOIN MEMBER D ON(D.MEM_NO = C.MEM_NO)
+						  	     JOIN REQUEST_INFO F ON (F.MEM_NO_CLEANER = C.MEM_NO)
+							     JOIN SET_STATUS_HISTORY G ON(G.CAL_NO = C.CAL_NO)
+						   	   <where>
+						    		  E.MEMBER_ROLE = '해결사' 	
+								<if test="searchCondition=='cleanerId'">
+							          E.MEM_NO = #{ searchValue }
+								</if>
+								<if test="searchCondition == 'cleanerName'">
+						    	      E.MEM_NAME = #{ searchValue }  
+								</if>
+								<if test='(searchStartDate != null and !"".equals(searchStartDate)) 
+														or (searchEndDate != null and !"".equals(searchEndDate)) '>
+								      F.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
+						    						 AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
+								</if>
+								<if test="searchStatusValue != null and !''.equals(searchStatusValue)">
+							          G.CAL_CON_CHANGE LIKE '%' || #{ searchStatusValue } || '%' 	
+								</if>
+						    	</where>
+						        ORDER BY C.CAL_PRICE DESC
+						    	) B
+	    					  <![CDATA[
+	                  WHERE ROWNUM <= #{ endRow }
+	                  ]]>
+	               ) A
+    		   WHERE A.RNUM >= #{ startRow }			  	  	 			
+		</select>
+	
 
 </mapper>
