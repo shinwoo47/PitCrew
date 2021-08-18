@@ -248,7 +248,7 @@
                                             <a class="nav-link" href="pages/chart-chartist.html">블랙리스트</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-charts.html">신고 요청</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/report/select">신고 요청</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/chart-morris.html">탈퇴 회원</a>

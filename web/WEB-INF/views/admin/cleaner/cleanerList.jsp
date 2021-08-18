@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 table {
-	margin-right: 80px;
+	margin-right: 160px;
 }
 </style>
 </head>
@@ -48,7 +48,6 @@ table {
 				<th width="200px" style="text-align: center; font-size: 20pt;">신원 조회 일자</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">교육 이수 일자</th>
 				<th width="140px" style="text-align: center; font-size: 20pt;">휴대폰 번호</th>
-				<th width="150px" style="text-align: center; font-size: 20pt;">최근 수락한 의뢰 일자</th>
 				<th width="150px" style="text-align: center; font-size: 20pt;">블랙리스트 추가</th>
 				<th width="100px" style="text-align: center; font-size: 20pt;">자세히</th>
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
@@ -62,7 +61,6 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ cleaner.phone }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
 					<td align="center" style="text-align: center; font-size: 15pt;"><button>추가</button></td>
 					<td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ cleaner.entYn }"></c:out></td>
