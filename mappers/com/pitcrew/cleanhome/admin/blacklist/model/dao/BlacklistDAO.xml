@@ -15,20 +15,7 @@
 		<result property="entYn" column="ENT_YN"/>
 		<result property="entDate" column="ENT_DATE"/>
 		<result property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/>
-		<!-- <collection property="blacklist" resultMap="com.pitcrew.cleanhome.admin.blacklist.model.dto.BlacklistDTO">
-			<id property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/>
-		</collection> -->
-	<!--  <association property="blacklist" resultMap="blacklistMap"/>  -->
-<!-- 	<association property="blacklist" resultMap="blacklistMap">
-		 	<id property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/> 
-	</association>  -->
 	</resultMap>
-	
-<!-- 	<resultMap type="com.pitcrew.cleanhome.admin.blacklist.model.dto.BlacklistDTO" id="blacklistMap">
-		<id property="memNo" column="MEM_NO" />
-		<result property="blacklistNo" column="BLACKLIST_NO"/>
-		<result property="penaltyScoreSum" column="PENALTY_SCORE_SUM"/>
-	</resultMap> -->
 	
 	<select id="selectAllBlacklist" resultMap="blacklistResultMap">
 		SELECT 
@@ -54,7 +41,7 @@
           INTO BLACKLIST A
           (
             A.BLACKLIST_NO
-          , A.PENALTY_SCORE_SUM
+          , A.PENALTY_SCORE_SUM 
           , A.MEM_NO
           )
           VALUES

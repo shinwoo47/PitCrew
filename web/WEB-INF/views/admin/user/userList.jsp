@@ -41,7 +41,7 @@ table {
 			<br>
 		</div>
 	</form>
-
+	<form action="${ pageContext.servletContext.contextPath }/admin/blacklist/insert" method="post">
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
 			<tr>
@@ -57,6 +57,14 @@ table {
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
 			</tr>
 			<c:forEach items="${ userList }" var="user">
+			<input type="hidden" id="memNo" name="memNo" value="${ user.memNo }">
+			<input type="hidden" id="enrollDate" name="enrollDate" value="${ user.enrollDate }">
+			<%-- <input type="hidden" id="memberRole" name="memberRole" value="${ user.memberRole }"> --%>
+			<input type="hidden" id="memId" name="memId" value="${ user.memId }">
+			<input type="hidden" id="memName" name="memName" value="${ user.memName }">
+			<input type="hidden" id="phone" name="phone" value="${ user.phone }">
+			<%-- <input type="hidden" id="penaltyScoreSum" name="penaltyScoreSum" value="${ user.penaltyScoreSum }"> --%>
+			<input type="hidden" id="entYn" name="entYn" value="${ user.entYn }">
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.memNo }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.enrollDate }"></c:out></td>
@@ -65,7 +73,7 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.phone }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ fn:replace(user.address, \"$\", \" \") }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><%-- <c:out value="${  }"></c:out> --%></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button type="button" id="insertBlacklist">추가</button></td>
+					<td align="center" style="text-align: center; font-size: 15pt;"><button type="submit" id="insertBlacklist">추가</button></td>
 					<!-- <td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td> -->
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ user.entYn }"></c:out></td>
 				</tr>
@@ -73,6 +81,7 @@ table {
 		</table>
 			<jsp:include page="paging.jsp" />
 	</div>
+	</form>
 	<script>
 	if(document.getElementById("insertBlacklist")) {
 		const $addBlacklist = document.getElementById("insertBlacklist");

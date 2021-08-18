@@ -219,7 +219,7 @@
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/allblacklist">블랙리스트</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/carousel.html">신고 요청</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/report/select">신고 요청</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/listgroup.html">탈퇴 회원</a>
@@ -245,7 +245,7 @@
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/allcleanerinfo">해결사 정보 조회</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-chartist.html">블랙리스트</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/allblacklist">블랙리스트</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/report/select">신고 요청</a>
@@ -254,7 +254,7 @@
                                             <a class="nav-link" href="pages/chart-morris.html">탈퇴 회원</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-sparkline.html">Sparkline</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/signup/list">가입 승인</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/chart-gauge.html">Guage</a>

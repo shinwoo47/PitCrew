@@ -126,6 +126,8 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/blacklist/insert");
 		adminPermitList.add("/admin/blacklist/delete");
 		adminPermitList.add("/admin/report/select");
+		adminPermitList.add("/admin/signup/list");
+		adminPermitList.add("/admin/signup/approval");
 		
 
 

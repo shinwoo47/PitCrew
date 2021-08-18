@@ -22,24 +22,30 @@ public class InsertBlacklistServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("포스트으");
+		System.out.println("post");
+		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		java.sql.Date enrollDate = java.sql.Date.valueOf(request.getParameter("enrollDate"));
-		String memberRole = request.getParameter("memberRole");
+		String memberRole = request.getParameter("memberRole"); 
 		String memId = request.getParameter("memId");
 		String memName = request.getParameter("memName");
 		String phone = request.getParameter("phone");
-		int penaltyScoreSum = Integer.parseInt(request.getParameter("penaltyScoreSum"));
+		/*
+		 * int penaltyScoreSum = Integer.parseInt(request.getParameter("penaltyScoreSum")); 
+		 */
 		String entYn = request.getParameter("entYn");
+		
+		System.out.println("송준일" + request.getParameter("memberRole"));
+		System.out.println("memNo : " + memNo);
 		
 		UserDTO newBlacklist = new UserDTO();
 		newBlacklist.setMemNo(memNo);
 		newBlacklist.setEnrollDate(enrollDate);
-		newBlacklist.setMemberRole(memberRole);
+		/* newBlacklist.setMemberRole(memberRole); */
 		newBlacklist.setMemId(memId);
 		newBlacklist.setMemName(memName);
 		newBlacklist.setPhone(phone);
-		newBlacklist.setPenaltyScoreSum(penaltyScoreSum);
+		/* newBlacklist.setPenaltyScoreSum(penaltyScoreSum); */
 		newBlacklist.setEntYn(entYn);
 		
 		System.out.println("서블릿 : " + newBlacklist);

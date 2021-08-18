@@ -66,7 +66,7 @@ public class SelectAllUserInfoServlet extends HttpServlet {
            String path = "";
          if(userList != null) {
             path = "/WEB-INF/views/admin/user/userList.jsp";
-            request.setAttribute("userList", "userList");
+            request.setAttribute("userList", userList);
          } else {
             path = "/WEB-INF/views/common/failed.jsp";
             request.setAttribute("message", "사용자 정보 조회 실패!");
