@@ -1,5 +1,6 @@
 package com.pitcrew.cleanhome.cleaner.request.model.dao;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
+import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
 
 public class RequestDAO {
@@ -60,6 +62,16 @@ public class RequestDAO {
 	public int completeRequest(SqlSession session, RequestDTO requestDto) {
 		
 		return session.update("RequestDAO.completeRequest", requestDto);
+	}
+
+	public RequestDTO checkRequestComplete(SqlSession session, int reqNo) {
+		
+		return session.selectOne("RequestDAO.checkRequestComplete", reqNo);
+	}
+
+	public List<RequestDTO> requestAcceptCheck(SqlSession session, MemberDTO member) {
+		
+		return session.selectList("RequestDAO.requestAcceptCheck", member);
 	}
 
 }

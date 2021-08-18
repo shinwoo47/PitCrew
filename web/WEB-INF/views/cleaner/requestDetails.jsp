@@ -135,15 +135,24 @@
                     <div class="blog__sidebar__categories" id="map" style="width:700px;height:400px;">
                     
                     </div>
-                    <div><button id="report">신고 하기</button></div>
                     <div>
+                    	<c:if test="${ requestDetail.reqStatus eq '완료              ' }">
+                    	<button id="report">신고 하기</button>
+                    	</c:if>
+                    </div>
+                    <div>
+                    	<label>청소전, 후 사진 올리기</label>
 	                    <form action="${ pageContext.servletContext.contextPath }/cleaner/request/attach" method="post" encType="multipart/form-data">
 	                    <input type="hidden" name="reqNo" id="reqNo" value="${ requestDetail.reqNo }"/>
 						<input type="file" name="before" multiple><br>
 						<input type="file" name="after" multiple><br>
-						<button type="submit">전송</button>
+						<button type="submit">사진 전송</button>
 					</form>
-					<button id="complete">완료처리</button>
+                    </div>
+                    <div>
+                    	<c:if test="${ requestDetail.reqStatus ne '완료              ' }">
+                    	<button id="complete">완료처리</button>
+                    	</c:if>
                     </div>
                 </div>
             </div>
@@ -297,6 +306,26 @@
 		
 		$("#complete").on("click", function(){ 
 			const no = $("#reqNo").val();
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/cleaner/request/complete/check?no=" + no,
+				type : 'get',
+				data: {
+					reqNo : no
+				},
+				success : function(data) {
+					console.log(data);							
+					
+					if (data != 1) {
+							alert("아직 완료할 수 없습니다. 청소시작 시간 기준 하루가 지나야 가능합니다.")
+							return;
+						} 
+					}, 
+				error : function() {
+						return
+						console.log("실패");
+				}
+			});
 			console.log(no)
         	msg = "의뢰 완료 하시겠습니까?";
         	if (confirm(msg) == true) {	

@@ -127,6 +127,13 @@ div.button {
 				location.href = "/pitcrew/cleaner/member/update";
 			}
 		}
+		
+		if(document.getElementById("delete")) {
+			const $selectUpdate = document.getElementById("delete");
+			$selectUpdate.onclick = function() {
+				location.href = "/pitcrew/cleaner/member/delete";
+			}
+		}
 	}
 </script>
 </html>

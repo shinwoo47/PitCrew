@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.pitcrew.cleanhome.member.model.dto.CleanerInfoDTO;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 import com.pitcrew.cleanhome.member.model.service.MemberService;
 
@@ -53,7 +54,9 @@ public class MemberRegistServlet extends HttpServlet {
 		
 		System.out.println("memberController requestMember : " + requestMember);
 		
-		int result = new MemberService().registMember(requestMember); 
+		int result = new MemberService().registMember(requestMember);
+		
+		
 		
 		System.out.println("memberController result : " + result);
 		

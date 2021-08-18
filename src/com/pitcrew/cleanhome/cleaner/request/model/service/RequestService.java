@@ -2,6 +2,7 @@ package com.pitcrew.cleanhome.cleaner.request.model.service;
 
 import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import com.pitcrew.cleanhome.cleaner.request.model.dao.RequestDAO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
+import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
 
 public class RequestService {
@@ -127,6 +129,28 @@ public class RequestService {
 		}
 		
 		return resultCheck;
+	}
+
+	public RequestDTO checkRequestComplete(int reqNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		RequestDTO reqDate = requestDAO.checkRequestComplete(session, reqNo);
+		
+		session.close();
+		
+		return reqDate;
+	}
+
+	public List<RequestDTO> requestAcceptCheck(MemberDTO member) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<RequestDTO> requestList = requestDAO.requestAcceptCheck(session, member);
+		
+		session.close();
+		
+		return requestList;
 	}
 
 	

@@ -48,4 +48,15 @@ public class AccountService {
 		return resultCheck;
 	}
 
+	public int insertAccount(CleanerInfoDTO account) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = accountDAO.insertAccount(session, account);
+	
+		session.close();
+		
+		return result;
+	}
+
 }
