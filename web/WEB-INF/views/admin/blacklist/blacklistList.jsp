@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 table {
-	margin-right:100px;
+	margin-right: 170px;
 }
 </style>
 </head>
@@ -32,12 +32,6 @@ table {
 			<h3 align="center">
 				가일일 기간 : <input type="date" id="searchDate" name="searchDate"class="fa fa-search" placeholder="날짜 선택"> ~ 
 							<input type="date" id="searchEndDate" name="searchEndDate" class="fa fa-search"placeholder="날짜 선택"></h3>
-			<br>
-			<h3 align="center">
-				최근 의뢰 일자 기간 : <input type="date" id="crrentSearchDate" name="crrentSearchDate" class="fa fa-search" placeholder="날짜 선택"> ~ 
-								<input type="date" id="crrentSearchEndDate" name="crrentSearchEndDate" class="fa fa-search" placeholder="날짜 선택">
-			</h3>
-			<br>
 		</div>
 	</form>
 
@@ -50,7 +44,6 @@ table {
 				<th width="200px" style="text-align: center; font-size: 20pt;">아이디</th>
 				<th width="120px" style="text-align: center; font-size: 20pt;">이름</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">휴대폰 번호</th>
-				<th width="140px" style="text-align: center; font-size: 20pt;">최근 의뢰 일자</th>
 				<th width="140px" style="text-align: center; font-size: 20pt;">패널티 점수</th>
 				<th width="150px" style="text-align: center; font-size: 20pt;">블랙리스트 삭제</th>
 				<th width="100px" style="text-align: center; font-size: 20pt;">자세히</th>
@@ -64,7 +57,6 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memId }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memName }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.phone }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ blacklist.penaltyScoreSum }"></c:out></td>
 					<td align="center" style="text-align: center; font-size: 15pt;"><button type="button" id="deleteBlacklist">삭제</button></td>
 					<td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td>
