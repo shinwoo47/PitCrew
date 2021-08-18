@@ -30,7 +30,7 @@ public class SelectUpdateMyInfoServlet extends HttpServlet {
 		
 		String path = "";
 		if(selectUpdateMyInfo != null) {
-			path = "/WEB-INF/views/user/selectUpdateMyInfo.jsp";
+			path = "/WEB-INF/views/user/member/selectUpdateMyInfo.jsp";
 			request.setAttribute("selectUpdateMyInfo", selectUpdateMyInfo);
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";

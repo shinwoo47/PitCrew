@@ -14,8 +14,8 @@ import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 import com.pitcrew.cleanhome.user.request.model.dto.UserRequestDTO;
 import com.pitcrew.cleanhome.user.request.model.service.MyReqService;
 
-@WebServlet("/user/regist/request")
-public class SelectMyRegistRequestServlet extends HttpServlet {
+@WebServlet("/user/comp/regist/request")
+public class CompleteMatchingReqServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -25,24 +25,25 @@ public class SelectMyRegistRequestServlet extends HttpServlet {
 		
 		int memNoUser = loginMember.getMemNo();
 		
-		List<UserRequestDTO> myRegistRequest = new MyReqService().myRegistRequest(memNoUser);
+		List<UserRequestDTO> compRegistReq = new MyReqService().compRegistReq(memNoUser);
 		
-		System.out.println("매칭신청 myRegistRequest: " + myRegistRequest);
-		 		
+		System.out.println("매칭된 의뢰 : " + compRegistReq);
+		
 		String path = "";
 		
-		if(myRegistRequest != null) {
-			path = "/WEB-INF/views/user/request/myRegistRequest.jsp";
-			request.setAttribute("myRegistRequest", myRegistRequest);
+		if(compRegistReq != null) {
+			path = "/WEB-INF/views/user/request/myCompMatchingRequest.jsp";
+			request.setAttribute("compRegistReq", compRegistReq);
 			
 		} else {
+			
 			path ="/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "의뢰 조회 실패하셨습니다 !!!");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
+		
 	}
-
 
 }

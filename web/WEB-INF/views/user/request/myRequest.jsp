@@ -7,6 +7,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
     <meta name="description" content="Loanday Template">
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +42,10 @@
 	header {
  		height: 173.31px;
  	}
-	
+ 	.header__Menu {
+ 		width: 391.69;
+ 		height: 36.98;
+ 	}
  	section {
  		height: calc(100% - 173.31px);
  		padding-top: 100px;
@@ -160,22 +164,45 @@
         <div class="header__top">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-9">
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login"></a>로그인</span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout"></a>로그아웃</span>
-                            </c:if>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <div class="col-lg-9"></div>
+						<div class="col-lg-3">
+							<div class="header__top__language">
+								<c:if test="${ empty sessionScope.loginMember }">
+								<span><a href="${ pageContext.servletContext.contextPath }/member/login"></a>로그인</span>
+								</c:if>
+                            	<c:if test="${ !empty sessionScope.loginMember }">
+								<h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
+								<span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
+								</c:if>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<div class="col-lg-9">
+			<div class="header__nav">
+				<nav class="header__menu">
+					<ul>
+						<li><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
+							<li><a href="#">고객지원센터</a>
+								<ul class="dropdown">
+									<li><a href="./services.html">공지사항</a></li>
+									<li><a href="./services-details.html">FAQ</a></li>
+                                    <li><a href="./blog-details.html">문의사항</a></li>
+                                </ul>
+								</li>
+                                
+                                <li><a href="./contact.html">MY</a>
+                                <ul class="dropdown">
+                                	<li><a href="${ pageContext.servletContext.contextPath }/user/select/myRequest">의뢰내역</a></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/user/select/myInfo">정보수정</a></li>
+                                    <li><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></li>
+                                </ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>                   
      </header>
      <!-- Header Section End -->
     
@@ -184,7 +211,7 @@
 		<div class="nav-container">
 			<input type="button" class="nav-req-btn" id="allReqBtn" value="전체" > 
 			<input type="button" class="nav-req-btn" id="registReqBtn" value="매칭신청" > 
-			<input type="button" class="nav-req-btn" id="endRegistReqBtn" value="매칭완료" > 
+			<input type="button" class="nav-req-btn" id="compMatchingReqBtn" value="매칭완료" > 
 			<input type="button" class="nav-req-btn" id="endReqBtn" value="종료된의뢰"> 
 		</div>
 		<div class="req-list-container">
@@ -246,7 +273,7 @@
 			+ 	'<div class="containerp-top">'
 			+ 		'<div> ' + grpReqDate + ' ' + grpReqStatus + '</div>'
 			+ 		'<div class="req_detail">'
-			+ 			'<a href="">의뢰상세보기 ></a>'
+			+ 			'<button id="req_detailBtn">의뢰상세보기 ></button>'
 			+ 		'</div>'
 			+ 	'</div>'
 			+ 	'<div class="containerp-section">'
@@ -277,10 +304,10 @@
 		 }
      }
      
-     if(document.getElementById("endRegistReqBtn")) {
-         const $endRegistRequest = document.getElementById("endRegistReqBtn");
+     if(document.getElementById("compMatchingReqBtn")) {
+         const $endRegistRequest = document.getElementById("compMatchingReqBtn");
     	 $endRegistRequest.onclick = function() {
-			 location.href = "/pitcrew/user/end/regist/request";
+			 location.href = "/pitcrew/user/comp/regist/request";
 		 }
      } 
 
@@ -291,6 +318,13 @@
 		 }
      } 
      
+     if(document.getElementById("req_detailBtn")) {
+    	 const $reqDetailBtn = document.getElementById("req_detailBtn");
+    	 const no = this.parentNode.childeren[0].innerText;
+     	 $reqDetailBtn.onclick = function() {
+     		 location.href = "${pageContext.servletContext.contextPath }/user/request/detail?no=" + no + "&status=" + status;
+     	 }
+     }
      </script>
      
      
