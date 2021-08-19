@@ -16,6 +16,7 @@ public class RequestDTO implements Serializable{
 	private MemberDTO cleaner;
 	private MemberDTO user;
 	private String status;
+	private int cleanerIncome;
 	private List<ProductInfoDTO> product;
 	private List<PayDTO> pay;
 	private List<ReqInfoDTO> reqStatusHistory;
@@ -23,7 +24,7 @@ public class RequestDTO implements Serializable{
 	public RequestDTO() {}
 
 	public RequestDTO(int reqNo, Date serviceDate, String wantThing, MemberDTO cleaner, MemberDTO user, String status,
-			List<ProductInfoDTO> product, List<PayDTO> pay, List<ReqInfoDTO> reqStatusHistory) {
+			int cleanerIncome, List<ProductInfoDTO> product, List<PayDTO> pay, List<ReqInfoDTO> reqStatusHistory) {
 		super();
 		this.reqNo = reqNo;
 		this.serviceDate = serviceDate;
@@ -31,6 +32,7 @@ public class RequestDTO implements Serializable{
 		this.cleaner = cleaner;
 		this.user = user;
 		this.status = status;
+		this.cleanerIncome = cleanerIncome;
 		this.product = product;
 		this.pay = pay;
 		this.reqStatusHistory = reqStatusHistory;
@@ -84,6 +86,14 @@ public class RequestDTO implements Serializable{
 		this.status = status;
 	}
 
+	public int getCleanerIncome() {
+		return cleanerIncome;
+	}
+
+	public void setCleanerIncome(int cleanerIncome) {
+		this.cleanerIncome = cleanerIncome;
+	}
+
 	public List<ProductInfoDTO> getProduct() {
 		return product;
 	}
@@ -111,8 +121,8 @@ public class RequestDTO implements Serializable{
 	@Override
 	public String toString() {
 		return "RequestDTO [reqNo=" + reqNo + ", serviceDate=" + serviceDate + ", wantThing=" + wantThing + ", cleaner="
-				+ cleaner + ", user=" + user + ", status=" + status + ", product=" + product + ", pay=" + pay
-				+ ", reqStatusHistory=" + reqStatusHistory + "]";
+				+ cleaner + ", user=" + user + ", status=" + status + ", cleanerIncome=" + cleanerIncome + ", product="
+				+ product + ", pay=" + pay + ", reqStatusHistory=" + reqStatusHistory + "]";
 	}
 
 	

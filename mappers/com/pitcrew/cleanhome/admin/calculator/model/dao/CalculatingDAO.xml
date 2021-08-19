@@ -5,8 +5,8 @@
 	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO" id="CalSettingResultMap">
 	<id property="reqNo" column="REQ_NO"/>
 	<result property="reqDate" column="REQ_DATE"/>
+	<result property="cleanerPrice" column="DEDUCTPRICE"/>
 	<association property="cleaner" resultMap="memberMapForCleaner"/>
-	<association property="pay" resultMap="payResultMap"/>
 	</resultMap>
 	
 	<resultMap type="com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO" id="memberMapForCleaner">
@@ -46,17 +46,23 @@
 	
 	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO" id="calculatingResultMap">
 		<id property="calNo" column="CAL_NO"/>
-		<result property="cleanerNo" column="MEM_NO"/>
-		<result property="cleanerIncome" column="CAL_PRICE"/>
 		<result property="cleanerTransferPrice" column="CAL_TRANSFER_PRICE"/>
 		<result property="calDate" column="CAL_DATE"/>
 		<result property="incometax" column="INCOME_TAX"/>
 		<result property="residenttax" column="RESIDENT_TAX"/>
+		
 	</resultMap>
 	
-	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO" id="reqSetPeriodResultMap">
-		<id property="calNo" column="CAL_NO"/>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO" id="calculatingResultMap2">
+		<association property="cleaner" resultMap="memberMapForCleaner"/>
+		<association property="request" resultMap="requestResultMap"/>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO" id="requestResultMap">
 		<id property="reqNo" column="REQ_NO"/>
+		<result property="serviceDate" column="REQ_DATE"/>
+		<result property="cleanerIncome" column="DEDUCTPRICE"/>
 	</resultMap>
 	
 	<select id="selectCalCheck"  resultMap="CalSettingResultMap">
@@ -64,24 +70,24 @@
 	      FROM REQUEST_SET_PERIOD A
 	</select>
 	
-	<select id="selectCalSetting" resultMap="CalSettingResultMap" parameterType="hashmap">
+	<select id="selectCalSetting" resultMap="calculatingResultMap2" parameterType="hashmap">
 		SELECT
-	          A.MEM_NO
-	        , A.MEM_NAME
-	        , A.MEM_ID
-	        , A.ENROLL_DATE
-		    , B.REQ_NO
-	        , B.REQ_DATE
-		    , C.PAY_PRICE
-	     FROM MEMBER A
-	     JOIN REQUEST_INFO B ON (B.MEM_NO_CLEANER = A.MEM_NO)
-	     JOIN PAY_HISTORY C ON (C.REQ_NO = B.REQ_NO)
+			  A.REQ_NO
+	        , A.REQ_DATE
+		    , A.DEDUCTPRICE
+	        , B.MEM_NO
+	        , B.MEM_NAME
+	        , B.MEM_ID
+	        , B.ENROLL_DATE
+	     FROM REQUEST_INFO A
+	     JOIN MEMBER B ON (A.MEM_NO_CLEANER = B.MEM_NO)
 	    <where>
-	    	A.MEMBER_ROLE = '해결사'
+	    	B.MEMBER_ROLE = '해결사'
+	    AND A.REQ_STATUS = '완료'	
 	       <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
 									or (searchEndDate != null and !"".equals(searchEndDate)) '>
-			       	  B.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
-	    						 AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
+			     AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
+	    			   AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
 			</if>
 	    </where> 
 	</select>
@@ -91,15 +97,15 @@
 		      A.DEDUCT_NO
 		    , A.DEDUCT_NAME
 		    , A.DEDUCT_RATE
-	      FROM SET_DEDUCT_RATE A	
+	      FROM SET_DEDUCT_RATE A
+	     WHERE A.DEDUCT_NAME = 'incometax'	
 	</select>
 
 	<select id="selectCalNum" resultType="_int">
       SELECT
              LAST_NUMBER
    		FROM USER_SEQUENCES
- 	   WHERE SEQUENCE_NAME = 'SEQ_SET_HISTORY'
-	    
+ 	   WHERE SEQUENCE_NAME = 'SEQ_REQUEST_SET_PERIOD'   
    </select>
 
    <insert id="insertCal">

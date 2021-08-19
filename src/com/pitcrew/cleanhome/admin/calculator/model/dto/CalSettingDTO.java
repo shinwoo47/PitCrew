@@ -10,15 +10,17 @@ public class CalSettingDTO {
 	private int reqNo;
 	private java.sql.Date reqDate;
 	private PayDTO pay;
+	private int cleanerPrice;
 	
 	public CalSettingDTO() {}
 
-	public CalSettingDTO(MemberDTO cleaner, int reqNo, Date reqDate, PayDTO pay) {
+	public CalSettingDTO(MemberDTO cleaner, int reqNo, Date reqDate, PayDTO pay, int cleanerPrice) {
 		super();
 		this.cleaner = cleaner;
 		this.reqNo = reqNo;
 		this.reqDate = reqDate;
 		this.pay = pay;
+		this.cleanerPrice = cleanerPrice;
 	}
 
 	public MemberDTO getCleaner() {
@@ -53,11 +55,21 @@ public class CalSettingDTO {
 		this.pay = pay;
 	}
 
-	@Override
-	public String toString() {
-		return "CalSettingDTO [cleaner=" + cleaner + ", reqNo=" + reqNo + ", reqDate=" + reqDate + ", pay=" + pay + "]";
+	public int getCleanerPrice() {
+		return cleanerPrice;
 	}
 
+	public void setCleanerPrice(int cleanerPrice) {
+		this.cleanerPrice = cleanerPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "CalSettingDTO [cleaner=" + cleaner + ", reqNo=" + reqNo + ", reqDate=" + reqDate + ", pay=" + pay
+				+ ", cleanerPrice=" + cleanerPrice + "]";
+	}
+
+	
 	
 	
 }
