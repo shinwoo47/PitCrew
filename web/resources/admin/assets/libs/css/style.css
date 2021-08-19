@@ -4083,13 +4083,13 @@ Pills vertical
 
 .page-link {
     position: relative;
-    display: block;
+    display: inline;
     padding: .5rem .75rem;
     margin-left: 0px;
     margin-right: 5px;
     line-height: 1.25;
-    color: #71748d;
-    background-color: #fff;
+    color: #02A79D;
+    background-color: #ECFFFE;
     border: 1px solid #e6e6f2;
     border-radius: 3px;
     line-height: 1;
@@ -4099,14 +4099,14 @@ Pills vertical
     z-index: 2;
     color: #fff;
     text-decoration: none;
-    background-color: #5969ff;
+    background-color: #02A79D;
     border-color: #5969ff;
 }
 
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #5969ff;
+    background-color: #02A79D;
     border-color: #5969ff;
 }
 

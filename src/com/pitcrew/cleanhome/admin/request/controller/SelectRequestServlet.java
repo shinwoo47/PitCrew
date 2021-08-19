@@ -107,14 +107,11 @@ public class SelectRequestServlet extends HttpServlet {
 		System.out.println("requestList : " + requestList);
 
 		String path = "";
-		if(requestList != null) {
+		if(!requestList.isEmpty() || requestList != null) {
 			path = "/WEB-INF/views/admin/request/requestList.jsp";
 			request.setAttribute("requestList", requestList);
 			request.setAttribute("selectAdminCriteria", selectAdminCriteria);
-		} else {
-			path = "/WEB-INF/views/common/failed.jsp";
-			request.setAttribute("message", "목록 조회 실패!");
-		}
+		} 
 
 		
 		

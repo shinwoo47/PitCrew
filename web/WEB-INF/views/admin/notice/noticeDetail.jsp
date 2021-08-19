@@ -20,28 +20,33 @@
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
             <h3>사용자 공지사항</h3><br>
          </div>
-         <table>
-         	<tr id="detailhead">
+         <table class="text-center">
+         	<tr id="detailhead" height="30">
          		<th class="hidden" id="no">${ noticeDTO.no }</th>
          		<th width="500px">제목 : ${ noticeDTO.title }</th>
    				<th width="100px">작성자 : ${ noticeDTO.writer.name }</th>
-   				<th width="100px">작성일: ${ noticeDTO.writeDate }</th>
-   				<th>조회 : ${ noticeDTO.count }</th>
+   				<th width="200px">작성일: ${ noticeDTO.writeDate }</th>
+   				<th width="100px">조회 : ${ noticeDTO.count }</th>
          	</tr>
-         	<tr></tr>
-         	<tr>
+         	<tr height="12"></tr>
+         	<tr class="text-left" height="300" style="margin: 5px; padding: 10px;">
          		<td colspan="4">${ noticeDTO.content }</td>
          	</tr>
          </table>  
          <div style="text-align:center";>
-         <button type="submit" style="background-color: #02A79D; color: white">수정하기</button>
-         <button class="delete" style="background-color: #02A79D; color: white">삭제하기</button>
-         <button class="reset" style="background-color: #02A79D; color: white">목록으로</button>
+         <button type="submit" style="margin: 5px; background-color: #02A79D; color: white; border-color:transparent; border-radius:0.3rem;">수정하기</button>
+         <button class="delete" style="margin: 5px; background-color: #02A79D; color: white; border-color:transparent; border-radius:0.3rem;">삭제하기</button>
+         <button class="reset" style="margin: 5px; background-color: #02A79D; color: white; border-color:transparent; border-radius:0.3rem;">목록으로</button>
          </div>       
 
     </div>
     <script>
-	    
+    $("button[type=reset]").click(function() {
+    	
+    	if(confirm("페이지를 벗어나시겠습니까?")) {
+    		history.back();
+    	} 	    	
+    });		    
     
     
     </script>

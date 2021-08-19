@@ -45,6 +45,15 @@ $('.summernote').summernote({
 	    lang: "ko-KR",
 	  focus : true	  
 	});
+	
+$("button[type=reset]").click(function() {
+	
+	if(confirm("페이지를 벗어나시겠습니까?")) {
+		history.back();
+	} 	
+	
+	
+});	
 </script> 
 </body>
 </html>
