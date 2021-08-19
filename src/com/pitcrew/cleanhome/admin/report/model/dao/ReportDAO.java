@@ -13,4 +13,9 @@ public class ReportDAO {
 		return session.selectList("ReportDAO.selectAllReportList");
 	}
 
+	public ReportDTO selectReportDetail(SqlSession session, int reportNo) {
+
+		return session.selectOne("ReportDAO.selectReportDetail", reportNo);
+	}
+
 }

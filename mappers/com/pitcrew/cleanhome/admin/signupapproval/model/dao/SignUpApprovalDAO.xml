@@ -8,7 +8,7 @@
 		<result property="identifyDate" column="IDENTIFY_DATE"/>
 		<result property="educateDate" column="EDUCATE_DATE"/>
 		<result property="accountNo" column="ACCOUNT_NO"/>
-		<result property="backName" column="BACK_NAME"/>
+		<result property="bankName" column="BACK_NAME"/>
 		<result property="accountHolder" column="ACCOUNT_HOLDER"/>
 		
 		<association property="memId" resultMap="userResultMap"></association>

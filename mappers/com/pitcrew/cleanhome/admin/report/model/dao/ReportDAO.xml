@@ -9,6 +9,23 @@
 		<result property="reportCategoryCode" column="REPORT_CATEGORY_CODE"/>
 		<result property="penaltyCategoryCode" column="PENALTY_CATEGORY_CODE"/>
 		<result property="reqNo" column="REQ_NO"/>
+		
+		<association property="memId" resultMap="userResultMap"></association>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.user.model.dto.UserDTO" id="userResultMap">
+		<id property="memNo" column="MEM_NO" />
+		<result property="memName" column="MEM_NAME" />
+		<result property="memId" column="MEM_ID" />
+		<result property="email" column="EMAIL" />
+		<result property="birth" column="BIRTH" />
+		<result property="address" column="ADDRESS" />
+		<result property="memPwd" column="MEM_PWD" />
+		<result property="phone" column="PHONE" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="memberRole" column="MEMBER_ROLE" />
+		<result property="entYn" column="ENT_YN" />
+		<result property="entDate" column="ENT_DATE" />
 	</resultMap>
 	
 	<select id="selectAllReportList" resultMap="reportResultMap">
@@ -20,8 +37,16 @@
 			 , A.REPORT_CATEGORY_CODE
 			 , A.PENALTY_CATEGORY_CODE
 			 , A.REQ_NO
+			 , B.MEMBER_ROLE
+			 , B.MEM_ID
+			 , B.MEM_NAME
+			 , B.PHONE
 		  FROM REPORT A
-		  <!-- JOIN BLACKLIST B ON (B.MEM_NO = A.MEM_NO_REPORTER) -->
-		  <!-- LEFT JOIN MEMBER C ON (C.MEM_NO = B.MEM_NO) -->
+		  JOIN MEMBER B ON (B.MEM_NO = A.MEM_NO_REPORTER)
+	</select>
+	
+	<select id="selectReportDetail" resultMap="reportResultMap">
+		
+		       
 	</select>
 </mapper>

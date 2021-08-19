@@ -38,6 +38,7 @@ table {
 			<br>
 		</div>
 	</form>
+	<form action="${ pageContext.servletContext.contextPath }/admin/blacklist/insert" method="post">
 		<div class="table-area">
 		<table align="right" id="listArea" border="1">
 			<tr>
@@ -53,20 +54,29 @@ table {
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
 			</tr>
 			<c:forEach items="${ cleanerList }" var="cleaner">
+			<input type="hidden" id="memNo" name="memNo" value="${ cleaner.memNo }">
+			<input type="hidden" id="enrollDate" name="enrollDate" value="${ cleaner.enrollDate }">
+			<%-- <input type="hidden" id="memberRole" name="memberRole" value="${ user.memberRole }"> --%>
+			<input type="hidden" id="memId" name="memId" value="${ cleaner.memId }">
+			<input type="hidden" id="memName" name="memName" value="${ cleaner.memName }">
+			<input type="hidden" id="phone" name="phone" value="${ cleaner.phone }">
+			<%-- <input type="hidden" id="penaltyScoreSum" name="penaltyScoreSum" value="${ user.penaltyScoreSum }"> --%>
+			<input type="hidden" id="entYn" name="entYn" value="${ cleaner.entYn }">
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ cleaner.memNo }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ cleaner.enrollDate }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ cleaner.memId }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ cleaner.memName }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ '' }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><%-- <c:out	value="${ '' }"></c:out> --%></td>
+					<td style="text-align: center; font-size: 20pt;"><%-- <c:out	value="${ '' }"></c:out> --%></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ cleaner.phone }"></c:out></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button>추가</button></td>
+					<td align="center" style="text-align: center; font-size: 15pt;"><button type="submit">추가</button></td>
 					<td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ cleaner.entYn }"></c:out></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	</form>
 </body>
 </html>
