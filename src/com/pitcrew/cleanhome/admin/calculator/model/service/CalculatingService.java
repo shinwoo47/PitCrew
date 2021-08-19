@@ -2,6 +2,7 @@ package com.pitcrew.cleanhome.admin.calculator.model.service;
 
 import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,44 +25,58 @@ public class CalculatingService {
 
 	}
 
-	/* 정산한 의뢰 번호 불러오기 */
-	public List<CalSettingDTO> selectCalCheck() {
-
+	/* 정산 기초자료 계산하기 */
+	public List<CalculatingDTO> selectCalSetting(Map<String, String> searchMap) {
 		SqlSession session = getSqlSession();
 
-		List<CalSettingDTO> calCheckList = calDAO.selectCalCheck(session);
+		/* 정산 기초 자료 */
+		List<CalculatingDTO> calSettingList = calDAO.selectCalSetting(session, searchMap);
+		/* 공제율 */
+		DeductRateDTO incometaxRate = calDAO.selectdeductRate(session);
+		/* 기정산된 의뢰번호 */
+		List<CalSettingDTO> reqCheckList = calDAO.selectCalCheck(session);
+		
+		List<CalculatingDTO> perReqCalcList = new ArrayList<>();
+		
+		for(int i = 0; i < calSettingList.size(); i++) {
 
-		System.out.println("정산 의뢰번호 서비스 리턴값 체크 " + calCheckList);
+			int calReqNo = calSettingList.get(i).getRequest().getReqNo();
+			
+			if(reqCheckList.isEmpty() || calReqNo != (reqCheckList.get(i).getReqNo())) {
+				
+				CalculatingDTO calc = new CalculatingDTO();
+				int cleanerincome = calSettingList.get(i).getRequest().getCleanerIncome();	// 해결사 지급 총액
+					 
+				float incometaxrate = incometaxRate.getRate(); 		// 해결사 소득세율
+				int incometax = 0;				// 해결사 소득세액
+				int residenttax = 0;			// 해결사 주민세액
+				int transferPrice = 0;		 // 해결사 실수령액
+
+				incometax = (int)(Math.floor((cleanerincome * incometaxrate) / 10) * 10 ) ;
+				residenttax = (int)(Math.floor((cleanerincome * incometaxrate * 0.1) / 10) * 10);
+				System.out.println("소득세액 : " + incometax);
+				System.out.println("주민세액 : " + residenttax);
+				
+				transferPrice = cleanerincome - incometax - residenttax;
+				System.out.println("해결사 실 수령액 : " + transferPrice);
+				
+				calc.setCleaner(calSettingList.get(i).getCleaner());
+				calc.setIncometax(incometax);
+				calc.setResidenttax(residenttax);
+				calc.setCleanerTransferPrice(transferPrice);
+				calc.setRequest(calSettingList.get(i).getRequest());
+				
+				perReqCalcList.add(calc);
+			}
+		}
+		
+		System.out.println("서비스 리턴값 체크 " + perReqCalcList);
 		session.close();
 
-		return calCheckList;
+		return perReqCalcList;
 	}
 
-
-	/* 정산 기초자료 불러오기 */
-	public List<CalSettingDTO> selectCalSetting(Map<String, String> searchMap) {
-		SqlSession session = getSqlSession();
-
-		List<CalSettingDTO> calSettingList = calDAO.selectCalSetting(session, searchMap);
-
-		System.out.println("서비스 리턴값 체크 " + calSettingList);
-		session.close();
-
-		return calSettingList;
-	}
-
-	/* 공제율 불러오기 */
-	public List<DeductRateDTO> selectDeductRate() {
-		SqlSession session = getSqlSession();
-
-		List<DeductRateDTO> deductRateList = calDAO.selectdeductRate(session);
-
-		System.out.println("서비스 리턴값 체크 " + deductRateList);
-		session.close();
-
-		return deductRateList;
-	}
-
+	
 	/* 등록할 정산번호 확인 */
 	public int selectCalNum() {
 		SqlSession session = getSqlSession();

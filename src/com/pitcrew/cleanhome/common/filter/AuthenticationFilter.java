@@ -113,6 +113,7 @@ public class AuthenticationFilter implements Filter {
 
 		adminPermitList.add("/admin/request/list");
 		adminPermitList.add("/admin/request/detail");
+		adminPermitList.add("/admin/yetcal/list");
 		adminPermitList.add("/admin/calculating/list");
 		adminPermitList.add("/notice/update");
 
