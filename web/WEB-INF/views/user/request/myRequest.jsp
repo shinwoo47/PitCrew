@@ -266,7 +266,7 @@
      		grpPhone = "${products.phone.phone}";
      		grpReqDate = "${products.reqDate}";
      		grpReqStatus = "${products.reqStatus}";
-     		grpNo = "${ products.reqNo}"
+     		grpNo = "${ products.reqNo }"
      	</c:forEach>
      	
      	$("#containerp-list").append(

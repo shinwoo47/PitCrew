@@ -266,6 +266,7 @@
      		grpPhone = "${products.phone.phone}";
      		grpReqDate = "${products.reqDate}";
      		grpReqStatus = "${products.reqStatus}";
+     		grpNo = "${ products.reqNo }"
      	</c:forEach>
      	
      	$("#containerp-list").append(
@@ -273,6 +274,7 @@
 			+ 	'<div class="containerp-top">'
 			+ 		'<div> ' + grpReqDate + ' ' + grpReqStatus + '</div>'
 			+ 		'<div class="req_detail">'
+			+			'<input type="hidden" id="reqNo" value=' + grpNo + '>'
 			+ 			'<button id="req_detailBtn">의뢰상세보기 ></button>'
 			+ 		'</div>'
 			+ 	'</div>'
@@ -325,6 +327,21 @@
 		 }
      } 
      
+	window.onload = function() {
+    	 
+    	 const $detail = $("div > #req_detailBtn");
+    	 const $reqNo = $("div > #reqNo");
+    	 
+    	 console.log("hi")
+    	 console.log($detail)
+    	 console.log($reqNo)
+    	 $detail.on("click", function(){ 
+    		 	const no = this.parentNode.children[0].value;
+				console.log(no)
+ 			location.href = "${ pageContext.servletContext.contextPath }/user/request/detail?no=" + no;
+
+ 		});
+	}
      </script>
      
      
