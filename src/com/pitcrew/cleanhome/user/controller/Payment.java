@@ -30,8 +30,6 @@ public class Payment extends HttpServlet {
 		System.out.println("현재회원번호 : " + member);
 		clean = new CleanService().selectMember(member);
 		
-		List<Integer> productNo = new ArrayList<Integer>(5);
-		
 		int optPrice = 5000;
 		double optTime = 0.5;
 		/*db등록*/
@@ -40,21 +38,16 @@ public class Payment extends HttpServlet {
 		clean.setTime(Double.parseDouble(request.getParameter("CleanTime")));
 		//상품번호
 		clean.setProductNo(Integer.parseInt(request.getParameter("cleanNo")));
-		productNo.add(clean.getProductNo());
 		if(request.getParameter("optionNo1") != null)	 {
 			clean.setOptionNo1(Integer.parseInt(request.getParameter("optionNo1")));
 			clean.setProPrice(clean.getProPrice() + optPrice);
 			clean.setTime(clean.getTime() + optTime);
-			productNo.add(clean.getOptionNo1());
-			System.out.println(productNo.get(1));
 		}
 		if(request.getParameter("optionNo2") != null)	 {
 			clean.setOptionNo2(Integer.parseInt(request.getParameter("optionNo2")));
 			System.out.println(clean.getOptionNo2());
 			clean.setProPrice(clean.getProPrice() + optPrice);
 			clean.setTime(clean.getTime() + optTime);
-			productNo.add(clean.getOptionNo2());
-			System.out.println(productNo.get(2));
 		}
 		//내용
 		clean.setReqReq(request.getParameter("content"));
