@@ -45,29 +45,41 @@ public class PayServices {
          }
          int result = 0;
          
-         int deductPrice1  = (int)(Math.floor((calPrice/(1+vat)) / 10)) * 10; // 공급가액
-         result += payDAO.insertDeductPrice1(session, payment, deductPrice1);
+         int deductPrice1  = (int)(Math.floor((calPrice/(1+vat)) / 10)) * 10; 
+         payment.setDeductPrice(deductPrice1);
+         result += payDAO.insertDeductPrice1(session, payment);
+         if(result == 1) {
+        	 session.commit();
+        	 
+         }
          
-         int deductPrice2  =  (int) (calPrice * cardrate); // 공급가액
-         result += payDAO.insertDeductPrice2(session, payment, deductPrice1);
+         payment.setReqNo(payDAO.selectSetReqNo(session));
          
-         int deductPrice3  = (int) (calPrice * marginrate); // 공급가액
-         result += payDAO.insertDeductPrice3(session, payment, deductPrice1);
+         System.out.println("의뢰번호 : " + payment.getReqNo());
          
+         int deductPrice2  =  (int) (calPrice * cardrate); 
+         payment.setDeductPrice(deductPrice2);
+         result += payDAO.insertDeductPrice2(session, payment);
          
-         System.out.println("공급가액 : " + supplyPrice);
+         int deductPrice3  = (int) (calPrice * marginrate); 
+         payment.setDeductPrice(deductPrice3);
+         result += payDAO.insertDeductPrice3(session, payment);
+         
          
          deductSum = (int) ((calPrice - supplyPrice) + (deductPrice2) + (deductPrice3)); //부가세 + 카드수수료율 + 운영비  
+         System.out.println("calPrice" + calPrice);
+         System.out.println("supplyPrice" + supplyPrice);
+         System.out.println("deductPrice2" + deductPrice2);
+         System.out.println("deductPrice3" + deductPrice3);
 
          cleanerincome = calPrice - deductSum;   //해결사 지급 총액
 
          System.out.println("공제 총액 : " + deductSum);
          System.out.println("지급 총액 : " + cleanerincome);
-         
-         payment.setPayPrice(cleanerincome);
+         payment.setDeductPrice(cleanerincome);
          
          if(result == 3) {
-            session.commit();
+        	 session.commit();
             System.out.println("공제금액 insert 성공");
          } else {
             session.rollback();
@@ -88,7 +100,7 @@ public class PayServices {
       result = payDAO.insertRequest(session, payment);
       
       if(result > 0 ) {
-         session.commit();
+    	 session.commit();
          System.out.println("insertRequest 성공");
       } else {
          session.rollback();
@@ -109,7 +121,6 @@ public class PayServices {
       result = payDAO.insertReqInfo(session, payment);
       
       if(result > 0 ) {
-         session.commit();
          System.out.println("insertReqInfo 성공");
       } else {
          session.rollback();
@@ -129,7 +140,6 @@ public class PayServices {
       result = payDAO.insertPayHistory(session, payment);
       
       if(result > 0 ) {
-         session.commit();
          System.out.println("insertPayHistory 성공");
       } else {
          session.rollback();
@@ -147,11 +157,29 @@ public class PayServices {
       
       int result = 0;
       
-      result = payDAO.insertProductByReq(session, payment);
+      if(payment.getSerNo()[0] > 0 ) {
+    	  
+    	  payment.setSerNoa(payment.getSerNo()[0]);
+    	  result = payDAO.insertProductByReq(session, payment);
+      }
+      
+      if(payment.getSerNo()[1] > 0 ) {
+    	  
+          payment.setSerNoa(payment.getSerNo()[1]);
+          result = payDAO.insertProductByReq(session, payment);
+      }
+      
+      if(payment.getSerNo()[2] > 0 ) {
+    	  
+          payment.setSerNoa(payment.getSerNo()[2]);
+          result = payDAO.insertProductByReq(session, payment);
+      }
+      
       
       if(result > 0 ) {
          session.commit();
          System.out.println("insertProductByReq 성공");
+         System.out.println("커밋성공!");
       } else {
          session.rollback();
          System.out.println("insertProductByReq 실패");

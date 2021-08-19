@@ -56,7 +56,7 @@ public class UserPayRequestServlet extends HttpServlet {
       number[1] = optionNo1;
       number[2] = optionNo2;
       
-      
+      //상품번호
       payment.setSerNo(number);
       //결제번호
       payment.setPayApprovalNo(impUid);

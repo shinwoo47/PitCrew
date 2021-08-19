@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="PayDAO">
+<mapper namespace="PayDAO">
 	
 	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO" id="CalSettingResultMap">
 	<id property="reqNo" column="REQ_NO"/>
@@ -42,4 +41,136 @@
 		    , A.DEDUCT_RATE
 	     FROM SET_DEDUCT_RATE A	
 	</select>
+	
+	<insert id="insertDeductPrice1">
+		INSERT
+		  INTO REQUEST_INDIRECT_PRICE A
+		(
+		  A.DEDUCT_NO
+		, A.REQ_NO
+		, A.DEDUCT_PRICE
+		)
+		VALUES
+		(
+		  1
+		, SEQ_REQUEST_INFO.NEXTVAL
+		, #{ deductPrice }
+		)			
+	</insert>
+	
+	<select id="selectSetReqNo" resultType="_int">
+		SELECT 
+      		   LAST_NUMBER 
+		  FROM USER_SEQUENCES 
+		WHERE SEQUENCE_NAME = 'SEQ_REQUEST_INFO'
+	</select>
+	
+	<insert id="insertDeductPrice2">
+		INSERT
+		  INTO REQUEST_INDIRECT_PRICE A
+		(
+		  A.DEDUCT_NO
+		, A.REQ_NO
+		, A.DEDUCT_PRICE
+		)
+		VALUES
+		(
+		  2
+		, #{ reqNo }
+		, #{ deductPrice }
+		)			
+	</insert>
+	
+	<insert id="insertDeductPrice3">
+		INSERT
+		  INTO REQUEST_INDIRECT_PRICE A
+		(
+		  A.DEDUCT_NO
+		, A.REQ_NO
+		, A.DEDUCT_PRICE
+		)
+		VALUES
+		(
+		  3
+		, #{ reqNo }
+		, #{ deductPrice }
+		)			
+	</insert>
+	
+	<insert id="insertRequest">
+	  INSERT
+	    INTO REQUEST_INFO A
+	  (
+	    A.REQ_NO
+	  , A.REQ_DATE
+	  , A.REQ_REQ
+	  , A.MEM_NO_USER
+	  , A.REQ_STATUS
+	  , A.DEDUCTPRICE
+	  )
+	  VALUES
+	  (
+	    #{ reqNo }
+	  , #{ reqDate }
+	  , #{ reqReq }
+	  , #{ memNoUser }
+	  , '등록'
+	  , #{ deductPrice }
+	  )
+	</insert>
+	
+	<insert id="insertReqInfo">
+		INSERT
+		  INTO REQ_INFO A
+		(
+		  A.REQ_CON_NO
+		, A.REQ_NO
+		, A.REQ_CON
+		)
+		VALUES
+		(
+		  SEQ_REQ_INFO.NEXTVAL
+		, #{ reqNo }
+		, '등록'
+		)
+	</insert>
+	
+	<insert id="insertPayHistory">
+		INSERT
+		  INTO PAY_HISTORY A
+		(
+		  A.PAY_NO
+		, A.PAY_PRICE
+		, A.PAY_DATE
+		, A.PAY_APPROVAL_NO
+		, A.REQ_NO
+		)
+		VALUES
+		(
+		  SEQ_PAY_HISTORY.NEXTVAL
+		, #{ payPrice }
+		, SYSDATE
+		, #{ payApprovalNo }
+		, #{ reqNo }
+		)
+	</insert>
+	
+	<insert id="insertProductByReq">
+		INSERT
+		  INTO PRODUCT_BY_REQ A
+		(
+		  A.REQ_NO
+		, A.SER_NO
+		)
+		VALUES
+		(
+		  #{ reqNo }
+		, #{ serNoa }
+		)
+	</insert>
+	
+	
+	
+	
+	
 </mapper>

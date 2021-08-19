@@ -11,43 +11,48 @@ public class PayDAO {
 
    public List<DeductRateDTO> selectDeductRate(SqlSession session) {
       
-      return session.selectList("CalculatingDAO.selectdeductRate");
+      return session.selectList("PayDAO.selectdeductRate");
    }
    
-   public int insertDeductPrice1(SqlSession session, PaymentDTO payment, int deductPrice1) {
-      // TODO Auto-generated method stub
-      return 0;
+   public int insertDeductPrice1(SqlSession session, PaymentDTO payment) {
+
+	   return session.insert("PayDAO.insertDeductPrice1", payment);
+   }
+   
+   public int selectSetReqNo(SqlSession session) {
+
+	   return session.selectOne("PayDAO.selectSetReqNo");
    }
 
-
-   public int insertDeductPrice2(SqlSession session, PaymentDTO payment, int deductPrice1) {
-      // TODO Auto-generated method stub
-      return 0;
+   public int insertDeductPrice2(SqlSession session, PaymentDTO payment) {
+	   
+	   return session.insert("PayDAO.insertDeductPrice2", payment);
    }
-   public int insertDeductPrice3(SqlSession session, PaymentDTO payment, int deductPrice1) {
-      // TODO Auto-generated method stub
-      return 0;
+   public int insertDeductPrice3(SqlSession session, PaymentDTO payment) {
+
+	   return session.insert("PayDAO.insertDeductPrice3", payment);
    }
 
    public int insertRequest(SqlSession session, PaymentDTO payment) {
-      // TODO Auto-generated method stub
-      return 0;
+     
+	   return session.insert("PayDAO.insertRequest", payment);
    }
-
+   
    public int insertReqInfo(SqlSession session, PaymentDTO payment) {
-      // TODO Auto-generated method stub
-      return 0;
+
+	   return session.insert("PayDAO.insertReqInfo", payment);
    }
 
    public int insertPayHistory(SqlSession session, PaymentDTO payment) {
-      // TODO Auto-generated method stub
-      return 0;
+     
+	   return session.insert("PayDAO.insertPayHistory", payment);
    }
 
    public int insertProductByReq(SqlSession session, PaymentDTO payment) {
-      // TODO Auto-generated method stub
-      return 0;
+
+	   return session.insert("PayDAO.insertProductByReq", payment);
    }
+
 
 
 
