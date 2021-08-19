@@ -1,5 +1,7 @@
 package com.pitcrew.cleanhome.admin.report.model.dto;
 
+import com.pitcrew.cleanhome.admin.user.model.dto.UserDTO;
+
 public class ReportDTO {
 	
 	private int reportNo;
@@ -9,11 +11,10 @@ public class ReportDTO {
 	private int reportCategoryCode;
 	private String penaltyCategoryCode;
 	private int reqNo;
-	private int memNo;
-	private String memberRole;
-	private String memId;
-	private String memName;
-	private String phone;
+	private UserDTO memberRole;
+	private UserDTO memId;
+	private UserDTO memName;
+	private UserDTO phone;
 	private int penaltyScoreSum;
 	
 	
@@ -21,8 +22,8 @@ public class ReportDTO {
 
 
 	public ReportDTO(int reportNo, String reportBody, int memNoReporter, int memNoSuspect, int reportCategoryCode,
-			String penaltyCategoryCode, int reqNo, int memNo, String memberRole, String memId, String memName,
-			String phone, int penaltyScoreSum) {
+			String penaltyCategoryCode, int reqNo, UserDTO memberRole, UserDTO memId, UserDTO memName, UserDTO phone,
+			int penaltyScoreSum) {
 		super();
 		this.reportNo = reportNo;
 		this.reportBody = reportBody;
@@ -31,7 +32,6 @@ public class ReportDTO {
 		this.reportCategoryCode = reportCategoryCode;
 		this.penaltyCategoryCode = penaltyCategoryCode;
 		this.reqNo = reqNo;
-		this.memNo = memNo;
 		this.memberRole = memberRole;
 		this.memId = memId;
 		this.memName = memName;
@@ -110,52 +110,42 @@ public class ReportDTO {
 	}
 
 
-	public int getMemNo() {
-		return memNo;
-	}
-
-
-	public void setMemNo(int memNo) {
-		this.memNo = memNo;
-	}
-
-
-	public String getMemberRole() {
+	public UserDTO getMemberRole() {
 		return memberRole;
 	}
 
 
-	public void setMemberRole(String memberRole) {
+	public void setMemberRole(UserDTO memberRole) {
 		this.memberRole = memberRole;
 	}
 
 
-	public String getMemId() {
+	public UserDTO getMemId() {
 		return memId;
 	}
 
 
-	public void setMemId(String memId) {
+	public void setMemId(UserDTO memId) {
 		this.memId = memId;
 	}
 
 
-	public String getMemName() {
+	public UserDTO getMemName() {
 		return memName;
 	}
 
 
-	public void setMemName(String memName) {
+	public void setMemName(UserDTO memName) {
 		this.memName = memName;
 	}
 
 
-	public String getPhone() {
+	public UserDTO getPhone() {
 		return phone;
 	}
 
 
-	public void setPhone(String phone) {
+	public void setPhone(UserDTO phone) {
 		this.phone = phone;
 	}
 
@@ -174,11 +164,10 @@ public class ReportDTO {
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", reportBody=" + reportBody + ", memNoReporter=" + memNoReporter
 				+ ", memNoSuspect=" + memNoSuspect + ", reportCategoryCode=" + reportCategoryCode
-				+ ", penaltyCategoryCode=" + penaltyCategoryCode + ", reqNo=" + reqNo + ", memNo=" + memNo
-				+ ", memberRole=" + memberRole + ", memId=" + memId + ", memName=" + memName + ", phone=" + phone
-				+ ", penaltyScoreSum=" + penaltyScoreSum + "]";
+				+ ", penaltyCategoryCode=" + penaltyCategoryCode + ", reqNo=" + reqNo + ", memberRole=" + memberRole
+				+ ", memId=" + memId + ", memName=" + memName + ", phone=" + phone + ", penaltyScoreSum="
+				+ penaltyScoreSum + "]";
 	}
 
-	
 	
 }

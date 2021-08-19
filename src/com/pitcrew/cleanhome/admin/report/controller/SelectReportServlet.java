@@ -21,8 +21,6 @@ public class SelectReportServlet extends HttpServlet {
 	
 		List<ReportDTO> reportList = new ReportService().selectAllReportList();
 		
-		System.out.println("두겟 : " + reportList);
-		
 		String path = "";
         if(reportList != null) {
            path = "/WEB-INF/views/admin/report/reportList.jsp";
