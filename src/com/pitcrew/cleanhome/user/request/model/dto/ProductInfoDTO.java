@@ -1,20 +1,18 @@
 package com.pitcrew.cleanhome.user.request.model.dto;
 
-import java.sql.Date;
 
 public class ProductInfoDTO implements java.io.Serializable {
 	
 	private int serNo;
 	private String serName;
 	private String serContent;
-	private Date serTime;
+	private int serTime;
 	private int serPrice;
 	private String serCategory;
 	
 	public ProductInfoDTO() {}
 
-	public ProductInfoDTO(int serNo, String serName, String serContent, Date serTime, int serPrice,
-			String serCategory) {
+	public ProductInfoDTO(int serNo, String serName, String serContent, int serTime, int serPrice, String serCategory) {
 		super();
 		this.serNo = serNo;
 		this.serName = serName;
@@ -48,11 +46,11 @@ public class ProductInfoDTO implements java.io.Serializable {
 		this.serContent = serContent;
 	}
 
-	public Date getSerTime() {
+	public int getSerTime() {
 		return serTime;
 	}
 
-	public void setSerTime(Date serTime) {
+	public void setSerTime(int serTime) {
 		this.serTime = serTime;
 	}
 
@@ -78,9 +76,4 @@ public class ProductInfoDTO implements java.io.Serializable {
 				+ serTime + ", serPrice=" + serPrice + ", serCategory=" + serCategory + "]";
 	}
 
-
-	
-	
-	
-	
 }

@@ -69,9 +69,6 @@ public class MyReqService {
 		
 		SqlSession session = getSqlSession();
 		
-		String status = userReqDAO.selectRequestStatus(session, userRequestDTO);
-		userRequestDTO.setReqStatus(status);
-		
 		UserRequestDTO requestDetail = userReqDAO.selectRequestDetail(session, userRequestDTO);
 		
 		session.close();

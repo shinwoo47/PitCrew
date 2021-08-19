@@ -144,10 +144,6 @@
 							        <td>가격</td>
 							        <td><c:out value="${ sum }"/> 원</td>
 							      </tr>
-							      <tr>
-							        <td>의뢰상태</td>
-							        <td>${ requestDetail.reqStatus }</td> 
-							      </tr>
 							    </tbody>
 							  </table>
 							</div>

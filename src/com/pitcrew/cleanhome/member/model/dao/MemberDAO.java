@@ -57,4 +57,9 @@ public class MemberDAO {
 		return session.selectOne("MemberDAO.selectMemNo");
 	}
 
+	public MemberDTO selectMyId(SqlSession session, MemberDTO findMyId) {
+
+		return session.selectOne("MemberDAO.selectMyId", findMyId);
+	}
+
 }
