@@ -16,7 +16,6 @@ public class ReportService {
 	public ReportService() {
 		reportDAO = new ReportDAO();
 	}
-	
 
 	public List<ReportDTO> selectAllReportList() {
 		
@@ -28,5 +27,17 @@ public class ReportService {
 		
 		return reportList;
 	}
+
+	public ReportDTO checkReportDetail(int reportNo) {
+
+		SqlSession session = getSqlSession();
+		
+		ReportDTO reportDetail = reportDAO.selectReportDetail(session, reportNo);
+		
+		session.close();
+		
+		return reportDetail;
+	}
+
 
 }

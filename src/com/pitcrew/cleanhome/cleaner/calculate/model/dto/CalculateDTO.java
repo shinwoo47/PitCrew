@@ -1,4 +1,4 @@
-package com.pitcrew.cleanhome.cleaner.calcalate.model.dto;
+package com.pitcrew.cleanhome.cleaner.calculate.model.dto;
 
 import java.util.Date;
 

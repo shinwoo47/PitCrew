@@ -26,7 +26,7 @@ public class InsertBlacklistServlet extends HttpServlet {
 		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		java.sql.Date enrollDate = java.sql.Date.valueOf(request.getParameter("enrollDate"));
-		String memberRole = request.getParameter("memberRole"); 
+		/* String memberRole = request.getParameter("memberRole"); */
 		String memId = request.getParameter("memId");
 		String memName = request.getParameter("memName");
 		String phone = request.getParameter("phone");

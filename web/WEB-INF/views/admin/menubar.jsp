@@ -297,6 +297,9 @@
                                 <i class="fas fa-fw fa-table"></i>정산, 매출 관리</a>
                                 <div id="submenu-5" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
+                                    	<li class="nav-item">
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/yetcal/list">미정산 항목</a>
+                                        </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/calculating/list">정산 관리</a>
                                         </li>

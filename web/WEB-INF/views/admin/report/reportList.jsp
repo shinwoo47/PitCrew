@@ -14,6 +14,7 @@ table {
 </head>
 <body>
 	<jsp:include page="../menubar.jsp" />
+	<form action="${ pageContext.servletContext.contextPath }/admin/report/check" method="get">
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
 			<tr>
@@ -27,14 +28,15 @@ table {
 				<th width="120px" style="text-align: center; font-size: 20pt;">패널티 점수</th>
 			</tr>
 			<c:forEach items="${ reportList }" var="report">
+			<input type="hidden" id="reportNo" name="reportNo" value="${ report.reportNo }">
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memNoReporter }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memberRole }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memName }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.phone }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.memberRole }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.memId }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.memName }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.phone }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ report.reportCategoryCode }"></c:out></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button type="button" id="">자세히</button></td>
+					<td align="center" style="text-align: center; font-size: 15pt;"><button type="submit">자세히</button></td>
 					<!-- <td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td> -->
 					<%-- <td style="text-align: center; font-size: 20pt;"><c:out value="${ '' }"></c:out></td> --%>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ report.penaltyScoreSum }"></c:out></td>
@@ -42,5 +44,6 @@ table {
 			</c:forEach>
 		</table>
 	</div>
+	</form>
 </body>
 </html>

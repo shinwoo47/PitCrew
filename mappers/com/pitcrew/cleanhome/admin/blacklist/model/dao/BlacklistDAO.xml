@@ -46,7 +46,7 @@
           )
           VALUES
           (
-            2
+            SEQ_BLACKLIST_NO.NEXTVAL
           , #{ penaltyScoreSum }
           , #{ memNo }
           )
