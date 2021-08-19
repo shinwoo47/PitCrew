@@ -36,7 +36,7 @@ public class CalculateServlet extends HttpServlet {
 		
 		Date date = new Date();
 		if(request.getParameter("date") != null) {
-			sdate = request.getParameter("date");
+			sdate = request.getParameter("date") + "-01";
 		}
 		
 		System.out.println("sdate : " + sdate);

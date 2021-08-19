@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>\
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 
@@ -32,7 +33,7 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  	
+
   	<style>
 		h2 {
 		padding-bottom: 20px;
@@ -78,17 +79,21 @@
                     <div class="blog__details__title">
                         <div class="container">
                         	<div>
-                        	
-                        	<input type="date" style="margin-bottom: 50px;"> 정산 월 선택 
+                        	<form>
+                        	<input id="date" name="date" type="month" style="margin-bottom: 50px;"> 정산 월 선택 <button type="submit">선택</button>
+                        	</form>
+                        	<input type="hidden" id="calNo" name="calNo" value="${ calculate.calNo }"/>
 							  <table class="table table-hover">
 							    <thead>
-							    <h4 style="margin-bottom: 20px;">개인 정보</h4>
+							    <h4><fmt:formatDate value="${ calculate.calDate }" type="date" pattern="yyyy-MM"/></h4>
+							    <h5 style="margin-bottom: 20px; margin-top: 20px;">개인 정보</h5>
 							    
 							      <tr>
 							        <th>이름</th>
 							        <th>은행명</th>
 							        <th>계좌 번호</th>
-							        <th>지급일
+							        <th>정산일</th>
+							        <th><button id="detail">상세정산</button></th>
 							      </tr>
 							    </thead>
 							    <tbody>
@@ -96,7 +101,7 @@
 							        <td>${ calculate.accountHolder }</td>
 							        <td>${ calculate.bankName }</td>
 							        <td>${ calculate.accountNo }</td>
-							        <td> 10일 </td>
+							        <td><fmt:formatDate value="${ calculate.calDate }" type="date" pattern="yyyy-MM-dd"/></td>
 							      </tr>
 							      
 							    </tbody>
@@ -272,13 +277,17 @@
     <script>
     window.onload = function() {
     	
-    	/* 화면에 랜더링 된 태그들이 존재하지 않는 경우 에러 발생 가능성이 있어서 if문으로 태그가 존재하는지 부터 확인하고 이벤트를 연결한다. */
-    	if(document.getElementById("regist")) {
-    		const $regist = document.getElementById("regist");
-    		$regist.onclick = function() {
-    			location.href = "${ pageContext.servletContext.contextPath }/cleaner/account/regist";
+    	
+    	if(document.getElementById("detail")) {
+    		const $detail = document.getElementById("detail")	
+			const no = $("#calNo")[0].value;
+    		console.log(no)
+    		$detail.onclick = function() {
+    			location.href = "${ pageContext.servletContext.contextPath }/cleaner/calculate/detail?no=" + no;
     		}
     	}
+    	
+    	
     	
     }
 
