@@ -19,14 +19,14 @@ public class CalculatingDAO {
 	}
 	
 	
-	public List<CalSettingDTO> selectCalSetting(SqlSession session, Map<String, String> searchMap) {
+	public List<CalculatingDTO> selectCalSetting(SqlSession session, Map<String, String> searchMap) {
 		
 		return session.selectList("CalculatingDAO.selectCalSetting", searchMap);
 	}
 
-	public List<DeductRateDTO> selectdeductRate(SqlSession session) {
+	public DeductRateDTO selectdeductRate(SqlSession session) {
 		
-		return session.selectList("CalculatingDAO.selectdeductRate");
+		return session.selectOne("CalculatingDAO.selectdeductRate");
 	}
 
 	/* 등록할 정산 번호 curval 체크 */

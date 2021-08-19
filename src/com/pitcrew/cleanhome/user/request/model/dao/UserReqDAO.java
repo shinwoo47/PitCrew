@@ -31,11 +31,6 @@ public class UserReqDAO {
 		return session.selectList("UserReqDAO.myeEndRequest", memNoUser);
 	}
 
-	public String selectRequestStatus(SqlSession session, UserRequestDTO userRequestDTO) {
-		
-		return session.selectOne("UserReqDAO.selectRequestStatus", userRequestDTO);
-	}
-
 	public UserRequestDTO selectRequestDetail(SqlSession session, UserRequestDTO userRequestDTO) {
 
 		return session.selectOne("UserReqDAO.selectRequestDetail", userRequestDTO);

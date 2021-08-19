@@ -59,11 +59,11 @@
 					</div>
 
 					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
+						<a class="txt2" href="${ pageContext.servletContext.contextPath }/member/findId" style="margin-right: 20px;">
+							아이디찾기
+						</a>
 						<a class="txt2" href="#">
-							Username / Password?
+							비밀번호찾기
 						</a>
 					</div>
 

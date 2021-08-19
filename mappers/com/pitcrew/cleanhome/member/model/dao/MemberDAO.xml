@@ -134,4 +134,12 @@
 	         , A.ENT_DATE = SYSDATE
 	     WHERE A.MEM_NO = { memNo }
 	</update>
+	
+	<select id="selectMyId" resultMap="memberResultMap">
+		SELECT
+			   MEM_ID
+		  FROM MEMBER A
+		 WHERE A.MEM_NAME = #{ memName }
+		   AND A.EMAIL = #{ email }	   
+	</select>
 </mapper>

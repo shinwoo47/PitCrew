@@ -82,13 +82,5 @@ table {
 			<jsp:include page="paging.jsp" />
 	</div>
 	</form>
-	<script>
-	if(document.getElementById("insertBlacklist")) {
-		const $addBlacklist = document.getElementById("insertBlacklist");
-		$addBlacklist.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/insert";
-		}
-	}
-	</script>
 </body>
 </html>

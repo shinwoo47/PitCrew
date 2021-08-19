@@ -15,6 +15,7 @@ public class UserRequestDTO implements java.io.Serializable {
 	
 	private int reqNo;
 	private Date reqDate;
+	private String reqReq;
 	private int memNoUser;
 	private int memNoCleaner;
 	private String reqStatus;
@@ -29,19 +30,21 @@ public class UserRequestDTO implements java.io.Serializable {
 	
 	public UserRequestDTO () {}
 
-	public UserRequestDTO(int memNoCleaner, int reqNo, Date reqDate, int memNoUser, MemberDTO address, MemberDTO role, MemberDTO memName,
-			MemberDTO phone, String reqStatus, List<RequestAttachmentDTO> requestAttachmentList,
-			List<ProductInfoDTO> productList, List<RequestStatusDTO> requestStatusList, List<ReportDTO> reportList) {
+	public UserRequestDTO(int reqNo, Date reqDate, String reqReq, int memNoUser, int memNoCleaner, String reqStatus,
+			MemberDTO role, MemberDTO memName, MemberDTO phone, MemberDTO address,
+			List<RequestAttachmentDTO> requestAttachmentList, List<ProductInfoDTO> productList,
+			List<RequestStatusDTO> requestStatusList, List<ReportDTO> reportList) {
 		super();
 		this.reqNo = reqNo;
 		this.reqDate = reqDate;
+		this.reqReq = reqReq;
 		this.memNoUser = memNoUser;
 		this.memNoCleaner = memNoCleaner;
-		this.address = address;
+		this.reqStatus = reqStatus;
 		this.role = role;
 		this.memName = memName;
 		this.phone = phone;
-		this.reqStatus = reqStatus;
+		this.address = address;
 		this.requestAttachmentList = requestAttachmentList;
 		this.productList = productList;
 		this.requestStatusList = requestStatusList;
@@ -64,28 +67,36 @@ public class UserRequestDTO implements java.io.Serializable {
 		this.reqDate = reqDate;
 	}
 
+	public String getReqReq() {
+		return reqReq;
+	}
+
+	public void setReqReq(String reqReq) {
+		this.reqReq = reqReq;
+	}
+
 	public int getMemNoUser() {
 		return memNoUser;
 	}
-	
+
 	public void setMemNoUser(int memNoUser) {
 		this.memNoUser = memNoUser;
 	}
-	
+
 	public int getMemNoCleaner() {
 		return memNoCleaner;
 	}
-	
+
 	public void setMemNoCleaner(int memNoCleaner) {
 		this.memNoCleaner = memNoCleaner;
 	}
 
-	public MemberDTO getAddress() {
-		return address;
+	public String getReqStatus() {
+		return reqStatus;
 	}
 
-	public void setAddress(MemberDTO address) {
-		this.address = address;
+	public void setReqStatus(String reqStatus) {
+		this.reqStatus = reqStatus;
 	}
 
 	public MemberDTO getRole() {
@@ -112,12 +123,12 @@ public class UserRequestDTO implements java.io.Serializable {
 		this.phone = phone;
 	}
 
-	public String getReqStatus() {
-		return reqStatus;
+	public MemberDTO getAddress() {
+		return address;
 	}
 
-	public void setReqStatus(String reqStatus) {
-		this.reqStatus = reqStatus;
+	public void setAddress(MemberDTO address) {
+		this.address = address;
 	}
 
 	public List<RequestAttachmentDTO> getRequestAttachmentList() {
@@ -154,10 +165,12 @@ public class UserRequestDTO implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "UserRequestDTO [reqNo=" + reqNo + ", reqDate=" + reqDate + ", memNoUser=" + memNoUser + ", address="
-				+ address + ", role=" + role + ", memName=" + memName + ", phone=" + phone + ", reqStatus=" + reqStatus
-				+ ", requestAttachmentList=" + requestAttachmentList + ", productList=" + productList
-				+ ", requestStatusList=" + requestStatusList + ", reportList=" + reportList + "]";
+		return "UserRequestDTO [reqNo=" + reqNo + ", reqDate=" + reqDate + ", reqReq=" + reqReq + ", memNoUser="
+				+ memNoUser + ", memNoCleaner=" + memNoCleaner + ", reqStatus=" + reqStatus + ", role=" + role
+				+ ", memName=" + memName + ", phone=" + phone + ", address=" + address + ", requestAttachmentList="
+				+ requestAttachmentList + ", productList=" + productList + ", requestStatusList=" + requestStatusList
+				+ ", reportList=" + reportList + "]";
 	}
 
+	
 }

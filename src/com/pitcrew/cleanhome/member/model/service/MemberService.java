@@ -140,4 +140,15 @@ public class MemberService {
 		return 0;
 	}
 
+	public MemberDTO selectMyId(MemberDTO findMyId) {
+		
+		SqlSession session = getSqlSession();
+		
+		MemberDTO selectMyId = memberDAO.selectMyId(session, findMyId);
+		
+		session.close();
+		
+		return selectMyId;
+	}
+
 }

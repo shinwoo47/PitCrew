@@ -9,29 +9,27 @@ import com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO;
 public class CalculatingDTO implements Serializable{
 	
 	private int calNo;
-	private int cleanerNo;
-	private int cleanerIncome;
+	private MemberDTO cleaner;
 	private int cleanerTransferPrice;
 	private int incometax;
 	private int residenttax;
 	private java.sql.Date calDate;
-	private int reqNo;
+	private RequestDTO request;
 	
 	
 	public CalculatingDTO() {}
 
 
-	public CalculatingDTO(int calNo, int cleanerNo, int cleanerIncome, int cleanerTransferPrice, int incometax,
-			int residenttax, Date calDate, int reqNo) {
+	public CalculatingDTO(int calNo, MemberDTO cleaner, int cleanerTransferPrice, int incometax,
+			int residenttax, Date calDate, RequestDTO request) {
 		super();
 		this.calNo = calNo;
-		this.cleanerNo = cleanerNo;
-		this.cleanerIncome = cleanerIncome;
+		this.cleaner = cleaner;
 		this.cleanerTransferPrice = cleanerTransferPrice;
 		this.incometax = incometax;
 		this.residenttax = residenttax;
 		this.calDate = calDate;
-		this.reqNo = reqNo;
+		this.request = request;
 	}
 
 
@@ -45,23 +43,13 @@ public class CalculatingDTO implements Serializable{
 	}
 
 
-	public int getCleanerNo() {
-		return cleanerNo;
+	public MemberDTO getCleaner() {
+		return cleaner;
 	}
 
 
-	public void setCleanerNo(int cleanerNo) {
-		this.cleanerNo = cleanerNo;
-	}
-
-
-	public int getCleanerIncome() {
-		return cleanerIncome;
-	}
-
-
-	public void setCleanerIncome(int cleanerIncome) {
-		this.cleanerIncome = cleanerIncome;
+	public void setCleaner(MemberDTO cleaner) {
+		this.cleaner = cleaner;
 	}
 
 
@@ -105,23 +93,22 @@ public class CalculatingDTO implements Serializable{
 	}
 
 
-	public int getReqNo() {
-		return reqNo;
+	public RequestDTO getRequest() {
+		return request;
 	}
 
 
-	public void setReqNo(int reqNo) {
-		this.reqNo = reqNo;
+	public void setRequest(RequestDTO request) {
+		this.request = request;
 	}
 
 
 	@Override
 	public String toString() {
-		return "CalculatingDTO [calNo=" + calNo + ", cleanerNo=" + cleanerNo + ", cleanerIncome=" + cleanerIncome
-				+ ", cleanerTransferPrice=" + cleanerTransferPrice + ", incometax=" + incometax + ", residenttax="
-				+ residenttax + ", calDate=" + calDate + ", reqNo=" + reqNo + "]";
+		return "CalculatingDTO [calNo=" + calNo + ", cleaner=" + cleaner + ", cleanerTransferPrice=" 
+				+ cleanerTransferPrice + ", incometax=" + incometax + ", residenttax="
+				+ residenttax + ", calDate=" + calDate + ", request=" + request + "]";
 	}
-
 
 	
 }

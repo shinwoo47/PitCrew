@@ -34,7 +34,7 @@ table {
 							<input type="date" id="searchEndDate" name="searchEndDate" class="fa fa-search"placeholder="날짜 선택"></h3>
 		</div>
 	</form>
-
+	<form action="${ pageContext.servletContext.contextPath }/admin/blacklist/delete" method="post">
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
 			<tr>
@@ -50,6 +50,7 @@ table {
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
 			</tr>
 			<c:forEach items="${ blacklistList }" var="blacklist">
+			<input type="hidden" id="memNo" name="memNo" value="${ blacklist.memNo }">
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memNo }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.enrollDate }"></c:out></td>
@@ -58,20 +59,13 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memName }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.phone }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ blacklist.penaltyScoreSum }"></c:out></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button type="button" id="deleteBlacklist">삭제</button></td>
+					<td align="center" style="text-align: center; font-size: 15pt;"><button type="submit">삭제</button></td>
 					<td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ blacklist.entYn }"></c:out></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-	<script>
-	if(document.getElementById("deleteBlacklist")) {
-		const $delBlacklist = document.getElementById("deleteBlacklist");
-		$delBlacklist.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/delete";
-		}
-	}
-	</script>
+	</form>
 </body>
 </html>
