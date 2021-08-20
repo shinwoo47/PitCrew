@@ -1,4 +1,4 @@
-package com.pitcrew.cleanhome.user.controller;
+package com.pitcrew.cleanhome.user.board.controller;
 
 import java.io.IOException; 
 import javax.servlet.ServletException;
@@ -7,15 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/home")
-public class UserHomeServlet extends HttpServlet {
+
+@WebServlet("/user/board/faq")
+public class FaqServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String path = "/WEB-INF/views/user/services.jsp";
-		
+						
+		String path = "/WEB-INF/views/user/board/userFaq.jsp";
+				
 		request.getRequestDispatcher(path).forward(request, response);
-		
 	}
+
 
 }
