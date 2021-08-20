@@ -61,6 +61,14 @@ public class SelectNotYetCal extends HttpServlet {
 		System.out.println("post로 넘어옴");
 		// 받은 데이터를 차례로 넣어준다? 아무튼 처리한다
 		
+		String[] num = request.getParameterValues("content");
+		System.out.println(num);
+		
+		
+		CalculatingService calculatingService = new CalculatingService();
+		/* 받은 데이터를 서비스로 넘겨준다 */
+		
+		
 		
 		/* 조회해온다 
 		List<CalculatingDTO> calList = calculatingService.selectCalList(selectAdminCriteriaForCal);
@@ -76,6 +84,7 @@ public class SelectNotYetCal extends HttpServlet {
 		
 		for(CalculatingDTO calc : calList) {
 			String cleanerNo = String.valueOf(calc.getCleanerNo());
+			
 			if(buckitList.keySet().contains(cleanerNo)) {
 				buckit = buckitList.get(cleanerNo);
 				buckit.add(calc);
@@ -90,16 +99,8 @@ public class SelectNotYetCal extends HttpServlet {
 				buckit.add(calc);
 				buckitList.put(cleanerNo, buckit);
 			}
-			
+
 		}*/
-		
-		/* 정산번호 및 회원번호 체크 
-		int calNo = calculatingService.selectCalNum();
-		System.out.println("정산번호 체크 : " + calNo);
-		
-		int cleanerNo = calSettingList.get(i).getCleaner().getMemNo(); //회원번호 체크
-		
-		System.out.println(cleanerNo);*/
 		
 		
 		

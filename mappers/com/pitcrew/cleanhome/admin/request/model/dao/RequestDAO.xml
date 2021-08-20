@@ -119,11 +119,11 @@
 	            	 		 , C.REQ_STATUS
 	            	 		 , F.PAY_DATE
                           FROM REQUEST_INFO C
-    					  JOIN MEMBER D ON(C.MEM_NO_USER = D.MEM_NO)
-                          JOIN MEMBER E ON(C.MEM_NO_CLEANER = E.MEM_NO)
     					  JOIN PAY_HISTORY F ON(F.REQ_NO = C.REQ_NO)
+    					 <if test="searchCondition == 'product'"> 
     	  				  JOIN PRODUCT_BY_REQ G ON(G.REQ_NO = C.REQ_NO)
 	      				  JOIN PRODUCT_INFO H ON(H.SER_NO = G.SER_NO)
+	      				 </if>
     					  <where> 
 							<if test="searchCondition == 'product'">
 					           G.SER_NAME LIKE '%' || #{ searchValue } || '%'
@@ -176,7 +176,7 @@
        FROM REQUEST_INFO A
        JOIN REQ_INFO B ON (B.REQ_NO = A.REQ_NO)
        JOIN MEMBER C ON(A.MEM_NO_USER = C.MEM_NO)
-       JOIN MEMBER D ON(A.MEM_NO_CLEANER = D.MEM_NO)
+       LEFT JOIN MEMBER D ON(A.MEM_NO_CLEANER = D.MEM_NO)
        JOIN PAY_HISTORY E ON(E.REQ_NO = A.REQ_NO)
 	   JOIN PRODUCT_BY_REQ F ON(F.REQ_NO = A.REQ_NO)
        LEFT JOIN PRODUCT_INFO G ON (G.SER_NO = F.SER_NO)
