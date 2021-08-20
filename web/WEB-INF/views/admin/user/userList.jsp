@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="com.pitcrew.cleanhome.admin.blacklist.controller.InsertBlacklistServlet"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ table {
 	<form action="${ pageContext.servletContext.contextPath }/admin/blacklist/insert" method="post">
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
-			<tr>
+				<tr>
 				<th width="120px" style="text-align: center; font-size: 20pt;">회원번호</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">가입일</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">아이디</th>
@@ -56,7 +56,9 @@ table {
 				<!-- <th width="100px" style="text-align: center; font-size: 20pt;">자세히</th> -->
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
 			</tr>
-			<c:forEach items="${ userList }" var="user">
+			<c:forEach items="${ requestScope.userList }" var="user">
+			<input type="hidden" id="email" name="email" value="${ user.email }">
+			<input type="hidden" id="userList" name="userList" value="${ userList }">
 			<input type="hidden" id="memNo" name="memNo" value="${ user.memNo }">
 			<input type="hidden" id="enrollDate" name="enrollDate" value="${ user.enrollDate }">
 			<%-- <input type="hidden" id="memberRole" name="memberRole" value="${ user.memberRole }"> --%>
@@ -73,14 +75,55 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.phone }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ fn:replace(user.address, \"$\", \" \") }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><%-- <c:out value="${  }"></c:out> --%></td>
-					<td align="center" style="text-align: center; font-size: 15pt;"><button type="submit" id="insertBlacklist">추가</button></td>
+					<td id="insertButton" style="text-align: center; font-size: 15pt;"><button id="insertButton" name="ok" type="submit" value="${status.index}">추가</button></td>
 					<!-- <td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td> -->
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ user.entYn }"></c:out></td>
-				</tr>
+				</tr> 
 			</c:forEach>
 		</table>
 			<jsp:include page="paging.jsp" />
 	</div>
 	</form>
+	
+	<script>
+	    if(document.getElementsByTagName("td")) {
+			
+			const $tds = document.getElementsByTagName("td");
+			for(let i = 0; i < $tds.length; i++) {
+				}
+				$tds[i].onclick = function() {
+					const memNo = this.parentNode.children[0].innerText;
+					location.href = "${ pageContext.servletContext.contextPath }/admin/select/allblacklist?memNo=" + memNo;
+				}
+				
+			}
+    </script>
+	
+	<!-- <script>
+		
+		if(document.getElementsByTagName("td")) {
+			
+			const $tds = document.getElementsByTagName("td");
+			for(let i = 0; i < $tds.length; i++) {
+				
+				$tds[i].onclick = function() {
+					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있습니다. */
+					const memNo = this.parentNode.children[0].innerText;
+					/* location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/insert?memNo=" + memNo; */
+				}
+				
+			}
+			
+		}
+		
+	</script> -->
+	
+	<!--  <script type="text/javascript">
+    $(document).ready(function () {
+        $("button[name=ok]").click(function () {
+            alert($(this).val());
+        });
+    });
+	</script>  -->
 </body>
 </html>

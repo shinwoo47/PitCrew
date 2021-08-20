@@ -222,7 +222,7 @@
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/report/select">신고 요청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/listgroup.html">탈퇴 회원</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/resign/select">탈퇴 회원</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/typography.html">Typography</a>
