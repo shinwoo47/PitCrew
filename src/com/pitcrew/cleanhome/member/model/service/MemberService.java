@@ -179,4 +179,15 @@ public class MemberService {
 		return result;
 	}
 
+	public CleanerInfoDTO identifyCheck(MemberDTO loginMember) {
+		
+		SqlSession session = getSqlSession();
+		
+		CleanerInfoDTO cleaner = memberDAO.identifyCheck(session, loginMember);
+		
+		session.close();
+		
+		return cleaner;
+	}
+
 }

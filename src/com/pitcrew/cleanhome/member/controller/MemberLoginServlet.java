@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.pitcrew.cleanhome.member.model.dto.CleanerInfoDTO;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 import com.pitcrew.cleanhome.member.model.service.MemberService;
 
@@ -44,7 +45,12 @@ public class MemberLoginServlet extends HttpServlet {
 		if(loginMember != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
-			 
+			CleanerInfoDTO cleanerInfo = new CleanerInfoDTO();
+			cleanerInfo = memberService.identifyCheck(loginMember);			
+			session.setAttribute("cleanerInfo", cleanerInfo);
+			
+			System.out.println("cleanerInfo : " + cleanerInfo);
+			
 			if(("해결사".equals(loginMember.getRole()))){
 				request.setAttribute("successCode", "cleanerLogin");
 				request.getRequestDispatcher("/WEB-INF/views/common/success.jsp").forward(request, response);

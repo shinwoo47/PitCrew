@@ -35,12 +35,14 @@ public class RequestCompleteServlet extends HttpServlet {
 		
 		String path = "";
 		if(result > 0) {
-			path = "/WEB-INF/views/common.success.jsp";
+			path = "/WEB-INF/views/common/success.jsp";
 			request.setAttribute("successCode", "completeRequest");
 		} else {
-			path = "/WEB-INF/views/common.failed.jsp";
+			path = "/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "의뢰 완료 실패!");
 		}
+		
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 	
 }

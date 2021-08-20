@@ -53,6 +53,12 @@ public class AccountService {
 		SqlSession session = getSqlSession();
 		
 		int result = accountDAO.insertAccount(session, account);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
 	
 		session.close();
 		

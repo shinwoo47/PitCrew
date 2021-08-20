@@ -96,11 +96,11 @@
                 </div>
                 <div class="col-lg-4 col-md-5">
                     <div class="blog__sidebar">
-                    <form action="${ pageContext.servletContext.contextPath }/cleaner/request/enroll" method="get">
+                    	<form action="${ pageContext.servletContext.contextPath }/cleaner/request/enroll" method="get">
                         <div class="blog__sidebar__search">
                             <h5>Search</h5>
                            	<input type="date" id="searchDate" name="searchDate" class="fa fa-search" placeholder="날짜 선택">
-                           	<input type="text" id="searchValue" name="searchValue"/>   
+                           	<input type="text" id="searchValue" name="searchValue" placeholder="장소 입력"/>
                            	<button type="submit">검색</button>  	   
                         </div>
                         </form>
@@ -213,7 +213,7 @@
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=572342b1ef19fad40c1a5ac213542717&libraries=services"></script>
 	<script>
 		window.onload = function() {
-		
+					
 			$("body").on("click", "[id^=request]", function(){ 
 
 				var address = $(this).children("h3").text();

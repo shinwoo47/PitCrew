@@ -24,7 +24,7 @@ public class AccountDAO {
 
 	public int insertAccount(SqlSession session, CleanerInfoDTO account) {
 		
-		return session.insert("AccountDAO.insertAccount", account);
+		return session.update("AccountDAO.updateAccount", account);
 	}
 
 }

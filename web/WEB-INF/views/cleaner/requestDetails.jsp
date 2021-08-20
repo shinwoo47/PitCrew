@@ -42,6 +42,63 @@
 	.requestReq {
 	margin-bottom: 20px;
 	}
+	.btn-detail {
+	display: inline-block;
+	margin: 30px 10px;
+	}
+	.picture {
+	border: 1px solid #f6f6f6;
+	}
+	.picture label {
+	 position:relative;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:middle;
+    overflow:hidden;
+    width:100px;
+    height:30px;
+    background:#777;
+    color:#fff;
+    text-align:center;
+    line-height:30px;
+	}
+	.picture label input{
+    position:absolute;
+    width:0;
+    height:0;
+    overflow:hidden;
+	}
+	.picture input[type=text] {
+    vertical-align:middle;
+    display:inline-block;
+    width:400px;
+    height:28px;
+    line-height:28px;
+    font-size:11px;
+    padding:0;
+    border:0;
+    border:1px solid #777;
+}
+	.picture button[type=submit] {
+	background-color: green;
+	color: white;
+	border: none;
+	padding: 2px 5px;
+	margin: 5px 5px;
+}
+	.report {
+	background-color: red;
+	color: white;
+	border: none;
+
+	}
+	.complete {
+	background-color: red;
+	color: white;
+	border: none;
+
+	}
+
   	</style>
 </head>
 
@@ -135,23 +192,23 @@
                     <div class="blog__sidebar__categories" id="map" style="width:700px;height:400px;">
                     
                     </div>
-                    <div>
-                    	<c:if test="${ requestDetail.reqStatus eq '완료              ' }">
-                    	<button id="report">신고 하기</button>
-                    	</c:if>
-                    </div>
-                    <div>
-                    	<label>청소전, 후 사진 올리기</label>
+                   
+                    <div class="btn-detail picture">
 	                    <form action="${ pageContext.servletContext.contextPath }/cleaner/request/attach" method="post" encType="multipart/form-data">
 	                    <input type="hidden" name="reqNo" id="reqNo" value="${ requestDetail.reqNo }"/>
-						<input type="file" name="before" multiple><br>
-						<input type="file" name="after" multiple><br>
-						<button type="submit">사진 전송</button>
-					</form>
+						<label>청소전 사진<input type="file" name="before"  multiple></label><br>
+						<label>청소후 사진<input type="file" name="after" class="picture" multiple></label><br>
+						<button type="submit">사진 등록</button>
+						</form>
                     </div>
-                    <div>
+                    <div class="btn-detail report">
+                    	<c:if test="${ requestDetail.reqStatus eq '완료              ' }">
+                    	<button id="report" class="report">신고 하기</button>
+                    	</c:if>
+                    </div>
+                    <div class="btn-detail complete">
                     	<c:if test="${ requestDetail.reqStatus ne '완료              ' }">
-                    	<button id="complete">완료처리</button>
+                    	<button id="complete" class="complete">완료처리</button>
                     	</c:if>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-package com.pitcrew.cleanhome.common.controller;
+package com.pitcrew.cleanhome.cleaner.account.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,15 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/main")
-public class MainServlet extends HttpServlet {
+@WebServlet("/cleaner/account/authorize")
+public class AccountAuthorizeServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		System.out.println("main");
-		String path = "/WEB-INF/views/main/main.jsp";
-		request.getRequestDispatcher(path).forward(request, response);
+		
+		String code = request.getParameter("code");
+		String state = request.getParameter("state");
+		
+		System.out.println("code : " + code);
+		System.out.println("state : " + state);
 	}
 
+	
 
 }

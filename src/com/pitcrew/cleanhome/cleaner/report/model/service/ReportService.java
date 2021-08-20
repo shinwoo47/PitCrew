@@ -35,13 +35,10 @@ public class ReportService {
 		
 		SqlSession session = getSqlSession();
 		
-		int result = reportDAO.insertReport(session, report);
-		
-		int reportNo = reportDAO.selectReportNo(session, report);
+		int result = reportDAO.insertReport(session, report);		
 				
 		int attachmentResult = 0;
 		for(int i = 0; i < reportAttachmentList.size(); i++) {
-			reportAttachmentList.get(i).setReportNo(reportNo);
 			attachmentResult += reportDAO.insertAttachment(session, reportAttachmentList.get(i));
 		}
 		

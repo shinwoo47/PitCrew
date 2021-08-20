@@ -17,6 +17,17 @@
 		<result property="entYn" column="ENT_YN"/>
 		<result property="entDate" column="ENT_DATE"/>
 	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.member.model.dto.CleanerInfoDTO" id="cleanerInfoResultMap">
+		<id property="memNo" column="MEM_NO"/>
+		<result property="identifyYn" column="IDENTIFY_YN"/>
+		<result property="educateYn" column="EDUCATE_YN"/>
+		<result property="identifyDate" column="IDENTIFY_DATE"/>
+		<result property="educateDate" column="EDUCATE_DATE"/>
+		<result property="accountNo" column="ACCOUNT_NO"/>
+		<result property="bankName" column="BANK_NAME"/>
+		<result property="accountHolder" column="ACCOUNT_HOLDER"/>
+	</resultMap>
 
 	<insert id="insertMember" parameterType="com.pitcrew.cleanhome.member.model.dto.MemberDTO">
         INSERT /* com.greedy.jsp.member.model.dao.MemberDAO#insertMember() */
@@ -132,7 +143,7 @@
 	    UPDATE MEMBER A
 	       SET A.ENT_YN = 'Y'
 	         , A.ENT_DATE = SYSDATE
-	     WHERE A.MEM_NO = { memNo }
+	     WHERE A.MEM_NO = #{ memNo }
 	</update>
 	
 	<select id="selectMyId" resultMap="memberResultMap">
@@ -160,4 +171,12 @@
 		   SET A.MEM_PWD = #{ pwd }
 		 WHERE A.MEM_ID = #{ id }
 	</update>
+	
+	<select id="identifyCheck" resultMap="cleanerInfoResultMap">
+	    SELECT
+	           A.IDENTIFY_YN
+	         , A.EDUCATE_YN
+	      FROM CLEANER_INFO A
+	     WHERE A.MEM_NO = #{ memNo }
+	</select>
 </mapper>
