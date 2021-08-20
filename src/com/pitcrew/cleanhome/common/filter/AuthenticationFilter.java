@@ -191,6 +191,8 @@ public class AuthenticationFilter implements Filter {
 		allPermitList.add("/member/logout");
 		allPermitList.add("/member/idCheck");
 		allPermitList.add("/member/findId");
+		allPermitList.add("/member/findPwd");
+		allPermitList.add("/member/update/password");
 		
 		permitURIList.put("adminPermitList", adminPermitList);
 		permitURIList.put("memberPermitList", memberPermitList);

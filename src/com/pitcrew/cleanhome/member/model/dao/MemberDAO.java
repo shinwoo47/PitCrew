@@ -62,4 +62,14 @@ public class MemberDAO {
 		return session.selectOne("MemberDAO.selectMyId", findMyId);
 	}
 
+	public MemberDTO selectMyInfo(SqlSession session, MemberDTO setParameter) {
+
+		return session.selectOne("MemberDAO.selectMyInfo", setParameter);
+	}
+
+	public int updateMemberPwd(SqlSession session, MemberDTO updatePwd) {
+		
+		return session.update("MemberDAO.updateMemberPwd", updatePwd);
+	}
+
 }

@@ -151,4 +151,32 @@ public class MemberService {
 		return selectMyId;
 	}
 
+	public MemberDTO selectMyPwd(MemberDTO setParameter) {
+
+		SqlSession session = getSqlSession();
+		
+		MemberDTO selectMyInfo = memberDAO.selectMyInfo(session, setParameter);
+		
+		session.close();
+		
+		return selectMyInfo;
+	}
+
+	public int updateMemberPwd(MemberDTO updatePwd) {
+		
+		SqlSession session = getSqlSession();
+		
+		int result = memberDAO.updateMemberPwd(session, updatePwd);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
+
 }

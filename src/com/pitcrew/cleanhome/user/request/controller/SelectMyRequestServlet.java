@@ -25,12 +25,14 @@ public class SelectMyRequestServlet extends HttpServlet {
 		
 		int memNoUser = loginMember.getMemNo();
 		
+		/* db에 저장된 로그인 된 사용자의  모든 의뢰 정보를 조회*/
 		List<UserRequestDTO> selectMyAllReq = new MyReqService().selectMyAllReq(memNoUser);
 		
 		System.out.println(selectMyAllReq);
 		 		
 		String path = "";
 		
+		/* 성공 실패시 페이지 이동*/
 		if(selectMyAllReq != null) {
 			path = "/WEB-INF/views/user/request/myRequest.jsp";
 			request.setAttribute("selectMyAllReq", selectMyAllReq);

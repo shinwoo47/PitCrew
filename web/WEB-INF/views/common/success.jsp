@@ -88,6 +88,10 @@
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/request/manage";
 					successMessage = "의뢰 완료 성공";
 					break;
+				case "updatePwd" : 
+					movePath = "${ pageContext.servletContext.contextPath }/member/login";
+					successMessage = "비밀번호 변경 완료!";
+					break;	
 
 			}
 

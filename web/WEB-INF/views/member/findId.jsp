@@ -84,18 +84,5 @@
      		</form>
 		</div>
 	</div>
-	
-	<script>
-		window.onload = function() {
-			
-		const $submitBtn = document.getElementById("submitBtn");
-		$submitBtn.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }/member/findId";
-		}
-		
-		}	
-		
-		
-	</script>
 </body>
 </html>

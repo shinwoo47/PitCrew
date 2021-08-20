@@ -291,8 +291,6 @@
 			+ 		'</div>'
 			+ 	'</div>'
 			+ 	'<div class="containerp-bottom">'
-			+ 		'<button class="req-work-btn req-revise-btn">수정하기</button>'
-			+ 		'<button class="req-work-btn req-report-btn">신고하기</button>'
 			+ 	'</div>'
 			+ '</div>'
      	);
@@ -325,7 +323,6 @@
     	 const $detail = $("div > #req_detailBtn");
     	 const $reqNo = $("div > #reqNo");
     	 
-    	 console.log("hi")
     	 console.log($detail)
     	 console.log($reqNo)
     	 $detail.on("click", function(){ 
@@ -335,7 +332,6 @@
 
  		});
      }
-      
       
      </script>
      

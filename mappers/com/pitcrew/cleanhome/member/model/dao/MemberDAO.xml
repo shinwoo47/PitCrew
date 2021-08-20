@@ -142,4 +142,22 @@
 		 WHERE A.MEM_NAME = #{ memName }
 		   AND A.EMAIL = #{ email }	   
 	</select>
+	
+	<select id="selectMyInfo" resultMap="memberResultMap">
+		SELECT
+			   A.MEM_ID
+			 , A.MEM_NAME
+			 , A.EMAIL
+		  FROM MEMBER A
+		 WHERE A.MEM_ID = #{ id }
+		   AND A.MEM_NAME = #{ memName }
+		   AND A.EMAIL = #{ email } 
+	</select>
+	
+	<update id="updateMemberPwd" parameterType="com.pitcrew.cleanhome.member.model.dto.MemberDTO">
+		UPDATE /*com.pitcrew.cleanhome.member.model.dao.MemberDAO#updateMemberPwd() */
+			   MEMBER A
+		   SET A.MEM_PWD = #{ pwd }
+		 WHERE A.MEM_ID = #{ id }
+	</update>
 </mapper>

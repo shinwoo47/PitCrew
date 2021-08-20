@@ -20,20 +20,28 @@ public class UserRequestDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/*int no;는  상세 보기를 하기 위한 의뢰 번호 */
 		int no = Integer.parseInt(request.getParameter("no"));
+		
+		/* 세션에 저장된 로그인 정보를 가지고 온다.*/
 		HttpSession session = request.getSession();
+		
+		/* 세션에 저장된 loginMember MemberDTO 타입으로 캐스팅*/
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		
+		/* 상세보기 조회를 위해 dto에 값 초기화*/
 		UserRequestDTO userRequestDTO = new UserRequestDTO();
 		userRequestDTO.setReqNo(no);
 		userRequestDTO.setMemNoUser(member.getMemNo());
 		
+		/* 의뢰 상세보기를 위한 정보 조회*/
 		UserRequestDTO requestDetail = new MyReqService().selectRequestDetail(userRequestDTO);
 		
 		System.out.println("requestDetail : " +  requestDetail);
 		
 		String path = "";
 		
+		/* 성공 실패시 페이지 이동*/
 		if(requestDetail != null) {
 			path = "/WEB-INF/views/user/request/requestDetail.jsp";
 			request.setAttribute("requestDetail", requestDetail);
