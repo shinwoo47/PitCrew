@@ -19,8 +19,10 @@ public class MyInfoService {
 		
 	}
 	
+	/* 회원 정보 조회*/
 	public List<MemberDTO> selectMyInfo(int memNo) {
-
+		
+		/* 회원 정보를 담은 리스트를 DAO에서 호출 */
 		SqlSession session = getSqlSession();
 		
 		List<MemberDTO> selectMyInfo = userInfoDAO.selectMyInfo(session, memNo);
@@ -29,7 +31,8 @@ public class MyInfoService {
 		
 		return selectMyInfo;
 	}
-
+	
+	/* 수정하기 페이지에서 조회할 회원정보*/
 	public List<MemberDTO> selectUpdateMyInfo(int memNo) {
 		
 		SqlSession session = getSqlSession();
@@ -40,7 +43,8 @@ public class MyInfoService {
 		
 		return selectUpdateMyInfo;
 	}
-
+	
+	/* 수정한 회원정보 업데이트*/
 	public int updateMyInfo(MemberDTO updateMember) {
 		
 		SqlSession session = getSqlSession();

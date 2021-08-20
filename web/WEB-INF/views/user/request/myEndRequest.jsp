@@ -66,7 +66,7 @@
 		background: white;
 		text-align: center;
 	}
-	.nav-req-btn:nth-child(2) {
+	.nav-req-btn:nth-child(4) {
 		color: white;
 		background-color: yellowgreen;
 	}

@@ -152,9 +152,19 @@
                     <div class="blog__details__text" style="text-align:left;">
                         <p>${ requestDetail.reqReq }</p>
                     </div>
+                    <div>
+                    	<c:if test="${ requestDetail.reqStatus eq '매칭 ' }">
+                    	<button id="report">신고 하기</button>
+                    	</c:if>
+                    </div>
 				</div>
 			</div>				
 		</div>				
-    </section>				                    
+    </section>	
+    
+    <script>
+    	var status = "${requestDetail.reqStatus}";
+    	console.log(status);
+    </script>			                    
 </body>
 </html>

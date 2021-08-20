@@ -19,18 +19,23 @@ public class SelectMyRegistRequestServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 세션에 저장된 로그인 정보를 가지고 온다.*/
 		HttpSession session = request.getSession();
 		
+		/* 세션에 저장된 loginMember MemberDTO 타입으로 캐스팅*/
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		
+		/* 로그인된 회원 번호를 변수에 초기화 한다.*/
 		int memNoUser = loginMember.getMemNo();
 		
+		/* 등록한 의뢰 정보 조회*/
 		List<UserRequestDTO> myRegistRequest = new MyReqService().myRegistRequest(memNoUser);
-		
+	
 		System.out.println("매칭신청 myRegistRequest: " + myRegistRequest);
 		 		
 		String path = "";
 		
+		/* 성공 실패시 페이지 이동*/
 		if(myRegistRequest != null) {
 			path = "/WEB-INF/views/user/request/myRegistRequest.jsp";
 			request.setAttribute("myRegistRequest", myRegistRequest);

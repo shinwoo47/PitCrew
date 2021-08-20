@@ -25,12 +25,14 @@ public class SelectMyEndRequest extends HttpServlet {
 		
 		int memNoUser = loginMember.getMemNo();
 		
+		/* 종료된 의뢰 정보 조회*/
 		List<UserRequestDTO> myeEndRequest = new MyReqService().myeEndRequest(memNoUser);
 		
-		System.out.println("매칭신청 myRegistRequest: " + myeEndRequest);
+		System.out.println("myEndRequest: " + myeEndRequest);
 		 		
 		String path = "";
 		
+		/* 성공 실패시 페이지 이동*/
 		if(myeEndRequest != null) {
 			path = "/WEB-INF/views/user/request/myEndRequest.jsp";
 			request.setAttribute("myeEndRequest", myeEndRequest);

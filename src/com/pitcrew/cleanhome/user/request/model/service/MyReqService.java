@@ -18,7 +18,8 @@ public class MyReqService {
 		userReqDAO = new UserReqDAO();
 		
 	}
-
+	
+	/*한 회원의 모든 의뢰 정보*/
 	public List<UserRequestDTO> selectMyAllReq(int memNoUser) {
 		
 		SqlSession session = getSqlSession();
@@ -29,7 +30,8 @@ public class MyReqService {
 		
 		return selectMyAllReq;
 	}
-
+	
+	/*한 회원의 등록된 의뢰 정보*/
 	public List<UserRequestDTO> myRegistRequest(int memNoUser) {
 
 		SqlSession session = getSqlSession();
@@ -42,7 +44,7 @@ public class MyReqService {
 	
 	}
 
-
+	/*한 회원의 매칭된 정보*/
 	public List<UserRequestDTO> compRegistReq(int memNoUser) {
 		
 		SqlSession session = getSqlSession();
@@ -53,7 +55,8 @@ public class MyReqService {
 		
 		return compRegistReq;
 	}
-
+	
+	/*한 회원의 완료된 정보*/
 	public List<UserRequestDTO> myeEndRequest(int memNoUser) {
 	
 		SqlSession session = getSqlSession();
@@ -65,6 +68,7 @@ public class MyReqService {
 		return myeEndRequest;
 	}
 	
+	/* 의뢰 상세보기 */
 	public UserRequestDTO selectRequestDetail(UserRequestDTO userRequestDTO) {
 		
 		SqlSession session = getSqlSession();

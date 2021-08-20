@@ -19,18 +19,23 @@ public class CompleteMatchingReqServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 세션에 저장된 로그인 정보를 가지고 온다.*/
 		HttpSession session = request.getSession();
 		
+		/* 세션에 저장된 loginMember MemberDTO 타입으로 캐스팅*/
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		
+		/* 로그인된 회원 번호를 변수에 초기화 한다.*/
 		int memNoUser = loginMember.getMemNo();
 		
+		/* 사용자의 매칭된 의뢰를 조회하는 리스트*/
 		List<UserRequestDTO> compRegistReq = new MyReqService().compRegistReq(memNoUser);
 		
 		System.out.println("매칭된 의뢰 : " + compRegistReq);
 		
 		String path = "";
 		
+		/* 성공 실패시 페이지 이동*/
 		if(compRegistReq != null) {
 			path = "/WEB-INF/views/user/request/myCompMatchingRequest.jsp";
 			request.setAttribute("compRegistReq", compRegistReq);

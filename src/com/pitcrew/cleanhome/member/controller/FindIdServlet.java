@@ -47,7 +47,8 @@ public class FindIdServlet extends HttpServlet {
 			request.setAttribute("selectMyId", selectMyId);
 			
 		} else {
-			request.setAttribute("message", "정보조회 실패!");
+			path = "/WEB-INF/views/common/failed.jsp";
+			request.setAttribute("message", "아이디 찾기 실패!");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);

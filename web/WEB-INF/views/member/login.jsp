@@ -62,7 +62,7 @@
 						<a class="txt2" href="${ pageContext.servletContext.contextPath }/member/findId" style="margin-right: 20px;">
 							아이디찾기
 						</a>
-						<a class="txt2" href="#">
+						<a class="txt2" href="${ pageContext.servletContext.contextPath }/member/findPwd">
 							비밀번호찾기
 						</a>
 					</div>
