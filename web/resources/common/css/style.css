@@ -258,7 +258,7 @@ ol {
 -----------------------*/
 
 .header__top {
-	background: #182143;
+	background: #02A79D;
 }
 
 .header__top__widget {
@@ -489,15 +489,15 @@ ol {
 
 .hero__text h2 {
 	font-size: 50px;
-	color: #ffffff;
+	color: black;
 	font-weight: 700;
 	line-height: 60px;
-	margin-bottom: 65px;
+	margin-bottom: 20px;
 }
 
 .hero__text p {
-	color: #ffffff;
-	margin-bottom: 60px;
+	color: black;
+	margin-bottom: 20px;
 }
 
 .hero__text .primary-btn {
@@ -1253,7 +1253,7 @@ ol {
 
 .about__text h4 {
 	color: #323232;
-	margin-bottom: 70px;
+	margin-bottom: 20px;
 }
 
 .about__text p.first_para {
@@ -1554,7 +1554,7 @@ ol {
 }
 
 .services__item__text p {
-	margin-bottom: 34px;
+	margin-bottom: 5px;
 }
 
 .services__item__text a {
@@ -2128,7 +2128,7 @@ ol {
 	font-size: 12px;
 	display: inline-block;
 	font-weight: 700;
-	color: #ffffff;
+	color: black;
 	background: #88C417;
 	padding: 4px 18px 3px;
 	border-radius: 2px;
@@ -2137,7 +2137,7 @@ ol {
 
 .blog__hero__text h2 {
 	font-size: 44px;
-	color: #ffffff;
+	color: black;
 	font-weight: 700;
 	margin-top: 24px;
 	margin-bottom: 65px;
@@ -2147,7 +2147,7 @@ ol {
 	list-style: none;
 	display: inline-block;
 	font-size: 15px;
-	color: #ffffff;
+	color: black;
 	margin-right: 65px;
 }
 

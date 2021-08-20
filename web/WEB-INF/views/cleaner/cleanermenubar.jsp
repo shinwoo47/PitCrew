@@ -21,44 +21,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__search">
-            <i class="fa fa-search search-switch"></i>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
-        </div>
-        <nav class="offcanvas__menu mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="./services.html">Features</a></li>
-                        <li><a href="./services-details.html">Services Details</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <ul class="offcanvas__widget">
-            <li><i class="fa fa-map-marker"></i> 96 Ernser Vista Suite 437, NY, US</li>
-            <li><i class="fa fa-phone"></i> (123) 456-78-910</li>
-            <li><i class="fa fa-envelope"></i> Info@colorlib.com</li>
-           
-        </ul>
-        <div class="offcanvas__language">
-            <ul>
-                <li><a href="./member/registForm.jsp">Login</a></li>
-            </ul>
-        </div>
-    </div>
+	
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
@@ -67,11 +30,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                        <ul class="header__top__widget">
-                            <li><i class="fa fa-map-marker"></i> 96 Ernser Vista Suite 437, NY, US</li>
-                            <li><i class="fa fa-phone"></i> (123) 456-78-910</li>
-                            <li><i class="fa fa-envelope"></i> Info@colorlib.com</li>
-                        </ul>
+                        <a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.PNG" alt=""></a>
                     </div>
                     
                     <div class="col-lg-3">
