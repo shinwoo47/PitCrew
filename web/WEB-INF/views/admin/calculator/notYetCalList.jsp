@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>맡겨줘 홈즈 관리자 모드</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	.hidden {
@@ -44,16 +44,16 @@
              </div>
              </form>
          	<hr>
-         	<form action="${ pageContext.servletContext.contextPath }/admin/yetcal/list" method="post">
+         	 <form action="${ pageContext.servletContext.contextPath }/admin/yetcal/list" method="post">
          	<div>
-             	<button type="submit" style="background-color: #02A79D; 
-             	 color: white; border-color:transparent; border-radius:0.2rem;">정산하기</button>
-             </div><br>
-             
+             	<button type="submit" id="cal" 
+             	style="background-color: #02A79D; color: white; border-color:transparent; border-radius:0.2rem;">정산하기</button>
+             </div><br><br>
+            
              <table class="text-center" id="calList">
          	<tr height="15" style="font-size: 15px">
+         		<th><input type="checkbox" id="all_select"></th>
          		<th class="hidden" width="150px">회원 번호</th>
-         		<th><input type="checkbox" name="cal" onclick="selectAll(this)"></th>
          		<th width="150px">아이디</th>
    				<th width="150px">성  명</th>
    				<th width="150px">가입일</th>
@@ -63,48 +63,79 @@
    				<th width="150px">주민세</th>
    				<th width="150px">실수령액</th>
          	</tr>
-         	<tr></tr>
+         	<tr height="12"></tr>
          	<c:forEach items="${ perReqCalcList }" var="calList">
-					<tr>
-						<td class="hidden"><c:out value="${ calList.cleaner.memNo }"/></td>
-						<td><input type="checkbox" name="cal"></input></td>
-						<td><c:out value="${ calList.cleaner.id }"/></td>
-						<td><c:out value="${ calList.cleaner.name }"/></td>
-						<td><c:out value="${ calList.cleaner.enrollDate }"/></td>
-						<td><c:out value="${ calList.request.serviceDate }"/></td>
-						<td><c:out value="${ calList.request.cleanerIncome }"/></td>
-						<td><c:out value="${ calList.incometax }"/></td>
-						<td><c:out value="${ calList.residenttax }"/></td>
-						<td><c:out value="${ calList.cleanerTransferPrice }"/></td>
+					<tr id="content" height="15">
+						<td><input type="checkbox" name="ch"></input></td>
+						<td class="hidden" name="num"><c:out value="${ calList.cleaner.memNo }"/></td>
+						<td name="id" ><c:out value="${ calList.cleaner.id }"/></td>
+						<td name="name"><c:out value="${ calList.cleaner.name }"/></td>
+						<td name="enrolldate"><c:out value="${ calList.cleaner.enrollDate }"/></td>
+						<td name="servicedate"><c:out value="${ calList.request.serviceDate }"/></td>
+						<td name="income"><c:out value="${ calList.request.cleanerIncome }"/></td>
+						<td name="itax"><c:out value="${ calList.incometax }"/></td>
+						<td name="rtax"><c:out value="${ calList.residenttax }"/></td>
+						<td name="tprice"><c:out value="${ calList.cleanerTransferPrice }"/></td>
 					</tr>
 					</c:forEach>	
-         		</table>         
-             </form>
-              <jsp:include page="/WEB-INF/views/common/paging.jsp"/> 
+         		</table> 
+         		</form>  
+         		<br><br><br>      
+              <jsp:include page="../pagingForCal.jsp"/> 
             </div>
          </div>
       </div>
 	</div>
 <script>
-		$(function selectAll(selectAll) {
-			const checkboxes 
-		       = document.getElementsByName('cal');
-		  
-		  checkboxes.forEach((checkbox) => {
-		    checkbox.checked = selectAll.checked;
-		  })
+
+		$('#all_select').on("click", function() {
+			if($("input:checkbox[id='all_select']").prop("checked")){
+				$("input[type=checkbox]").prop("checked", true);
+			} else {
+				$("input[type=checkbox]").prop("checked", false);
+			}
 		});
 
+		
+	
+			
+		
+	/*	되는 것! $('#calList').click(function() {
+			const list = new Array();
+			const data = new Array();
+			let tr = $("#content");
+			const td = tr.children();
+			
+			
+			$("#cal").click(function() {
+			console.log(tr.text());
+				tr.each(function (i) {
+				 if(td.children().is(':checked')) {
+	      			 console.log("버튼체크");
+					 data.push(td.text());
+				 }
+				console.log(data);	
+				});
+			});
+			
+		});*/
+		
+		/*$('#calList').on("click",function() {
+			let tr = $("#content");
+			const list = new Array();
+			const data = new Array();
+			
+			const $calc = document.getElementById("cal");
+			$('#cal').on("click", function () {
+				if($("input[name=ch]").prop("checked")){
+					const td = tr.children();
+					list.push(tr.text());
+					console.log("배열" + list);	
+				}
+			
+		});*/
 
-	    $("[id^=detail]").on('click', function(event) {
-	    	
-	    	let name = $(this).attr("name");
-	    	let number = name.replace("btn", "");
-	    	// 이렇게 적으면 생성된 버튼에 클릭함수를 거는거랬는데 어떻게 경로와 파라미터를 주지?
-	    	let reqNo = this.parentNode.children[0].innerText;
-			location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;	    
-	    });
-    
+		
     
     </script>	
 	

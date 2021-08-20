@@ -1,11 +1,13 @@
 package com.pitcrew.cleanhome.cleaner.calculate.model.service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.cleaner.calculate.model.dao.CalculateDAO;
+import com.pitcrew.cleanhome.cleaner.calculate.model.dto.CalculateByRequestDTO;
 import com.pitcrew.cleanhome.cleaner.calculate.model.dto.CalculateDTO;
 import com.pitcrew.cleanhome.cleaner.calculate.model.dto.ProductSumDTO;
 
@@ -39,6 +41,17 @@ public class CalculateService {
 		session.close();
 		
 		return calculateProduct;
+	}
+
+	public List<CalculateByRequestDTO> selectCalculateDetail(int calNo) {
+		
+		SqlSession session = getSqlSession();
+		
+		List<CalculateByRequestDTO> calculateList = calculateDAO.selectCalculateDetail(session, calNo);
+		
+		session.close();
+		
+		return calculateList;
 	}
 
 }

@@ -66,11 +66,11 @@ public class PayServices {
          result += payDAO.insertDeductPrice3(session, payment);
          
          
-         deductSum = (int) ((calPrice - supplyPrice) + (deductPrice2) + (deductPrice3)); //부가세 + 카드수수료율 + 운영비  
-         System.out.println("calPrice" + calPrice);
-         System.out.println("supplyPrice" + supplyPrice);
-         System.out.println("deductPrice2" + deductPrice2);
-         System.out.println("deductPrice3" + deductPrice3);
+         deductSum = (int) ((calPrice - deductPrice1) + (deductPrice2) + (deductPrice3)); //부가세 + 카드수수료율 + 운영비  
+         System.out.println("calPrice : " + calPrice);
+         System.out.println("deductPrice1 : " + deductPrice1);
+         System.out.println("deductPrice2 : " + deductPrice2);
+         System.out.println("deductPrice3 : " + deductPrice3);
 
          cleanerincome = calPrice - deductSum;   //해결사 지급 총액
 
@@ -121,6 +121,7 @@ public class PayServices {
       result = payDAO.insertReqInfo(session, payment);
       
       if(result > 0 ) {
+    	 session.commit();
          System.out.println("insertReqInfo 성공");
       } else {
          session.rollback();
@@ -140,6 +141,7 @@ public class PayServices {
       result = payDAO.insertPayHistory(session, payment);
       
       if(result > 0 ) {
+    	 session.commit();
          System.out.println("insertPayHistory 성공");
       } else {
          session.rollback();

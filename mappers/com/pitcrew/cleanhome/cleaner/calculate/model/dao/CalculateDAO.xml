@@ -24,6 +24,16 @@
 		<result property="dishes" column="DISHES"/>
 	</resultMap>
 	
+	<resultMap type="com.pitcrew.cleanhome.cleaner.calculate.model.dto.CalculateByRequestDTO" id="calculateByRequestResultMap">
+		<result property="reqNo" column="REQ_NO"/>
+		<result property="reqDate" column="REQ_DATE"/>
+		<result property="cleanerIncome" column="CLEANER_INCOME"/>
+		<result property="incomeTax" column="INCOME_TAX"/>
+		<result property="residentTax" column="RESIDENT_TAX"/>
+		<result property="transferPrice" column="TRANSFER_PRICE"/>
+		<result property="calDate" column="CAL_DATE"/>
+	</resultMap>
+	
 	<select id="selectCalculate" resultMap="CalculateResultMap">
 	    SELECT
 	           A.CAL_NO
@@ -60,5 +70,20 @@
 	       AND A.REQ_DATE >= TO_DATE(#{ date }, 'YYYY-MM-DD')
            AND A.REQ_DATE < TO_DATE(#{ date }, 'YYYY-MM-DD') + 31
            ]]>
+	</select>
+	
+	<select id="selectCalculateDetail" resultMap="calculateByRequestResultMap">
+	    SELECT
+	           A.REQ_NO
+	         , A.REQ_DATE
+	         , B.CLEANER_INCOME
+	         , B.INCOME_TAX
+	         , B.RESIDENT_TAX
+	         , B.TRANSFER_PRICE
+	         , C.CAL_DATE
+	      FROM REQUEST_INFO A
+	      LEFT JOIN REQUEST_SET_PERIOD B ON(A.REQ_NO = B.REQ_NO)
+	      LEFT JOIN SET_HISTORY C ON(B.CAL_NO = C.CAL_NO)
+	     WHERE C.CAL_NO = #{ calNo }
 	</select>
 </mapper>

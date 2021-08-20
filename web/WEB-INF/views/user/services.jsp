@@ -124,7 +124,7 @@
                                 <li><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
                                 <li><a href="#">고객지원센터</a>
                                     <ul class="dropdown">
-                                        <li><a href="./services.html">공지사항</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice">공지사항</a></li>
                                         <li><a href="./services-details.html">FAQ</a></li>
                                         <li><a href="./blog-details.html">문의사항</a></li>
                                     </ul>

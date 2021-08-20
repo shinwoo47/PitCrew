@@ -31,12 +31,11 @@
    				<th width="150px">의뢰 일시</th>
    				<th width="150px">의뢰 상태</th>
    				<th width="150px">청소 해결사</th>
-   				<th width="150px">해결사 휴대폰번호</th>
+   				<th width="150px">해결사 연락처</th>
    				<th width="150px">주문 일자</th>
-   				
          	</tr>
-         	<tr></tr>
-					<tr>
+         	<tr height="12"></tr>
+					<tr height="15" style="font-size: 15px">
 						<td><c:out value="${ reqDetailDTO.reqNo }"/></td>
 						<td><c:out value="${ reqDetailDTO.user.name }"/></td>
 						<td><c:out value="${ reqDetailDTO.user.id }"/></td>
@@ -46,25 +45,26 @@
 						<td><c:out value="${ reqDetailDTO.cleaner.name }"/></td>
 						<td><c:out value="${ reqDetailDTO.cleaner.phone }"/></td>
 						<td>
-						<c:forEach items="${ reqDetailDTO.pay }" var="pay">
+						<c:forEach items="${ reqDetailDTO.pay }" var="pay" begin='1' end='1'>
 						<c:out value="${ pay.payDate }"/>						
 						</c:forEach></td>
-					</tr>         	
+					</tr> 
+					<tr height="12"></tr>        	
          </table>         
         <hr>
         <br><h2 class="pageheader-title">의뢰 히스토리 </h2><br>   
           <table class="text-center">
-         	<tr>
+         	<tr style="font-size: 15px">
          		<th class="hidden" width="100px">의뢰번호</th>
-   				<th width="100px">상품코드</th>
-   				<th width="100px">상품명</th>
-   				<th width="100px">의뢰 일시</th>
-   				<th width="100px">의뢰 상태</th>
-   				<th width="100px">청소해결사</th>
-   				<th width="100px">상태 변경일시</th>
+   				<th width="150px">상품코드</th>
+   				<th width="200px">상품명</th>
+   				<th width="200px">의뢰 일시</th>
+   				<th width="200px">의뢰 상태</th>
+   				<th width="200px">청소해결사</th>
+   				<th width="200px">상태 변경일시</th>
          	</tr>
-         	<tr></tr>
-					<tr>
+         	<tr height="12"></tr>
+					<tr height="15" style="font-size: 15px">
 						<td class="hidden"><c:out value="${ reqDetailDTO.reqNo }"/></td>
 						<td>
 						<c:forEach items="${ reqDetailDTO.product}" var="product">
@@ -76,16 +76,16 @@
 						</c:forEach></td>
 						<td><c:out value="${ reqDetailDTO.serviceDate }"/></td>
 						<td>
-						<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
+						<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory" begin='1' end='1'>
 						<c:out value="${ reqStatusHistory.status }"/><br>
 						</c:forEach></td>
 						<td><c:out value="${ reqDetailDTO.cleaner.name }"/></td>
-						<td><c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
+						<td><c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory" begin='1' end='1'>
 						<c:out value="${ reqStatusHistory.date }"/><br>
 						</c:forEach></td>
 					</tr>	       	
          </table>            
-          <div style="text-align:center; padding: 20px; justify-content: space-between;">
+          <div style="text-align:center; padding: 30px; justify-content: space-between;">
          			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modifyReqModal" 
          			   style="background-color: #02A79D; color: white;border-color:transparent; border-radius:0.3rem;">의뢰 변경</button>
          	</div>
@@ -111,13 +111,15 @@
 			         	</tr>
 			         	<tr></tr>
 								<tr>
-									<td><c:out value="${ requestScope.reqDetailDTO.reqNo }"/></td>
+									<td class="hidden"><c:out value="${ requestScope.reqDetailDTO.reqNo }"/></td>
 									<td>
-									<c:forEach items="${ reqDetail.product}" var="product">
+									<c:forEach items="${ reqDetailDTO.product}" var="product">
 									<c:out value="${ product.productName }"/><br>				
 									</c:forEach></td>
 									<td><c:out value="${ requestScope.reqDetailDTO.serviceDate }"/></td>
-									<td><c:out value="${ requestScope.reqDetailDTO.cleaner.name }"/></td>
+									<td>
+									<c:forEach items="${ reqDetailDTO.cleaner}" var="cleaner">
+									<c:out value="${ cleaner.name }"/></c:forEach></td>
 								</tr>         	
 			         </table>
                    	  

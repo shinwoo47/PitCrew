@@ -21,17 +21,17 @@
             <h3>사용자 공지사항</h3><br>
             
           <button type="button" id="writeBoard">글쓰기</button>
-         <table id="boardList">
-         	<tr>
+         <table class="text-center" id="boardList" style=" margin: 5px; padding: 10px;">
+         	<tr height="15" style="font-size: 15px">
          		<th class="hidden" width="100px">NO</th>
          		<th width="300px">제목</th>
-   				<th width="100px">작성자</th>
-   				<th width="100px">등록일</th>
+   				<th width="200px">작성자</th>
+   				<th width="200px">등록일</th>
    				<th>조회</th>
          	</tr>
-         	<tr></tr>
+         	<tr height="15" ></tr>
          	<c:forEach items="${ requestScope.noticeList }" var="notice">
-					<tr>
+					<tr height="30" style="font-size: 15px">
 						<td class="hidden"><c:out value="${ notice.no }"/></td>
 						<td><c:out value="${ notice.title }"/></td>
 						<td><c:out value="${ notice.writer.name }"/></td>

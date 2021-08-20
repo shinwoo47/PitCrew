@@ -16,7 +16,7 @@
        <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
              <br><h2 class="pageheader-title">의뢰 조회 </h2><br>
-			 <form method="post">
+			 <form action="${ pageContext.servletContext.contextPath }/admin/request/list" method="post">
 			 <div style="color: black;">
 			 <label style=" margin: 5px; padding: 10px;">검  색 : </label>
 			 <select style="padding:5px;" id="searchCondition" name="searchCondition">
@@ -97,8 +97,8 @@
 						<td><c:out value="${ request.serviceDate }"/></td>
 						<td><c:out value="${ request.cleaner.name }"/></td>
 						<td>
-							<c:forEach items="${ request.pay }" var="pay">
-							<c:out value="${ pay.payDate }"/> 
+							<c:forEach items="${ request.pay }" var="pay" begin="1" end="1">
+							<c:out value="${ pay.payDate }"/>
 						</c:forEach></td>
 						<td><c:out value="${ request.status }"/></td>
 						<td><button type="button" id="detail" style="background-color: #D9D9D9; border-color:transparent; 
@@ -107,8 +107,8 @@
 			</c:forEach>	
          	
          </table>         
-             
-              <jsp:include page="/WEB-INF/views/common/paging.jsp"/> 
+             <br><br><br>
+              <jsp:include page="../paging.jsp"/> 
             </div>
          </div>
       </div>
