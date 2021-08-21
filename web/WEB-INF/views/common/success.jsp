@@ -80,6 +80,20 @@
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 수정 성공!";
 					break;
+					
+				case "userinsertQuestion" : 
+					movePath = "${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL";
+					successMessage = "문의사항 등록 성공!";
+					break;
+				case "userupdateQuestion" : 
+					movePath = "${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL";
+					successMessage = "문의사항 수정 성공!";
+					break;
+				case "userDeleteQuestion" : 
+					movePath = "${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL";
+					successMessage = "문의사항 삭제 성공!";
+					break;
+					
 				case "updateCleanerInfo" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/member/select";
 					successMessage = "회원정보 수정 성공!";

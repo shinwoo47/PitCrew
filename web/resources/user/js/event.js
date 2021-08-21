@@ -113,10 +113,18 @@ window.onload = function() {
 	if(document.getElementById("payment")) {
 		const $payment = document.getElementById("payment");
 		$payment.onclick = function() {
-			location.href = "/pitcrew/user/clean/payment";
+			if($("#start").val() ==  "") {
+				alert("날짜를 선택해주세요");
+				return false;
+			} else if($("#startTime").val() ==  "") {
+				alert("시간을 선택해주세요");
+				return false;
+			} else {
+				location.href = "/pitcrew/user/clean/payment";
+			}
+				
+			}
 		}
-	}
-	
 	
 	
 

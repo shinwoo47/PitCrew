@@ -146,7 +146,7 @@
        			<h1 align = "center"><c:out value="${ clean.name }"/></h1>
        			<h4 align = "right">가격 : <c:out value="${ clean.price }"/>&nbsp;원</h4><br>
         		<div class="line"></div>
-        		<form align = "center" action="${ pageContext.servletContext.contextPath }/user/clean/payment" method="post">
+        		<form align = "center" action="${ pageContext.servletContext.contextPath }/user/clean/payment" method="post" onsubmit="return check()">
         		<br><br>
         		<c:if test="${ clean.cleanNo < 3 }">
         		
@@ -157,9 +157,9 @@
      		    <label for="football" class="checa">창틀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000원</label>
 				</c:if>
      		    <br><br>
-     		    <label>시작일 &nbsp; </label><input type="date" name="start"><br><br>
-        		<label>시작시간 &nbsp; </label><input type="time" name="startTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
-        		<textarea name="content" id="content" cols="60" rows="15" ></textarea><br><br>
+     		    <label>시작일 &nbsp; </label><input type="date" name="start" id="start"><br><br>
+        		<label>시작시간 &nbsp; </label><input type="time" name="startTime" id="startTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+        		<textarea name="content" id="content" cols="60" rows="15" placeholder="추가 요구사항을 입력해주세요"></textarea><br><br>
         		<h4 align = "left" id="timea" >예상소요시간 : <c:out value="${ clean.time }"/>시간</h4><br>
         	    <h4 align = "left" id=pricea>예상금액 : &nbsp;<c:out value="${ clean.price }"/>원</h4>
       			
@@ -207,6 +207,17 @@
         			   });
         			});	
         		</script>
+        		<script>
+        			
+        	/* 	function check() {
+        			if($("#start").val() ==  "") {
+        				alert("날짜 설정해주세요");
+        				return false;
+        			} */
+        			
+        	
+        		</script>
+        	
         		
         		
         		
