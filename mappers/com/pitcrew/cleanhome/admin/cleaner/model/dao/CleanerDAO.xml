@@ -120,19 +120,24 @@
 						A.ENT_YN = #{ searchResult }				
 				</otherwise> -->
 					<if test="categoryType == 'memNo'">
-						A.MEM_NO = #{ searchResult }
+						A.MEMBER_ROLE = '해결사'
+					AND A.MEM_NO = #{ searchResult }
 					</if>
 					<if test="categoryType == 'memId'">
-						A.MEM_ID = #{ searchResult }
+						A.MEMBER_ROLE = '해결사'
+					AND A.MEM_ID = #{ searchResult }
 					</if>
 					<if test="categoryType == 'memName'">
-						A.MEM_NAME = #{ searchResult }
+						A.MEMBER_ROLE = '해결사'
+					AND A.MEM_NAME = #{ searchResult }
 					</if>
 					<if test="categoryType == 'phone'">
-						A.PHONE = #{ searchResult }
+						A.MEMBER_ROLE = '해결사'
+					AND A.PHONE = #{ searchResult }
 					</if>
 					<if test="categoryType == 'entYn'">
-						A.ENT_YN = #{ searchResult }
+						A.MEMBER_ROLE = '해결사'
+					AND A.ENT_YN = #{ searchResult }
 					</if>
 
 				<!-- </otherwise>-->

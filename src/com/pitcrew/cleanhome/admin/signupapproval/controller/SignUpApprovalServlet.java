@@ -35,8 +35,8 @@ public class SignUpApprovalServlet extends HttpServlet {
 		
 		String path = "";
 		if(result > 0) {
-			path = "/WEB-INF/views/admin/signupapproval/signupapproval.jsp";
-			request.setAttribute("cleanerInfo", cleanerInfo);				
+			path = "/WEB-INF/views/common/success.jsp";
+			request.setAttribute("successCode", "signupApproval");				
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "상품 수정에 실패하셨습니다.");

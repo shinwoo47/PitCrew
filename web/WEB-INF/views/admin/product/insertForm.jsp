@@ -13,6 +13,10 @@
 	}
 	#insertProduct{
 		margin-left: 1517px;
+		background-color: #02A79D; 
+		color: white; 
+		border-color:transparent; 
+		border-radius:0.3rem;
 	}
 </style>
 </head>
