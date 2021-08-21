@@ -35,7 +35,7 @@ window.onload = function() {
 	      $popup.onclick = function() {
 	         var url = "/pitcrew/user/clean/list?number=" + 1;
 	         var name = "test";
-	         var option = "width = 700, height = 600, top = 100, " +
+	         var option = "width = 700, height = 800, top = 100, " +
 	            	"left = 300, location = no "
 	         window.open(url, name, option);
 	      }
