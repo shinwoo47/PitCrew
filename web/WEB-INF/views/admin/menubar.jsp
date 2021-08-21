@@ -213,7 +213,7 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/alluserinfo">사용자 정보 조회 <span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/alluserinfo">사용자 정보 조회 </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/select/allblacklist">블랙리스트</a>
@@ -222,7 +222,7 @@
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/report/select">신고 요청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/resign/select">탈퇴 회원</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/resign/allselect">탈퇴 회원</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="pages/typography.html">Typography</a>
@@ -251,7 +251,7 @@
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/report/select">신고 요청</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-morris.html">탈퇴 회원</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/resign/allselect">탈퇴 회원</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/signup/list">가입 승인</a>
@@ -281,7 +281,7 @@
                                                         <a class="nav-link" href="ecommerce-product-single.html">의뢰 변경</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product-checkout.html">결제 관리</a>
+                                                        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/paylist/select">결제 조회</a>
                                                     </li>
                                                 </ul>
                                             </div>

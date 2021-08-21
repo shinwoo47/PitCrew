@@ -130,7 +130,8 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/report/check");
 		adminPermitList.add("/admin/signup/list");
 		adminPermitList.add("/admin/signup/approval");
-		adminPermitList.add("/admin/resign/select");
+		adminPermitList.add("/admin/resign/allselect");
+		adminPermitList.add("/admin/paylist/select");
 		
 
 

@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 <style>
 table {
-	margin-top: 100px;
-	margin-right: 80px;
+	margin-top: 24px;
+	margin-right: 300px;
 }
 </style>
 </head>
@@ -37,8 +37,6 @@ table {
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.phone }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ report.reportCategoryCode }"></c:out></td>
 					<td align="center" style="text-align: center; font-size: 15pt;"><button type="submit">자세히</button></td>
-					<!-- <td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td> -->
-					<%-- <td style="text-align: center; font-size: 20pt;"><c:out value="${ '' }"></c:out></td> --%>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ report.penaltyScoreSum }"></c:out></td>
 				</tr>
 			</c:forEach>

@@ -14,6 +14,17 @@
 		<result property="memberRole" column="MEMBER_ROLE" />
 		<result property="entYn" column="ENT_YN" />
 		<result property="entDate" column="ENT_DATE" />
+		
+		<association property="reqNo" resultMap="payListResultMap"></association>
+	</resultMap>
+	
+	<resultMap type="com.pitcrew.cleanhome.admin.pay.model.dto.PayListDTO" id="payListResultMap">
+		<id property="reqNo" column="REQ_NO"/>
+		<result property="payNo" column="PAY_NO"/>
+		<result property="payPrice" column="PAY_PRICE"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="payApprovalNo" column="PAY_APPROVAL_NO"/>
+		<result property="reqDate" column="REQ_DATE"/>
 	</resultMap>
 
 	<select id="selectAllUserInfoList" resultMap="userResultMap">
@@ -30,9 +41,12 @@
 		     , A.MEMBER_ROLE
 		     , A.ENT_YN
 		     , A.ENT_DATE
+		     , B.REQ_NO
+		     , B.REQ_DATE
 		  FROM MEMBER A
+		  JOIN REQUEST_INFO B ON (B.MEM_NO_USER = A.MEM_NO)
 		 WHERE A.MEMBER_ROLE = '사용자'
-		 ORDER BY A.MEM_NO ASC
+		 ORDER BY A.MEM_NO DESC
 	</select>
 
 	<select id="searchUserInfomation" resultMap="userResultMap">
@@ -89,6 +103,12 @@
         					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
+					<if test="enRollStartDate != null and enRollEndDate != null">
+						<![CDATA[
+        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+       					 ]]>
+					</if>
+					
 				</when>
 				<otherwise>
 					<if test="categoryType == 'memNo'">

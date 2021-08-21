@@ -50,19 +50,16 @@
 	</div>
 	
 	<script>
-	if(document.getElementById("insertProduct")) {
-		const $addProdcut = document.getElementById("insertProduct");
-		$addProdcut.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }/admin/product/insert";
+
+	$("button[type=button]").click(function() {
+	  	const $tds = document.getElementsByTagName("td");
+		for(let i = 0; i < $tds.length; i++) {
+			$tds[i].onclick = function() {
+				const serNo = this.parentNode.children[0].innerText;
+				 location.href = "${ pageContext.servletContext.contextPath }/admin/product/update?serNo=" + serNo;
+			}
 		}
-	}
-	
-	if(document.getElementById("updateProduct")) {
-		const $modifyProdcut = document.getElementById("updateProduct");
-		$modifyProdcut.onclick = function() {
-			location.href = "${ pageContext.servletContext.contextPath }/admin/product/update";
-		}
-	}
+    });	 
 	</script>
 </body>
 </html>

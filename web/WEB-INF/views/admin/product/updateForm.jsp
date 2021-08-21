@@ -41,7 +41,11 @@
 			</c:forEach>
 				<tr>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serNo"></td>
-					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serCategory"></td>
+					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serCategory">
+					<!-- <select name="serContent" >
+					    <option value="메인">메인</option>
+					    <option value="옵션">옵션</option>
+				  	</select> --></td>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serName"></td>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serContent"></td>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serTime"></td>
