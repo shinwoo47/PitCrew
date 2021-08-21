@@ -368,12 +368,12 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8">
-                                <i class="fas fa-fw fa-columns"></i>로그 아웃</a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8" href="${ pageContext.servletContext.contextPath }/member/logout">
+                                <i class="fas fa-fw fa-columns" ></i>로그 아웃</a>
                                 <div id="submenu-8" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/icon-fontawesome.html">FontAwesome Icons</a>
+                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/member/logout">로그 아웃</a>
                                         </li>
                                     </ul>
                                 </div>

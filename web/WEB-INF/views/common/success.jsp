@@ -81,6 +81,10 @@
 					movePath = "${ pageContext.servletContext.contextPath }/admin/select/allblacklist";
 					successMessage = "블랙리스트 추가에 성공하셨습니다!";
 					break;
+				case "signupApproval" : "해결사 가입 승인 성공"
+					movePath = "${ pageContext.servletContext.contextPath }/admin/select/allcleanerinfo";
+					successMessage = "해결사 가입 승인에 성공하셨습니다!";
+					break;
 				case "cleanerinsertQuestion" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 등록 성공!";
