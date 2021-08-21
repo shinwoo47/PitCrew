@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>맡겨줘 홈즈 관리자 모드</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 </head>
 <body>
@@ -73,39 +73,41 @@
              </div><hr>
              </form>
          	<br>
-             <table class="text-center" id="requestList">
-         	<tr height="15" style="font-size: 15px">
-         		<th width="150px">의뢰 번호</th>
-         		<th width="150px">이용자</th>
-   				<th width="150px">상품명</th>
-   				<th width="150px">의뢰 일시</th>
-   				<th width="150px">청소 해결사</th>
-   				<th width="150px">주문 일자</th>
-   				<th width="150px">의뢰 상태</th>
-   				<th width="150px">상세 보기</th>
-         	</tr>
-         	<tr></tr>
-         	<c:forEach items="${ requestScope.requestList }" var="request">
-					<tr>
-						<td><c:out value="${ request.reqNo }"/></td>
-						<td><c:out value="${ request.user.name }"/></td>
-						<td>
-							<c:forEach items="${ request.product }" var="product">
-								<c:out value="${ product.productName }"/><br>
-							</c:forEach>
-						</td>
-						<td><c:out value="${ request.serviceDate }"/></td>
-						<td><c:out value="${ request.cleaner.name }"/></td>
-						<td>
-							<c:forEach items="${ request.pay }" var="pay" begin="1" end="1">
-							<c:out value="${ pay.payDate }"/>
-						</c:forEach></td>
-						<td><c:out value="${ request.status }"/></td>
-						<td><button type="button" id="detail" style="background-color: #D9D9D9; border-color:transparent; 
-									border-radius:0.3rem;">자세히</button></td>
-					</tr>
-			</c:forEach>	
-         	
+            <table class="text-center" id="requestList">
+	        	<thead>
+		        	<tr height="15" style="font-size: 15px">
+		        		<th width="150px">의뢰 번호</th>
+		        		<th width="150px">이용자</th>
+		  				<th width="150px">상품명</th>
+		  				<th width="150px">의뢰 일시</th>
+		  				<th width="150px">청소 해결사</th>
+		  				<th width="150px">주문 일자</th>
+		  				<th width="150px">의뢰 상태</th>
+		  				<th width="150px">상세 보기</th>
+		        	</tr>
+	        	</thead>
+	        	<tbody>
+	        		<c:forEach items="${ requestScope.requestList }" var="request" varStatus="st">
+						<tr id="reqContent${ st.count }">
+							<td class="req-no"><c:out value="${ request.reqNo }"/></td>
+							<td><c:out value="${ request.user.name }"/></td>
+							<td class="product-name">
+								<c:forEach items="${ request.product }" var="product">
+									<c:out value="${ product.productName }"/><br>
+								</c:forEach>
+							</td>
+							<td class="service-date"><c:out value="${ request.serviceDate }"/></td>
+							<td class="cleaner-name"><c:out value="${ request.cleaner.name }"/></td>
+							<td class="pay-date">
+								<c:forEach items="${ request.pay }" var="pay" begin="1" end="1">
+								<c:out value="${ pay.payDate }"/>
+							</c:forEach></td>
+							<td class="req-status"><c:out value="${ request.status }"/></td>
+							<td class="detail"><button type="button" id="detail${ st.count }"style="background-color: #D9D9D9; border-color:transparent; 
+										border-radius:0.3rem;">자세히</button></td>
+						</tr>
+					</c:forEach>			
+	        	</tbody>
          </table>         
              <br><br><br>
               <jsp:include page="../paging.jsp"/> 
@@ -115,21 +117,43 @@
 	</div>
 <script>
 
-	    
-    
-	if(document.getElementsByTagName("td")) {
-		
-		const $tds = document.getElementsByTagName("td");
-		for(let i = 0; i < $tds.length; i++) {	
-			$tds[i].onclick = function() {
-				const reqNo = this.parentNode.children[0].innerText;
-				location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;
+	 $("[id^=detail]").on('click', function(event){
+				 
+		 let tbody = $("#requestList > tbody");
+		 let rows = tbody.children(); 
+		 
+		 let id = $(this).attr("id");
+		 let number = id.replace("detail", "");
+		 
+		 let reqNo = "";
+		rows.each(function(i) {
+			let trId = $(this).attr("id");
+			let trNum = trId.replace("reqContent", "");
+	
+			if(number == trNum) {
+				reqNo = $(this).find(".req-no").text();
+				console.log(reqNo);
 			}
-			
-		}
+		});	
+		location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;
+		 
 		
-	}
-
+		// $(this).parent("tr").css({"color":"blue"}); 안먹힘
+		// console.log(tr);
+		// $(this).parent().is("[id^=reqContent]")	 
+		 
+		
+			 
+		 /* let trNo = $(this).parent().find(".req-no").text();
+		 
+		 alert(trNo);
+				 let reqNo = $(this).find(".req-no").text();
+				location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo; */
+			
+			 	 
+		 
+	 });   
+    
 	    
     </script>	
 	

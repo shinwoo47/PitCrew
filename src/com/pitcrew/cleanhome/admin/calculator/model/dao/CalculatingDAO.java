@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.pitcrew.cleanhome.admin.calculator.model.dto.CalListDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.DeductRateDTO;
@@ -29,23 +30,11 @@ public class CalculatingDAO {
 		return session.selectOne("CalculatingDAO.selectdeductRate");
 	}
 
-	/* 등록할 정산 번호 curval 체크 */
-	public int selectCalNum(SqlSession session) {
-		
-		return session.selectOne("CalculatingDAO.selectCalNum");
-	}
-
-	/* 정산 대기 등록 */
-	public int insertCal(SqlSession session, Map<String, Integer> calculatingMap) {
-		
-		return session.insert("CalculatingDAO.insertCal", calculatingMap);
-	}
-
-
-	public int insertReqNum(SqlSession session, Map<String, Integer> calculatingMap) {
+	/* 정산 대기 등록*/
+	public int insertReqNum(SqlSession session, Map<String, List<CalListDTO>> buckitList) {
 	
 		
-		return session.insert("CalculatingDAO.insertReqNum", calculatingMap);
+		return session.insert("CalculatingDAO.insertReqNum", buckitList);
 	}
 
 
@@ -65,6 +54,14 @@ public class CalculatingDAO {
 		
 		return session.selectList("CalculatingDAO.selectCalList", selectAdminCriteriaForCal);
 	}
+
+	/* 회원번호 별 정산번호 알아오기 */
+	public List<CalculatingDTO> selectCalNum(SqlSession session) {
+		
+		return session.selectList("CalculatingDAO.selectCalNum");
+	}
+
+
 
 	
 
