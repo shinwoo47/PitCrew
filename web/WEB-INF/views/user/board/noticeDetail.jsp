@@ -33,10 +33,10 @@
          	<label>${ noticeDTO.content }</label>
          </div>  
          <div style="text-align:center";>
+	         <button id="update" style="background-color: #02A79D; color: white">수정하기</button>  
          <c:if test="${ category == 'PERSONAL' }">
 	         <form action="${ pageContext.servletContext.contextPath }/user/notice/delete" method="post">
 	         <input type="hidden" name="no" value="${ noticeDTO.no }">
-	         <button id="update" style="background-color: #02A79D; color: white">수정하기</button>  
 	         <button type="submit" style="background-color: #02A79D; color: white">삭제하기</button>
 	         </form>  
 	     </c:if>      

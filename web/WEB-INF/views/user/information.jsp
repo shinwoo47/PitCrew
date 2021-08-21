@@ -30,12 +30,14 @@
 	pageContext.setAttribute("br", "<br/>");
 %>
 <style>
+	.body {
+	}
+	
 	.head {
-		background : blue;
-		width : 867px;
-		height : 900px;
+		background-color : rgb(186, 237, 255);
 		margin-right: auto;
-         margin-left: auto;
+        margin-left: auto;
+        height: 100%;
         float: center;
         color : white;
 	}
@@ -59,7 +61,6 @@
 	<br><br></h3>
 	<h3 align="center"><c:out value="${ clean.price }"/>원<br>
 	<c:out value="${ clean.time }"/>시간</h3>
-	
 	</div>
 </body>
 </html>

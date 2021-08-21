@@ -93,16 +93,23 @@ public class CalculatingService {
 		int cleanertransferPrice = 0;
 
 		for(CalListDTO calc : cal) {
-			String cleanerNo = String.valueOf(calc.getMemNo());
-
+			String cleanerNo = String.valueOf(calc.getMemNo()); //키
+			
+			/* value 값 */
 			if(buckitList.keySet().contains(cleanerNo)) {
 				buckit = buckitList.get(cleanerNo);
-				/*for(int i = 0; i < buckit.size(); i++) {
-					cleanerincome += buckit.get(i).getCalcPrice();
-					incometax += buckit.get(i).getIncomeTax();
-					residenttax += buckit.get(i).getResidentTax();
-					cleanertransferPrice += buckit.get(i).getTransferPrice();
-				}*/
+				for(int i = 0; i < buckit.size(); i++) {
+					cleanerincome += calc.getCalcPrice();
+					incometax += calc.getIncomeTax();
+					residenttax += calc.getResidentTax();
+					cleanertransferPrice += calc.getTransferPrice();
+				}
+				
+				calc.setCalcPrice(cleanerincome);
+				calc.setIncomeTax(incometax);
+				calc.setResidentTax(residenttax);
+				calc.setTransferPrice(cleanertransferPrice);
+
 				buckit.add(calc);
 			} else {
 				buckit = new ArrayList<>();
@@ -114,27 +121,6 @@ public class CalculatingService {
 		
 		System.out.println("개인 소득 총액 : "+ buckitList);
 
-		/* 강사님 버전 
-		List<CalculatingDTO> calList = calculatingService.selectCalList(selectAdminCriteriaForCal);
-		System.out.println("calList : " + calList);
-
-		Map<String, List<CalculatingDTO>> buckitList = new HashMap<>();
-		List<CalculatingDTO> buckit;
-
-		for(CalculatingDTO calc : calList) {
-			String cleanerNo = String.valueOf(calc.getCleanerNo());
-
-			if(buckitList.keySet().contains(cleanerNo)) {
-				buckit = buckitList.get(cleanerNo);
-				buckit.add(calc);
-				
-			} else {
-				buckit = new ArrayList<>();
-				buckit.add(calc);
-				buckitList.put(cleanerNo, buckit);
-			}
-
-		}*/
 
 		/* DB 등록 */
 	//	int result = calDAO.insertReqNum(session, buckitList);

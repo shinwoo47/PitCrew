@@ -14,6 +14,12 @@
 		height: 100px;
 		margin-left: 200px;
 	}
+	button{
+	background-color: #02A79D; 
+	color: white; 
+	border-color:transparent; 
+	border-radius:0.3rem;
+	}
 </style>
 </head>
 <body>
@@ -50,7 +56,14 @@
 	</div>
 	
 	<script>
-
+	
+	if(document.getElementById("insertProduct")) {
+		const $addProdcut = document.getElementById("insertProduct");
+		$addProdcut.onclick = function() {
+			location.href = "${ pageContext.servletContext.contextPath }/admin/product/insert";
+		}
+	}
+	
 	$("button[type=button]").click(function() {
 	  	const $tds = document.getElementsByTagName("td");
 		for(let i = 0; i < $tds.length; i++) {

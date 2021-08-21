@@ -68,66 +68,78 @@
 			<choose>
 				<when test="enRollStartDate != null and enRollEndDate != null">
 					<if test="categoryType == 'memNo'">
-						A.MEM_NO = #{ searchResult } 
+						A.MEMBER_ROLE = '사용자'
+					AND A.MEM_NO = #{ searchResult } 
 						  <![CDATA[
         					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
 					<if test="categoryType == 'memId'">
-						A.MEM_ID = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.MEM_ID = #{ searchResult }
 								  <![CDATA[
         					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
 					<if test="categoryType == 'memName'">
-						A.MEM_NAME = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.MEM_NAME = #{ searchResult }
 								  <![CDATA[
         					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
 					<if test="categoryType == 'phone'">
-						A.PHONE = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.PHONE = #{ searchResult }
 								  <![CDATA[
         					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
 					<if test="categoryType == 'address'">
-						A.ADDRESS = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.ADDRESS = #{ searchResult }
 								  <![CDATA[
         					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
 					<if test="categoryType == 'entYn'">
-						A.ENT_YN = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.ENT_YN = #{ searchResult }
 						<![CDATA[
         					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
 					<if test="enRollStartDate != null and enRollEndDate != null">
 						<![CDATA[
-        					AND A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
+        				A.ENROLL_DATE >= #{enRollStartDate} AND A.ENROLL_DATE <= #{enRollEndDate}
        					 ]]>
 					</if>
 					
 				</when>
 				<otherwise>
 					<if test="categoryType == 'memNo'">
-						A.MEM_NO = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND	A.MEM_NO = #{ searchResult }
 					</if>
 					<if test="categoryType == 'memId'">
-						A.MEM_ID = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND	A.MEM_ID = #{ searchResult }
 					</if>
 					<if test="categoryType == 'memName'">
-						A.MEM_NAME = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND	A.MEM_NAME = #{ searchResult }
 					</if>
 					<if test="categoryType == 'phone'">
-						A.PHONE = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.PHONE = #{ searchResult }
 					</if>
 					<if test="categoryType == 'address'">
-						A.ADDRESS = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.ADDRESS = #{ searchResult }
 					</if>
 					<if test="categoryType == 'entYn'">
-						A.ENT_YN = #{ searchResult }
+						A.MEMBER_ROLE = '사용자'
+					AND A.ENT_YN = #{ searchResult }
 					</if>
 				</otherwise>
 			</choose>

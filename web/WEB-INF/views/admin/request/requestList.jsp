@@ -99,7 +99,7 @@
 							<td class="service-date"><c:out value="${ request.serviceDate }"/></td>
 							<td class="cleaner-name"><c:out value="${ request.cleaner.name }"/></td>
 							<td class="pay-date">
-								<c:forEach items="${ request.pay }" var="pay" begin="1" end="1">
+							<c:forEach items="${ request.pay }" var="pay" begin="0" end="0">
 								<c:out value="${ pay.payDate }"/>
 							</c:forEach></td>
 							<td class="req-status"><c:out value="${ request.status }"/></td>
@@ -125,8 +125,9 @@
 		 let id = $(this).attr("id");
 		 let number = id.replace("detail", "");
 		 
-		 let reqNo = "";
-		rows.each(function(i) {
+		 
+		let reqNo = "";
+		 rows.each(function(i) {
 			let trId = $(this).attr("id");
 			let trNum = trId.replace("reqContent", "");
 	
@@ -135,22 +136,8 @@
 				console.log(reqNo);
 			}
 		});	
-		location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;
-		 
 		
-		// $(this).parent("tr").css({"color":"blue"}); 안먹힘
-		// console.log(tr);
-		// $(this).parent().is("[id^=reqContent]")	 
-		 
-		
-			 
-		 /* let trNo = $(this).parent().find(".req-no").text();
-		 
-		 alert(trNo);
-				 let reqNo = $(this).find(".req-no").text();
-				location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo; */
-			
-			 	 
+		 location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo; 
 		 
 	 });   
     
