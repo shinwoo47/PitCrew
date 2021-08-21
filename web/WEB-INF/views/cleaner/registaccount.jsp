@@ -117,11 +117,10 @@ body {
 	    		<input type="hidden" name="state" value="12345678901234567890123456789012"/>
 	    		<div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <button type="submit" class="btn btn-primary">계좌 인증</button>
+                        <!-- <button type="submit" class="btn btn-primary">계좌 인증</button> -->
                     </div>
                 </div>
 			</form>
-			<button id="test">테스트</button>
         </div> <!-- ./container -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery-3.3.1.min.js"></script>
