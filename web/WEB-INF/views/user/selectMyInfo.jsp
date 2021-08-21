@@ -71,66 +71,45 @@ div.button {
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
 </head>
 <body>
-	  <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login"></a>로그인</span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout"></a>로그아웃</span>
-                            </c:if>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-     </header>   
-	<br><br><br><br>
-	<section class="section">
-	<article class="article">
-	<h2 align="center">회원 정보</h2>
-	<table class="type09" align="center">
 	
-        <c:forEach items="${ selectMyInfo }" var="myInfo">
-        <tbody>
-            <tr>
-                <th scope="row">이름</th>
-                <td><c:out value="${ myInfo.memName }"/></td>
-            <tr>
-                <th scope="row">아이디</th>
-                <td><c:out value="${ myInfo.id }"/></td>
-            </tr>
-            <tr>
-                <th scope="row">이메일</th>
-                <td><c:out value="${ myInfo.email }"/></td>
-            </tr>
-            <tr>
-                <th scope="row">전화번호</th>
-                <td><c:out value="${ myInfo.phone }"/></td>
-            </tr>
-            <tr>
-                <th scope="row">주소</th>
-                <td><c:out value="${ fn:replace(myInfo.address, \"$\" , \" \") }"/></td>
-            </tr>
-            <tr>
-          </tbody>
-          </c:forEach>
-       </table>
-       </article>
-     </section>
-            <div class="button">
-<%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/select/update/myInfo">수정하기</button> --%>
-            	<input type="button" class="btn1" value="정보수정" id="selectUpdate">
-            	<input type="button" class="btn2" value="회원탈퇴" id="delete">
-<%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/delete/myInfo">삭제하기</button> --%>
-            </div>
-		
+	<jsp:include page="./userMenubar.jsp"/>
+	
+	<section class="section">
+		<article class="article">
+			<h2 align="center">회원 정보</h2>
+			<table class="type09" align="center">
+        	<c:forEach items="${ selectMyInfo }" var="myInfo">
+        		<tbody>
+            		<tr>
+                		<th scope="row">이름</th>
+		                		<td><c:out value="${ myInfo.memName }"/></td>
+		            <tr>
+		                <th scope="row">아이디</th>
+		                <td><c:out value="${ myInfo.id }"/></td>
+		            </tr>
+		            <tr>
+		                <th scope="row">이메일</th>
+		                <td><c:out value="${ myInfo.email }"/></td>
+		            </tr>
+		            <tr>
+		                <th scope="row">전화번호</th>
+		                <td><c:out value="${ myInfo.phone }"/></td>
+		            </tr>
+		            <tr>
+		                <th scope="row">주소</th>
+		                <td><c:out value="${ fn:replace(myInfo.address, \"$\" , \" \") }"/></td>
+		            </tr>
+		            <tr>
+		          </tbody>
+          	</c:forEach>
+       		</table>
+        </article>
+    </section>
+	
+	<div class="button">
+        <input type="button" class="btn1" value="정보수정" id="selectUpdate">
+    	<input type="button" class="btn2" value="회원탈퇴" id="delete">
+    </div>
+    
 </body>
 </html>

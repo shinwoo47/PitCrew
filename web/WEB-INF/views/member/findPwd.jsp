@@ -29,6 +29,7 @@
   		padding-bottom: 40px;
   		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   		background-repeat: no-repeat;
+  		background-color: #eee;
 	}
 	
     .card {
@@ -79,12 +80,12 @@
 	    <div class="card-title" style="margin-top:30px;">
 		</div>
 		<div class="card-body">
-      <form action="findPwd" class="form-signin" method="POST">
+      <form action="findPwd" class="form-signin" method="POST" onsubmit="return check()">
         <input type="text" name="memId" id="memId" class="form-control" placeholder="아이디" required><br>
         <input type="text" name="memName" id="memName" class="form-control" placeholder="이름" required><BR>
         <input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
         <p class="checks" id="checks">${findpw_checkf}</p><br/>
-        <button id="findPwdBtn" class="btn btn-lg btn-primary btn-block" type="submit">비밀번호 찾기</button>
+        <button id="findPwdBtn" class="btn btn-lg btn-primary btn-block">비밀번호 찾기</button>
       </form>
 		</div>
         <div class="links">
@@ -95,38 +96,62 @@
   
   <script>
 
-	
-	  	//아이디 정규식
+	function check() {
+
+		//아이디 정규식
 		var idJ = /^[a-z0-9]{8,20}$/;
+		//아이디 유효성 검사
+		var getCheck= RegExp(/^[a-zA-Z0-9]{4,15}$/);
+		//이름 유효성 검사
+	    var getName = RegExp(/^[가-힣]+$/);
+		//이메일 정규식
+		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 		
   		$("#memId").focusout(function(){
-	     if($('#member_id').val() == ""){
+	    if($('#memId').val() == ""){
 	   		$('#checks').text('아이디를 입력해주세요.');
 	   	  	$('#checks').css('color', 'red');
 	     }
 	     });
   		
   		$("#memName").focusout(function(){
-	     if($('#name').val() == ""){
+	    if($('#memName').val() == ""){
 	   		$('#checks').text('이름을 입력해주세요.');
 	   	  	$('#checks').css('color', 'red');
 	     }
-	     });
+	    });
 	     
   		$("#email").focusout(function(){
-	     if($('#email').val() == ""){
+	    if($('#email').val() == ""){
 	   		$('#checks').text('이메일을 입력해주세요');
 	   	  	$('#checks').css('color', 'red');
 	     }
-	     });
+	    });
   		
-//   		window.onoload = function() {
-  			
-//   			const $findMyPwdBtn = document.getElementById("findMyPwdBtn");
-//   			$findMyPwdBtn.onclick = function() {
-//   				location.href = "${ pageContext.servletContext.contextPath }/member/findPwd";
-//   			}
-//   		}
+  		if(!getName.test($("#memName").val())) {
+	        alert("이름이 올바르지 않습니다");
+	        $("#memName").val("");
+	        $("#memName").focus();
+	        return false;
+	    }
+  		
+  		if(!getCheck.test($("#memId").val())){
+	        alert("형식에 맞게 입력해주세요");
+	        $("#memId").val("");
+	        $("#memId").focus();
+	        return false;
+     	}
+		
+  		if(!getMail.test($("#email").val())){
+	        alert("이메일형식에 맞게 입력해주세요")
+	        $("#email").val("");
+	        $("#email").focus();
+	        return false;
+	    }
+		
+  		return true;
+	}	
+  		
   
   </script>
 </html>

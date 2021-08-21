@@ -19,8 +19,10 @@ public class SelectMyRequestServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 세션에 저장된 로그인 정보를 가지고 온다.*/
 		HttpSession session = request.getSession();
 		
+		/* 세션에 저장된 loginMember MemberDTO 타입으로 캐스팅*/
 		MemberDTO loginMember = (MemberDTO) session.getAttribute("loginMember");
 		
 		int memNoUser = loginMember.getMemNo();

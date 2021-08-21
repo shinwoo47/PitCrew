@@ -14,8 +14,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>비밀번호 찾기</title>
-    <style>
-        @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
+<style>
+    @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 	
 	html {
 		height: 100%;
@@ -29,8 +29,8 @@
   		padding-bottom: 40px;
   		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   		background-repeat: no-repeat;
+  		background-color: #eee;
 	}
-	
     .card {
         margin: 0 auto; /* Added */
         float: none; /* Added */
@@ -52,24 +52,23 @@
   		font-size: 16px;
 	}
  
-    .card-title{
+    .card-title {
         margin-left: 30px;
     }
 
-
-    a{ 
+    a { 
     	color: #f58b34; text-decoration: none; 
     }
 
-    .links{
+    .links {
         text-align: center;
         margin-bottom: 10px;
     }
     
-    .checks{
+    .checks {
     	color : red;
     }
-    </style>
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -129,16 +128,6 @@
 			
 			return true;
   		}
-  		 
-	     
-  		
-//   		window.onoload = function() {
-  			
-//   			const $findMyPwdBtn = document.getElementById("findMyPwdBtn");
-//   			$findMyPwdBtn.onclick = function() {
-//   				location.href = "${ pageContext.servletContext.contextPath }/member/findPwd";
-//   			}
-//   		}
   
   </script>
 </html>

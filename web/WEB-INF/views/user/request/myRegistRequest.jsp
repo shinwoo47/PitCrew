@@ -160,52 +160,9 @@
 </head>
 
 <body>
-	<header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9"></div>
-						<div class="col-lg-3">
-							<div class="header__top__language">
-								<c:if test="${ empty sessionScope.loginMember }">
-								<span><a href="${ pageContext.servletContext.contextPath }/member/login"></a>로그인</span>
-								</c:if>
-                            	<c:if test="${ !empty sessionScope.loginMember }">
-								<h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-								<span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
-								</c:if>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<div class="col-lg-9">
-			<div class="header__nav">
-				<nav class="header__menu">
-					<ul>
-						<li><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
-							<li><a href="#">고객지원센터</a>
-								<ul class="dropdown">
-									<li><a href="./services.html">공지사항</a></li>
-									<li><a href="./services-details.html">FAQ</a></li>
-                                    <li><a href="./blog-details.html">문의사항</a></li>
-                                </ul>
-								</li>
-                                
-                                <li><a href="./contact.html">MY</a>
-                                <ul class="dropdown">
-                                	<li><a href="${ pageContext.servletContext.contextPath }/user/select/myRequest">의뢰내역</a></li>
-                                    <li><a href="${ pageContext.servletContext.contextPath }/user/select/myInfo">정보수정</a></li>
-                                    <li><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></li>
-                                </ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>                   
-     </header>
-     <!-- Header Section End -->
-    
+	
+	<jsp:include page="../userMenubar.jsp"/>
+	    
     <!-- Section Section Start -->
 	<section class="blog">
 		<div class="nav-container">
@@ -250,7 +207,7 @@
 	</section>
     <!-- Search End -->
 </body>
-
+	
      <script>
 	<c:forEach var="products" items="${requestScope.myRegistRequest}" varStatus="status">
 		var grpName = "";
@@ -297,6 +254,7 @@
      	
 	</c:forEach>
 	
+	/* 모든 의뢰 정보*/
      if(document.getElementById("allReqBtn")) {
 		 const $registRequest = document.getElementById("allReqBtn");
 		 $registRequest.onclick = function() {
@@ -304,6 +262,7 @@
 		 }
      }
      
+	/* 등록된 의뢰정보*/
      if(document.getElementById("registReqBtn")) {
 		 const $registRequest = document.getElementById("registReqBtn");
 		 $registRequest.onclick = function() {
@@ -311,13 +270,15 @@
 		 }
      }
      
+     /* 매칭된 의뢰정보*/
      if(document.getElementById("compMatchingReqBtn")) {
          const $endRegistRequest = document.getElementById("compMatchingReqBtn");
     	 $endRegistRequest.onclick = function() {
 			 location.href = "/pitcrew/user/comp/regist/request";
 		 }
      } 
-
+	 
+     /* 종료된 의뢰정보*/
      if(document.getElementById("endReqBtn")) {
     	 const $endRequest = document.getElementById("endReqBtn");
     	 $endRequest.onclick = function() {

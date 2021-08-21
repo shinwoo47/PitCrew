@@ -30,6 +30,7 @@
   		padding-bottom: 40px;
   		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   		background-repeat: no-repeat;
+  		background-color: #eee;
 	}
 	
     .card {
@@ -80,7 +81,7 @@
         		<input type="text" name="memName" id="memName" class="form-control" placeholder="이름" required autofocus><BR>
         		<input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
        			<p class="check" id="check">${check}</p><br/>
-       			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">전송</button>
+       			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">인증번호 발송</button>
      		</form>
 		</div>
 	</div>

@@ -7,9 +7,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <style>
+
+body {
+	background-color: #ddd;
+}
 
 table.type09 {
     border-collapse: collapse;
@@ -70,32 +74,12 @@ table.type09 td {
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
 </head>
 <body>
-	  <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login"></a>로그인</span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout"></a>로그아웃</span>
-                            </c:if>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-     </header>   
-	<br><br><br><br>
+
+	<jsp:include page="/WEB-INF/views/user/userMenubar.jsp"/>
 	<section class="section">
 	<h2 align="center">정보 수정</h2>
 	<br><br><br><br>
-	<form name="updateInfo" action="${ pageContext.servletContext.contextPath }/user/member/updateInfo" method="post">
+	<form name="updateInfo" action="${ pageContext.servletContext.contextPath }/user/member/selectUpdate/myInfo" method="post" onsubmit="return check()">
 	<table class="type09" align="center">
         <c:forEach items="${ selectUpdateMyInfo }" var="selectUpdateMyInfo">
         <tbody>        
@@ -114,7 +98,7 @@ table.type09 td {
                 <td><label>새 비밀번호 </label> <input type="password" name="memberPwd" id="memberPwd"></td>
             </tr>
             <tr>
-                <td><label>다시 입력 </label> <input type="password" name="retypeNewPwd" id="retypeNewPwd"></td>
+                <td><label>다시 입력 </label> <input type="password" name="checkPwd" id="checkPwd"></td>
             </tr>
             <tr>
                 <th rowspan="5"  scope="row">집주소</th>
@@ -138,13 +122,13 @@ table.type09 td {
                 <td>이메일 <c:out value="${ selectUpdateMyInfo.email }"/></td>
             </tr>
             <tr>
-                <td><label>변경할 이메일 </label> <input type="text" name="updateEmail"></td>
+                <td><label>변경할 이메일 </label> <input type="text" id="udpateEmail" name="updateEmail"></td>
             </tr>
           </tbody>
           </c:forEach>
        </table>
        	<br>
-       	<div class="updateButton"><input type="submit" value="수정하기" id="updateMyInfo"></div>
+       	<div class="updateButton"><button id="updateMyInfo">수정하기</button></div>
        </form>
      </section>
        
@@ -166,7 +150,51 @@ table.type09 td {
 				}
 			}).open();
 		}
+	</script>
+	 
+	<script>
 		
+	function check() {
+		//비밀번호 정규식
+		var getPwd = RegExp(/\w{8,15}$/)
+		//이메일 정규식
+		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+		
+		//비밀번호 형식 검사
+	    if(!getPwd.test($("#memberPwd").val())){
+	        alert("형식에 맞게 입력해주세요");
+	        $("#memberPwd").val("");
+	        $("#memberPwd").focus();
+	        return false;
+	    }
+        		
+		//비밀번호 비교
+		if($("#memberPwd").val() != ($("#checkPwd").val())) {
+			alert("비밀번호가 틀렸습니다.");
+			$("#memberPwd").val("");
+		    $("#checkPwd").val("");
+			$("#memberPwd").focus();
+			return false;
+		}
+		
+	    //이메일 유효성 검사
+	    if(!getMail.test($("#udpateEmail").val())){
+	        alert("이메일형식에 맞게 입력해주세요")
+	        $("#udpateEmail").val("");
+	        $("#udpateEmail").focus();
+	        return false;
+	     }
+	    
+	    //주소 공백 확인
+	     if($("#zipCode").val() == ""){
+		        alert("주소를 입력해 주세요");
+		        $("#zipCode").focus();
+		        return false;
+	     }
+	    
+		return true;
+	}
+
 	</script>
 		
 </body>
