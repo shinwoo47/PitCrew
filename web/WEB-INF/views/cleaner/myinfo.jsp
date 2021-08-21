@@ -72,6 +72,15 @@ div.button {
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/slicknav.min.css" type="text/css"> 
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/style.css" type="text/css"> 
     
+    <style>
+    .button-myinfo{
+    	margin-top: 30px;
+    }
+    .btn-info{
+    	margin: 20px 20px 20px 20px;
+    }
+    </style>
+    
 </head>
 <body>
 	<!-- 네비 -->
@@ -107,14 +116,15 @@ div.button {
           </tbody>
           </c:forEach>
        </table>
-       </article>
-     </section>
-            <div class="button">
+        <div class="button-myinfo" align="center">
 <%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/select/update/myInfo">수정하기</button> --%>
-            	<input type="button" class="btn1" value="정보수정" id="selectUpdate">
-            	<input type="button" class="btn2" value="회원탈퇴" id="delete">
+            	<input type="button" class="btn-info" value="정보수정" id="selectUpdate">
+            	<input type="button" class="btn-info" value="회원탈퇴" id="delete">
 <%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/delete/myInfo">삭제하기</button> --%>
             </div>
+       </article>
+     </section>
+           
 		
 </body>
 

@@ -80,12 +80,12 @@
                         <div class="container">
                         	<div>
                         	<form>
-                        	<input id="date" name="date" type="month" style="margin-bottom: 50px;"> 정산 월 선택 <button type="submit">선택</button>
+                        	<input id="date" name="date" type="month" style="margin-bottom: 50px;"><button type="submit">선택</button>
                         	</form>
                         	<input type="hidden" id="calNo" name="calNo" value="${ calculate.calNo }"/>
 							  <table class="table table-hover">
 							    <thead>
-							    <h4><fmt:formatDate value="${ calculate.calDate }" type="date" pattern="yyyy-MM"/></h4>
+							    <h4><fmt:formatDate value="${ calculate.calDate }" type="date" pattern="yyyy-MM"/> 월 정산</h4>
 							    <h5 style="margin-bottom: 20px; margin-top: 20px;">개인 정보</h5>
 							    
 							      <tr>

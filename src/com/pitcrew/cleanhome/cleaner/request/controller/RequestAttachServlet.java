@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +19,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.pitcrew.cleanhome.cleaner.report.model.dto.ReportAttachmentDTO;
+import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestAttachmentDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.service.RequestService;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 
@@ -31,17 +32,7 @@ public class RequestAttachServlet extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		HttpSession session = request.getSession();
-		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
-		int memNo = member.getMemNo();
-		String memName = member.getMemName();
-		String reqNo = request.getParameter("reqNo");
-		String status = request.getParameter("before");
-		System.out.println("reqNo : " + reqNo);
-		System.out.println("status : " + status);
-		
+	
 		if(ServletFileUpload.isMultipartContent(request)) {
 			
 			String rootLocation = getServletContext().getRealPath("/");
@@ -53,7 +44,7 @@ public class RequestAttachServlet extends HttpServlet {
 			System.out.println("인코딩 방식 : " + encodingType);
 			
 			
-			String fileUploadDirectory = rootLocation + "/resources/upload/" + memNo + memName + "/" + "requestNumber=" + reqNo + "/" + status + "/";   
+			String fileUploadDirectory = rootLocation + "/resources/upload/pictures";   
 			
 			
 			File directory = new File(fileUploadDirectory);
@@ -140,19 +131,34 @@ public class RequestAttachServlet extends HttpServlet {
 				System.out.println("parameter : " + parameter);
 				System.out.println("fileList : " + fileList);
 				
+				int reqNo = Integer.parseInt(parameter.get("reqNo"));
 				
-				/* 서비스 메소드를 요청한다. */
-				//int result = new RequestService().insertThumbnail(fileList);
+				List<RequestAttachmentDTO> reportAttachmentList = new ArrayList<>();
+				for(int i = 0; i < fileList.size(); i++) {
+					Map<String, String> file = fileList.get(i);
+					
+					RequestAttachmentDTO tempFileInfo = new RequestAttachmentDTO();
+					tempFileInfo.setOriginalName(file.get("originFileName"));
+					tempFileInfo.setSavedName(file.get("savedFileName"));
+					tempFileInfo.setSavePath(file.get("savePath"));
+					tempFileInfo.setReqNo(reqNo);
+					
+					reportAttachmentList.add(tempFileInfo);
+				}
 				
-				/* 성공 실패 페이지를 구분하여 연결한다. */
-				/*
-				 * String path = ""; if(result > 0) { path =
-				 * "/WEB-INF/views/common/success.jsp"; request.setAttribute("successCode",
-				 * "insertThumbnail"); } else { path = "/WEB-INF/views/common/failed.jsp";
-				 * request.setAttribute("message", "썸네일 게시판 등록 실패!"); }
-				 * 
-				 * request.getRequestDispatcher(path).forward(request, response);
-				 */
+				RequestService requestService = new RequestService();
+				int result = requestService.insertPictures(reportAttachmentList);    
+				
+				String path = ""; 
+				if(result > 0) { 
+					path = "/WEB-INF/views/common/success.jsp"; 
+					request.setAttribute("successCode","insertPicture"); 
+				} else { 
+					path = "/WEB-INF/views/common/failed.jsp";
+					request.setAttribute("message", "사진 등록 실패!"); 
+				}
+				
+				request.getRequestDispatcher(path).forward(request, response);
 				
 			} catch (Exception e) {
 				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.

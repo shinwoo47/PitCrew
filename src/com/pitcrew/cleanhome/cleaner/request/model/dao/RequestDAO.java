@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO;
+import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestAttachmentDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
@@ -72,6 +73,11 @@ public class RequestDAO {
 	public List<RequestDTO> requestAcceptCheck(SqlSession session, MemberDTO member) {
 		
 		return session.selectList("RequestDAO.requestAcceptCheck", member);
+	}
+
+	public int insertAttachment(SqlSession session, RequestAttachmentDTO pictures) {
+		
+		return session.insert("RequestDAO.insertAttachment", pictures);
 	}
 
 }

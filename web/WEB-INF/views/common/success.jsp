@@ -54,6 +54,7 @@
 				case "updateUserInfo" :
 					movePath = "${ pageContext.servletContext.contextPath }/member/login";
 					successMessage = "회원 정보 변경에 성공하셨습니다!";
+					break;
 				case "insertAccount" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/account";
 					successMessage = "계좌 정보 등록에 성공하셨습니다!";
@@ -65,12 +66,20 @@
 					break;
 
 				case "insertProduct" : "상품 추가 성공"
-					movePath = "${ pageContext.servletContext.contextPath }/product/list";
+					movePath = "${ pageContext.servletContext.contextPath }/admin/product/list";
 					successMessage = "상품 추가에 성공하셨습니다!";
+					break;
+				case "updateProduct" : "상품 수정 성공"
+					movePath = "${ pageContext.servletContext.contextPath }/admin/product/list";
+					successMessage = "상품 수정에 성공하셨습니다!";
 					break;
 				case "deleteBlacklist" : "블랙리스트 삭제 성공"
 					movePath = "${ pageContext.servletContext.contextPath }/admin/select/allblacklist";
 					successMessage = "블랙리스트 삭제에 성공하셨습니다!";
+					break;
+				case "insertBlacklist" : "블랙리스트 추가 성공"
+					movePath = "${ pageContext.servletContext.contextPath }/admin/select/allblacklist";
+					successMessage = "블랙리스트 추가에 성공하셨습니다!";
 					break;
 				case "cleanerinsertQuestion" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
@@ -80,6 +89,20 @@
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";
 					successMessage = "문의사항 수정 성공!";
 					break;
+					
+				case "userinsertQuestion" : 
+					movePath = "${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL";
+					successMessage = "문의사항 등록 성공!";
+					break;
+				case "userupdateQuestion" : 
+					movePath = "${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL";
+					successMessage = "문의사항 수정 성공!";
+					break;
+				case "userDeleteQuestion" : 
+					movePath = "${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL";
+					successMessage = "문의사항 삭제 성공!";
+					break;
+					
 				case "updateCleanerInfo" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/member/select";
 					successMessage = "회원정보 수정 성공!";
@@ -92,9 +115,15 @@
 					movePath = "${ pageContext.servletContext.contextPath }/member/login";
 					successMessage = "비밀번호 변경 완료!";
 					break;	
+
 				case "failedInput" : 
 					movePath = "${ pageContext.servletContext.contextPath }/WEB-INF/views/member/findPwd.jsp";
 					successMessage = "정보를 다시 입력해주세요!";
+
+				case "insertPicture" : 
+					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
+					successMessage = "비밀번호 변경 완료!";
+
 					break;	
 
 			}

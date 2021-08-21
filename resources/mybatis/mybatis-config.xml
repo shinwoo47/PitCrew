@@ -37,10 +37,12 @@
 		<mapper resource="com/pitcrew/cleanhome/admin/report/model/dao/ReportDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/admin/signupapproval/model/dao/SignUpApprovalDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/admin/resign/model/dao/ResignMemberDAO.xml"/>
+		<mapper resource="com/pitcrew/cleanhome/admin/pay/model/dao/PayListDAO.xml"/>
 		
 		<mapper resource="com/pitcrew/cleanhome/user/request/model/dao/UserReqDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/user/model/dao/CleanDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/user/request/model/dao/PayDAO.xml"/>
+		<mapper resource="com/pitcrew/cleanhome/user/board/model/dao/UserNoticeDAO.xml"/>
 
 
 	</mappers>

@@ -1,6 +1,6 @@
 package com.pitcrew.cleanhome.cleaner.notice.model.service;
 
-import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession;
+import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession; 
 
 import java.util.List;
 

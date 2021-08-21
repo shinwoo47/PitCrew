@@ -34,7 +34,7 @@ table {
 							<input type="date" id="searchEndDate" name="searchEndDate" class="fa fa-search"placeholder="날짜 선택"></h3>
 		</div>
 	</form>
-	<form action="${ pageContext.servletContext.contextPath }/admin/blacklist/delete" method="post">
+	<%-- <form action="${ pageContext.servletContext.contextPath }/admin/blacklist/delete" method="post"> --%>
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
 			<tr>
@@ -50,7 +50,7 @@ table {
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
 			</tr>
 			<c:forEach items="${ blacklistList }" var="blacklist">
-			<input type="hidden" id="memNo" name="memNo" value="${ blacklist.memNo }">
+			<%-- <input type="hidden" id="memNo" name="memNo" value="${ blacklist.memNo }"> --%>
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memNo }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.enrollDate }"></c:out></td>
@@ -66,6 +66,18 @@ table {
 			</c:forEach>
 		</table>
 	</div>
-	</form>
+	<script>
+		  $("button[type=submit]").click(function() {
+			  	const $tds = document.getElementsByTagName("td");
+				for(let i = 0; i < $tds.length; i++) {
+					$tds[i].onclick = function() {
+						const memNo = this.parentNode.children[0].innerText;
+						 location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/delete?memNo=" + memNo;
+						 /* location.reload(); */
+					}
+				}
+		    });	 
+    </script>
+	<!-- </form> -->
 </body>
 </html>

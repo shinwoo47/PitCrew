@@ -49,6 +49,16 @@
 		<result property="backgroundColor" column="REQ_STATUS"/>	
 	</resultMap>
 	
+	<resultMap type="com.pitcrew.cleanhome.cleaner.request.model.dto.RequestAttachmentDTO" id="requestAttachResultMap">
+		<id property="reqAttachNo" column="REQUEST_ATTATCH_NO"/>
+		<result property="reqNo" column="REQ_NO"/>
+		<result property="originalName" column="ORIGINAL_NAME"/>
+		<result property="savedName" column="SAVED_NAME"/>
+		<result property="savePath" column="SAVE_PATH"/>
+		<result property="thumbnailPath" column="THUMBNAIL_PATH"/>
+		<result property="attachCategory" column="ATTACH_CATEGORY"/>
+	</resultMap>
+	
 	<select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT 
                COUNT(*)
@@ -231,4 +241,24 @@
 	     WHERE B.MEM_NO = #{ memNo }
 	       AND A.REQ_STATUS = '매칭'
 	</select>
+	
+	<insert id="insertAttachment">
+	    INSERT
+	      INTO MEMBER_ATTACH A
+	    (
+	      A.REQ_ATTACH_NO
+	    , A.REQ_NO
+	    , A.ORIGINAL_NAME
+	    , A.SAVED_NAME
+	    , A.SAVE_PATH
+	    )
+	    VALUES
+	    (
+	      SEQ_MEMBER_ATTACH.NEXTVAL
+	    , #{ reqNo }
+	    , #{ originalName }
+	    , #{ savedName }
+	    , #{ savePath }
+	    )
+	</insert>
 </mapper>

@@ -47,7 +47,7 @@ public class AuthenticationFilter implements Filter {
 			boolean isPermitMember = permitURIList.get("memberPermitList").contains(intent);
 			boolean isPermitAll = permitURIList.get("allPermitList").contains(intent);
 			boolean iscleanerPermitList = permitURIList.get("cleanerPermitList").contains(intent);
-			System.out.println(loginMember.getRole());
+
 			if("관리자".equals(loginMember.getRole())) {
 				
 				if(isPermitAdmin || isPermitMember || isPermitAll || iscleanerPermitList) {
@@ -61,7 +61,7 @@ public class AuthenticationFilter implements Filter {
 				}
 				
 			} else if("해결사".equals(loginMember.getRole())) {
-				System.out.println("hi");
+
 				if((iscleanerPermitList || isPermitAll) && !isPermitAdmin) {
 					isAuthorized = true;
 					System.out.println(isAuthorized);
@@ -130,7 +130,8 @@ public class AuthenticationFilter implements Filter {
 		adminPermitList.add("/admin/report/check");
 		adminPermitList.add("/admin/signup/list");
 		adminPermitList.add("/admin/signup/approval");
-		adminPermitList.add("/admin/resign/select");
+		adminPermitList.add("/admin/resign/allselect");
+		adminPermitList.add("/admin/paylist/select");
 		
 
 
@@ -162,8 +163,10 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/user/request/report");
 		
 		memberPermitList.add("/user/board/notice");
-		memberPermitList.add("/user/board/faq");
-		memberPermitList.add("/user/board/reply");
+		memberPermitList.add("/user/notice/insert");
+		memberPermitList.add("/user/notice/delete");
+		memberPermitList.add("/user/notice/detail");
+		memberPermitList.add("/user/notice/update");
 		
 		cleanerPermitList.add("/cleaner/request/enroll");
 		cleanerPermitList.add("/cleaner/home");
@@ -191,6 +194,8 @@ public class AuthenticationFilter implements Filter {
 		cleanerPermitList.add("/cleaner/request/accept/check");
 		cleanerPermitList.add("/cleaner/calculate");
 		cleanerPermitList.add("/cleaner/calculate/detail");
+		cleanerPermitList.add("/cleaner/account/authorize");
+		cleanerPermitList.add("/cleaner/account/test");
 
 		allPermitList.add("/member/regist");
 		allPermitList.add("/member/login");

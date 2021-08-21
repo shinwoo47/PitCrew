@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.pitcrew.cleanhome.admin.resign.model.service.ResignMemberService;
 import com.pitcrew.cleanhome.admin.user.model.dto.UserDTO;
 
-@WebServlet("/admin/resign/select")
+@WebServlet("/admin/resign/allselect")
 public class SelectResignMemberServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,6 +27,8 @@ public class SelectResignMemberServlet extends HttpServlet {
            path = "/WEB-INF/views/common/failed.jsp";
            request.setAttribute("message", "사용자 정보 조회 실패!");
         }
+        
+        request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

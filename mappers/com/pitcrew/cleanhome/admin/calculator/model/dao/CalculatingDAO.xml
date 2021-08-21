@@ -64,6 +64,11 @@
 		<result property="serviceDate" column="REQ_DATE"/>
 		<result property="cleanerIncome" column="DEDUCTPRICE"/>
 	</resultMap>
+		
+	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO" id="calResultMap">
+		<id property="calNo" column="CAL_NO"/>
+		<association property="cleaner" resultMap="memberMapForCleaner"/>
+	</resultMap>
 	
 	<select id="selectCalCheck"  resultMap="CalSettingResultMap">
 	    SELECT A.REQ_NO
@@ -84,6 +89,7 @@
 	    <where>
 	    	B.MEMBER_ROLE = '해결사'
 	    AND A.REQ_STATUS = '완료'	
+	    AND A.REQ_NO NOT IN (SELECT A1.REQ_NO FROM REQUEST_SET_PERIOD A1)
 	       <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
 									or (searchEndDate != null and !"".equals(searchEndDate)) '>
 			     AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
@@ -101,7 +107,17 @@
 	     WHERE A.DEDUCT_NAME = 'incometax'	
 	</select>
 
-	<select id="selectCalNum" resultType="_int">
+	
+	<select id="selectCalNum"  resultMap="calResultMap">
+	    SELECT A.REQ_NO
+	    	 , A.CAL_NO	
+	      FROM SET_HISTORY A
+	     WHERE A.CAL_DATE = SYSDATE 
+	</select>
+	
+
+
+	<select id="selectCalcNum" resultType="_int">
       SELECT
              LAST_NUMBER
    		FROM USER_SEQUENCES
@@ -134,15 +150,25 @@
 	
 	<insert id="insertReqNum">
         INSERT /* */
-          INTO REQUEST_SET_PERIOD A
+          INTO SET_HISTORY A
         (
-          A.REQ_NO
-        , A.CAL_NO
+          A.CAL_NO
+        , A.MEM_NO
+        , A.CAL_PRICE
+        , A.CAL_TRANSFER_PRICE
+        , A.CAL_DATE
+        , A.INCOME_TAX
+        , A.RESIDENT_TAX
         )
         VALUES
         (
-          #{ calReqNo }
-        , #{ calNo }
+          SEQ_SET_HISTORY
+        , #{ memNo }
+        , #{ calcPrice }
+        , #{ transferPrice }
+        , SYSDATE
+        , #{ transferPrice }
+        , #{ residentTax }
         )
 	</insert>
 

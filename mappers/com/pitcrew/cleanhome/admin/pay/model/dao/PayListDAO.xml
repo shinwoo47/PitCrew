@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PayListDAO">
+	<resultMap type="com.pitcrew.cleanhome.admin.pay.model.dto.PayListDTO" id="payListResultMap">
+		<!-- <id property="memNo" column="MEM_NO"/>
+		<result property="memId" column="MEM_ID"/>
+		<result property="memName" column="MEM_NAME"/> -->
+		<id property="reqNo" column="REQ_NO"/>
+		<result property="payNo" column="PAY_NO"/>
+		<result property="payPrice" column="PAY_PRICE"/>
+		<result property="payDate" column="PAY_DATE"/>
+		<result property="payApprovalNo" column="PAY_APPROVAL_NO"/>
+		
+		<association property="memId" resultMap="userResultMap"></association>
+	</resultMap>
+
+	<resultMap type="com.pitcrew.cleanhome.admin.user.model.dto.UserDTO" id="userResultMap">
+		<id property="memNo" column="MEM_NO" />
+		<result property="memName" column="MEM_NAME" />
+		<result property="memId" column="MEM_ID" />
+		<result property="email" column="EMAIL" />
+		<result property="birth" column="BIRTH" />
+		<result property="address" column="ADDRESS" />
+		<result property="memPwd" column="MEM_PWD" />
+		<result property="phone" column="PHONE" />
+		<result property="enrollDate" column="ENROLL_DATE" />
+		<result property="memberRole" column="MEMBER_ROLE" />
+		<result property="entYn" column="ENT_YN" />
+		<result property="entDate" column="ENT_DATE" />
+	</resultMap>
+	
+	<select id="selectAllPayList" resultMap="payListResultMap">
+		SELECT
+		       C.MEM_NO
+		     , C.MEM_ID
+		     , C.MEM_NAME
+		     , A.REQ_NO
+		     , A.PAY_NO
+		     , A.PAY_PRICE
+		     , A.PAY_DATE
+		     , A.PAY_APPROVAL_NO
+		  FROM PAY_HISTORY A
+		  JOIN REQUEST_INFO B ON (B.REQ_NO = A.REQ_NO)
+		  JOIN MEMBER C ON (C.MEM_NO = B.MEM_NO_USER)
+	</select>
+</mapper>

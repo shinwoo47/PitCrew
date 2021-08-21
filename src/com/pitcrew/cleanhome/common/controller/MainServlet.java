@@ -13,6 +13,7 @@ public class MainServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("main");
 		String path = "/WEB-INF/views/main/main.jsp";
 		request.getRequestDispatcher(path).forward(request, response);
 	}

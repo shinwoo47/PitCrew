@@ -102,7 +102,7 @@
                             <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
                             <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
                             </c:if>
                         </div>
@@ -114,7 +114,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src=" ${ pageContext.servletContext.contextPath }/resources/user/img/user/infor.png" alt="pit"></a>  
+                        <a href="./index.html"><br><br><br><img src=" ${ pageContext.servletContext.contextPath }/resources/user/img/user/infor.png" alt="pit"></a>  
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -124,9 +124,9 @@
                                 <li><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
                                 <li><a href="#">고객지원센터</a>
                                     <ul class="dropdown">
-                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice?category=공지">공지사항</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice?category=FAQ">FAQ</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL">문의사항</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./contact.html">MY</a>
@@ -138,9 +138,7 @@
                                 </li>
                             </ul>
                         </nav>
-                        <div class="header__search">
-                            <i class="fa fa-search search-switch"></i>
-                        </div><div class= "reqs_rs" align="center"><br><br>
+                        <div class= "reqs_rs" align="center"><br><br>
                         <h3 id="rses">준비  및  유의  사항</h3><br>
                         <h3>청소도구를준비해주세요.</h3><br>
                         <p>미 준비시 일부 서비스의 제한이 있을 수 있습니다. <br><br>
@@ -156,7 +154,7 @@
                 <span class="fa fa-bars"></span>
             </div>
         </div>
-    </header>
+    </header><br>
     <!-- Header Section End -->
 
 
