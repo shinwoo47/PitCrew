@@ -55,8 +55,8 @@ public class FindMemberPwdServlet extends HttpServlet {
 		
 		/* 조회한 값 null값인지 확인*/
 		if(selectMyPwd.getId() == null && selectMyPwd.getMemName() == null && selectMyPwd.getEmail() == null) {
-			request.setAttribute("message", "입력하신 정보가 조회되지 않습니다");
-			request.getRequestDispatcher("/WEB-INF/views/common/failed.jsp").forward(request, response);
+			request.setAttribute("successCode", "failedInput");
+			request.getRequestDispatcher("/WEB-INF/views/member/findPwd.jsp").forward(request, response);
 			return;
 		}
 		

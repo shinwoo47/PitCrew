@@ -52,7 +52,7 @@
 					movePath = "${ pageContext.servletContext.contextPath }/user/home";
 					break;
 				case "updateUserInfo" :
-					movePath = "${ pageContext.servletContext.contextPath }";
+					movePath = "${ pageContext.servletContext.contextPath }/member/login";
 					successMessage = "회원 정보 변경에 성공하셨습니다!";
 					break;
 				case "insertAccount" :
@@ -115,9 +115,15 @@
 					movePath = "${ pageContext.servletContext.contextPath }/member/login";
 					successMessage = "비밀번호 변경 완료!";
 					break;	
+
+				case "failedInput" : 
+					movePath = "${ pageContext.servletContext.contextPath }/WEB-INF/views/member/findPwd.jsp";
+					successMessage = "정보를 다시 입력해주세요!";
+
 				case "insertPicture" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
 					successMessage = "비밀번호 변경 완료!";
+
 					break;	
 
 			}

@@ -146,8 +146,7 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/thumbnail/detail");
 		memberPermitList.add("/user/home");
 		memberPermitList.add("/user/select/myInfo");
-		memberPermitList.add("/user/select/update/myInfo");
-		memberPermitList.add("/user/member/updateInfo");
+		memberPermitList.add("/user/member/selectUpdate/myInfo");
 		memberPermitList.add("/user/clean/services");
 		memberPermitList.add("/user/clean/select");
 		memberPermitList.add("/user/request/detail");
@@ -161,6 +160,7 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/user/clean/informa");
 		memberPermitList.add("/user/clean/payment");
 		memberPermitList.add("/user/comp/regist/request");
+		memberPermitList.add("/user/request/report");
 		
 		memberPermitList.add("/user/board/notice");
 		memberPermitList.add("/user/notice/insert");
