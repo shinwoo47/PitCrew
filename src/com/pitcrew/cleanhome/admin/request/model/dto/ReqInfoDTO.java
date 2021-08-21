@@ -3,7 +3,7 @@ package com.pitcrew.cleanhome.admin.request.model.dto;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class ReqInfoDTO implements Serializable{
+public class ReqInfoDTO {
 	private int reqInfoNo;
 	private int reqNo;
 	private String status;

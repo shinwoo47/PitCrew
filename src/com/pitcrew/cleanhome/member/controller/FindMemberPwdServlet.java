@@ -63,7 +63,7 @@ public class FindMemberPwdServlet extends HttpServlet {
 		//mail server 설정
 		String host = "smtp.naver.com";
 		String user = "lsy980416@naver.com";//자신의 네이버 계정
-		String password = ""; //자신의 네이버 패스워드 !! 이 부분 혹시 값 초기화 되어 있으면 지워주세요
+		String password = "tndud1597"; //자신의 네이버 패스워드 !! 이 부분 혹시 값 초기화 되어 있으면 지워주세요
 		
 		/*메일 받을 주소*/
 		String to_email = selectMyPwd.getEmail();
