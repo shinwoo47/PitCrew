@@ -163,8 +163,10 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/user/comp/regist/request");
 		
 		memberPermitList.add("/user/board/notice");
-		memberPermitList.add("/user/board/faq");
-		memberPermitList.add("/user/board/reply");
+		memberPermitList.add("/user/notice/insert");
+		memberPermitList.add("/user/notice/delete");
+		memberPermitList.add("/user/notice/detail");
+		memberPermitList.add("/user/notice/update");
 		
 		cleanerPermitList.add("/cleaner/request/enroll");
 		cleanerPermitList.add("/cleaner/home");

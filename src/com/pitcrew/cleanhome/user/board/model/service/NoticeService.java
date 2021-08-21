@@ -1,20 +1,21 @@
-package com.pitcrew.cleanhome.cleaner.notice.model.service;
+package com.pitcrew.cleanhome.user.board.model.service;
 
 import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession; 
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSession; 
 
-import com.pitcrew.cleanhome.cleaner.notice.model.dao.NoticeDAO;
-import com.pitcrew.cleanhome.cleaner.notice.model.dto.NoticeDTO;
+import com.pitcrew.cleanhome.user.board.model.dao.UserNoticeDAO;
+import com.pitcrew.cleanhome.user.board.model.dto.NoticeDTO;
+
 
 public class NoticeService {
 	
-	private  NoticeDAO noticeDAO;
+	private  UserNoticeDAO noticeDAO;
 	
 	public NoticeService() {
-		noticeDAO = new NoticeDAO();
+		noticeDAO = new UserNoticeDAO();
 	}
 
 	public List<NoticeDTO> selectNoticeList(String category) {
@@ -22,12 +23,12 @@ public class NoticeService {
 		SqlSession session = getSqlSession();
 		
 		List<NoticeDTO> noticeList = noticeDAO.selectNoticeList(session, category);
-		
+		System.out.println("mapper성공");
 		session.close();
 		
 		return noticeList;
 	}
-
+	
 	public NoticeDTO selectNoticeDetail(int no) {
 		
 		SqlSession session = getSqlSession();
