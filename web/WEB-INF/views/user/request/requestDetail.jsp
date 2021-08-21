@@ -42,50 +42,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9"></div>
-						<div class="col-lg-3">
-							<div class="header__top__language">
-								<c:if test="${ empty sessionScope.loginMember }">
-								<span><a href="${ pageContext.servletContext.contextPath }/member/login"></a>로그인</span>
-								</c:if>
-                            	<c:if test="${ !empty sessionScope.loginMember }">
-								<h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-								<span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
-								</c:if>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		<div class="col-lg-9">
-			<div class="header__nav">
-				<nav class="header__menu">
-					<ul>
-						<li><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
-							<li><a href="#">고객지원센터</a>
-								<ul class="dropdown">
-									<li><a href="./services.html">공지사항</a></li>
-									<li><a href="./services-details.html">FAQ</a></li>
-                                    <li><a href="./blog-details.html">문의사항</a></li>
-                                </ul>
-								</li>
-                                
-                                <li><a href="./contact.html">MY</a>
-                                <ul class="dropdown">
-                                	<li><a href="${ pageContext.servletContext.contextPath }/user/select/myRequest">의뢰내역</a></li>
-                                    <li><a href="${ pageContext.servletContext.contextPath }/user/select/myInfo">정보수정</a></li>
-                                    <li><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></li>
-                                </ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>                   
-    </header>
+	
+	<jsp:include page="../userMenubar.jsp"/>
+	
     <!-- Blog Details Section Begin -->
     <section class="blog-details spad">
         <div class="container">
@@ -164,6 +123,7 @@
     </section>	
     
     <script>
+    
     $("#report").on("click", function(){ 
 		const no = $("#reqNo").val();
 		console.log(no)

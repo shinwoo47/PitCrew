@@ -26,17 +26,16 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
 	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>	
-	<style>
-		.btn_z {
-			width: 120px;
-			height: 40px;
-			color: #fff;
-			background: #004fff;
-			font_size: 16px;
-			positon: absolute;
-			
-}
-	</style>
+<style>
+	.btn_z {
+		width: 120px;
+		height: 40px;
+		color: #fff;
+		background: #004fff;
+		font_size: 16px;
+		positon: absolute;
+	}
+</style>
 
 </head>
 

@@ -75,7 +75,8 @@ table.type09 td {
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/views/user/userMenubar.jsp"/>
+	<jsp:include page="../userMenubar.jsp"/>
+	
 	<section class="section">
 	<h2 align="center">정보 수정</h2>
 	<br><br><br><br>
@@ -95,10 +96,10 @@ table.type09 td {
                 <th rowspan="3" scope="row">비밀번호 변경</th>
             </tr>
             <tr>
-                <td><label>새 비밀번호 </label> <input type="password" name="memberPwd" id="memberPwd"></td>
+                <td><input type="password" name="memberPwd" id="memberPwd" placeholder="새비밀번호"></td>
             </tr>
             <tr>
-                <td><label>다시 입력 </label> <input type="password" name="checkPwd" id="checkPwd"></td>
+                <td><input type="password" name="checkPwd" id="checkPwd" placeholder="비밀번호 다시 입력"></td>
             </tr>
             <tr>
                 <th rowspan="5"  scope="row">집주소</th>
