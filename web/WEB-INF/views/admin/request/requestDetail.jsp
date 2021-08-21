@@ -8,11 +8,7 @@
 <title>맡겨줘 홈즈 관리자 모드</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<style>
-	.hidden {
-		display: none;
-	}
-</style>
+
 </head>
 </head>
 <body>
@@ -34,8 +30,8 @@
    				<th width="150px">해결사 연락처</th>
    				<th width="150px">주문 일자</th>
          	</tr>
-			<tr height="15" style="font-size: 15px">
-				<td><c:out value="${ reqDetailDTO.reqNo }"/></td>
+			<tr id="rlist${ st.count }"  height="15" style="font-size: 15px">
+			<td><c:out value="${ reqDetailDTO.reqNo }"/>
 				<td><c:out value="${ reqDetailDTO.user.name }"/></td>
 				<td><c:out value="${ reqDetailDTO.user.id }"/></td>
 				<td><c:out value="${ reqDetailDTO.user.phone }"/></td>
@@ -44,10 +40,10 @@
 				<td><c:out value="${ reqDetailDTO.cleaner.name }"/></td>
 				<td><c:out value="${ reqDetailDTO.cleaner.phone }"/></td>
 				<td>
-				<c:forEach items="${ reqDetailDTO.pay }" var="pay" begin='1' end='1'>
+				<c:forEach items="${ reqDetailDTO.pay }" var="pay" begin='0' end='0'>
 				<c:out value="${ pay.payDate }"/>						
 				</c:forEach></td>
-			</tr> 	
+			</tr> 
          </table>         
         <hr>
         <br><h2 class="pageheader-title">의뢰 히스토리 </h2><br>   
@@ -63,32 +59,30 @@
          	</tr>
          </thead>
          <tbody>
-         	<c:forEach items="${ reqDetailDTO }" var="reqDetail" varStatus="st">
          	<tr id="rDetail${ st.count }" height="15" style="font-size: 15px" >
 				<td>
-					<c:forEach items="${ reqDetail.product}" var="product">
+					<c:forEach items="${ reqDetailDTO.product}" var="product">
 						<c:out value="${ product.productNo }"/><br>				
 					</c:forEach>
 				</td>
 				<td>	
-					<c:forEach items="${ reqDetail.product}" var="product">
+					<c:forEach items="${ reqDetailDTO.product}" var="product">
 						<c:out value="${ product.productName }"/><br>				
 					</c:forEach>
 				</td>
-				<td><c:out value="${ reqDetail.serviceDate }"/></td>
+				<td><c:out value="${ reqDetailDTO.serviceDate }"/></td>
 				<td>
-					<c:forEach items="${ reqDetail.reqStatusHistory }" var="reqStatusHistory" begin='1' end='1'>
+					<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
 						<c:out value="${ reqStatusHistory.status }"/><br>
 					</c:forEach>
 				</td>
-				<td><c:out value="${ reqDetail.cleaner.name }"/></td>
+				<td><c:out value="${ reqDetailDTO.cleaner.name }"/></td>
 				<td>
-					<c:forEach items="${ reqDetail.reqStatusHistory }" var="reqStatusHistory" begin='1' end='1'>
+					<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
 						<c:out value="${ reqStatusHistory.date }"/><br>
 					</c:forEach>
 				</td>
-			</tr>
-		</c:forEach>	       	
+			</tr>	       	
 		</tbody>			
          </table>            
           	<div style="text-align:center; justify-content: space-between;">
@@ -111,22 +105,21 @@
                    	  <form action="${ pageContext.servletContext.contextPath }/admin/request/update" method="post">
                    	  <table class="text-center" id="requestUpdateList">
 			         	<tr height="15">
-			         		<th class="hidden" width="100px">의뢰번호</th>
+			         		<th width="100px">의뢰번호</th>
 			   				<th width="100px">상품명</th>
 			   				<th width="100px">의뢰 일시</th>
 			   				<th width="100px">청소해결사</th>
 			         	</tr>
 			         	
 								<tr>
-									<td class="hidden"><c:out value="${ requestScope.reqDetailDTO.reqNo }"/></td>
+									<td><c:out value="${ requestScope.reqDetailDTO.reqNo }"/></td>
 									<td>
 									<c:forEach items="${ reqDetailDTO.product}" var="product">
 									<c:out value="${ product.productName }"/><br>				
 									</c:forEach></td>
 									<td><c:out value="${ requestScope.reqDetailDTO.serviceDate }"/></td>
 									<td>
-									<c:forEach items="${ reqDetailDTO.cleaner}" var="cleaner">
-									<c:out value="${ cleaner.name }"/></c:forEach></td>
+									<c:out value="${ reqDetailDTO.cleaner.name }"/></td>
 								</tr>         	
 			         </table>
                    	  
