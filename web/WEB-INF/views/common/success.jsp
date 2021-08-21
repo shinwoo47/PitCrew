@@ -121,15 +121,20 @@
 					break;	
 
 				case "failedInput" : 
-					movePath = "${ pageContext.servletContext.contextPath }/WEB-INF/views/member/findPwd.jsp";
+					movePath = "${ pageContext.servletContext.contextPath }/member/findPwd";
 					successMessage = "정보를 다시 입력해주세요!";
-
+					break;
+					
 				case "insertPicture" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
 					successMessage = "비밀번호 변경 완료!";
 
 					break;	
-
+				
+				case "sendCerticationNum" :
+					movePath = "${ pageContext.servletContext.contextPath }/member/update/password";
+					successMessage = "입력하신 메일로 인증번호가 발송되었습니다!";
+					break;
 			}
 
 			alert(successMessage);

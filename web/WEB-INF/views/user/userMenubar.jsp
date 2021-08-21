@@ -27,18 +27,22 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
 	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>	
 <style>
-.btn_z {
-	width: 120px;
-	height: 40px;
-	color: #fff;
-	background: #004fff;
-	font_size: 16px;
-	positon: absolute;
+	.btn_z {
+		width: 120px;
+		height: 40px;
+		color: #fff;
+		background: #004fff;
+		font_size: 16px;
+		positon: absolute;
 	}
 
-.header__top {
-	background: skyblue;
-}
+	.header__top {
+		background: skyblue;
+	}
+	
+	.header__top__language {
+		background: #aab7ff;
+	}
 </style>
 </head>
 <body>
@@ -48,7 +52,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                    	<a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.PNG" alt=""></a>
+                    	<a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/userLogo.PNG" alt=""></a>
                     </div>
                     <div class="col-lg-3">
                         <div class="header__top__language">
@@ -76,9 +80,9 @@
                                 <li><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
                                 <li><a>고객지원센터</a>
                                     <ul class="dropdown">
-                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice?category=공지">공지사항</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice?category=FAQ">FAQ</a></li>
+                                        <li><a href="${ pageContext.servletContext.contextPath }/user/board/notice?category=PERSONAL">문의사항</a></li>
                                     </ul>
                                 </li>
                                 <li><a>MY</a>

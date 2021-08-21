@@ -259,7 +259,6 @@ table.type05 td {
 			*/
 			name: '주문명:결제테스트',
 			//결제창에서 보여질 이름
-      
 			amount: '${ clean.proPrice }',
 
 			//가격

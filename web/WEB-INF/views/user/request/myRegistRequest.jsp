@@ -209,14 +209,14 @@
 </body>
 	
      <script>
-	<c:forEach var="products" items="${requestScope.myRegistRequest}" varStatus="status">
+	<c:forEach var="products" items="${requestScope.myRegistRequest}">
 		var grpName = "";
 		var grpPrice = 0;
 		var grpPhone = "";
 		var grpReqDate = "";
 		var grpReqStatus = "";
 		
-     	<c:forEach var="product" items="${products.productList}" varStatus="st">
+     	<c:forEach var="product" items="${products.productList}">
      		grpName += "${product.serName}"
      		grpName += " ";
      		grpPrice += parseInt("${product.serPrice}");

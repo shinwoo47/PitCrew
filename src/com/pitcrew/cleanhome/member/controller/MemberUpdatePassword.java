@@ -12,7 +12,15 @@ import com.pitcrew.cleanhome.member.model.service.MemberService;
 
 @WebServlet("/member/update/password")
 public class MemberUpdatePassword extends HttpServlet {
-
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String path = "/WEB-INF/views/member/retypePwd.jsp";
+		
+		request.getRequestDispatcher(path).forward(request, response);
+		
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/* 인증키와 아까 넣어둔 세션의 값을 비교해서 맞지않으면 다른곳으로 보내고 맞으면 비밀번호 변경 로직 작성*/
