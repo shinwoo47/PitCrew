@@ -9,6 +9,12 @@
 table {
 	margin-right: 90px;
 }
+button{
+	background-color: #02A79D; 
+	color: white; 
+	border-color:transparent; 
+	border-radius:0.3rem;
+	}
 </style>
 </head>
 <body>

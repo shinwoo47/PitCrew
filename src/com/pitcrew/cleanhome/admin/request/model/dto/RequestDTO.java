@@ -8,7 +8,7 @@ import com.pitcrew.cleanhome.admin.member.model.dto.MemberDTO;
 import com.pitcrew.cleanhome.admin.pay.model.dto.PayDTO;
 import com.pitcrew.cleanhome.admin.product.model.dto.ProductInfoDTO;
 
-public class RequestDTO implements Serializable{
+public class RequestDTO {
 	
 	private int reqNo;
 	private java.sql.Date serviceDate;

@@ -29,7 +29,7 @@ body {
   width: 60%;
   height: 34px;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 14px;sun1010
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
@@ -80,8 +80,7 @@ body {
                 <div class="form-group">
                     <label for="email" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-9">
-                        <input type="email" id="email" name="email" placeholder="Email" class="form-control2">
-                        <input type="button" value="인증하기" class="btn btn-or" id="emailCheck">
+                        <input type="email" id="email" name="email" placeholder="Email" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
@@ -400,7 +399,7 @@ body {
 	 
 	      //아이디의 유효성 검사
 	      if(!getCheck.test($("#id").val())){
-		        alert("형식에 맞게 입력해주세요");
+		        alert("아이디를 형식에 맞게 입력해주세요");
 		        $("#id").val("");
 		        $("#id").focus();
 		        return false;
@@ -415,7 +414,7 @@ body {
 	    
 	      //비밀번호 형식 검사
 	      if(!getPwd.test($("#pwd").val())){
-		        alert("형식에 맞게 입력해주세요");
+		        alert("비밀번호는 최소 8자리입니다.");
 		        $("#pwd").val("");
 		        $("#pwd").focus();
 		        return false;

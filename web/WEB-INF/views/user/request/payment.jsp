@@ -259,7 +259,8 @@ table.type05 td {
 			*/
 			name: '주문명:결제테스트',
 			//결제창에서 보여질 이름
-			amount: '${clean.proPrice}',
+			amount: '${ clean.proPrice }',
+
 			//가격
 			buyer_email: "${ clean.email }",
 			buyer_name: "${ clean.memName}",
@@ -288,10 +289,6 @@ table.type05 td {
 					
 					success : function(data, textStatus, xhr) {
 						var msg = '결제가 완료되었습니다.';
-						msg += '고유ID : ' + rsp.imp_uid;
-						msg += '상점 거래ID : ' + rsp.merchant_uid;
-						msg += '결제 금액 : ' + rsp.paid_amount;
-						msg += '카드 승인번호 : ' + rsp.apply_num;												
 						alert(msg);
 						location.href = "${pageContext.servletContext.contextPath}/user/home"; 
 					},

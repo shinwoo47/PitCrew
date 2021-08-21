@@ -12,6 +12,12 @@
 table {
 	margin-right: 10px;
 }
+button{
+	background-color: #02A79D; 
+	color: white; 
+	border-color:transparent; 
+	border-radius:0.3rem;
+	}
 </style>
 </head>
 <body>
@@ -25,7 +31,7 @@ table {
 		<select id="searchCondition" name="searchCondition" style="text-align: center; font-size: 20pt; margin: 10px;">
 			<option value=""<%-- ${ requestScope.selectCriteria.searchCondition eq ""? "selected": "" } --%> selected disabled="disabled">==선택하세요==</option>
 			<option id="memNo" value="memNo"${ requestScope.selectCriteria.searchCondition eq "memNo"? "selected": "" }>회원번호</option>
-			<option id="memId" value="memId"${ requestScope.selectCriteria.searchCondition eq "memId"? "selected": "" }>아아디</option>
+			<option id="memId" value="memId"${ requestScope.selectCriteria.searchCondition eq "memId"? "selected": "" }>아이디</option>
 			<option id="memName" value="memName"${ requestScope.selectCriteria.searchCondition eq "memName"? "selected": "" }>이름</option>
 			<option id="phone" value="phone"${ requestScope.selectCriteria.searchCondition eq "phone"? "selected": "" }>휴대폰 번호</option>
 			<option id="address" value="address"${ requestScope.selectCriteria.searchCondition eq "address"? "selected": "" }>거주지역</option>
@@ -35,7 +41,7 @@ table {
 		<button style="text-align: center; font-size: 20pt; margin: 30px;">검색</button>
 		<div class="blog__sidebar__search">
 			<h3 align="center">
-				가일일 기간 : <input type="date" id="searchDate" name="searchDate"class="fa fa-search" placeholder="날짜 선택"> ~ 
+				가입일 기간 : <input type="date" id="searchDate" name="searchDate"class="fa fa-search" placeholder="날짜 선택"> ~ 
 							<input type="date" id="searchEndDate" name="searchEndDate" class="fa fa-search"placeholder="날짜 선택"></h3>
 			<br>
 			<h3 align="center">
@@ -74,7 +80,7 @@ table {
 				</tr> 
 			 </c:forEach> 
 			</table>
-					<jsp:include page="../paging.jsp"/>
+					<%-- <jsp:include page="../paging.jsp"/> --%>
 				</div>
 			</div>
 		</div>
@@ -118,8 +124,8 @@ table {
 	        $("#entYn").focus();
 	        return false;
     } */
-	 return true;
-	}
+/* 	 return true; 
+	}*/
 		  $("button[type=submit]").click(function() {
 			  	const $tds = document.getElementsByTagName("td");
 				for(let i = 0; i < $tds.length; i++) {
