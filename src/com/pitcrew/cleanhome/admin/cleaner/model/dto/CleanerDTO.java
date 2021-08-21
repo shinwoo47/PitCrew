@@ -16,11 +16,14 @@ public class CleanerDTO {
 	private String memberRole;
 	private String entYn;
 	private java.sql.Date entDate;
+	private CleanerInfoDTO identifyDate;
+	private CleanerInfoDTO educateDate;
 	
 	public CleanerDTO() {}
 
 	public CleanerDTO(int memNo, String memName, String memId, String email, Date birth, String address, String memPwd,
-			String phone, Date enrollDate, String memberRole, String entYn, Date entDate) {
+			String phone, Date enrollDate, String memberRole, String entYn, Date entDate, CleanerInfoDTO identifyDate,
+			CleanerInfoDTO educateDate) {
 		super();
 		this.memNo = memNo;
 		this.memName = memName;
@@ -34,6 +37,8 @@ public class CleanerDTO {
 		this.memberRole = memberRole;
 		this.entYn = entYn;
 		this.entDate = entDate;
+		this.identifyDate = identifyDate;
+		this.educateDate = educateDate;
 	}
 
 	public int getMemNo() {
@@ -132,14 +137,29 @@ public class CleanerDTO {
 		this.entDate = entDate;
 	}
 
+	public CleanerInfoDTO getIdentifyDate() {
+		return identifyDate;
+	}
+
+	public void setIdentifyDate(CleanerInfoDTO identifyDate) {
+		this.identifyDate = identifyDate;
+	}
+
+	public CleanerInfoDTO getEducateDate() {
+		return educateDate;
+	}
+
+	public void setEducateDate(CleanerInfoDTO educateDate) {
+		this.educateDate = educateDate;
+	}
+
 	@Override
 	public String toString() {
 		return "CleanerDTO [memNo=" + memNo + ", memName=" + memName + ", memId=" + memId + ", email=" + email
 				+ ", birth=" + birth + ", address=" + address + ", memPwd=" + memPwd + ", phone=" + phone
 				+ ", enrollDate=" + enrollDate + ", memberRole=" + memberRole + ", entYn=" + entYn + ", entDate="
-				+ entDate + "]";
+				+ entDate + ", identifyDate=" + identifyDate + ", educateDate=" + educateDate + "]";
 	}
-	
-	
+
 	
 }

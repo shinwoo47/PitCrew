@@ -65,12 +65,20 @@
 					break;
 
 				case "insertProduct" : "상품 추가 성공"
-					movePath = "${ pageContext.servletContext.contextPath }/product/list";
+					movePath = "${ pageContext.servletContext.contextPath }/admin/product/list";
 					successMessage = "상품 추가에 성공하셨습니다!";
+					break;
+				case "updateProduct" : "상품 수정 성공"
+					movePath = "${ pageContext.servletContext.contextPath }/admin/product/list";
+					successMessage = "상품 수정에 성공하셨습니다!";
 					break;
 				case "deleteBlacklist" : "블랙리스트 삭제 성공"
 					movePath = "${ pageContext.servletContext.contextPath }/admin/select/allblacklist";
 					successMessage = "블랙리스트 삭제에 성공하셨습니다!";
+					break;
+				case "insertBlacklist" : "블랙리스트 추가 성공"
+					movePath = "${ pageContext.servletContext.contextPath }/admin/select/allblacklist";
+					successMessage = "블랙리스트 추가에 성공하셨습니다!";
 					break;
 				case "cleanerinsertQuestion" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/notice/list?category=PERSONAL";

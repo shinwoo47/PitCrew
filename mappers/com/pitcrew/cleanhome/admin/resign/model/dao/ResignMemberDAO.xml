@@ -32,7 +32,7 @@
 		     , A.ENT_DATE
 		  FROM MEMBER A
 		 WHERE A.ENT_YN = 'Y'
-		 ORDER BY A.MEM_NO DESC
+		 ORDER BY A.MEM_NO ASC
 	</select>
 	
 </mapper>

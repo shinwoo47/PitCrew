@@ -16,23 +16,13 @@ public class UpdateProductServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("빡쫑1");
-		
-		/*
-		 * int serNo = Integer.parseInt(request.getParameter("serNo"));
-		 * 
-		 * System.out.println("서비스 두겟 serNo : " + serNo);
-		 */
-		
 		String path = "/WEB-INF/views/admin/product/updateForm.jsp";
-		/* request.setAttribute("serNo", serNo); */
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("빡쫑2");
 		
 		int serNo = Integer.parseInt(request.getParameter("serNo"));
 		String serCategory = request.getParameter("serCategory");
@@ -58,8 +48,8 @@ public class UpdateProductServlet extends HttpServlet {
 		
 		String path = "";
 		if(result > 0) {
-			path = "/WEB-INF/views/admin/product/productList.jsp";
-			request.setAttribute("updateProduct", updateProduct);				
+			path = "/WEB-INF/views/common/success.jsp";
+			request.setAttribute("successCode", "updateProduct");				
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
 			request.setAttribute("message", "상품 수정에 실패하셨습니다.");

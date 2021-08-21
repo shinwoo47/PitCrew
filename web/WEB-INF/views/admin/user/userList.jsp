@@ -10,25 +10,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 table {
-	margin-right: 80px;
+	margin-right: 10px;
 }
 </style>
 </head>
 <body>
 	<jsp:include page="../menubar.jsp" />
+	 <div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+       <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 	<form action="${ pageContext.servletContext.contextPath }/admin/select/alluserinfo"	method="get" 
-			align="center" style="text-align: center; font-size: 20pt;">
+			align="center" style="text-align: center; font-size: 20pt;" onsubmit="return check()">
 		<select id="searchCondition" name="searchCondition" style="text-align: center; font-size: 20pt; margin: 10px;">
-			<option value=""${ requestScope.selectCriteria.searchCondition eq ""? "selected": "" } selected disabled="disabled">==선택하세요==</option>
-			<option value="memNo"${ requestScope.selectCriteria.searchCondition eq "memNo"? "selected": "" }>회원번호</option>
-			<option value="memId"${ requestScope.selectCriteria.searchCondition eq "memId"? "selected": "" }>아아디</option>
-			<option value="memName"${ requestScope.selectCriteria.searchCondition eq "memName"? "selected": "" }>이름</option>
-			<option value="phone"${ requestScope.selectCriteria.searchCondition eq "phone"? "selected": "" }>휴대폰 번호</option>
-			<option value="address"${ requestScope.selectCriteria.searchCondition eq "address"? "selected": "" }>거주지역</option>
-			<option value="entYn"${ requestScope.selectCriteria.searchCondition eq "entYn"? "selected": "" }>탈퇴여부</option>
+			<option value=""<%-- ${ requestScope.selectCriteria.searchCondition eq ""? "selected": "" } --%> selected disabled="disabled">==선택하세요==</option>
+			<option id="memNo" value="memNo"${ requestScope.selectCriteria.searchCondition eq "memNo"? "selected": "" }>회원번호</option>
+			<option id="memId" value="memId"${ requestScope.selectCriteria.searchCondition eq "memId"? "selected": "" }>아아디</option>
+			<option id="memName" value="memName"${ requestScope.selectCriteria.searchCondition eq "memName"? "selected": "" }>이름</option>
+			<option id="phone" value="phone"${ requestScope.selectCriteria.searchCondition eq "phone"? "selected": "" }>휴대폰 번호</option>
+			<option id="address" value="address"${ requestScope.selectCriteria.searchCondition eq "address"? "selected": "" }>거주지역</option>
+			<option id="entYn" value="entYn"${ requestScope.selectCriteria.searchCondition eq "entYn"? "selected": "" }>탈퇴여부</option>
 		</select> 
 		<input type="text" style="text-align: center; font-size: 20pt;" id="searchResult" name="searchResult"/>
-		<button style="text-align: center; fon t-size: 20pt; margin: 30px;">검색</button>
+		<button style="text-align: center; font-size: 20pt; margin: 30px;">검색</button>
 		<div class="blog__sidebar__search">
 			<h3 align="center">
 				가일일 기간 : <input type="date" id="searchDate" name="searchDate"class="fa fa-search" placeholder="날짜 선택"> ~ 
@@ -41,89 +45,92 @@ table {
 			<br>
 		</div>
 	</form>
-	<form action="${ pageContext.servletContext.contextPath }/admin/blacklist/insert" method="post">
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
 				<tr>
-				<th width="120px" style="text-align: center; font-size: 20pt;">회원번호</th>
-				<th width="200px" style="text-align: center; font-size: 20pt;">가입일</th>
-				<th width="200px" style="text-align: center; font-size: 20pt;">아이디</th>
-				<th width="120px" style="text-align: center; font-size: 20pt;">이름</th>
-				<th width="200px" style="text-align: center; font-size: 20pt;">휴대폰 번호</th>
-				<th width="450px" style="text-align: center; font-size: 20pt;">거주지역</th>
-				<th width="140px" style="text-align: center; font-size: 20pt;">최근 의뢰 일자</th>
-				<th width="150px" style="text-align: center; font-size: 20pt;">블랙리스트 추가</th>
-				<!-- <th width="100px" style="text-align: center; font-size: 20pt;">자세히</th> -->
-				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
-			</tr>
-			<c:forEach items="${ requestScope.userList }" var="user">
-			<input type="hidden" id="email" name="email" value="${ user.email }">
-			<input type="hidden" id="userList" name="userList" value="${ userList }">
-			<input type="hidden" id="memNo" name="memNo" value="${ user.memNo }">
-			<input type="hidden" id="enrollDate" name="enrollDate" value="${ user.enrollDate }">
-			<%-- <input type="hidden" id="memberRole" name="memberRole" value="${ user.memberRole }"> --%>
-			<input type="hidden" id="memId" name="memId" value="${ user.memId }">
-			<input type="hidden" id="memName" name="memName" value="${ user.memName }">
-			<input type="hidden" id="phone" name="phone" value="${ user.phone }">
-			<%-- <input type="hidden" id="penaltyScoreSum" name="penaltyScoreSum" value="${ user.penaltyScoreSum }"> --%>
-			<input type="hidden" id="entYn" name="entYn" value="${ user.entYn }">
+					<th width="120px" style="text-align: center; font-size: 18pt;">회원번호</th>
+					<th width="150px" style="text-align: center; font-size: 18pt;">가입일</th>
+					<th width="150px" style="text-align: center; font-size: 18pt;">아이디</th>
+					<th width="120px" style="text-align: center; font-size: 18pt;">이름</th>
+					<th width="200px" style="text-align: center; font-size: 18pt;">휴대폰 번호</th>
+					<th width="200px" style="text-align: center; font-size: 18pt;">이메일</th>
+					<th width="450px" style="text-align: center; font-size: 18pt;">거주지역</th>
+					<th width="160px" style="text-align: center; font-size: 18pt;">최근 의뢰 일자</th>
+					<th width="150px" style="text-align: center; font-size: 18pt;">블랙리스트 추가</th>
+					<th width="120px" style="text-align: center; font-size: 18pt;">탈퇴여부</th>
+				</tr>
+			 <c:forEach items="${ userList }" var="user">
 				<tr>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.memNo }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.enrollDate }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.memId }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.memName }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ user.phone }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ fn:replace(user.address, \"$\", \" \") }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><%-- <c:out value="${  }"></c:out> --%></td>
-					<td id="insertButton" style="text-align: center; font-size: 15pt;"><button id="insertButton" name="ok" type="submit" value="${status.index}">추가</button></td>
-					<!-- <td align="center" style="text-align: center; font-size: 13pt;"><button>자세히</button></td> -->
-					<td style="text-align: center; font-size: 20pt;"><c:out value="${ user.entYn }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out	value="${ user.memNo }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out	value="${ user.enrollDate }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out	value="${ user.memId }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out	value="${ user.memName }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out	value="${ user.phone }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out	value="${ user.email }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out	value="${ fn:replace(user.address, \"$\", \" \") }"></c:out></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out value="${ user.reqNo.reqDate }"></c:out></td>
+					<td id="insertButton" style="text-align: center; font-size: 15pt;"><button type="submit" id="insertButton" name="insertButton">추가</button></td>
+					<td style="text-align: center; font-size: 15pt;"><c:out value="${ user.entYn }"></c:out></td>
 				</tr> 
-			</c:forEach>
-		</table>
-			<jsp:include page="paging.jsp" />
+			 </c:forEach> 
+			</table>
+					<jsp:include page="../paging.jsp"/>
+				</div>
+			</div>
+		</div>
 	</div>
-	</form>
-	
+</div>
 	<script>
-	    if(document.getElementsByTagName("td")) {
-			
-			const $tds = document.getElementsByTagName("td");
-			for(let i = 0; i < $tds.length; i++) {
+	/* function check() {
+	 //회원번호 검색 확인
+    if($("#memNo").val() != /^[0-9]$/g){
+	        alert("회원번호를 입력해 주세요");
+	        $("#memNo").focus();
+	        return false; 
+    }*/
+	 /* //아이디 검색 확인
+    if($("#memId").val() == ){
+	        alert("아이디를 입력해 주세요");
+	        $("#memId").focus();
+	        return false;
+    }
+	 //이름 검색 확인
+    if($("#memName").val() != /^[0-9]$/g){
+	        alert("회원번호를 입력해 주세요");
+	        $("#memName").focus();
+	        return false;
+    }
+	 //핸드폰 검색 확인
+    if($("#phone").val() != /^[0-9]$/g){
+	        alert("회원번호를 입력해 주세요");
+	        $("#phone").focus();
+	        return false;
+    }
+	 //주소 검색 확인
+    if($("#address").val() != /^[0-9]$/g){
+	        alert("회원번호를 입력해 주세요");
+	        $("#address").focus();
+	        return false;
+    }
+	 //탈퇴여부 검색 확인
+    if($("#entYn").val() != 'Y' || 'N'){
+	        alert("회원번호를 입력해 주세요");
+	        $("#entYn").focus();
+	        return false;
+    } */
+	 return true;
+	}
+		  $("button[type=submit]").click(function() {
+			  	const $tds = document.getElementsByTagName("td");
+				for(let i = 0; i < $tds.length; i++) {
+					$tds[i].onclick = function() {
+						const memNo = this.parentNode.children[0].innerText;
+						const email = this.parentNode.children[5].innerText;
+						 location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/insert?memNo=" + memNo + "&email=" + email;
+					}
 				}
-				$tds[i].onclick = function() {
-					const memNo = this.parentNode.children[0].innerText;
-					location.href = "${ pageContext.servletContext.contextPath }/admin/select/allblacklist?memNo=" + memNo;
-				}
-				
-			}
+		    });	 
     </script>
 	
-	<!-- <script>
-		
-		if(document.getElementsByTagName("td")) {
-			
-			const $tds = document.getElementsByTagName("td");
-			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onclick = function() {
-					/* 게시물 번호까지 알아왔으니 이제 상세보기는 할 수 있습니다. */
-					const memNo = this.parentNode.children[0].innerText;
-					/* location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/insert?memNo=" + memNo; */
-				}
-				
-			}
-			
-		}
-		
-	</script> -->
-	
-	<!--  <script type="text/javascript">
-    $(document).ready(function () {
-        $("button[name=ok]").click(function () {
-            alert($(this).val());
-        });
-    });
-	</script>  -->
 </body>
 </html>
