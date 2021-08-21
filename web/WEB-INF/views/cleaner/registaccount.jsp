@@ -64,6 +64,12 @@ body {
        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+	.account{
+		align="center";
+	}
+	.btn-account{
+		align="center";
+	}
 
 </style>
 <body>
@@ -102,15 +108,20 @@ body {
                     </div>
                 </div>
             </form> <!-- /form -->
-            <form id="authorizeFrm" class="form-horizontal" name="authorizeFrm" method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" target="_authForm">
-    		<input type="hidden" name="client_id" value="2df87e25-3e96-43b2-86dd-8d75acce5208"/>
-    		<input type="hidden" name="scope" value="login inquiry transfer"/>
-    		<input type="hidden" name="redirect_uri" value="http://127.0.0.1:8020/pitcrew/"/>
-    		<input type="hidden" name="auth_type" value="0"/>
-    		<input type="hidden" name="response_type" value="code"/>
-    		<input type="hidden" name="state" value="12345678901234567890123456789012"/>
-    		<button type="submit">계좌 인증</button>
+	        <form id="authorizeFrm" class="form-horizontal" name="authorizeFrm" method="get" action="https://testapi.openbanking.or.kr/oauth/2.0/authorize" target="_authForm">
+	    		<input type="hidden" name="client_id" value="2df87e25-3e96-43b2-86dd-8d75acce5208"/>
+	    		<input type="hidden" name="scope" value="login inquiry transfer"/>
+	    		<input type="hidden" name="redirect_uri" value="http://127.0.0.1:8020/pitcrew/cleaner/account/authorize"/>
+	    		<input type="hidden" name="auth_type" value="0"/>
+	    		<input type="hidden" name="response_type" value="code"/>
+	    		<input type="hidden" name="state" value="12345678901234567890123456789012"/>
+	    		<div class="form-group">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button type="submit" class="btn btn-primary">계좌 인증</button>
+                    </div>
+                </div>
 			</form>
+			<button id="test">테스트</button>
         </div> <!-- ./container -->
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery-3.3.1.min.js"></script>
@@ -126,6 +137,12 @@ body {
 	 $('#authorizeFrm').click(function(){
          window.open('', '_authForm');
      })
+     
+      $('#test').click(function(){
+         location.href = "${ pageContext.servletContext.contextPath }/cleaner/account/test";
+     })
+     
+     
      
 
 

@@ -72,4 +72,9 @@ public class MemberDAO {
 		return session.update("MemberDAO.updateMemberPwd", updatePwd);
 	}
 
+	public CleanerInfoDTO identifyCheck(SqlSession session, MemberDTO loginMember) {
+		
+		return session.selectOne("MemberDAO.identifyCheck", loginMember);
+	}
+
 }

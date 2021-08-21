@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>\
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -221,7 +221,46 @@
     	.blog__item__text {
 	padding: 5px 5px 5px 5px;
 	margin : 5px 5px 5px 5px;
+	border: 1px #1AAB8A solid;
 }
+	.btn-manage {
+	margin: 10px 25px 10px 25px;
+	padding: 10px 20px 10px 20px;
+	background:#1AAB8A;
+	color:#fff;
+	border:none;
+	position:relative;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	}
+	button:before,button:after{
+	  content:'';
+	  position:absolute;
+	  top:0;
+	  right:0;
+	  height:2px;
+	  width:0;
+	  background: #ffffff;
+	  transition:400ms ease all;
+	}
+	button:after{
+	  right:inherit;
+	  top:inherit;
+	  left:0;
+	  bottom:0;
+	}
+	button:hover:before,button:hover:after{
+	  width:100%;
+	  transition:800ms ease all;
+	}
+	.blue{
+	color: blue;
+	}
+	.green{
+	color: green;
+	}
+
     </style>
 </head>
 
@@ -240,13 +279,15 @@
             <div class="row">
                 <div class="col-lg-8 col-md-7">	
                     <div class="blog__item">
+                    	매칭 :<label class="blue">파란색</label><br>
+                    	완료 :<label class="green">초록색</label><br>
                    		<!-- 달력  -->
                     	<div id="calendar">
                     	</div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-5">
-                	<button id="match" name="match" value="매칭              ">매칭된 의뢰</button><button id="complete" name="complete" value="완료              ">완료된 의뢰</button>
+                	<button id="match" class="btn-manage" name="match" value="매칭              ">매칭된 의뢰</button><button id="complete" class="btn-manage" name="complete" value="완료              ">완료된 의뢰</button>
                     <div class="blog__sidebar">   
                         
                     </div>

@@ -12,12 +12,12 @@ public class RequestAttachmentDTO implements Serializable{
 	private String savePath;
 	private String thumbnailPath;
 	private String reqAttachCategory;
-	private RequestDTO reqNo;
+	private int reqNo;
 	
 	public RequestAttachmentDTO() {}
 
 	public RequestAttachmentDTO(int reqAttachNo, String originalName, String savedName, String savePath,
-			String thumbnailPath, String reqAttachCategory, RequestDTO reqNo) {
+			String thumbnailPath, String reqAttachCategory, int reqNo) {
 		super();
 		this.reqAttachNo = reqAttachNo;
 		this.originalName = originalName;
@@ -76,11 +76,11 @@ public class RequestAttachmentDTO implements Serializable{
 		this.reqAttachCategory = reqAttachCategory;
 	}
 
-	public RequestDTO getReqNo() {
+	public int getReqNo() {
 		return reqNo;
 	}
 
-	public void setReqNo(RequestDTO reqNo) {
+	public void setReqNo(int reqNo) {
 		this.reqNo = reqNo;
 	}
 

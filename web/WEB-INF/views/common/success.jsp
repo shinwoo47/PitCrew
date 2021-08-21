@@ -54,6 +54,7 @@
 				case "updateUserInfo" :
 					movePath = "${ pageContext.servletContext.contextPath }";
 					successMessage = "회원 정보 변경에 성공하셨습니다!";
+					break;
 				case "insertAccount" :
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/account";
 					successMessage = "계좌 정보 등록에 성공하셨습니다!";
@@ -90,6 +91,10 @@
 					break;
 				case "updatePwd" : 
 					movePath = "${ pageContext.servletContext.contextPath }/member/login";
+					successMessage = "비밀번호 변경 완료!";
+					break;	
+				case "insertPicture" : 
+					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
 					successMessage = "비밀번호 변경 완료!";
 					break;	
 

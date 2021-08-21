@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.cleaner.request.model.dao.RequestDAO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.FullCalendarDTO;
+import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestAttachmentDTO;
 import com.pitcrew.cleanhome.cleaner.request.model.dto.RequestDTO;
 import com.pitcrew.cleanhome.cleaner.request.paging.SelectCriteria;
 import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
@@ -151,6 +152,23 @@ public class RequestService {
 		session.close();
 		
 		return requestList;
+	}
+
+	public int insertPictures(List<RequestAttachmentDTO> pictures) {
+		
+		SqlSession session = getSqlSession();
+		
+		int attachmentResult = 0;
+		for(int i = 0; i < pictures.size(); i++) {
+			attachmentResult += requestDAO.insertAttachment(session, pictures.get(i));
+		}
+		
+		if(attachmentResult == pictures.size()) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		return attachmentResult;
 	}
 
 	

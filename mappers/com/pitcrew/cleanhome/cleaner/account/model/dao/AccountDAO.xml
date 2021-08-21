@@ -77,7 +77,7 @@
 	    (
 	      SEQ_ACCOUNT_HISTORY.NEXTVAL
 	    , #{ memNo }
-	    , #{ accountChangeDate }
+	    , SYSDATE
 	    , #{ preAccountNo }
 	    , #{ preBankName }
 	    , #{ preAccountHolder }
