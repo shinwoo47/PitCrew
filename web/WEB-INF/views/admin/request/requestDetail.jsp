@@ -61,7 +61,7 @@
    				<th width="200px">청소해결사</th>
    				<th width="200px">상태 변경일시</th>
          	</tr>
-         </thead>
+         </thead>_
          <tbody>
          	<c:forEach items="${ reqDetailDTO }" var="reqDetail" varStatus="st">
          	<tr id="rDetail${ st.count }" height="15" style="font-size: 15px" >
