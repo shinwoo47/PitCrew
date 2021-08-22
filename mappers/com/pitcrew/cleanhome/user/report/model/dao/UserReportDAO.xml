@@ -65,4 +65,49 @@
 		  FROM REQUEST_INFO A
 		 WHERE A.REQ_NO = #{ reqNo }
 	</select>
+	
+	<insert id="insertReport">
+		  INSERT 
+		  INTO REPORT A
+	    (
+	      A.REPORT_NO
+	    , A.REPORT_BODY
+	    , A.MEM_NO_REPORTER
+	    , A.MEM_NO_SUSPECT
+	    , A.REPORT_CATEGORY_CODE
+	    , A.REQ_NO
+	    )
+	    VALUES
+	    (
+	      SEQ_REPORT.NEXTVAL
+	    , #{ reportBody }
+	    , #{ memNoReporter }
+	    , #{ memNoSuspect }
+	    , #{ reportCategoryCode }
+	    , #{ reqNo }
+	    )
+	</insert>
+	
+	<insert id="insertAttachment">
+	    INSERT
+	      INTO REPORT_ATTACH A
+	    (
+	      A.REPORT_ATTATCH_NO
+	    , A.REPORT_NO
+	    , A.ORIGINAL_NAME
+	    , A.SAVED_NAME
+	    , A.SAVE_PATH
+	    , A.ATTACH_CATEGORY
+	    )
+	    VALUES
+	    (
+	      SEQ_REPORT_ATTACH.NEXTVAL
+	    , SEQ_REPORT.CURRVAL
+	    , #{ originalName }
+	    , #{ savedName }
+	    , #{ savePath }
+	    , #{ attachCategory }
+	    )
+	</insert>
+	
 </mapper>

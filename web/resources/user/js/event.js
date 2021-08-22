@@ -151,5 +151,11 @@ window.onload = function() {
 		}
 	}
 	
+	if(document.getElementById("quitMember")) {
+		const $quitMember = document.getElementById("quitMember");
+		$quitMember.onclick = function() {
+			location.href = "/pitcrew/user/quit/member";
+		}
+	}
 	
 }

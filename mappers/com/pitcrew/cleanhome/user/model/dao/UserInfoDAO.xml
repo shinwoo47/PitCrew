@@ -45,4 +45,12 @@
 		     , A.EMAIL = #{ email }
 		 WHERE A.MEM_NO = #{ memNo }
 	</update>
+	
+	<update id="quitMember" parameterType="com.pitcrew.cleanhome.member.model.dto.MemberDTO">
+		UPDATE /* com.pitcrew.cleanhome.user.model.dao.UserInfoDAO#quitMember() */
+			   MEMBER A
+		   SET A.ENT_YN ='Y'
+		     , ENT_DATE = SYSDATE
+		 WHERE A.MEM_NO = #{ memNo }
+	</update>
 </mapper>

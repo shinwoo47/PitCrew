@@ -8,7 +8,12 @@
 <title>맡겨줘 홈즈 관리자 모드</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<style>
+ table {
+ 	margin-left: auto;
+ 	margin-right: auto;
+ }
+</style>
 </head>
 </head>
 <body>
@@ -30,7 +35,7 @@
    				<th width="150px">해결사 연락처</th>
    				<th width="150px">주문 일자</th>
          	</tr>
-			<tr id="rlist${ st.count }"  height="15" style="font-size: 15px">
+			<tr id="rlist${ st.count }"  height="60px" style="font-size: 15px">
 			<td><c:out value="${ reqDetailDTO.reqNo }"/>
 				<td><c:out value="${ reqDetailDTO.user.name }"/></td>
 				<td><c:out value="${ reqDetailDTO.user.id }"/></td>
@@ -49,7 +54,7 @@
         <br><h2 class="pageheader-title">의뢰 히스토리 </h2><br>   
           <table class="text-center">
           <thead>
-         	<tr style="font-size: 15px">
+         	<tr height="15" style="font-size: 15px">
    				<th width="150px">상품코드</th>
    				<th width="200px">상품명</th>
    				<th width="200px">의뢰 일시</th>
@@ -57,7 +62,7 @@
    				<th width="200px">청소해결사</th>
    				<th width="200px">상태 변경일시</th>
          	</tr>
-         </thead>_
+         </thead>
          <tbody>
          	<tr id="rDetail${ st.count }" height="15" style="font-size: 15px" >
 				<td>
@@ -72,13 +77,13 @@
 				</td>
 				<td><c:out value="${ reqDetailDTO.serviceDate }"/></td>
 				<td>
-					<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
+					<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory" begin = "0" end = "2">
 						<c:out value="${ reqStatusHistory.status }"/><br>
 					</c:forEach>
 				</td>
 				<td><c:out value="${ reqDetailDTO.cleaner.name }"/></td>
 				<td>
-					<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory">
+					<c:forEach items="${ reqDetailDTO.reqStatusHistory }" var="reqStatusHistory" begin = "0" end = "2">
 						<c:out value="${ reqStatusHistory.date }"/><br>
 					</c:forEach>
 				</td>

@@ -90,11 +90,17 @@
 	    	B.MEMBER_ROLE = '해결사'
 	    AND A.REQ_STATUS = '완료'	
 	    AND A.REQ_NO NOT IN (SELECT A1.REQ_NO FROM REQUEST_SET_PERIOD A1)
-	       <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
+	     <if test="searchCondition == 'cleanerId'">
+		       AND B.MEM_ID = #{ searchValue } 	
+		 </if>
+		 <if test="searchCondition == 'cleanerName'">
+		       AND B.MEM_NAME = #{ searchValue } 	
+		 </if>
+	     <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
 									or (searchEndDate != null and !"".equals(searchEndDate)) '>
 			     AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
 	    			   AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
-			</if>
+		 </if>
 	    </where> 
 	</select>
 
