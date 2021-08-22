@@ -39,7 +39,6 @@
 .header__top {
 	background: #02A79D;
 }
-
 </style>
 </head>
 <body>

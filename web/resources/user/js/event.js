@@ -95,13 +95,10 @@ window.onload = function() {
 		const $payment = document.getElementById("payment");
 		$payment.onclick = function() {
 			
-			/*var now = new Date();
 			
 			var year = now.getFullYear();
 			var month = now.getMonth()+1;
 			var day = now.getDate();
-			var hours = now.getHours();
-			var minutes = now.getMinutes();
 		
 			var sttDt = $("#start").val();
 			sttDt = sttDt.split("-");
@@ -109,31 +106,35 @@ window.onload = function() {
 			var sttMonth = sttDt[1];
 			var sttDay = sttDt[2];
 			
-			var sttDe = $("#startTime").val();
-			sttDe = sttDe.split(":");
-			var sttHours = sttDe[0];
-			var sttMinutes = sttDe[1];
-			
-			var date1= new Date(year, month, day, hours, minutes);
-			var date2= new Date(sttYear, sttMonth, sttDay, sttHours, sttMinutes);
-			
-			alert(date1.getTime());
-
-			
-			if(date2.getTime() < date1.getTime()) {
-				alert("불가")
+			if(year > sttYear) {
+				alert("지난 날짜는 선택할 수없 습니다");
 				return false;
 			}
+				
+			if(year == sttYear) {
+				if(month > sttMonth){
+					alert("지난 날짜는 선택할 수없 습니다");
+					return false;
+				}
+			}
+			if(year == sttYear) {
+				if(month == sttMonth) {
+					if(day + 2 >= sttDay) {
+						alert("2일 전 날짜부터 의뢰하실 수 있습니다");
+						return false;
+					}
+				}
+			}
+				if(month > sttMonth) {
+					alert("지난 날짜는 선택할 수없 습니다");
+					return false;
+					
+					if(day > sttDay) {
+						alert("지난 날짜는 선택할 수없 습니다");
+						return false;
+					}
+				}
 			
-			var elpsedMSec = date2.getTime() - date1.getTime();
-			var elapsedMin = elapsedMSec / 1000 / 60;
-			
-			elapsedMin = parseInt(elapsedMin);
-			alert(elpsedMSec);
-			
-			
-			alert($("#start").val());
-			alert($("#startTime").val());*/
 			
 			if($("#start").val() == "") {
 				console.log($("#start" ).val())
@@ -142,10 +143,7 @@ window.onload = function() {
 			}  else if($("#startTime").val() ==  "") {
 				alert("시간을 선택해주세요");
 				return false;
-			} else if($("#startTime").val() < 10) {
-				alert("안됨");
-				return false;
-			} else { 
+			}  else { 
 				location.href = "/pitcrew/user/clean/payment";
 			}
 		}
