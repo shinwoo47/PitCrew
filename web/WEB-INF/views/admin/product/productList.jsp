@@ -14,6 +14,9 @@
 		height: 100px;
 		margin-left: 200px;
 	}
+	#insertProduct{
+		margin-left: 1345px;
+	}
 	button{
 	background-color: #02A79D; 
 	color: white; 
@@ -26,6 +29,7 @@
 	<jsp:include page="../menubar.jsp" />
 	<div class="dashboard-wrapper">
 		<div class="table-area">
+		<button type="button" id="insertProduct">상품 추가</button>
 		<table id="listArea" border="1">
 				<tr>
 					<th width="120px" style="text-align: center; font-size: 20pt;">상품 번호</th>
@@ -36,7 +40,6 @@
 					<th width="120px" style="text-align: center; font-size: 20pt;">가격</th>
 					<th width="120px" style="text-align: center; font-size: 20pt;">히스토리</th>
 					<th width="120px" style="text-align: center; font-size: 20pt;">상품 수정</th>
-					<th><button type="button" id="insertProduct">상품 추가</button></th>
 				</tr>
 			<c:forEach items="${ productList }" var="product">
 				<tr>

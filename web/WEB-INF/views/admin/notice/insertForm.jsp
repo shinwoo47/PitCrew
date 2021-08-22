@@ -15,7 +15,7 @@
          	<div style="display: block">
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
           	</div>
-          <form action="${ pageContext.servletContext.contextPath }/cleaner/notice/insert" method="post">
+          <form action="${ pageContext.servletContext.contextPath }/admin/notice/insert" method="post">
           	<div>
           	<label class="custom-control custom-radio custom-control-inline">
             	<input type="radio" class="custom-control-input" name="forWho" value="사용자"><span class="custom-control-label">사용자</span>

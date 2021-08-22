@@ -9,9 +9,9 @@
 <title>관리자모드 블랙리스트 조회</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-table {
-	margin-right: 170px;
-}
+ table {
+	margin-right: 100px;
+} 
 button{
 	background-color: #02A79D; 
 	color: white; 
@@ -22,6 +22,10 @@ button{
 </head>
 <body>
 	<jsp:include page="../menubar.jsp" />
+	<div class="dashboard-wrapper">
+   	 <div class="container-fluid dashboard-content">
+       <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 	<form action="${ pageContext.servletContext.contextPath }/admin/select/alluserinfo"	method="get" 
 			align="center" style="text-align: center; font-size: 20pt;">
 		<select id="searchCondition" name="searchCondition" style="text-align: center; font-size: 20pt; margin: 10px;">
@@ -72,6 +76,9 @@ button{
 			</c:forEach>
 		</table>
 	</div>
+	</div>
+	</div>
+	</div>
 	<script>
 		  $("button[type=submit]").click(function() {
 			  	const $tds = document.getElementsByTagName("td");
@@ -85,5 +92,6 @@ button{
 		    });	 
     </script>
 	<!-- </form> -->
+	</div>
 </body>
 </html>

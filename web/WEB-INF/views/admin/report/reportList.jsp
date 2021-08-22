@@ -20,6 +20,10 @@ button{
 </head>
 <body>
 	<jsp:include page="../menubar.jsp" />
+<div class="dashboard-wrapper">
+   	 <div class="container-fluid dashboard-content">
+       <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 	<form action="${ pageContext.servletContext.contextPath }/admin/report/check" method="get">
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
@@ -29,8 +33,8 @@ button{
 				<th width="200px" style="text-align: center; font-size: 20pt;">아이디</th>
 				<th width="120px" style="text-align: center; font-size: 20pt;">이름</th>
 				<th width="200px" style="text-align: center; font-size: 20pt;">휴대폰 번호</th>
-				<th width="140px" style="text-align: center; font-size: 20pt;">카테고리</th>
-				<th width="100px" style="text-align: center; font-size: 20pt;">상세내역</th>
+				<th width="200px" style="text-align: center; font-size: 20pt;">카테고리 명</th>
+				<th width="120px" style="text-align: center; font-size: 20pt;">상세내역</th>
 				<th width="120px" style="text-align: center; font-size: 20pt;">패널티 점수</th>
 			</tr>
 			<c:forEach items="${ reportList }" var="report">
@@ -41,7 +45,7 @@ button{
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.memId }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.memName }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ report.memId.phone }"></c:out></td>
-					<td style="text-align: center; font-size: 20pt;"><c:out value="${ report.reportCategoryCode }"></c:out></td>
+					<td style="text-align: center; font-size: 20pt;"><c:out value="${ report.reportCategoryName.reportCategoryName }"></c:out></td>
 					<td align="center" style="text-align: center; font-size: 15pt;"><button type="submit">자세히</button></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out value="${ report.penaltyScoreSum }"></c:out></td>
 				</tr>
@@ -49,5 +53,9 @@ button{
 		</table>
 	</div>
 	</form>
+	</div>
+	</div>
+	</div>
+	</div>
 </body>
 </html>

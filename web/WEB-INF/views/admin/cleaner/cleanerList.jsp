@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 table {
-	margin-right: 90px;
+	margin-right: 50px;
 }
 button{
 	background-color: #02A79D; 
@@ -19,6 +19,10 @@ button{
 </head>
 <body>
 	<jsp:include page="../menubar.jsp" />
+	<div class="dashboard-wrapper">
+   	 <div class="container-fluid dashboard-content">
+       <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 	<form action="${ pageContext.servletContext.contextPath }/admin/select/allcleanerinfo"	method="get" 
 			align="center" style="text-align: center; font-size: 20pt;">
 		<select id="searchCondition" name="searchCondition" style="text-align: center; font-size: 20pt; margin: 10px;">
@@ -73,7 +77,10 @@ button{
 			</c:forEach>
 		</table>
 	</div>
-	
+	</div>
+	</div>
+	</div>
+	</div>
 	<script>
 		  $("button[type=submit]").click(function() {
 			  	const $tds = document.getElementsByTagName("td");

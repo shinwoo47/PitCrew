@@ -20,10 +20,13 @@
 </head>
 <body>
 	<jsp:include page="../menubar.jsp" />
+	<div class="dashboard-wrapper">
+   	 <div class="container-fluid dashboard-content">
+       <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 		<form action="${ pageContext.servletContext.contextPath }/admin/signup/approval" method="post">
 			<div class="dashboard-wrapper">
 				<div class="table-area">
-				
 				<table id="listArea" border="1">
 						<tr>
 							<th width="200px" style="text-align: center; font-size: 20pt;">회원 번호</th>
@@ -48,6 +51,10 @@
 			</div>
 			</div>
 		</form>
+		</div>
+		</div>
+		</div>
+		</div>
 </body>
 
 <script>

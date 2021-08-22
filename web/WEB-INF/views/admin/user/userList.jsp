@@ -9,9 +9,9 @@
 <title>관리자모드 사용자 정보 조회</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-table {
+/* table {
 	margin-right: 10px;
-}
+} */
 button{
 	background-color: #02A79D; 
 	color: white; 
@@ -23,7 +23,7 @@ button{
 <body>
 	<jsp:include page="../menubar.jsp" />
 	 <div class="dashboard-wrapper">
-    <div class="container-fluid dashboard-content">
+   	 <div class="container-fluid dashboard-content">
        <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 	<form action="${ pageContext.servletContext.contextPath }/admin/select/alluserinfo"	method="get" 
@@ -80,7 +80,7 @@ button{
 				</tr> 
 			 </c:forEach> 
 			</table>
-					<%-- <jsp:include page="../paging.jsp"/> --%>
+					<jsp:include page="../paging.jsp"/>
 				</div>
 			</div>
 		</div>
