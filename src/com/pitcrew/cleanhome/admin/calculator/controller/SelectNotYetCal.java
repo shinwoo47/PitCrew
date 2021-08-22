@@ -24,6 +24,11 @@ import com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.DeductRateDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.service.CalculatingService;
+import com.pitcrew.cleanhome.admin.request.model.service.RequestService;
+import com.pitcrew.cleanhome.common.paging.AdminPagenation;
+import com.pitcrew.cleanhome.common.paging.AdminPagenationForCal;
+import com.pitcrew.cleanhome.common.paging.SelectAdminCriteria;
+import com.pitcrew.cleanhome.common.paging.SelectAdminCriteriaForCal;
 
 @WebServlet("/admin/yetcal/list")
 public class SelectNotYetCal extends HttpServlet {
@@ -31,6 +36,18 @@ public class SelectNotYetCal extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("controller 진입 성공");
 
+		String currentPage = request.getParameter("currentPage");
+		int pageNo = 1;
+
+		if(currentPage != null && !"".equals(currentPage)) {
+			pageNo = Integer.parseInt(currentPage);
+		}
+
+		/* 0보다 작은 숫자값을 입력해도 1페이지를 보여준다 */
+		if(pageNo <= 0) {
+			pageNo = 1;
+		}
+			
 		String searchCondition = null;
 		if(request.getParameter("searchCondition") != null && !"".equals(request.getParameter("searchCondition"))) {
 			searchCondition = request.getParameter("searchCondition");
@@ -52,15 +69,42 @@ public class SelectNotYetCal extends HttpServlet {
 			searchEndDate = (request.getParameter("searchEndDate"));
 		}
 
+		String searchStatusValue = null;
 		Map<String, String> searchMap = new HashMap<>();
 		searchMap.put("searchCondition", searchCondition); //검색어 입력
 		searchMap.put("searchValue", searchValue); // 입력 값
 		searchMap.put("searchStartDate", searchStartDate); // 날짜 조회
 		searchMap.put("searchEndDate", searchEndDate); // 날짜 조회
 
-
-		/* 해당 기간에 맞는 미정산 리스트를 불러온다*/
+		/* 전체 게시물 수가 필요하다.
+		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
+		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
+		 * */
 		CalculatingService calculatingService = new CalculatingService();
+		int totalCount = calculatingService.selectTotalCount(searchMap);
+
+		System.out.println("totalCount : " + totalCount);
+
+		/* 한 페이지에 보여 줄 게시물 수 */
+		int limit = 15;		
+		/* 한 번에 보여질 페이징 버튼의 갯수 */
+		int buttonAmount = 5;
+
+		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
+		SelectAdminCriteriaForCal selectAdminCriteriaForCal = null;
+
+		if(searchCondition != null && !"".equals(searchCondition)) {
+			selectAdminCriteriaForCal = AdminPagenationForCal.getSelectAdminCriteriaForCal(pageNo, totalCount, limit, buttonAmount, 
+										searchCondition, searchValue, searchStartDate, searchEndDate, searchStatusValue);
+		} else {
+			selectAdminCriteriaForCal = AdminPagenationForCal.getSelectAdminCriteriaForCal(pageNo, totalCount, limit, buttonAmount);
+		}
+
+		System.out.println(selectAdminCriteriaForCal);
+		
+		
+		/* 해당 기간에 맞는 미정산 리스트를 불러온다*/
+		
 		List<CalculatingDTO> perReqCalcList = calculatingService.selectCalSetting(searchMap);
 		System.out.println("controller calSettingList : " + perReqCalcList);
 

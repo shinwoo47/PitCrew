@@ -76,8 +76,10 @@
 								<td class="service-date"><c:out value="${ calList.request.serviceDate }"/></td>
 								<td class="calc-price"><c:out value="${ calList.request.cleanerIncome }" /></td>
 								<td class="income-tax"><c:out value="${ calList.incometax }" /></td>
-								<td class="resident-tax"><c:out value="${ calList.residenttax }" /></td>
-								<td class="transfer-price"><c:out value="${ calList.cleanerTransferPrice }"/></td>
+
+								<td class="resident-tax"><c:out value="${ calList.residenttax }"/></td>
+								<td class="transfer-price"><c:out value="${ calList.cleanerTransferPrice }" /></td>
+
 							</tr>
 						</c:forEach>
 					</tbody>	

@@ -75,33 +75,56 @@
 	      FROM REQUEST_SET_PERIOD A
 	</select>
 	
-	<select id="selectCalSetting" resultMap="calculatingResultMap2" parameterType="hashmap">
-		SELECT
-			  A.REQ_NO
-	        , A.REQ_DATE
-		    , A.DEDUCTPRICE
-	        , B.MEM_NO
-	        , B.MEM_NAME
-	        , B.MEM_ID
-	        , B.ENROLL_DATE
-	     FROM REQUEST_INFO A
-	     JOIN MEMBER B ON (A.MEM_NO_CLEANER = B.MEM_NO)
-	    <where>
-	    	B.MEMBER_ROLE = '해결사'
-	    AND A.REQ_STATUS = '완료'	
-	    AND A.REQ_NO NOT IN (SELECT A1.REQ_NO FROM REQUEST_SET_PERIOD A1)
-	     <if test="searchCondition == 'cleanerId'">
-		       AND B.MEM_ID = #{ searchValue } 	
-		 </if>
-		 <if test="searchCondition == 'cleanerName'">
-		       AND B.MEM_NAME = #{ searchValue } 	
-		 </if>
-	     <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
-									or (searchEndDate != null and !"".equals(searchEndDate)) '>
-			     AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
-	    			   AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
-		 </if>
-	    </where> 
+	<select id="selectCalSetting" resultMap="calculatingResultMap2">
+	     SELECT  
+	          D.RNUM 		
+		    , D.REQ_NO
+		    , D.REQ_DATE
+		    , D.DEDUCTPRICE
+		    , D.MEM_NO
+			, D.MEM_NAME
+		    , D.MEM_ID
+			, D.ENROLL_DATE 
+		 FROM (SELECT  ROWNUM RNUM 		
+					 , C.REQ_NO
+					 , C.REQ_DATE
+					 , C.DEDUCTPRICE
+					 , C.MEM_NO
+					 , C.MEM_NAME
+					 , C.MEM_ID
+					 , C.ENROLL_DATE
+				  FROM (SELECT A.REQ_NO
+					         , A.REQ_DATE
+						     , A.DEDUCTPRICE
+					         , B.MEM_NO
+					         , B.MEM_NAME
+					         , B.MEM_ID
+					         , B.ENROLL_DATE
+					      FROM REQUEST_INFO A
+					      JOIN MEMBER B ON (A.MEM_NO_CLEANER = B.MEM_NO)
+					    <where>
+					    	   B.MEMBER_ROLE = '해결사'
+					       AND A.REQ_STATUS = '완료'	
+					       AND A.REQ_NO NOT IN (SELECT A1.REQ_NO FROM REQUEST_SET_PERIOD A1)
+					     <if test="searchCondition == 'cleanerId'">
+						       AND B.MEM_ID = #{ searchValue } 	
+						 </if>
+						 <if test="searchCondition == 'cleanerName'">
+						       AND B.MEM_NAME = #{ searchValue } 	
+						 </if>
+					     <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
+													or (searchEndDate != null and !"".equals(searchEndDate)) '>
+							   AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
+					    		    AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
+						 </if>
+					    </where>
+					    ORDER BY A.REQ_DATE DESC
+					    ) C
+				       <![CDATA[
+		          WHERE ROWNUM <= #{ endRow }
+		          ]]>
+		        ) D
+          WHERE D.RNUM >= #{ startRow } 
 	</select>
 
 	<select id="selectdeductRate" resultMap="deductRateResultMap">
@@ -199,33 +222,24 @@
 	<select id="selectAllCount" resultType="_int" parameterType="hashmap">
 		SELECT /* */
                COUNT(*)
-          FROM SET_HISTORY A
-    	<if test="searchCondition == 'cleanerId'">
-    	  JOIN MEMBER B ON(A.MEM_NO = B.MEM_NO)
-    	</if>
-    	<if test="searchCondition == 'cleanerName'">
-	      JOIN MEMBER B ON(A.MEM_NO = B.MEM_NO)
-    	</if>
-    	<if test="searchStatusValue != null and !''.equals(searchStatusValue)">
-	      JOIN SET_STATUS_HISTORY C ON(C.CAL_NO = A.CAL_NO)
-    	</if>
-    	<where>
-			<if test="searchCondition=='cleanerId'">
-	           B.MEM_NO = #{ searchValue }
-			</if>
-			<if test="searchCondition == 'cleanerName'">
-		           B.MEM_NAME = #{ searchValue } 
-		       AND B.MEMBER_ROLE = '해결사' 	
-			</if>
-			<if test='(searchStartDate != null and !"".equals(searchStartDate)) 
-								or (searchEndDate != null and !"".equals(searchEndDate)) '>
-		       	  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
-    						 AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
-			</if>
-			<if test="searchStatusValue != null and !''.equals(searchStatusValue)">
-				   C.CAL_CON_CHANGE LIKE '%' || #{ searchStatusValue } || '%' 	
-			</if>
-    	</where>	
+        FROM REQUEST_INFO A
+	     JOIN MEMBER B ON (A.MEM_NO_CLEANER = B.MEM_NO)
+	    <where>
+	    	B.MEMBER_ROLE = '해결사'
+	    AND A.REQ_STATUS = '완료'	
+	    AND A.REQ_NO NOT IN (SELECT A1.REQ_NO FROM REQUEST_SET_PERIOD A1)
+	     <if test="searchCondition == 'cleanerId'">
+		       AND B.MEM_ID = #{ searchValue } 	
+		 </if>
+		 <if test="searchCondition == 'cleanerName'">
+		       AND B.MEM_NAME = #{ searchValue } 	
+		 </if>
+	     <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
+									or (searchEndDate != null and !"".equals(searchEndDate)) '>
+			     AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
+	    			   AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
+		 </if>
+	    </where> 
 		</select>
 		
 		<select id="selectCalList" resultMap="calculatingResultMap">

@@ -74,7 +74,7 @@
 	
 	<script>
 	
-		const link = "${ pageContext.servletContext.contextPath }/admin/request/list";
+		const link = "${ pageContext.servletContext.contextPath }/admin/yetcal/list";
 		let searchText = "";
 	
 		
