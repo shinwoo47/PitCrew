@@ -31,64 +31,18 @@
 		width: 120px;
 		height: 40px;
 		color: #fff;
-		background: #004fff;
 		font_size: 16px;
 		positon: absolute;
 	}
+	.header__top {
+	background: #02A79D;
+}
 </style>
 
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__search">
-            <i class="fa fa-search search-switch"></i>
-        </div>
-        <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
-        </div>
-        <nav class="offcanvas__menu mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./about.html">About</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="dropdown">
-                        <li><a href="./services.html">Features</a></li>
-                        <li><a href="./services-details.html">Services Details</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <ul class="offcanvas__widget">
-            <li><i class="fa fa-map-marker"></i> 96 Ernser Vista Suite 437, NY, US</li>
-            <li><i class="fa fa-phone"></i> (123) 456-78-910</li>
-            <li><i class="fa fa-envelope"></i> Info@colorlib.com</li>
-        </ul>
-        <div class="offcanvas__language">
-            <img src="img/flag.png" alt="">
-            <span>English</span>
-            <i class="fa fa-angle-down"></i>
-            <ul>
-                <li><a href="#">English</a></li>
-                <li><a href="#">Bangla</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- Offcanvas Menu End -->
-
-    <!-- Header Section Begin -->
     <header class="header">
         <div class="header__top">
             <div class="container">
@@ -113,7 +67,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><br><br><br><img src=" ${ pageContext.servletContext.contextPath }/resources/user/img/user/infor.png" alt="pit"></a>  
+                        <a><br><br><br><img src=" ${ pageContext.servletContext.contextPath }/resources/user/img/user/infor.png" alt="pit"></a>  
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -132,7 +86,6 @@
                                     <ul class="dropdown">
                                         <li><a href="${ pageContext.servletContext.contextPath }/user/select/myRequest">의뢰내역</a></li>
                                         <li><a href="${ pageContext.servletContext.contextPath }/user/select/myInfo">정보수정</a></li>
-                                        <li><a href="./blog-details.html">로그아웃</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -222,17 +175,6 @@
     </section>
     <!-- Services End -->
 
-
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
 
     <!-- Js Plugins -->
     <script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery-3.3.1.min.js"></script>

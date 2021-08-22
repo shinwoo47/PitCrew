@@ -138,6 +138,14 @@ ol {
 	margin: 0;
 }
 .reqs_rs
+	{
+	width: 500px;
+	height: 500px;
+	position: absolute;
+		left: 35%;
+		top: 20%;
+	
+	}
 
 /*---------------------
   Helper CSS
@@ -166,7 +174,7 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
+	padding-top: 10px;
 	padding-bottom: 100px;
 }
 

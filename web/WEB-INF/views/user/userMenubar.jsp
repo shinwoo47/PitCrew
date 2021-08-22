@@ -27,22 +27,18 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
 	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>	
 <style>
-	.btn_z {
-		width: 120px;
-		height: 40px;
-		color: #fff;
-		background: #004fff;
-		font_size: 16px;
-		positon: absolute;
+.btn_z {
+	width: 120px;
+	height: 40px;
+	color: #fff;
+	background: #004fff;
+	font_size: 16px;
+	positon: absolute;
 	}
 
-	.header__top {
-		background: skyblue;
-	}
-	
-	.header__top__language {
-		background: #aab7ff;
-	}
+.header__top {
+	background: #02A79D;
+}
 </style>
 </head>
 <body>
@@ -60,7 +56,7 @@
                             <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></span>
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
                             <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
                             </c:if>
                         </div>
@@ -89,7 +85,6 @@
                                     <ul class="dropdown">
                                         <li><a href="${ pageContext.servletContext.contextPath }/user/select/myRequest">의뢰내역</a></li>
                                         <li><a href="${ pageContext.servletContext.contextPath }/user/select/myInfo">정보수정</a></li>
-                                        <li><a href="./blog-details.html">로그아웃</a></li>
                                     </ul>
                                 </li>
                             </ul>

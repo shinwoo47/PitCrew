@@ -94,20 +94,62 @@ window.onload = function() {
 	if(document.getElementById("payment")) {
 		const $payment = document.getElementById("payment");
 		$payment.onclick = function() {
-			if($("#start").val() ==  "") {
+			
+			/*var now = new Date();
+			
+			var year = now.getFullYear();
+			var month = now.getMonth()+1;
+			var day = now.getDate();
+			var hours = now.getHours();
+			var minutes = now.getMinutes();
+		
+			var sttDt = $("#start").val();
+			sttDt = sttDt.split("-");
+			var sttYear = sttDt[0];
+			var sttMonth = sttDt[1];
+			var sttDay = sttDt[2];
+			
+			var sttDe = $("#startTime").val();
+			sttDe = sttDe.split(":");
+			var sttHours = sttDe[0];
+			var sttMinutes = sttDe[1];
+			
+			var date1= new Date(year, month, day, hours, minutes);
+			var date2= new Date(sttYear, sttMonth, sttDay, sttHours, sttMinutes);
+			
+			alert(date1.getTime());
+
+			
+			if(date2.getTime() < date1.getTime()) {
+				alert("불가")
+				return false;
+			}
+			
+			var elpsedMSec = date2.getTime() - date1.getTime();
+			var elapsedMin = elapsedMSec / 1000 / 60;
+			
+			elapsedMin = parseInt(elapsedMin);
+			alert(elpsedMSec);
+			
+			
+			alert($("#start").val());
+			alert($("#startTime").val());*/
+			
+			if($("#start").val() == "") {
+				console.log($("#start" ).val())
 				alert("날짜를 선택해주세요");
 				return false;
-			} else if($("#startTime").val() ==  "") {
+			}  else if($("#startTime").val() ==  "") {
 				alert("시간을 선택해주세요");
 				return false;
-			} else {
+			} else if($("#startTime").val() < 10) {
+				alert("안됨");
+				return false;
+			} else { 
 				location.href = "/pitcrew/user/clean/payment";
 			}
-				
-			}
 		}
+	}
 	
 	
-
 }
-

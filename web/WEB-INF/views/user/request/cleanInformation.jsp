@@ -11,9 +11,11 @@
 		background : skyblue;
 		font-size : 30px;
 		text-align: center;
+		font-color: white;
 	}
 	.font_a {
 		font-size : 20px;
+		
 	}
 	.font_b {
 		font-size : 30px;

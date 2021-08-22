@@ -37,7 +37,6 @@ public class NoticeDAO {
 	
 	public int insertNotice(SqlSession session, NoticeDTO newNotice) {
 		
-		
 		return session.insert("NoticeDAO.insertNotice", newNotice);
 	}
 

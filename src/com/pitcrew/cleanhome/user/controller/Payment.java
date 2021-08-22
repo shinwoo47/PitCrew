@@ -32,7 +32,6 @@ public class Payment extends HttpServlet {
 		
 		int optPrice = 5000;
 		double optTime = 0.5;
-		/*db등록*/
 		//총가격
 		clean.setProPrice(Integer.parseInt(request.getParameter("CleanPrice")));
 		clean.setTime(Double.parseDouble(request.getParameter("CleanTime")));
@@ -62,29 +61,8 @@ public class Payment extends HttpServlet {
 			e.printStackTrace();
 		}
 
-//		clean.setPrice(Integer.parseInt(request.getParameter("startTime"))); 
-		/*구매자 정보*/
-		//이름+
-		//이메일+
-		//휴대폰 번호+
-		
-		//시작일
-		//주소+
-		//청소시간
-//		clean.setTime(Integer.parseInt(request.getParameter("CleanTime")));
-		
-		
-		
-		System.out.println(clean);
-		int num = 1;
-		String path = "";
-		if (num > 0) {
-			path = "/WEB-INF/views/user/request/payment.jsp";
+		String path = "/WEB-INF/views/user/request/payment.jsp";
 			request.setAttribute("clean", clean);
-		} else {
-			path = "/WEB-INF/views/common/failed.jsp";
-			request.setAttribute("message", "서비스이동실패");
-		}
 
 		request.getRequestDispatcher(path).forward(request, response);
 	}

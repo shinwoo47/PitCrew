@@ -11,14 +11,43 @@
 	.hidden {
 		display: none;
 	}
+	.dashboard-wrapper {
+		position: absolute;
+		top: 30%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.container-fluid dashboard-content {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	
+	.contentax {
+		left: 100%;
+	}
+	.content {
+		text-align: center;
+	margin: auto;
+	width: 50%;
+	}
+	
 </style>	
 </head>
 <body>
 	<!-- 네비 -->
+	<jsp:include page="../userMenubar.jsp"/>
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
+              <c:if test="${ category == '공지' }">
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
-            <h3>공지사항</h3><br>
+         	 </c:if>
+         	 <c:if test="${ category == 'FAQ' }">
+                	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/faq.png">
+         	 </c:if>
+         	 <c:if test="${ category == 'PERSONAL' }">
+                	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/personal.png">
+         	 </c:if>
          </div>
          <table>
          	<tr id="detailhead">
@@ -32,13 +61,13 @@
          <div>
          	<label>${ noticeDTO.content }</label>
          </div>  
-         <div style="text-align:center";>
-	         <button id="update" style="background-color: #02A79D; color: white">수정하기</button>  
+         <div style="text-align:center"><br>
          <c:if test="${ category == 'PERSONAL' }">
-	         <form action="${ pageContext.servletContext.contextPath }/user/notice/delete" method="post">
-	         <input type="hidden" name="no" value="${ noticeDTO.no }">
-	         <button type="submit" style="background-color: #02A79D; color: white">삭제하기</button>
-	         </form>  
+         	<div class="content">
+	         <button id="update" style="background-color: #02A79D; color: white">수정하기</button>  
+	         <button id="delete" style="background-color: #02A79D; color: white">삭제하기</button>  
+	         
+         	</div>
 	     </c:if>      
          </div>       
     </div>
@@ -48,6 +77,13 @@
 		$update.onclick = function() {
 			const no = document.getElementById("no").innerText;
 			location.href = "${ pageContext.servletContext.contextPath }/user/notice/update?no=" + no;
+		}
+	}
+	if(document.getElementById("delete")) {
+		const $delete = document.getElementById("delete");
+		$delete.onclick = function() {
+			const no = document.getElementById("no").innerText;
+			location.href = "${ pageContext.servletContext.contextPath }/user/notice/delete?no=" + no;
 		}
 	}
 	
