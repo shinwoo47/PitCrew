@@ -11,6 +11,7 @@
 		<result property="reqNo" column="REQ_NO"/>
 		
 		<association property="memId" resultMap="userResultMap"></association>
+		<association property="reportCategoryName" resultMap="categoryNameResultMap"></association>
 	</resultMap>
 	
 	<resultMap type="com.pitcrew.cleanhome.admin.user.model.dto.UserDTO" id="userResultMap">
@@ -28,6 +29,13 @@
 		<result property="entDate" column="ENT_DATE" />
 	</resultMap>
 	
+	<resultMap type="com.pitcrew.cleanhome.admin.report.model.dto.ReportCategoryDTO" id="categoryNameResultMap">
+		<id property="reportCategoryCode" column="REPORT_CATEGORY_CODE"/>
+		<result property="reportCategoryClass" column="REPORT_CATEGORY_CLASS"/>
+		<result property="reportCategoryName" column="REPORT_CATEGORY_NAME"/>
+		<result property="reportCategoryYn" column="REPORT_CATEGORY_YN"/>
+	</resultMap>
+	
 	<select id="selectAllReportList" resultMap="reportResultMap">
 		SELECT
 		       A.REPORT_NO
@@ -41,8 +49,10 @@
 			 , B.MEM_ID
 			 , B.MEM_NAME
 			 , B.PHONE
+			 , C.REPORT_CATEGORY_NAME
 		  FROM REPORT A
 		  JOIN MEMBER B ON (B.MEM_NO = A.MEM_NO_REPORTER)
+		  JOIN REPORT_CATEGORY C ON (C.REPORT_CATEGORY_CODE = A.REPORT_CATEGORY_CODE)
 	</select>
 	
 	<select id="selectReportDetail" resultMap="reportResultMap">

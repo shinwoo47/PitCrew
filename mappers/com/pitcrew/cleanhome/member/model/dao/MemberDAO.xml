@@ -55,7 +55,7 @@
         , #{ address }
         , #{ role }
         , #{ birth }
-        , #{ enrollDate }
+        , SYSDATE
         )
 	</insert>
 	<select id="selectEncryptedPwd" resultType="java.lang.String">

@@ -16,6 +16,7 @@ public class ReportDTO {
 	private UserDTO memName;
 	private UserDTO phone;
 	private int penaltyScoreSum;
+	private ReportCategoryDTO reportCategoryName;
 	
 	
 	public ReportDTO() {}
@@ -23,7 +24,7 @@ public class ReportDTO {
 
 	public ReportDTO(int reportNo, String reportBody, int memNoReporter, int memNoSuspect, int reportCategoryCode,
 			String penaltyCategoryCode, int reqNo, UserDTO memberRole, UserDTO memId, UserDTO memName, UserDTO phone,
-			int penaltyScoreSum) {
+			int penaltyScoreSum, ReportCategoryDTO reportCategoryName) {
 		super();
 		this.reportNo = reportNo;
 		this.reportBody = reportBody;
@@ -37,6 +38,7 @@ public class ReportDTO {
 		this.memName = memName;
 		this.phone = phone;
 		this.penaltyScoreSum = penaltyScoreSum;
+		this.reportCategoryName = reportCategoryName;
 	}
 
 
@@ -160,14 +162,25 @@ public class ReportDTO {
 	}
 
 
+	public ReportCategoryDTO getReportCategoryName() {
+		return reportCategoryName;
+	}
+
+
+	public void setReportCategoryName(ReportCategoryDTO reportCategoryName) {
+		this.reportCategoryName = reportCategoryName;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ReportDTO [reportNo=" + reportNo + ", reportBody=" + reportBody + ", memNoReporter=" + memNoReporter
 				+ ", memNoSuspect=" + memNoSuspect + ", reportCategoryCode=" + reportCategoryCode
 				+ ", penaltyCategoryCode=" + penaltyCategoryCode + ", reqNo=" + reqNo + ", memberRole=" + memberRole
 				+ ", memId=" + memId + ", memName=" + memName + ", phone=" + phone + ", penaltyScoreSum="
-				+ penaltyScoreSum + "]";
+				+ penaltyScoreSum + ", reportCategoryName=" + reportCategoryName + "]";
 	}
+
 
 	
 }
