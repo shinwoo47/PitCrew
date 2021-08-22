@@ -291,7 +291,6 @@
     	 const $detail = $("div > #req_detailBtn");
     	 const $reqNo = $("div > #reqNo");
     	 
-    	 console.log("hi")
     	 console.log($detail)
     	 console.log($reqNo)
     	 $detail.on("click", function(){ 
