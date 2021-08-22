@@ -298,7 +298,7 @@
     <!-- Blog End -->
 
     
-    <!-- Footer Section End -->
+    <jsp:include page="../cleaner/footer.jsp"/>
 
     <!-- Search Begin -->
     <div class="search-model">

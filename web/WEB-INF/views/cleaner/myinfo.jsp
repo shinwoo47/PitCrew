@@ -124,7 +124,7 @@ div.button {
             </div>
        </article>
      </section>
-           
+     <jsp:include page="../cleaner/footer.jsp"/>      
 		
 </body>
 
