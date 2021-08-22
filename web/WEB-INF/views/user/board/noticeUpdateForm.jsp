@@ -10,8 +10,10 @@
  <script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-ko-KR.js"></script>
 <title>맡겨줘 홈즈 관리자 모드</title>
+<style></style>
 </head>
 <body>
+	<jsp:include page="../userMenubar.jsp"/>
 	<!-- 네비 -->
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">

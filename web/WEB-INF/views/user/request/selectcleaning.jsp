@@ -77,88 +77,49 @@
 
 <body>
   
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <img src="" alt="">
-                            <span></span>
-                            <i class="fa fa-angle-down"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    
-                </div>
-                <div class="col-lg-9">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                <li class="active"><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
-                                <li><a href="#">고객지원센터</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./services.html">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./contact.html">MY</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./services.html">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                       
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="canvas__open">
-                <span class="fa fa-bars"></span>
-            </div>
-        </div>
-    </header>
+   <jsp:include page="../userMenubar.jsp"/>
     
     <section class="services spad">
-        <div class="container">
-            <div class="row">
     
 				<script>
 					var time = ${ clean.time }; 
 					var price = ${ clean.price };
 					var opt1 = 0;
 				</script>
+				
+				<script>
+				window.onpageshow = function(event) {
+				    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+						var chk = $("#clea").is(":checked");
+						if(chk) {$("#clea").prop("checked", false).attr("checked", false).removeAttr("checked");}
+						var chk = $("#cleb").is(":checked");
+						if(chk) {$("#cleb").prop("checked", false).attr("checked", false).removeAttr("checked");}
+				    }
+				};
+				
+				</script>
+				
 				<div class="nss"><br><br><div align="center">
         		<img src="${ pageContext.servletContext.contextPath }/resources/user/img/user/${clean.imgNo }" alt="" class= "imgq">
         		</div><br>
        			<h1 align = "center"><c:out value="${ clean.name }"/></h1>
        			<h4 align = "right">가격 : <c:out value="${ clean.price }"/>&nbsp;원</h4><br>
         		<div class="line"></div>
-        		<form align = "center" action="${ pageContext.servletContext.contextPath }/user/clean/payment" method="post" onsubmit="return check()">
+        		<form align="center" action="${ pageContext.servletContext.contextPath }/user/clean/payment" method="post" onsubmit="return check()">
         		<br><br>
         		<c:if test="${ clean.cleanNo < 3 }">
         		
-        	    <input type="checkbox" name="optionNo1" value="4" id="clea" class="checb">
+        	    <input type="checkbox" name="optionNo1" value="4" id="clea" class="checb" >
       			<label for="baseball" class="checa">설거지&nbsp;&nbsp;5000원</label>
    				<br>
         		<input type="checkbox" name="optionNo2" value="5" id="cleb" class="checb" >
      		    <label for="football" class="checa">창틀&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5000원</label>
 				</c:if>
      		    <br><br>
-     		    <label>시작일 &nbsp; </label><input type="date" name="start" id="start"><br><br>
-        		<label>시작시간 &nbsp; </label><input type="time" name="startTime" id="startTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
+     		    <label>시작일 &nbsp;</label>
+     		    <input type="date" name="start" id="start"><br><br>
+        		<label>시작시간 &nbsp;</label>
+        		<input type="time" name="startTime" id="startTime">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>
         		<textarea name="content" id="content" cols="60" rows="15" placeholder="추가 요구사항을 입력해주세요"></textarea><br><br>
         		<h4 align = "left" id="timea" >예상소요시간 : <c:out value="${ clean.time }"/>시간</h4><br>
         	    <h4 align = "left" id=pricea>예상금액 : &nbsp;<c:out value="${ clean.price }"/>원</h4>
@@ -169,8 +130,7 @@
       		
       			<button type="submit" class="btn_requ" value="주문하기" id="payment">주문하기</button>
         		</form>
-        		
-        		
+        		</div>
         		
         		<script>
         		$(document).ready(function(){
@@ -208,31 +168,10 @@
         			});	
         		</script>
         		<script>
-        			
-        	/* 	function check() {
-        			if($("#start").val() ==  "") {
-        				alert("날짜 설정해주세요");
-        				return false;
-        			} */
-        			
-        	
+        		
+        		
         		</script>
-        	
-        		
-        		
-        		
-       			
-        
-        
-
-  
-    <!-- Services End -->
-
-
-    <!-- Search Begin -->
-    
-    <!-- Search End -->
- 
+		</section>
     <!-- Js Plugins -->
     <script src="${ pageContext.servletContext.contextPath }/resources/user/js/jquery-3.3.1.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/user/js/bootstrap.min.js"></script>

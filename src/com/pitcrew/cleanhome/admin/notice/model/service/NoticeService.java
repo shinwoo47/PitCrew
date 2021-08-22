@@ -69,7 +69,7 @@ public class NoticeService {
 	/* 공지사항 등록 */
 	public int insertNotice(NoticeDTO newNotice) {
 		SqlSession session = getSqlSession();
-
+		
 		int result = noticeDAO.insertNotice(session, newNotice);
 
 		if(result > 0) {

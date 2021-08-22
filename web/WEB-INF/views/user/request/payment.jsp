@@ -86,13 +86,6 @@ table.type05 td {
     margin: auto;
 
 }
-.btn-ya {
-	width: 200px;
-	 	height: 50px;
-	 	background-color : red;
-	 	font-size : 28px;
-	 	color : white;
-}
 .btn-yb {
 	width: 200px;
 	 	height: 50px;
@@ -119,66 +112,12 @@ table.type05 td {
 
 <body>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <img src="" alt="">
-                            <span></span>
-                            <i class="fa fa-angle-down"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    
-                </div>
-                <div class="col-lg-9">
-                    <div class="header__nav">
-                        <nav class="header__menu">
-                            <ul>
-                                <li class="active"><a href="${ pageContext.servletContext.contextPath }/user/clean/services">서비스</a></li>
-                                <li><a href="#">고객지원센터</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./services.html">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./contact.html">MY</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./services.html">공지사항</a></li>
-                                        <li><a href="./services-details.html">FAQ</a></li>
-                                        <li><a href="./blog-details.html">문의사항</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                       
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            <div class="canvas__open">
-                <span class="fa fa-bars"></span>
-            </div>
-        </div>
-    </header>
+   <jsp:include page="../userMenubar.jsp"/>
     <!-- Header Section End -->
     
     <!-- Section Section Start -->
    <body>
    <div class="section">
-   <input type="button" class="btn-ya" value="주문결제" id="abc_ax">
    <input type="button" class="btn-yb" value="안내사항 보기" id="information">
       <h2 ><br>구매자 정보</h2> 
            <table class="type05" >

@@ -13,7 +13,7 @@ import com.pitcrew.cleanhome.user.board.model.service.NoticeService;
 @WebServlet("/user/notice/delete")
 public class NoticeDeleteServlet extends HttpServlet {
     
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		
