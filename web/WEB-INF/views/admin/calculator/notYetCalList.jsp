@@ -74,10 +74,10 @@
 								<td class="mem-name"><c:out value="${ calList.cleaner.name }"/></td>
 								<td class="enroll-date"><c:out value="${ calList.cleaner.enrollDate }"/></td>
 								<td class="service-date"><c:out value="${ calList.request.serviceDate }"/></td>
-								<td class="calc-price"><fmt:formatNumber value="${ calList.request.cleanerIncome }" pattern="#,###,###"/></td>
-								<td class="income-tax"><fmt:formatNumber value="${ calList.incometax }" pattern="#,###,###"/></td>
-								<td class="resident-tax"><fmt:formatNumber value="${ calList.residenttax }" pattern="#,###,###"/></td>
-								<td class="transfer-price"><fmt:formatNumber value="${ calList.cleanerTransferPrice }" pattern="#,###,###"/></td>
+								<td class="calc-price"><c:out value="${ calList.request.cleanerIncome }" /></td>
+								<td class="income-tax"><c:out value="${ calList.incometax }" /></td>
+								<td class="resident-tax"><c:out value="${ calList.residenttax }" /></td>
+								<td class="transfer-price"><c:out value="${ calList.cleanerTransferPrice }"/></td>
 							</tr>
 						</c:forEach>
 					</tbody>	

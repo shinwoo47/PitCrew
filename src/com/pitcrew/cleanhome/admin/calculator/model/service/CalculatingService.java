@@ -4,6 +4,7 @@ import static com.pitcrew.cleanhome.common.mybatis.Template.getSqlSession;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -105,46 +106,52 @@ public class CalculatingService {
 			
 		}
 		
+		// 건별 insert
+		
 		CalListDTO sumDTO = new CalListDTO();
 		
-		for(int i = 0; i < buckitList.size(); i++) {
-			
-			int calcPrice = 0;
-			int incometax = 0;
-			int residenttax = 0;
-			int transferPrice = 0;
-			String memNo = "";
-			
-	
-			System.out.println("위쪽 버킷 사이즈 : " + buckit.size());
-			
-			for(int j = 0; j < buckit.size(); j++) {
-				calcPrice += buckit.get(j).getCalcPrice();
-				incometax += buckit.get(j).getIncomeTax();
-				residenttax += buckit.get(j).getResidentTax();
-				transferPrice += buckit.get(j).getTransferPrice();
-				
-				memNo = String.valueOf(buckit.get(i).getMemNo());	
-				
-				System.out.println("for문 내 연산 체크, calcPrice : " + i +"번째 " + calcPrice);
+		Iterator<String> keys = buckitList.keySet().iterator();
+		while ( keys.hasNext() ) {
+		    String key = keys.next();
+		    buckit = buckitList.get(key);
+		    int calcPrice = 0;
+		    int incometax = 0;
+		    int residenttax = 0;
+		    int transferPrice = 0;
+		    int cnt = 0;
+			System.out.println("key : " + key);
+			if(buckit.size() > 1){
+				for(int j = 0; j < buckit.size(); j++) {
+					calcPrice += buckit.get(j).getCalcPrice();
+					incometax += buckit.get(j).getIncomeTax();
+					residenttax += buckit.get(j).getResidentTax();
+					transferPrice += buckit.get(j).getTransferPrice();					
+					cnt++;
+					System.out.println("buckit size : " + buckit.size());
+					System.out.println("cnt : " + cnt);
+					System.out.println("for문 내 연산 체크, calcPrice : " + j +"번째 " + calcPrice);
+					if(cnt == buckit.size()) {
+						sumDTO.setCalcPrice(calcPrice);
+						sumDTO.setIncomeTax(incometax);
+						sumDTO.setResidentTax(residenttax);
+						sumDTO.setTransferPrice(transferPrice);
+						buckit.removeAll(buckit);
+						buckit.add(sumDTO);
+						System.out.println("buckit : " + buckit);
+						buckitList.put(key, buckit);
+						System.out.println("buckitList : " + buckitList);
+					}
 			}
 			
-			sumDTO.setMemNo(Integer.parseInt(memNo));
-			sumDTO.setCalcPrice(calcPrice);
-			sumDTO.setIncomeTax(incometax);
-			sumDTO.setResidentTax(residenttax);
-			sumDTO.setTransferPrice(transferPrice);
+			}
+			System.out.println("while buckitList : " + buckitList);
 			
-			buckit.add(sumDTO);
 			
-			System.out.println("for i문 버킷 : " + i +"번째 " + buckit);
-		
+		}  
 			
-			System.out.println("memno 체크 : " + memNo);
+	
 			
-			buckitList.put(memNo, buckit);
 			
-		}
 		System.out.println("for 연산 후 버킷리스트 : " + buckitList.size());	
 		System.out.println("버킷리스트를 꺼낸다 : " + buckitList);
 		
