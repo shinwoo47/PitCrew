@@ -45,7 +45,6 @@
         <div class="container">
             <div class="row">
          
-	
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="services__item">
                         <div class="services__item__img">

@@ -10,16 +10,20 @@
  <script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-ko-KR.js"></script>
 <title>맡겨줘 홈즈 관리자 모드</title>
-<style></style>
+<style>
+.dashboard-wrapper {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../userMenubar.jsp"/>
 	<!-- 네비 -->
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
-         	<div style="display: block">
-                	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
-          	</div>
           <form action="${ pageContext.servletContext.contextPath }/user/notice/update" method="post">
           	
 		  	<div class="container" style="padding: 20px;">
