@@ -61,6 +61,23 @@ public class MyInfoService {
 		
 		return result;
 	}
+
+	public int quitmember(MemberDTO member) {
+
+		SqlSession session = getSqlSession();
+		
+		int result = userInfoDAO.quitMember(session, member);
+		
+		if(result > 0) {
+			session.commit();
+		} else {
+			session.rollback();
+		}
+		
+		session.close();
+		
+		return result;
+	}
 	
 	
 }

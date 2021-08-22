@@ -23,4 +23,9 @@ public class UserInfoDAO {
 		return session.update("UserInfoDAO.updateMyInfo", updateMember);
 	}
 
+	public int quitMember(SqlSession session, MemberDTO member) {
+		
+		return session.update("UserInfoDAO.quitMember", member);
+	}
+
 }

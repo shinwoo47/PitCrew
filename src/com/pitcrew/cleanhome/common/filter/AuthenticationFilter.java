@@ -161,6 +161,7 @@ public class AuthenticationFilter implements Filter {
 		memberPermitList.add("/user/clean/payment");
 		memberPermitList.add("/user/comp/regist/request");
 		memberPermitList.add("/user/request/report");
+		memberPermitList.add("/user/quit/member");
 		
 		memberPermitList.add("/user/board/notice");
 		memberPermitList.add("/user/notice/insert");

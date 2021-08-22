@@ -43,6 +43,7 @@
 		<mapper resource="com/pitcrew/cleanhome/user/model/dao/CleanDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/user/request/model/dao/PayDAO.xml"/>
 		<mapper resource="com/pitcrew/cleanhome/user/board/model/dao/UserNoticeDAO.xml"/>
+		<mapper resource="com/pitcrew/cleanhome/user/report/model/dao/UserReportDAO.xml"/>
 
 
 	</mappers>
