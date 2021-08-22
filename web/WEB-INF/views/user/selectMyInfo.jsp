@@ -11,42 +11,50 @@
 <title>Insert title here</title>
 <style>
 
-table.type09 {
+	table.type09 {
     border-collapse: collapse;
     text-align: left;
     line-height: 1.5;
 
-}
-table.type09 thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #369;
-    border-bottom: 3px solid #036;
-}
-table.type09 tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: skyblue;
-}
-table.type09 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-}
-.section {
-	padding: 100px;
-}
+	}
+	table.type09 thead th {
+	    padding: 10px;
+	    font-weight: bold;
+	    vertical-align: top;
+	    color: #369;
+	    border-bottom: 3px solid #036;
+	}
+	table.type09 tbody th {
+	    width: 150px;
+	    padding: 10px;
+	    font-weight: bold;
+	    vertical-align: top;
+	    border-bottom: 1px solid #ccc;
+	    background: skyblue;
+	}
+	table.type09 td {
+	    width: 350px;
+	    padding: 10px;
+	    vertical-align: top;
+	    border-bottom: 1px solid #ccc;
+	}
+	.section {
+		padding: 100px;
+	}
+	
+	div.updateQuitBtn {
+		text-align: center;
+		margin: auto;
+		width: 50%;
+		hiehgt: 60px;
+	}
 
-div.button {
-	text-align: center;
-	margin: auto;
-	width: 50%;
-}
+	.button-myinfo{
+    	margin-top: 30px;
+    }
+	.btn-info{
+    	margin: 20px 20px 20px 20px;
+    }
 
 </style> 
 	<meta charset="UTF-8">
@@ -82,10 +90,10 @@ div.button {
         		<tbody>
             		<tr>
                 		<th scope="row">이름</th>
-		                		<td><c:out value="${ myInfo.memName }"/></td>
+		                <td><c:out value="${ myInfo.memName }"/></td>
 		            <tr>
 		                <th scope="row">아이디</th>
-		                <td><c:out value="${ myInfo.id }"/></td>
+		                <td id="userId" name="userId"><c:out value="${ myInfo.id }"/></td>
 		            </tr>
 		            <tr>
 		                <th scope="row">이메일</th>
@@ -106,9 +114,9 @@ div.button {
         </article>
     </section>
 	
-	<div class="button">
-        <input type="button" class="btn1" value="정보수정" id="selectUpdate">
-    	<input type="button" class="btn2" value="회원탈퇴" id="delete">
+	<div class="updateQuitBtn" align="center">
+        <input type="button" class="btn-info" value="정보수정" id="selectUpdate">
+    	<input type="button" class="btn-info" value="회원탈퇴" id="quitMember">
     </div>
     
 </body>

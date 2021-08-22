@@ -135,6 +135,11 @@
 					movePath = "${ pageContext.servletContext.contextPath }/member/update/password";
 					successMessage = "입력하신 메일로 인증번호가 발송되었습니다!";
 					break;
+					
+				case "userInsertReport" :
+					movePath = "${ pageContext.servletContext.contextPath }/user/select/myRequest";
+					successMessage = "신고가 완료되었습니다!";
+					break;
 			}
 
 			alert(successMessage);

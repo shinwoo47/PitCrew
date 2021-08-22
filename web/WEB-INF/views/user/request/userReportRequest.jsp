@@ -43,10 +43,10 @@
 							        <td>신고 사유</td>
 							        <td>
 							        	<select style="padding:5px;" id="reportCategory" name="reportCategory">
-											<option value="1">서비스 응대 불량</option>
-											<option value="2">서비스 상태 불량</option>
-											<option value="3">기물 파손</option>
-											<option value="4">기타 사유</option>
+											<option value="5">서비스 응대 불량</option>
+											<option value="6">서비스 상태 불량</option>
+											<option value="7">기물 파손</option>
+											<option value="8">기타 사유</option>
 										</select>
 									</td>
 							      </tr>

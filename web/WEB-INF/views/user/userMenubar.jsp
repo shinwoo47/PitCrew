@@ -40,9 +40,6 @@
 		background: skyblue;
 	}
 	
-	.header__top__language {
-		background: #aab7ff;
-	}
 </style>
 </head>
 <body>
