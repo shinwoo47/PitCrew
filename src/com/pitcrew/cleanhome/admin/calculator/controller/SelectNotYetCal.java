@@ -31,6 +31,16 @@ public class SelectNotYetCal extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("controller 진입 성공");
 
+		String searchCondition = null;
+		if(request.getParameter("searchCondition") != null && !"".equals(request.getParameter("searchCondition"))) {
+			searchCondition = request.getParameter("searchCondition");
+		}
+		
+		String searchValue = null;
+		if(request.getParameter("searchValue") != null && !"".equals(request.getParameter("searchValue"))) {
+			searchValue	= request.getParameter("searchValue");
+		}
+		
 		/* 입력받은 정산 기간을 hashMap에 넣기*/
 		String searchStartDate = null;
 		if(request.getParameter("searchStartDate") != null && !"".equals(request.getParameter("searchStartDate"))) {
@@ -43,6 +53,8 @@ public class SelectNotYetCal extends HttpServlet {
 		}
 
 		Map<String, String> searchMap = new HashMap<>();
+		searchMap.put("searchCondition", searchCondition); //검색어 입력
+		searchMap.put("searchValue", searchValue); // 입력 값
 		searchMap.put("searchStartDate", searchStartDate); // 날짜 조회
 		searchMap.put("searchEndDate", searchEndDate); // 날짜 조회
 

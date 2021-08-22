@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>맡겨줘 홈즈 관리자 모드</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+
+ div.pad {
+ 	padding-top: 30px;
+ 	padding-botton: 30px;
+ }
+</style>
 </head>
 <body>
 <jsp:include page="../menubar.jsp"/>
@@ -16,7 +23,7 @@
        <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
              <br><h2 class="pageheader-title">의뢰 조회 </h2><br>
-			 <form action="${ pageContext.servletContext.contextPath }/admin/request/list" method="post">
+			 <form action="${ pageContext.servletContext.contextPath }/admin/request/list" method="get">
 			 <div style="color: black;">
 			 <label style=" margin: 5px; padding: 10px;">검  색 : </label>
 			 <select style="padding:5px;" id="searchCondition" name="searchCondition">
