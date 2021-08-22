@@ -8,6 +8,7 @@
 <title>맡겨줘 홈즈 관리자 모드</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
 
 </style>
@@ -22,7 +23,7 @@
 			 <form action="${ pageContext.servletContext.contextPath }/admin/yetcal/list" method="get">
 			 
 			 <div style="color: black;">
-             <label style="padding:10px;">* 의뢰일자 : </label>
+             <label style="padding:10px;">의뢰일자 : </label>
              <input type="date" id="searchStartDate" name="searchStartDate"> ~ <input type="date" id="searchEndDate" name="searchEndDate">
              </div>
 			 
@@ -73,10 +74,10 @@
 								<td class="mem-name"><c:out value="${ calList.cleaner.name }"/></td>
 								<td class="enroll-date"><c:out value="${ calList.cleaner.enrollDate }"/></td>
 								<td class="service-date"><c:out value="${ calList.request.serviceDate }"/></td>
-								<td class="calc-price"><c:out value="${ calList.request.cleanerIncome }"/></td>
-								<td class="income-tax"><c:out value="${ calList.incometax }"/></td>
-								<td class="resident-tax"><c:out value="${ calList.residenttax }"/></td>
-								<td class="transfer-price"><c:out value="${ calList.cleanerTransferPrice }"/></td>
+								<td class="calc-price"><fmt:formatNumber value="${ calList.request.cleanerIncome }" pattern="#,###,###"/></td>
+								<td class="income-tax"><fmt:formatNumber value="${ calList.incometax }" pattern="#,###,###"/></td>
+								<td class="resident-tax"><fmt:formatNumber value="${ calList.residenttax }" pattern="#,###,###"/></td>
+								<td class="transfer-price"><fmt:formatNumber value="${ calList.cleanerTransferPrice }" pattern="#,###,###"/></td>
 							</tr>
 						</c:forEach>
 					</tbody>	
@@ -105,7 +106,7 @@
 			 
 			 const calList = [];
 			 
-			 rows.each(function (i) {
+			 rows.each(function () {
 			 if($(this).find("input[type=checkbox]").is(':checked')) {
       			const cal = {};
       			cal.reqNo = $(this).find(".req-no").text()
@@ -124,24 +125,28 @@
 				
 			 console.log(calList)
 		 
-			 let calcList = JSON.stringify(calList);
+			 console.log(calList.length);
 			
-		 	$.ajax({
-				url: "${ pageContext.servletContext.contextPath }/admin/yetcal/list",
-				method: "POST",
-				traditional: true,
-				data: { calcList : calcList },
-				dataType: 'JSON',
-				success: function(data, testStatus, xhr) {	
-					alert("정산데이터 전송 성공");
-				},
-				error: function(xhr, status, error) {
-					alert("정산데이터 전송 실패");
-				} 			
-				
-				
-			});
-			});
+			 let calcList = JSON.stringify(calList);
+			 
+			 
+			if($("input:checkbox[name=ch]:checked").length == (calList.length)){
+			 	 $.ajax({
+					url: "${ pageContext.servletContext.contextPath }/admin/yetcal/list",
+					method: "POST",
+					traditional: true,
+					data: { calcList : calcList },
+					dataType: 'JSON',
+					success: function(data, testStatus, xhr) {	
+						alert(calList.length + "건 정산 요청 성공");
+					},
+					error: function(xhr, status, error) {
+						alert(calList.length + "건 정산 요청 실패");
+					} 			
+					
+				});
+			 }
+			}); 
 		});
 			
 

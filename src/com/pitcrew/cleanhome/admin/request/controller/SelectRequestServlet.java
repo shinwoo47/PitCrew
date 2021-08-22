@@ -37,8 +37,15 @@ public class SelectRequestServlet extends HttpServlet {
 			pageNo = 1;
 		}
 
-		String searchCondition = request.getParameter("searchCondition");
-		String searchValue = request.getParameter("searchValue");
+		String searchCondition = null;
+		if(request.getParameter("searchCondition") != null && !"".equals(request.getParameter("searchCondition"))) {
+			searchCondition = request.getParameter("searchCondition");
+		}
+		
+		String searchValue = null;
+		if(request.getParameter("searchValue") != null && !"".equals(request.getParameter("searchValue"))) {
+			searchValue	= request.getParameter("searchValue");
+		}
 		
 		String searchStartDate = null;
 		if(request.getParameter("searchStartDate") != null && !"".equals(request.getParameter("searchStartDate"))) {

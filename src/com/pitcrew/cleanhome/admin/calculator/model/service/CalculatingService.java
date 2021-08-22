@@ -85,41 +85,69 @@ public class CalculatingService {
 		/* 개인별 정산 총액을 계산해서 담아준다 */
 
 		Map<String, List<CalListDTO>> buckitList = new HashMap<>();
-		List<CalListDTO> buckit;
-
-		int cleanerincome = 0;
-		int incometax = 0;
-		int residenttax = 0;
-		int cleanertransferPrice = 0;
-
+		List<CalListDTO> buckit = null;
+		
 		for(CalListDTO calc : cal) {
 			String cleanerNo = String.valueOf(calc.getMemNo()); //키
-			
+						
 			/* value 값 */
 			if(buckitList.keySet().contains(cleanerNo)) {
-				buckit = buckitList.get(cleanerNo);
-				for(int i = 0; i < buckit.size(); i++) {
-					cleanerincome += calc.getCalcPrice();
-					incometax += calc.getIncomeTax();
-					residenttax += calc.getResidentTax();
-					cleanertransferPrice += calc.getTransferPrice();
-				}
 				
-				calc.setCalcPrice(cleanerincome);
-				calc.setIncomeTax(incometax);
-				calc.setResidentTax(residenttax);
-				calc.setTransferPrice(cleanertransferPrice);
-
+				buckit = buckitList.get(cleanerNo);
+				
 				buckit.add(calc);
+				
 			} else {
 				buckit = new ArrayList<>();
 				buckit.add(calc);
 				buckitList.put(cleanerNo, buckit);
 			}
-
+			
 		}
 		
-		System.out.println("개인 소득 총액 : "+ buckitList);
+		CalListDTO sumDTO = new CalListDTO();
+		
+		for(int i = 0; i < buckitList.size(); i++) {
+			
+			int calcPrice = 0;
+			int incometax = 0;
+			int residenttax = 0;
+			int transferPrice = 0;
+			String memNo = "";
+			
+	
+			System.out.println("위쪽 버킷 사이즈 : " + buckit.size());
+			
+			for(int j = 0; j < buckit.size(); j++) {
+				calcPrice += buckit.get(j).getCalcPrice();
+				incometax += buckit.get(j).getIncomeTax();
+				residenttax += buckit.get(j).getResidentTax();
+				transferPrice += buckit.get(j).getTransferPrice();
+				
+				memNo = String.valueOf(buckit.get(i).getMemNo());	
+				
+				System.out.println("for문 내 연산 체크, calcPrice : " + i +"번째 " + calcPrice);
+			}
+			
+			sumDTO.setMemNo(Integer.parseInt(memNo));
+			sumDTO.setCalcPrice(calcPrice);
+			sumDTO.setIncomeTax(incometax);
+			sumDTO.setResidentTax(residenttax);
+			sumDTO.setTransferPrice(transferPrice);
+			
+			buckit.add(sumDTO);
+			
+			System.out.println("for i문 버킷 : " + i +"번째 " + buckit);
+		
+			
+			System.out.println("memno 체크 : " + memNo);
+			
+			buckitList.put(memNo, buckit);
+			
+		}
+		System.out.println("for 연산 후 버킷리스트 : " + buckitList.size());	
+		System.out.println("버킷리스트를 꺼낸다 : " + buckitList);
+		
 
 
 		/* DB 등록 */
