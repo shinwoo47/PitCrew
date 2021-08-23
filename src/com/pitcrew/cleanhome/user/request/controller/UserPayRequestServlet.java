@@ -87,23 +87,7 @@ public class UserPayRequestServlet extends HttpServlet {
       request.getRequestDispatcher(path).forward(request, response);
       
       
-      
-      
-      
-//      int memNoUser = loginMember.getMemNo();
-//      int reqNo = Integer.parseInt(request.getParameter("reqNo"));
-//      int serPrice = Integer.parseInt(request.getParameter("serPrice"));
-//      Date reqDate = Date.valueOf(request.getParameter("reqDate"));
-//      
-//      CleanDTO payReqInfo = new CleanDTO();
-//      
-      
-      
-      
-      
-      
-      
-      
+    
       
    }
 
