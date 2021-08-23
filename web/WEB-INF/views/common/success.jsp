@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Clean Home</title>
 </head>
 <body>
 	<script>
@@ -127,7 +127,7 @@
 					
 				case "insertPicture" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
-					successMessage = "비밀번호 변경 완료!";
+					successMessage = "사진 등록 완료했습니다!";
 
 					break;	
 				

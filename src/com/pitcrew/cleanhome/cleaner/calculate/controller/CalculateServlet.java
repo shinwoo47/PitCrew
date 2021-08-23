@@ -39,7 +39,6 @@ public class CalculateServlet extends HttpServlet {
 			sdate = request.getParameter("date") + "-01";
 		}
 		
-		System.out.println("sdate : " + sdate);
 		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
@@ -51,9 +50,7 @@ public class CalculateServlet extends HttpServlet {
 		CalculateDTO calculate = calculateService.selectCalculate(calculateMap);
 		ProductSumDTO productCalculate = calculateService.CalculateProduct(calculateMap);
 		
-		System.out.println(calculate);
 		
-		System.out.println("sum : " + productCalculate);
 
 		String path = "/WEB-INF/views/cleaner/calculatelist.jsp";
 		request.setAttribute("calculate", calculate);

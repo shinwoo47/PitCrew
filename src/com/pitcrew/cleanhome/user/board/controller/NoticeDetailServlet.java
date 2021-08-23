@@ -20,13 +20,9 @@ public class NoticeDetailServlet extends HttpServlet {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		
-		System.out.println(no);
-		
 		NoticeService noticeService = new NoticeService();
 		NoticeDTO noticeDetail = noticeService.selectNoticeDetail(no);
 		
-		
-		System.out.println("noticeDeatil :" + noticeDetail);
 		
 		String path = "";
 		if(noticeDetail != null) {

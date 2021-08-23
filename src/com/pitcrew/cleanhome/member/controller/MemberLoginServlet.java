@@ -30,9 +30,6 @@ public class MemberLoginServlet extends HttpServlet {
 		String memberId = request.getParameter("memberId");
 		String memberPwd = request.getParameter("memberPwd");
 		
-		System.out.println("memberId : " + memberId);
-		System.out.println("memberPwd : " + memberPwd);
-		
 		MemberDTO requestMember = new MemberDTO();
 		requestMember.setId(memberId);
 		requestMember.setPwd(memberPwd);
@@ -40,7 +37,6 @@ public class MemberLoginServlet extends HttpServlet {
 		MemberService memberService = new MemberService();
 		
 		MemberDTO loginMember = memberService.loginCheck(requestMember);
-		System.out.println(loginMember);
 		
 		if(loginMember != null) {
 			HttpSession session = request.getSession();
@@ -48,8 +44,6 @@ public class MemberLoginServlet extends HttpServlet {
 			CleanerInfoDTO cleanerInfo = new CleanerInfoDTO();
 			cleanerInfo = memberService.identifyCheck(loginMember);			
 			session.setAttribute("cleanerInfo", cleanerInfo);
-			
-			System.out.println("cleanerInfo : " + cleanerInfo);
 			
 			if(("해결사".equals(loginMember.getRole()))){
 				request.setAttribute("successCode", "cleanerLogin");

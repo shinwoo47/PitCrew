@@ -18,15 +18,10 @@ public class NoticeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
-		
-		System.out.println(no);
-		
+				
 		NoticeService noticeService = new NoticeService();
 		NoticeDTO noticeDetail = noticeService.selectNoticeDetail(no);
-		
-		
-		System.out.println("noticeDeatil :" + noticeDetail);
-		
+				
 		String path = "";
 		if(noticeDetail != null) {
 			String category = noticeDetail.getCategory();

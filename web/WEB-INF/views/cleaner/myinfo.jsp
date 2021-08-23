@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Insert title here</title>
+<title>Clean Home</title>
 <style>
 
 table.type09 {
@@ -54,7 +54,7 @@ div.button {
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loanday | Template</title>
+    <title>Clean Home</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -117,10 +117,8 @@ div.button {
           </c:forEach>
        </table>
         <div class="button-myinfo" align="center">
-<%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/select/update/myInfo">수정하기</button> --%>
             	<input type="button" class="btn-info" value="정보수정" id="selectUpdate">
             	<input type="button" class="btn-info" value="회원탈퇴" id="delete">
-<%--             	<button onclick="location.href=${ pageContext.servletContext.contextPath}/user/delete/myInfo">삭제하기</button> --%>
             </div>
        </article>
      </section>

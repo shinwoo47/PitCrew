@@ -54,10 +54,7 @@ public class AdminPagenationForCal {
 		/* 조회할 시작 번호와 마지막 행 번호를 계산한다. */
 		startRow = (pageNo - 1) * limit + 1;
 		endRow = startRow + limit - 1;
-		
-		System.out.println("startRow : " + startRow);
-		System.out.println("endRow : " + endRow);
-		
+				
 		SelectAdminCriteriaForCal selectAdminCriteriaForCal = new SelectAdminCriteriaForCal(pageNo, totalCount, limit, buttonAmount ,maxPage, startPage, endPage, startRow, endRow, 
 																searchCondition, searchValue, searchStartDate, searchEndDate, searchStatusValue);
 		

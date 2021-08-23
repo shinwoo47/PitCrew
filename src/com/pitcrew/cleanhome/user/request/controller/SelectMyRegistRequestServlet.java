@@ -30,8 +30,6 @@ public class SelectMyRegistRequestServlet extends HttpServlet {
 		
 		/* 등록한 의뢰 정보 조회*/
 		List<UserRequestDTO> myRegistRequest = new MyReqService().myRegistRequest(memNoUser);
-	
-		System.out.println("매칭신청 myRegistRequest: " + myRegistRequest);
 		 		
 		String path = "";
 		

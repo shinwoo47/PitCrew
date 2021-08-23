@@ -18,7 +18,6 @@ public class SelectCleanIntroductionServlet extends HttpServlet {
 				
 		int num = Integer.parseInt(request.getParameter("number"));  
 		CleanDTO clean = new CleanDTO();
-		System.out.println("num : " + num);
 		if(num == 1) {
 			clean = new CleanService().selectClean(num);
 			clean.setImgNo("roomClean.png");
@@ -38,7 +37,6 @@ public class SelectCleanIntroductionServlet extends HttpServlet {
 		String path = "";
 	
 		if(num > 0) {
-			System.out.println(clean.getContent());
 			path = "/WEB-INF/views/user/information.jsp";
 			request.setAttribute("clean", clean);
 		} else {

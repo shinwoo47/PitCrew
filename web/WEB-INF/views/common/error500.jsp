@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 align="center">개발자의 잘못입니다. 개발자는 누구??</h1>
+	<h1 align="center">시스템 에러입니다.</h1>
 </body>
 </html>

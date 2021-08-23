@@ -24,7 +24,6 @@ public class PayServices {
          SqlSession session = getSqlSession();
          
          List<DeductRateDTO> deductRateList = payDAO.selectDeductRate(session);
-         System.out.println("controller rate List : " + deductRateList);
          
          int calPrice = payment.getPayPrice();   //소비자 결제금액
          float vat = 0f;            // 부가세
@@ -55,8 +54,6 @@ public class PayServices {
          
          payment.setReqNo(payDAO.selectSetReqNo(session));
          
-         System.out.println("의뢰번호 : " + payment.getReqNo());
-         
          int deductPrice2  =  (int) (calPrice * cardrate); 
          payment.setDeductPrice(deductPrice2);
          result += payDAO.insertDeductPrice2(session, payment);
@@ -67,23 +64,15 @@ public class PayServices {
          
          
          deductSum = (int) ((calPrice - deductPrice1) + (deductPrice2) + (deductPrice3)); //부가세 + 카드수수료율 + 운영비  
-         System.out.println("calPrice : " + calPrice);
-         System.out.println("deductPrice1 : " + deductPrice1);
-         System.out.println("deductPrice2 : " + deductPrice2);
-         System.out.println("deductPrice3 : " + deductPrice3);
 
          cleanerincome = calPrice - deductSum;   //해결사 지급 총액
 
-         System.out.println("공제 총액 : " + deductSum);
-         System.out.println("지급 총액 : " + cleanerincome);
          payment.setDeductPrice(cleanerincome);
          
          if(result == 3) {
         	 session.commit();
-            System.out.println("공제금액 insert 성공");
          } else {
             session.rollback();
-            System.out.println("공제금액 insert 실패");
          }
          
          session.close();
@@ -101,10 +90,8 @@ public class PayServices {
       
       if(result > 0 ) {
     	 session.commit();
-         System.out.println("insertRequest 성공");
       } else {
          session.rollback();
-         System.out.println("insertRequest 실패");
       }
       
       session.close();
@@ -122,10 +109,8 @@ public class PayServices {
       
       if(result > 0 ) {
     	 session.commit();
-         System.out.println("insertReqInfo 성공");
       } else {
          session.rollback();
-         System.out.println("insertReqInfo 실패");
       }
       
       session.close();
@@ -142,10 +127,8 @@ public class PayServices {
       
       if(result > 0 ) {
     	 session.commit();
-         System.out.println("insertPayHistory 성공");
       } else {
          session.rollback();
-         System.out.println("insertPayHistory 실패");
       }
       
       session.close();
@@ -180,11 +163,8 @@ public class PayServices {
       
       if(result > 0 ) {
          session.commit();
-         System.out.println("insertProductByReq 성공");
-         System.out.println("커밋성공!");
       } else {
          session.rollback();
-         System.out.println("insertProductByReq 실패");
       }
       
       session.close();

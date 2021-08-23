@@ -30,14 +30,11 @@ public class InsertQuestionServlet extends HttpServlet {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		int memNo = member.getMemNo();
 		String writer = member.getMemName();
-		System.out.println("writer : " + writer);
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("editordata");
 		
 		
-		System.out.println("게시판 컨트롤러  제목 체크 : " + title);
-		System.out.println("게시판 컨트롤러  내용 체크 : " + content);
 		
 		NoticeService noticeService = new NoticeService();
 		

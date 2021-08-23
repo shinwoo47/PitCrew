@@ -20,12 +20,9 @@ public class SelectNoticeList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("controller 진입성공");
 		
 		String forWho = "사용자";
 		List<NoticeDTO> noticeList = new NoticeService().selectAllNoticeList(forWho);
-		
-		System.out.println("controller : " + noticeList);
 		
 		
 		String path = "";

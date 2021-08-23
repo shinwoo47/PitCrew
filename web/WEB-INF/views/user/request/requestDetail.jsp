@@ -12,7 +12,7 @@
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loanday | Template</title>
+    <title>Clean Home</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -39,7 +39,6 @@
     <script src="${ pageContext.servletContext.contextPath }/resources/user/js/owl.carousel.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/user/js/main.js"></script>
 
-<title>Insert title here</title>
 </head>
 <body>
 	

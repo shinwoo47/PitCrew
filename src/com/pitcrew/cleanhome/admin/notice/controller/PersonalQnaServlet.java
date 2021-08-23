@@ -17,13 +17,9 @@ import com.pitcrew.cleanhome.admin.notice.model.service.NoticeService;
 public class PersonalQnaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("controller 진입성공");
-
+		
 		String forWho = "사용자";
 		List<NoticeDTO> personalList = new NoticeService().selectAllPersonalList(forWho);
-
-		System.out.println("controller : " + personalList);
-
 
 		String path = "";
 		if(personalList != null) {

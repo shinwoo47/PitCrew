@@ -9,7 +9,7 @@
  <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.css">
  <script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-lite.js"></script>
 <script src="${ pageContext.servletContext.contextPath }/resources/admin/board/summernote-ko-KR.js"></script>
-<title>맡겨줘 홈즈 관리자 모드</title>
+<title>Clean Home</title>
 </head>
 <body>
 	<!-- 네비 -->

@@ -52,14 +52,9 @@ public class MemberRegistServlet extends HttpServlet {
 		requestMember.setBirth(birth);
 		requestMember.setEnrollDate(birth);
 		
-		System.out.println("memberController requestMember : " + requestMember);
 		
 		int result = new MemberService().registMember(requestMember);
-		
-		
-		
-		System.out.println("memberController result : " + result);
-		
+				
 		String page = "";
 		
 		if(result > 0) {

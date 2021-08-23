@@ -20,11 +20,9 @@ public class SelectAccountServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
-		System.out.println("session : " + member);
 		
 		AccountService accountService = new AccountService();
 		CleanerInfoDTO cleanerInfo = accountService.selectCleanerInfo(member.getMemNo());
-		System.out.println("cleanerInfo : " + cleanerInfo);
 		
 		String path = "";
 		if(member != null) {

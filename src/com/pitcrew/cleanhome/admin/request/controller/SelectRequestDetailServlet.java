@@ -19,12 +19,8 @@ public class SelectRequestDetailServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		int reqNo = Integer.parseInt(request.getParameter("reqNo"));
-		System.out.println("서블릿 도착 reqNo 받음 : " + reqNo);
-
 
 		RequestDTO reqDetailDTO = new RequestService().selectReqHistory(reqNo);
-
-		System.out.println("reqDetail controller : " + reqDetailDTO);
 
 		String path = ""; 
 		if(reqDetailDTO != null) { 

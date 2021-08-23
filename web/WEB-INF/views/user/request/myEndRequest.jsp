@@ -12,7 +12,7 @@
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loanday | Template</title>
+    <title>Clean Home</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -173,35 +173,6 @@
 		</div>
 		<div class="req-list-container">
 			<div id="containerp-list" class="containerp-list">
-
-<%-- 			<c:forEach items="${ requestScope.myRegistRequest }" var="myRegistReq"> --%>
-<!-- 				<div class="containerp"> -->
-<!-- 					<div class="containerp-top"> -->
-<%-- 						<div> <c:out value="${ myRegistReq.reqDate }"/> <c:out value="${ myRegistReq.reqStatus }"/> </div> --%>
-<!-- 						<div class="req_detail"> -->
-<!-- 							<a href="">의뢰상세보기 ></a> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				<c:forEach items="${ myRegistReq.productList }" var="product"> --%>
-<!-- 					<div class="containerp-section"> -->
-<!-- 						<div class="req-name-container"> -->
-<!-- 							<div>상품명 : </div> -->
-<!-- 							<div>가격 : </div> -->
-<!-- 							<div>전화번호 : </div> -->
-<!-- 						</div> -->
-<!-- 						<div class="req-object-container"> -->
-<%-- 							<div> <c:out value="${ product.serName }"/></div> --%>
-<%-- 							<div> <c:out value="${ product.serPrice }"/></div> --%>
-<%-- 							<div> <c:out value="${ myAllReq.phone.phone }"/></div> --%>
-<!-- 						</div> -->
-<!-- 					</div> -->
-<%-- 				</c:forEach> --%>
-<!-- 					<div class="containerp-bottom"> -->
-<!-- 						<button class="req-work-btn req-revise-btn">수정하기</button> -->
-<!-- 						<button class="req-work-btn req-report-btn">신고하기</button> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<%-- 				</c:forEach> --%>
 			</div>
 		</div>
 	</section>

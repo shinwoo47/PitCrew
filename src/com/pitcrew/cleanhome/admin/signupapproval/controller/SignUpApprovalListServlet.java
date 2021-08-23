@@ -19,7 +19,6 @@ public class SignUpApprovalListServlet extends HttpServlet {
 		
 		List<SignUpApprovalDTO> signUpList = new SignUpApprovalService().selectAllSignUpList();
 		
-		System.out.println("signUpList 서블릿 : " + signUpList);
 		
 		String path = "";
 		if(signUpList != null) {

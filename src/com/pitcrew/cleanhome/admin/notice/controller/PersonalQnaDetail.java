@@ -16,12 +16,10 @@ public class PersonalQnaDetail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("게시글 번호 넘어옴 : " + no);
-
+		
 		NoticeDTO personalDTO = new NoticeService().selectPersonalDetail(no);
 
-		System.out.println("controller : " + personalDTO);
-
+		
 		String path = "";
 		if(personalDTO != null) {
 			path = "/WEB-INF/views/admin/personalQna/personalDetail.jsp";

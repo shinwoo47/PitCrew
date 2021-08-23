@@ -37,9 +37,6 @@ public class UserPayRequestServlet extends HttpServlet {
       String reqReq = request.getParameter("reqReq");
       
       SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-      System.out.println("reqDate : " + reqDate);
-      System.out.println("impUid : " + impUid);
-      System.out.println("reqNo");
       
       /* RequestInfoDTO */
       try {
@@ -72,11 +69,9 @@ public class UserPayRequestServlet extends HttpServlet {
       result += payServices.insertPayHistory(payment);
       result += payServices.insertProductByReq(payment);
       
-      System.out.println("insert 값 = " + result);
       String path = "";
       
       if(result >= 5) {
-         System.out.println("서블릿 result = " + result);
          path = "/WEB-INF/views/user/services.jsp";
       } else {
          path ="/WEB-INF/views/common/failed.jsp";

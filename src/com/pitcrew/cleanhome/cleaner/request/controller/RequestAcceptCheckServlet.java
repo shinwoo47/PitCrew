@@ -35,7 +35,6 @@ public class RequestAcceptCheckServlet extends HttpServlet {
 		Date reqDate = new Date();		
 		try {
 			reqDate = format.parse(stringDate);
-			System.out.println("reqDate : " + reqDate);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,14 +42,11 @@ public class RequestAcceptCheckServlet extends HttpServlet {
 		
 		int result = 0;
 		for(int i = 0; i < requestList.size(); i++) {
-			System.out.println(requestList.get(i).getReqDate());
-			System.out.println(Math.abs((reqDate.getTime() - requestList.get(i).getReqDate().getTime())) / (60 * 60 * 1000));
 			if(Math.abs(reqDate.getTime() - requestList.get(i).getReqDate().getTime()) / (60 * 60 * 1000) < 6) {   				//선택한 의뢰 시간 - 이미 매칭된 의뢰 시간이 6시간이하면 실패처리			
 				result = 1;
 				break;
 			}
 		}
-		System.out.println("result2 : " + result);
 		
 		PrintWriter out = response.getWriter();
 		

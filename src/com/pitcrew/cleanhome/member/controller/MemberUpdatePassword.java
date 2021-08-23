@@ -46,8 +46,6 @@ public class MemberUpdatePassword extends HttpServlet {
 			/* MemberDTO에 담아준 id와 pwd를 인자로 넘겨서 업데이트*/
 			int result = new MemberService().updateMemberPwd(updatePwd);
 			
-			System.out.println("result : " + result);
-			
 			
 			if(result > 0) {
 				path = "/WEB-INF/views/common/success.jsp";

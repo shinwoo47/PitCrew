@@ -36,7 +36,6 @@ public class CalculatingService {
 		
 		List<CalculatingDTO> perReqCalcList = new ArrayList<>();
 		
-		System.out.println("서비스 내 정산 기초자료 체크 : " + calSettingList);
 		
 		for(CalculatingDTO calcul : calSettingList) {
 			CalculatingDTO calc = new CalculatingDTO();
@@ -51,10 +50,9 @@ public class CalculatingService {
 			incometax = (int)(Math.floor((cleanerincome * incometaxrate) / 10) * 10 ) ;
 			residenttax = (int)(Math.floor((cleanerincome * incometaxrate * 0.1) / 10) * 10); 
 
-			System.out.println("소득세액 : " + incometax); System.out.println("주민세액 : " + residenttax);
-
+		
 			transferPrice = cleanerincome - incometax - residenttax;
-			System.out.println("해결사 실 수령액 : " + transferPrice);
+			
 
 			calc.setCleaner(calcul.getCleaner());
 			calc.setIncometax(incometax); 
@@ -66,7 +64,6 @@ public class CalculatingService {
 
 		}
 		
-		System.out.println("서비스 리턴값 체크 " + perReqCalcList);
 		session.close();
 
 		return perReqCalcList;
@@ -116,7 +113,7 @@ public class CalculatingService {
 		    int residenttax = 0;
 		    int transferPrice = 0;
 		    int cnt = 0;
-			System.out.println("key : " + key);
+			
 			if(buckit.size() > 1){
 				for(int j = 0; j < buckit.size(); j++) {
 					calcPrice += buckit.get(j).getCalcPrice();
@@ -124,9 +121,7 @@ public class CalculatingService {
 					residenttax += buckit.get(j).getResidentTax();
 					transferPrice += buckit.get(j).getTransferPrice();					
 					cnt++;
-					System.out.println("buckit size : " + buckit.size());
-					System.out.println("cnt : " + cnt);
-					System.out.println("for문 내 연산 체크, calcPrice : " + j +"번째 " + calcPrice);
+					
 					if(cnt == buckit.size()) {
 						sumDTO.setMemNo(buckit.get(j).getMemNo());
 						sumDTO.setCalcPrice(calcPrice);
@@ -135,39 +130,21 @@ public class CalculatingService {
 						sumDTO.setTransferPrice(transferPrice);
 						buckit.removeAll(buckit);
 						buckit.add(sumDTO);
-						System.out.println("buckit : " + buckit);
+						
 						buckitList.put(key, buckit);
-						System.out.println("buckitList : " + buckitList);
+						
 					}
 			}
 			
 			}
-			System.out.println("while buckitList : " + buckitList);
 			
 			
 		}  
-			
-	
-			
-			
-		System.out.println("for 연산 후 버킷리스트 : " + buckitList.size());	
-		System.out.println("버킷리스트를 꺼낸다 : " + buckitList);
 		
-
-
+		session.close();
+		
 		/* DB 등록 */
-		int result = calDAO.insertCal(session, buckitList);
-	//	List<CalculatingDTO> memNoAndCalNo = calDAO.selectCalNum(session);
-
-	//	Map<String, Object> reqMap = new HashMap<>();
-
-		if(result > 0) {
-			//session.commit();
-			System.out.println("at 서비스 : 해소용 테이블 등록 성공");
-		} else {
-			session.rollback();
-			System.out.println("at 서비스 : 해소용 테이블 등록 실패");
-		}
+		int result = 0;
 		
 		return result;
 	}
@@ -181,10 +158,10 @@ public class CalculatingService {
 
 		if(result > 0) {
 			session.commit();
-			System.out.println("at 서비스 : 정산상태 등록 성공");
+		
 		} else {
 			session.rollback();
-			System.out.println("at 서비스 : 정산상태 등록 실패");
+			
 		}
 
 		return result;
@@ -209,7 +186,7 @@ public class CalculatingService {
 
 		List<CalculatingDTO> calList = calDAO.selectCalList(session, selectAdminCriteriaForCal);
 
-		System.out.println("서비스 리턴값 체크 " + calList);
+		
 
 		session.close();
 

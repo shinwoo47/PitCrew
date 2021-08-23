@@ -36,18 +36,15 @@ public class EnrollRequestAcceptServlet extends HttpServlet {
 		requestDto.setReqStatus("매칭              ");
 		requestDto.setMemNoCleaner(member.getMemNo());
 
-		System.out.println("reqNo : " + no);
 
 		RequestService requestService = new RequestService();
 
 		int result = requestService.acceptRequest(requestDto);                           //의뢰 매칭(의뢰해결사등록)(의뢰 상태 '매칭'으로 변경)(의뢰 히스토리 내역 입력)
-		System.out.println("EnrollRequestAccept Controller result : " + result);  
 
 		String path = "";
 		if(result > 0) {
 			//의뢰 매칭 성공
 			RequestDTO requestDetail = requestService.selectRequestDetail(requestDto);  //매칭된 의뢰 상세 조회
-			System.out.println("requestDetail : " + requestDetail);                   
 			
 			String phone = requestDetail.getPhone().getPhone();                      //의뢰등록한 사용자의 핸드폰 번호
 			//testSend(phone);                                           //문자 발송
@@ -85,10 +82,7 @@ public class EnrollRequestAcceptServlet extends HttpServlet {
 		params.put("mode", "test");
 		try { 
 			JSONObject obj = (JSONObject) coolsms.send(params); 
-			System.out.println(obj.toString()); //전송 결과 출력
 		} catch (CoolsmsException e) { 
-			System.out.println(e.getMessage()); 
-			System.out.println(e.getCode()); 
 		} 
 	}
 }

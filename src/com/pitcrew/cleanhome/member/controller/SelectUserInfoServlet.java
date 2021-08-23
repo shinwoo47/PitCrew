@@ -27,8 +27,6 @@ public class SelectUserInfoServlet extends HttpServlet {
 			
 		List<MemberDTO> selectMyInfo = new MyInfoService().selectMyInfo(memNo);
 		
-		System.out.println("selectMyInfo : " + selectMyInfo);
-		
 		String path = "";
 		if(selectMyInfo != null) {
 			path = "/WEB-INF/views/cleaner/myinfo.jsp";

@@ -25,12 +25,6 @@ public class SelectAllUserInfoServlet extends HttpServlet {
          searchCondition = request.getParameter("searchCondition");
       }
 
-      /*
-       * System.out.println("송준일결과" + request.getParameter("searchDate")); // 가입일 시작
-       * System.out.println("송준일결과" + request.getParameter("searchEnbDate")); // 가입일 끝나는 시간
-       * System.out.println("송준일결과" + request.getParameter("searchResult")); // 검색 텍스트 결과값
-       */
-      
       if (searchCondition.equals("")) { // 사용자 관리 페이지에 처음 들어왔을 경우,
          List<UserDTO> userList = new UserService().selectAllUserInfoList();
 

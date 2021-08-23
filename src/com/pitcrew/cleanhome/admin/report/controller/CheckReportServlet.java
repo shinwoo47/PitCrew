@@ -17,9 +17,7 @@ public class CheckReportServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int reportNo = Integer.parseInt(request.getParameter("reportNo"));
-		
-		System.out.println("신고 번호 : " + reportNo);
-		
+				
 		ReportDTO reportDTO = new ReportService().checkReportDetail(reportNo);
 		
 	}

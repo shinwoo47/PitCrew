@@ -20,7 +20,6 @@ public class IdCheckServlet extends HttpServlet {
 		
 		String id = request.getParameter("userId");
 		
-		System.out.println("id : " + id);
 		
 		MemberService memberService = new MemberService();
 		int idCount = memberService.idCheck(id);

@@ -30,8 +30,6 @@ public class SelectMyEndRequest extends HttpServlet {
 		
 		/* 종료된 의뢰 정보 조회*/
 		List<UserRequestDTO> myeEndRequest = new MyReqService().myeEndRequest(memNoUser);
-		
-		System.out.println("myEndRequest: " + myeEndRequest);
 		 		
 		String path = "";
 		

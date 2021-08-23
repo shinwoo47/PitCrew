@@ -93,15 +93,6 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/resign/allselect">탈퇴 회원</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/typography.html">Typography</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/accordions.html">Accordions</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/tabs.html">Tabs</a>
-                                        </li>
                                     </ul>
                                 </div>
                             </li>
@@ -124,9 +115,6 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/signup/list">가입 승인</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-gauge.html">Guage</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -156,7 +144,7 @@
                                             </div>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="dashboard-finance.html">수정신청</a>
+                                            <a class="nav-link">수정신청</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -170,10 +158,10 @@
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/yetcal/list">미정산 항목</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/calculating/list">정산 관리</a>
+                                            <a class="nav-link">정산 관리</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/data-tables.html">매출 관리</a>
+                                            <a class="nav-link">매출 관리</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -214,10 +202,10 @@
                                             <div id="submenu-6-3" class="collapse submenu" style="">
                                                 <ul class="nav flex-column">
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="${ pageContext.servletContext.contextPath }/admin/reply/list">사용자 1:1문의</a>
+                                                        <a class="nav-link">사용자 1:1문의</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" href="ecommerce-product.html">해결사 1:1문의</a>
+                                                        <a class="nav-link">해결사 1:1문의</a>
                                                     </li>                                                   
                                                 </ul>
                                             </div>
@@ -239,7 +227,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8" href="${ pageContext.servletContext.contextPath }/member/logout">
                                 <i class="fas fa-fw fa-columns" ></i>로그 아웃</a>
-                                <div id="submenu-8" class="collapse submenu" style="">
+                                <div id="submenu-8" class="collapse submenu" >
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
                                             <a class="nav-link" href="${ pageContext.servletContext.contextPath }/member/logout">로그 아웃</a>

@@ -21,13 +21,11 @@ public class CalculateDetailServlet extends HttpServlet {
 		
 		int calNo = Integer.parseInt(request.getParameter("no"));
 		
-		System.out.println("calNo : " + calNo);
 		
 		CalculateService calculateService = new CalculateService();
 		
 		List<CalculateByRequestDTO> calculateList = calculateService.selectCalculateDetail(calNo);
 		
-		System.out.println("calculateList : " + calculateList);
 		
 		String path = "";
 		if(calculateList != null) {

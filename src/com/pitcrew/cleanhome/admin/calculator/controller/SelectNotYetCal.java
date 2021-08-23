@@ -34,7 +34,6 @@ import com.pitcrew.cleanhome.common.paging.SelectAdminCriteriaForCal;
 public class SelectNotYetCal extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("controller 진입 성공");
 
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
@@ -80,10 +79,10 @@ public class SelectNotYetCal extends HttpServlet {
 		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
 		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
 		 * */
+		
 		CalculatingService calculatingService = new CalculatingService();
 		int totalCount = calculatingService.selectTotalCount(searchMap);
 
-		System.out.println("totalCount : " + totalCount);
 
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 15;		
@@ -99,14 +98,11 @@ public class SelectNotYetCal extends HttpServlet {
 		} else {
 			selectAdminCriteriaForCal = AdminPagenationForCal.getSelectAdminCriteriaForCal(pageNo, totalCount, limit, buttonAmount);
 		}
-
-		System.out.println("페이징용 체크 " + selectAdminCriteriaForCal);
 		
 		
 		/* 해당 기간에 맞는 미정산 리스트를 불러온다*/
 		
 		List<CalculatingDTO> perReqCalcList = calculatingService.selectCalSetting(selectAdminCriteriaForCal);
-		System.out.println("controller calSettingList : " + perReqCalcList);
 
 		String path = "";
 		if(perReqCalcList != null) {
@@ -124,13 +120,8 @@ public class SelectNotYetCal extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("post로 넘어옴");
-		
-		// 받은 데이터를 차례로 넣어준다? 아무튼 처리한다
 		
 		String jsonStr = request.getParameter("calcList");
-		
-		System.out.println(jsonStr);
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy/MM/dd").create();	
 		
@@ -138,7 +129,6 @@ public class SelectNotYetCal extends HttpServlet {
 		Type ListType = new TypeToken<List<CalListDTO>>(){}.getType();
 		List<CalListDTO> cal = gson.fromJson(jsonStr, ListType);
 		
-		System.out.println(cal);
 		
 		/* 서비스로 넘기고 서비스에서 연산 */
 		CalculatingService calculatingService = new CalculatingService();
@@ -146,11 +136,7 @@ public class SelectNotYetCal extends HttpServlet {
 		
 		/* DB에 입력 */
 		int inputSetTbl = calculatingService.insertReqNum(cal);
-		
-		
-			
-		
-		
+
 			 
 	}
 

@@ -35,10 +35,8 @@ public class BlacklistService {
 		int result = blacklistDAO.insertBlacklist(session, newBlacklist);
 		
 		if(result > 0) {
-			System.out.println("서비스1" + result);
 			session.commit();
 		} else {
-			System.out.println("서비스0" + result);
 			session.rollback();
 		}
 		

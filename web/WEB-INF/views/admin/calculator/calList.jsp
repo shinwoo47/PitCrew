@@ -120,7 +120,6 @@
 	    	
 	    	let id = $(this).attr("id");
 	    	let number = id.replace("btn", "");
-	    	// 이렇게 적으면 생성된 버튼에 클릭함수를 거는거랬는데 어떻게 경로와 파라미터를 주지?
 	    	let reqNo = this.parentNode.children[0].innerText;
 			location.href = "${ pageContext.servletContext.contextPath }/admin/request/detail?reqNo=" + reqNo;	    
 	    });
