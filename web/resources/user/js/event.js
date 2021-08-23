@@ -91,59 +91,54 @@ window.onload = function() {
 		}
 	}
 	
+	
 	if(document.getElementById("payment")) {
 		const $payment = document.getElementById("payment");
 		$payment.onclick = function() {
-			
-			
-			var year = now.getFullYear();
-			var month = now.getMonth()+1;
-			var day = now.getDate();
-		
-			var sttDt = $("#start").val();
-			sttDt = sttDt.split("-");
-			var sttYear = sttDt[0];
-			var sttMonth = sttDt[1];
-			var sttDay = sttDt[2];
-			
-			if(year > sttYear) {
-				alert("지난 날짜는 선택할 수없 습니다");
-				return false;
-			}
+			 
+			 	var now = new Date();
+
+			 	var year = now.getFullYear();
+				var month = now.getMonth()+1;
+				var day = now.getDate();
+
+				var sttDt = $("#start").val();
+				sttDt = sttDt.split("-");
+				var sttYear = sttDt[0];
+				var sttMonth = sttDt[1];
+				var sttDay = sttDt[2];
 				
-			if(year == sttYear) {
+			
+			if($("#start").val() == "") {
+				alert("날짜를 선택해주세요");
+				return false;
+			} else if($("#startTime").val() ==  "") {
+				alert("시간을 선택해주세요");
+				return false;
+			} else if(year > sttYear) {
+				alert("지난 날짜는 선택할 수 없습니다");
+				return false;
+			} else if(year == sttYear) {
 				if(month > sttMonth){
-					alert("지난 날짜는 선택할 수없 습니다");
+					alert("지난 날짜는 선택할 수 없습니다");
 					return false;
 				}
-			}
-			if(year == sttYear) {
-				if(month == sttMonth) {
+			} else if(year == sttYear) {
+				if(month >= sttMonth) {
 					if(day + 2 >= sttDay) {
 						alert("2일 전 날짜부터 의뢰하실 수 있습니다");
 						return false;
 					}
 				}
-			}
-				if(month > sttMonth) {
+			} else if(month > sttMonth) {
+				alert("지난 날짜는 선택할 수없 습니다");
+				return false;
+				
+				if(day > sttDay) {
 					alert("지난 날짜는 선택할 수없 습니다");
 					return false;
-					
-					if(day > sttDay) {
-						alert("지난 날짜는 선택할 수없 습니다");
-						return false;
-					}
 				}
-			
-			
-			if($("#start").val() == "") {
-				console.log($("#start" ).val())
-				alert("날짜를 선택해주세요");
-				return false;
-			}  else if($("#startTime").val() ==  "") {
-				alert("시간을 선택해주세요");
-				return false;
-			}  else { 
+			} else { 
 				location.href = "/pitcrew/user/clean/payment";
 			}
 		}
