@@ -140,6 +140,11 @@
 					movePath = "${ pageContext.servletContext.contextPath }/user/select/myRequest";
 					successMessage = "신고가 완료되었습니다!";
 					break;
+
+				case "inconsistentCertifiNum" :
+					movePath = "${ pageContext.servletContext.contextPath }/member/update/password";
+					successMessage = "인증번호가 일치하지 않습니다";
+					break;
 			}
 
 			alert(successMessage);

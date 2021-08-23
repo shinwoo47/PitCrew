@@ -30,8 +30,6 @@ public class SelectUpdateMyInfoServlet extends HttpServlet {
 		/* 회원정보를 수정하기 위해 필요한 유저 정보를 리스트로 담고 호출*/
 		List<MemberDTO> selectUpdateMyInfo = new MyInfoService().selectUpdateMyInfo(memNo);
 		
-		System.out.println("selectUpdateMyInfo : " + selectUpdateMyInfo );
-		
 		/* 성공 실패시 페이지 이동*/
 		String path = "";
 		if(selectUpdateMyInfo != null) {
@@ -71,8 +69,6 @@ public class SelectUpdateMyInfoServlet extends HttpServlet {
 		
 		/* 업데이트한 결과가 1인지 0인지 판단하기 위함 1이면 true 아니면 false*/
 		int result = new MyInfoService().updateMyInfo(updateMember);
-		
-		System.out.println("result : " + result);
 		
 		String page = "";
 		

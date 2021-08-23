@@ -44,14 +44,8 @@ public class FindMemberPwdServlet extends HttpServlet {
 		setParameter.setMemName(memName);
 		setParameter.setEmail(email);
 		
-		/*dto에 파라미터 넣은 값 확인*/
-		System.out.println("selectValue : " + setParameter);
-		
 		/* 정보 조회를 위해 파라미터 넣은 객체를 서비스에 전달*/
 		MemberDTO selectMyPwd = new MemberService().selectMyPwd(setParameter);
-		
-		/* db 조회한 값 확인*/
-		System.out.println("selectMyPwd : " + selectMyPwd);
 		
 		/* 성공 실패 시 경로 설정 */
 		String path = "/WEB-INF/views/common/success.jsp";
@@ -59,12 +53,10 @@ public class FindMemberPwdServlet extends HttpServlet {
 		/* 조회한 값 null값인지 확인*/
 		if(selectMyPwd != null) {
 			
-			System.out.println("dddd : ");
-			
 			//mail server 설정
 			String host = "smtp.naver.com";
 			String user = "lsy980416@naver.com";//자신의 네이버 계정
-			String password = ""; //자신의 네이버 패스워드 !! 이 부분 혹시 값 초기화 되어 있으면 지워주세요
+			String password = "dlatndud98!"; //자신의 네이버 패스워드 !! 이 부분 혹시 값 초기화 되어 있으면 지워주세요
 			
 			/*메일 받을 주소*/
 			String to_email = selectMyPwd.getEmail();
@@ -141,16 +133,6 @@ public class FindMemberPwdServlet extends HttpServlet {
 			request.setAttribute("successCode", "failedInput");  
 			request.getRequestDispatcher(path).forward(request, response);
 		}
-		
-
-		//mail server 설정
-		String host = "smtp.naver.com";
-		String user = "lsy980416@naver.com";//자신의 네이버 계정
-		String password = "tndud1597"; //자신의 네이버 패스워드 !! 이 부분 혹시 값 초기화 되어 있으면 지워주세요
-		
-		/*메일 받을 주소*/
-		String to_email = selectMyPwd.getEmail();
-
 		
 	}
 

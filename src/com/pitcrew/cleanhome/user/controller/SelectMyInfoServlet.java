@@ -30,8 +30,6 @@ public class SelectMyInfoServlet extends HttpServlet {
 		/* 회원 정보를 조회하기 위한 리스트를 만든다.*/
 		List<MemberDTO> selectMyInfo = new MyInfoService().selectMyInfo(memNo);
 		
-		System.out.println("selectMyInfo : " + selectMyInfo);
-		
 		/* 리스트가 null값이 아니면 if문에 있는 jsp로 이동*/
 		String path = "";
 		if(selectMyInfo != null) {

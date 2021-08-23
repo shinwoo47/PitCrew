@@ -112,6 +112,7 @@
                         <p>${ requestDetail.reqReq }</p>
                     </div>
                     <div>
+                    	<button id="backBtn">뒤로가기</button>
                     	<c:if test="${ requestDetail.reqStatus eq '완료              ' }">
                     	<input type="hidden" name="reqNo" id="reqNo" value="${ requestDetail.reqNo }"/>
                     	<button id="report">신고 하기</button>
@@ -129,7 +130,11 @@
 		console.log(no)
 		location.href = "${ pageContext.servletContext.contextPath }/user/request/report?no=" + no;
 
-	});    	
+	});
+    
+    $("#backBtn").on("click", function() {
+    	location.href= "${ pageContext.servletContext.contextPath}/user/select/myRequest";
+    });
     </script>			                    
 </body>
 </html>

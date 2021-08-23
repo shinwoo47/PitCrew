@@ -37,8 +37,6 @@ public class UserRequestDetailServlet extends HttpServlet {
 		/* 의뢰 상세보기를 위한 정보 조회*/
 		UserRequestDTO requestDetail = new MyReqService().selectRequestDetail(userRequestDTO);
 		
-		System.out.println("requestDetail : " +  requestDetail);
-		
 		String path = "";
 		
 		/* 성공 실패시 페이지 이동*/

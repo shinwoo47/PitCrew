@@ -33,7 +33,7 @@
 	    background: skyblue;
 	}
 	table.type09 td {
-	    width: 350px;
+	    width: 430px;
 	    padding: 10px;
 	    vertical-align: top;
 	    border-bottom: 1px solid #ccc;
@@ -85,6 +85,7 @@
 	<section class="section">
 		<article class="article">
 			<h2 align="center">회원 정보</h2>
+			<br><br><br>
 			<table class="type09" align="center">
         	<c:forEach items="${ selectMyInfo }" var="myInfo">
         		<tbody>
