@@ -25,33 +25,11 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.PNG" alt=""></a>
-                    </div>
-                    
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
-                            </c:if>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"></a>
+                        <a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -61,17 +39,20 @@
                                 <li><a href="${ pageContext.servletContext.contextPath }/main">Home</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/about">About</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/service">Services</a></li>
-                                <li><a href="${ pageContext.servletContext.contextPath }/clean">Cleaner</a></li>
+                                <li><a href="${ pageContext.servletContext.contextPath }/clean">Cleaner</a></li>                           
                             </ul>
                         </nav>
                         <div class="header__search">
-                            <i class="fa fa-search search-switch"></i>
+                           <c:if test="${ empty sessionScope.loginMember }">
+                            <span style="color: #02A79D;"><a href="${ pageContext.servletContext.contextPath }/member/login"><b>Sign In</b></a></span>
+                            </c:if>
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
+                            <span style="color: #02A79D;"><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
+                            </c:if>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="canvas__open">
-                <span class="fa fa-bars"></span>
             </div>
         </div>
     </header>

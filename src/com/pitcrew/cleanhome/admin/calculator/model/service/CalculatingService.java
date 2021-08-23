@@ -12,11 +12,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.pitcrew.cleanhome.admin.calculator.model.dao.CalculatingDAO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.CalListDTO;
-import com.pitcrew.cleanhome.admin.calculator.model.dto.CalSettingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO;
 import com.pitcrew.cleanhome.admin.calculator.model.dto.DeductRateDTO;
-import com.pitcrew.cleanhome.admin.request.model.dto.RequestDTO;
-import com.pitcrew.cleanhome.common.paging.SelectAdminCriteria;
 import com.pitcrew.cleanhome.common.paging.SelectAdminCriteriaForCal;
 
 public class CalculatingService {
@@ -29,11 +26,11 @@ public class CalculatingService {
 	}
 
 	/* 정산 기초자료 계산하기 */
-	public List<CalculatingDTO> selectCalSetting(Map<String, String> searchMap) {
+	public List<CalculatingDTO> selectCalSetting(SelectAdminCriteriaForCal selectAdminCriteriaForCal) {
 		SqlSession session = getSqlSession();
 
 		/* 정산 기초 자료 */
-		List<CalculatingDTO> calSettingList = calDAO.selectCalSetting(session, searchMap);
+		List<CalculatingDTO> calSettingList = calDAO.selectCalSetting(session, selectAdminCriteriaForCal);
 		/* 공제율 */
 		DeductRateDTO incometaxRate = calDAO.selectdeductRate(session);
 		
@@ -131,6 +128,7 @@ public class CalculatingService {
 					System.out.println("cnt : " + cnt);
 					System.out.println("for문 내 연산 체크, calcPrice : " + j +"번째 " + calcPrice);
 					if(cnt == buckit.size()) {
+						sumDTO.setMemNo(buckit.get(j).getMemNo());
 						sumDTO.setCalcPrice(calcPrice);
 						sumDTO.setIncomeTax(incometax);
 						sumDTO.setResidentTax(residenttax);
@@ -158,36 +156,19 @@ public class CalculatingService {
 
 
 		/* DB 등록 */
-	//	int result = calDAO.insertReqNum(session, buckitList);
+		int result = calDAO.insertCal(session, buckitList);
 	//	List<CalculatingDTO> memNoAndCalNo = calDAO.selectCalNum(session);
 
 	//	Map<String, Object> reqMap = new HashMap<>();
 
-	/*	for(int i = 0; i < cal.size(); i++) {
-
-			for(int j = 0; j < memNoAndCalNo.size(); j++) {
-				int calNum = cal.get(i).getMemNo();
-				if(calNum == memNoAndCalNo.get(j).getCleaner().getMemNo()) {
-					reqMap.put("calNo", memNoAndCalNo.get(j).getCalNo());
-					reqMap.put("reqNo", cal.get(i));
-
-
-
-				}
-			}
-
-
-		}
-
-
 		if(result > 0) {
-			session.commit();
+			//session.commit();
 			System.out.println("at 서비스 : 해소용 테이블 등록 성공");
 		} else {
 			session.rollback();
 			System.out.println("at 서비스 : 해소용 테이블 등록 실패");
-		}*/
-		int result = 0;
+		}
+		
 		return result;
 	}
 

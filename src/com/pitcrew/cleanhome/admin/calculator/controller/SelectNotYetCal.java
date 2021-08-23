@@ -100,18 +100,19 @@ public class SelectNotYetCal extends HttpServlet {
 			selectAdminCriteriaForCal = AdminPagenationForCal.getSelectAdminCriteriaForCal(pageNo, totalCount, limit, buttonAmount);
 		}
 
-		System.out.println(selectAdminCriteriaForCal);
+		System.out.println("페이징용 체크 " + selectAdminCriteriaForCal);
 		
 		
 		/* 해당 기간에 맞는 미정산 리스트를 불러온다*/
 		
-		List<CalculatingDTO> perReqCalcList = calculatingService.selectCalSetting(searchMap);
+		List<CalculatingDTO> perReqCalcList = calculatingService.selectCalSetting(selectAdminCriteriaForCal);
 		System.out.println("controller calSettingList : " + perReqCalcList);
 
 		String path = "";
 		if(perReqCalcList != null) {
 			path = "/WEB-INF/views/admin/calculator/notYetCalList.jsp";
 			request.setAttribute("perReqCalcList", perReqCalcList);
+			request.setAttribute("selectAdminCriteriaForCal", selectAdminCriteriaForCal);
 		} else {
 			path = "/WEB-INF/common/failed.jsp";
 			request.setAttribute("message", "조회에 실패했습니다.");
