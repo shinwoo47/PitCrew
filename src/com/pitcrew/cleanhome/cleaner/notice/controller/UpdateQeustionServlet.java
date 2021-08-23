@@ -19,9 +19,7 @@ public class UpdateQeustionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
-		
-		System.out.println("no : " + no);
-		
+				
 		String path = "";
 		path = "/WEB-INF/views/cleaner/noticeUpdateForm.jsp";
 		request.setAttribute("no", no);
@@ -36,11 +34,6 @@ public class UpdateQeustionServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));		
 		String title = request.getParameter("title");
 		String content = request.getParameter("editordata");
-		
-		
-		System.out.println("게시판 컨트롤러  제목 체크 : " + title);
-		System.out.println("게시판 컨트롤러  내용 체크 : " + content);
-		
 		NoticeService noticeService = new NoticeService();
 		
 		NoticeDTO newNotice = new NoticeDTO();

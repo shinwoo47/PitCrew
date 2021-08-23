@@ -16,11 +16,8 @@ public class SelectNoticeDetail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("게시글 번호 넘어옴 : " + no);
 		
 		NoticeDTO noticeDTO = new NoticeService().selectNoticeDetail(no);
-		
-		System.out.println("controller : " + noticeDTO);
 		
 		String path = "";
 		if(noticeDTO != null) {

@@ -39,7 +39,6 @@ public class RequestService {
 
 		List<RequestDTO> requestList = requestDAO.selectReqList(session, selectAdminCriteria);
 
-		System.out.println("서비스 리턴값 체크 " + requestList);
 		session.close();
 
 		return requestList;
@@ -51,7 +50,6 @@ public class RequestService {
 		SqlSession session = getSqlSession();
 
 		RequestDTO reqDetailDTO = requestDAO.selectReqHistory(session, reqNo);
-		System.out.println("서비스 리턴값 체크 " + reqDetailDTO);
 
 		session.close();
 

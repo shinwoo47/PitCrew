@@ -31,9 +31,6 @@ public class UpdateProductServlet extends HttpServlet {
 		double serTime = Double.parseDouble(request.getParameter("serTime"));
 		int serPrice = Integer.parseInt(request.getParameter("serPrice"));
 		
-		System.out.println("상품 번호 체크 : " + serNo);
-		System.out.println("상품 이름 체크 : " + serContent);
-			
 		ProductDTO updateProduct = new ProductDTO();
 		updateProduct.setSerNo(serNo);
 		updateProduct.setSerCategory(serCategory);

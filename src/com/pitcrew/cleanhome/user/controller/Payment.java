@@ -27,7 +27,6 @@ public class Payment extends HttpServlet {
 		CleanDTO clean = new CleanDTO();
 		
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember"); 
-		System.out.println("현재회원번호 : " + member);
 		clean = new CleanService().selectMember(member);
 		
 		int optPrice = 5000;
@@ -44,7 +43,6 @@ public class Payment extends HttpServlet {
 		}
 		if(request.getParameter("optionNo2") != null)	 {
 			clean.setOptionNo2(Integer.parseInt(request.getParameter("optionNo2")));
-			System.out.println(clean.getOptionNo2());
 			clean.setProPrice(clean.getProPrice() + optPrice);
 			clean.setTime(clean.getTime() + optTime);
 		}

@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   
-    <title>Loanday | Template</title>
+    <title>Clean Home</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -41,7 +41,6 @@
                         <ul class="footer__copyright__links">
                             <li><a href="#">Terms of use</a></li>
                             <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Community</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-6 col-md-6">

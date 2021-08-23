@@ -93,7 +93,6 @@ public class FindMemberPwdServlet extends HttpServlet {
 	        }
 	        
 	        String AuthenticationKey = temp.toString();
-	        System.out.println(AuthenticationKey);
 	        
 	        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
 	            protected PasswordAuthentication getPasswordAuthentication() {
@@ -113,7 +112,6 @@ public class FindMemberPwdServlet extends HttpServlet {
 	            msg.setText("인증 번호는 :" + temp + "입니다.");
 	            
 	            Transport.send(msg);
-	            System.out.println("이메일 전송");
 	            
 	        } catch (Exception e) {
 	            e.printStackTrace();

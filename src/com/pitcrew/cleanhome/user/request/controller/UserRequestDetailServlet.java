@@ -12,9 +12,6 @@ import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 import com.pitcrew.cleanhome.user.request.model.dto.UserRequestDTO;
 import com.pitcrew.cleanhome.user.request.model.service.MyReqService;
 
-/**
- * Servlet implementation class UserRequestDetailServlet
- */
 @WebServlet("/user/request/detail")
 public class UserRequestDetailServlet extends HttpServlet {
 

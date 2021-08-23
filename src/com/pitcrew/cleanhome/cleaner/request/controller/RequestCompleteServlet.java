@@ -26,12 +26,9 @@ public class RequestCompleteServlet extends HttpServlet {
 		requestDto.setReqStatus("완료              ");
 		requestDto.setMemNoCleaner(member.getMemNo());
 
-		System.out.println("reqNo : " + no);
-
 		RequestService requestService = new RequestService();
 
 		int result = requestService.completeRequest(requestDto);                           //의뢰 매칭(의뢰해결사등록)(의뢰 상태 '매칭'으로 변경)(의뢰 히스토리 내역 입력)
-		System.out.println("EnrollRequestAccept Controller result : " + result);
 		
 		String path = "";
 		if(result > 0) {

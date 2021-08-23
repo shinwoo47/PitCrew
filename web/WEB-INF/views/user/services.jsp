@@ -10,7 +10,7 @@
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loanday | Template</title>
+    <title>Clean Home</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -88,11 +88,11 @@
                         </nav>
                         <div class="header__top__language">
                             <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></span>
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginMember }">
                             <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
                             </c:if>
                         </div>
                         <div class= "reqs_rs" align="center"><br><br>

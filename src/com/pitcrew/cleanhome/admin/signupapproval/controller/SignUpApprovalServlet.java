@@ -26,9 +26,6 @@ public class SignUpApprovalServlet extends HttpServlet {
 		cleanerInfo.setIdentifyYn(identifyYn);
 		cleanerInfo.setEducateYn(educateYn);
 		
-		System.out.println(identifyYn);
-		System.out.println(educateYn);
-		
 		SignUpApprovalService signUpApprovalService = new SignUpApprovalService();
 		
 		int result = signUpApprovalService.SignUpApproval(cleanerInfo);

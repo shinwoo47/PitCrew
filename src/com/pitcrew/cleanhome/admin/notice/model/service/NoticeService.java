@@ -23,7 +23,6 @@ public class NoticeService {
 
 		List<NoticeDTO> noticeList = noticeDAO.selectAllNoticeList(session, forWho);
 
-		System.out.println("서비스 리턴값 체크 " + noticeList);
 		session.close();
 
 		return noticeList;
@@ -39,7 +38,6 @@ public class NoticeService {
 
 		if(result > 0) {
 			noticeDTO = noticeDAO.selectNoticeDetail(session, no);
-			System.out.println("서비스 리턴값 체크 " + noticeDTO);
 
 			if(noticeDTO != null) {
 				session.commit();
@@ -88,7 +86,6 @@ public class NoticeService {
 
 		List<NoticeDTO> faqList = noticeDAO.selectAllFaqList(session, forWho);
 
-		System.out.println("서비스 리턴값 체크 " + faqList);
 		session.close();
 
 		return faqList;
@@ -104,7 +101,6 @@ public class NoticeService {
 
 		if(result > 0) {
 			faqDTO = noticeDAO.selectNoticeDetail(session, no);
-			System.out.println("서비스 리턴값 체크 " + faqDTO);
 
 			if(faqDTO != null) {
 				session.commit();
@@ -143,7 +139,6 @@ public class NoticeService {
 
 		List<NoticeDTO> personalList = noticeDAO.selectAllPersonalList(session, forWho);
 
-		System.out.println("서비스 리턴값 체크 " + personalList);
 		session.close();
 
 		return personalList;

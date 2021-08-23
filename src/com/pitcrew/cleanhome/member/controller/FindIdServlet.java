@@ -33,7 +33,6 @@ public class FindIdServlet extends HttpServlet {
 		/* 아이디 불러온 값*/
 		MemberDTO selectMyId = new MemberService().selectMyId(findMyId);
 		
-		System.out.println("selectMyId : " + selectMyId);
 		
 		String path = "";
 		

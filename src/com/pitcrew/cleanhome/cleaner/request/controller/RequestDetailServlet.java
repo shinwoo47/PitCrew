@@ -26,7 +26,6 @@ public class RequestDetailServlet extends HttpServlet {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		
 		
-		
 		RequestDTO requestDto = new RequestDTO();
 		requestDto.setReqNo(no);
 		requestDto.setReqStatus(status);
@@ -35,7 +34,6 @@ public class RequestDetailServlet extends HttpServlet {
 		RequestService requestService = new RequestService();
 		
 		RequestDTO requestDetail = requestService.selectRequestDetail(requestDto);  //매칭된 의뢰 상세 조회
-		System.out.println("requestDetail : " + requestDetail);     
 		
 		String path = "";
 		if(requestDetail != null) {

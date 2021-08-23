@@ -49,12 +49,8 @@ public class UpdateMemberInfo extends HttpServlet {
 		updateMember.setPwd(pwd);
 		updateMember.setAddress(address);
 		updateMember.setEmail(email);
-		
-		System.out.println("updateMember : " + updateMember);
-		
+				
 		int result = new MyInfoService().updateMyInfo(updateMember);
-		
-		System.out.println("result : " + result);
 		
 		String page = "";
 		

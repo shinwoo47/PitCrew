@@ -59,7 +59,6 @@ public class EnrollRequestListServlet extends HttpServlet {
 		RequestService requestService = new RequestService();
 		int totalCount = requestService.selectTotalCount(searchMap);
 		
-		System.out.println("totalBoardCount : " + totalCount);
 		
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
@@ -75,16 +74,11 @@ public class EnrollRequestListServlet extends HttpServlet {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
 		
-		System.out.println("selectCriteria" + selectCriteria);
 		
 		/* 조회해온다 */
 		List<RequestDTO> requestList = requestService.selectRequestList(selectCriteria);
 		DateFormat format = new SimpleDateFormat("yyyyy.MMMMM.dd GGG hh:mm aaa");
 
-		
-		 
-		System.out.println("EnrollRequestListServlet requestList : " + requestList);
-		
 		
 		String path = "";
 		if(requestList != null) {

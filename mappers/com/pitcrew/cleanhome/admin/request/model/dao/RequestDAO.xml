@@ -20,7 +20,7 @@
 			<id property="reqInfoNo" column="REQ_CON_NO"/>
 			<result property="reqNo" column="REQ_NO"/>
 			<result property="status" column="REQ_CON"/>
-			<result property="date" column="REQ_DATE"/>
+			<result property="date" column="ST_DATE"/>
 		</collection> 
 		
 	</resultMap>
@@ -178,7 +178,7 @@
           , G.SER_NO
           , G.SER_NAME
 	      , B.REQ_CON
-	      , B.REQ_DATE
+	      , B.REQ_DATE AS ST_DATE
        FROM REQUEST_INFO A
        JOIN REQ_INFO B ON (B.REQ_NO = A.REQ_NO)
        JOIN MEMBER C ON(A.MEM_NO_USER = C.MEM_NO)

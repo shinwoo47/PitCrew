@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자모드 블랙리스트 조회</title>
+<title>맡겨줘 홈즈 관리자 모드</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
  table {
@@ -40,11 +40,10 @@ button{
 		<button style="text-align: center; fon t-size: 20pt; margin: 30px;">검색</button>
 		<div class="blog__sidebar__search">
 			<h3 align="center">
-				가일일 기간 : <input type="date" id="searchDate" name="searchDate"class="fa fa-search" placeholder="날짜 선택"> ~ 
+				가입일 기간 : <input type="date" id="searchDate" name="searchDate"class="fa fa-search" placeholder="날짜 선택"> ~ 
 							<input type="date" id="searchEndDate" name="searchEndDate" class="fa fa-search"placeholder="날짜 선택"></h3>
 		</div>
 	</form>
-	<%-- <form action="${ pageContext.servletContext.contextPath }/admin/blacklist/delete" method="post"> --%>
 	<div class="table-area">
 		<table align="right" id="listArea" border="1">
 			<tr>
@@ -60,7 +59,6 @@ button{
 				<th width="120px" style="text-align: center; font-size: 20pt;">탈퇴여부</th>
 			</tr>
 			<c:forEach items="${ blacklistList }" var="blacklist">
-			<%-- <input type="hidden" id="memNo" name="memNo" value="${ blacklist.memNo }"> --%>
 				<tr>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.memNo }"></c:out></td>
 					<td style="text-align: center; font-size: 20pt;"><c:out	value="${ blacklist.enrollDate }"></c:out></td>
@@ -86,12 +84,10 @@ button{
 					$tds[i].onclick = function() {
 						const memNo = this.parentNode.children[0].innerText;
 						 location.href = "${ pageContext.servletContext.contextPath }/admin/blacklist/delete?memNo=" + memNo;
-						 /* location.reload(); */
 					}
 				}
 		    });	 
     </script>
-	<!-- </form> -->
 	</div>
 </body>
 </html>

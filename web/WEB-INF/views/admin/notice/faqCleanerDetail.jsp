@@ -40,32 +40,5 @@
          </div>       
 
     </div>
- <!--    <script>
-	    if(document.getElementsByTagName("td")) {
-			
-			const $tds = document.getElementsByTagName("td");
-			for(let i = 0; i < $tds.length; i++) {
-				
-				$tds[i].onmouseenter = function() {
-					this.parentNode.style.backgroundColor = "#00C1B6";
-					this.parentNode.style.cursor = "pointer";
-				}
-				$tds[i].onmouseout = function() {
-					this.parentNode.style.backgroundColor = "#fff";
-				}
-				$tds[i].onclick = function() {
-					const no = this.parentNode.children[0].innerText;
-					location.href = "${ pageContext.servletContext.contextPath }/admin/notice/detail?no=" + no;
-				}
-				
-			}
-			
-		}
-    
-    
-    
-    
-    
-    </script> -->
 </body>
 </html>

@@ -34,7 +34,6 @@ public class RequestAjax extends HttpServlet {
 		int memNo = member.getMemNo();
 		
 		String requestStatus = request.getParameter("status");
-		System.out.println("status : " + requestStatus);
 		if(requestStatus == null) {
 			requestStatus = "매칭              ";
 		}
@@ -42,7 +41,6 @@ public class RequestAjax extends HttpServlet {
 		String cleanerMemNo = String.valueOf(memNo);
 		
 		String date = (request.getParameter("date"));
-		System.out.println("searchDate : " + date);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date2;
 		String searchDate = null;
@@ -55,7 +53,6 @@ public class RequestAjax extends HttpServlet {
 		}
 		
 
-		System.out.println("serachDate : " + searchDate);
 		
 		Map<String, Object> searchMap = new HashMap<>();
 		searchMap.put("searchDate", searchDate);
@@ -72,14 +69,10 @@ public class RequestAjax extends HttpServlet {
 		
 		/* 조회해온다 */
 		List<RequestDTO> requestList = requestService.selectCleanerRequestList(searchMap);
-		System.out.println("requestList : " + requestList);
-		
-		
 
 		
 		String jsonString = new Gson().toJson(requestList);
 		
-		System.out.println(jsonString);
 		
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();

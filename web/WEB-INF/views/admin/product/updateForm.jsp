@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>맡겨줘 홈즈 관리자 모드</title>
 <style>
 	table{
 		margin-left: 200px;
@@ -48,10 +48,6 @@
 				<tr>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serNo"></td>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serCategory">
-					<!-- <select name="serContent" >
-					    <option value="메인">메인</option>
-					    <option value="옵션">옵션</option>
-				  	</select> --></td>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serName"></td>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serContent"></td>
 					<td style="text-align: center; font-size: 15pt;"><input type="text" name="serTime"></td>

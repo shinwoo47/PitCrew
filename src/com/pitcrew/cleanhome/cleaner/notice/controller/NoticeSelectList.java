@@ -21,12 +21,10 @@ public class NoticeSelectList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String category = request.getParameter("category");
-		System.out.println("category : " + category);
 		
 		NoticeService noticeService = new NoticeService();
 		List<NoticeDTO> noticeList = noticeService.selectNoticeList(category);
 		
-		System.out.println(noticeList);
 		
 		String path= "";
 		if(noticeList != null) {

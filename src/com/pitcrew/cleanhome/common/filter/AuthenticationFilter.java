@@ -34,7 +34,6 @@ public class AuthenticationFilter implements Filter {
 		String uri = hrequest.getRequestURI();
 		String intent = uri.replace(hrequest.getContextPath(), "");
 		
-		System.out.println("intent : " + intent);
 		
 		/* 세션에 권한이 있는지 확인하여 허용된 url에만 접근 가능하도록 설정한다. */
 		HttpSession requestSession = hrequest.getSession();
@@ -64,7 +63,6 @@ public class AuthenticationFilter implements Filter {
 
 				if((iscleanerPermitList || isPermitAll) && !isPermitAdmin) {
 					isAuthorized = true;
-					System.out.println(isAuthorized);
 				}
 				
 			}
@@ -73,7 +71,6 @@ public class AuthenticationFilter implements Filter {
 				chain.doFilter(request, response);
 				
 			} else {
-				System.out.println(isAuthorized);
 				((HttpServletResponse) response).sendError(403);
 			}
 			

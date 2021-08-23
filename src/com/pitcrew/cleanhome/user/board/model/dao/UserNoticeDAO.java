@@ -10,7 +10,6 @@ public class UserNoticeDAO {
 
 	public List<NoticeDTO> selectNoticeList(SqlSession session, String category) {
 		
-		System.out.println("dao실행");
 		return session.selectList("UserNoticeDAO.selectNoticeList3", category);
 	}
 

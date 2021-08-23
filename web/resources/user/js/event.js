@@ -125,7 +125,7 @@ window.onload = function() {
 				}
 			} else if(year == sttYear) {
 				if(month >= sttMonth) {
-					if(day + 2 >= sttDay) {
+					if(day + 2 <= sttDay) {
 						alert("2일 전 날짜부터 의뢰하실 수 있습니다");
 						return false;
 					}

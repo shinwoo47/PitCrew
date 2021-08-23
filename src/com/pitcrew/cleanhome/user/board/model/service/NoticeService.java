@@ -23,7 +23,6 @@ public class NoticeService {
 		SqlSession session = getSqlSession();
 		
 		List<NoticeDTO> noticeList = noticeDAO.selectNoticeList(session, category);
-		System.out.println("mapper성공");
 		session.close();
 		
 		return noticeList;

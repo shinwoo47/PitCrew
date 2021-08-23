@@ -29,8 +29,6 @@ public class SelectMyRequestServlet extends HttpServlet {
 		
 		/* db에 저장된 로그인 된 사용자의  모든 의뢰 정보를 조회*/
 		List<UserRequestDTO> selectMyAllReq = new MyReqService().selectMyAllReq(memNoUser);
-		
-		System.out.println(selectMyAllReq);
 		 		
 		String path = "";
 		

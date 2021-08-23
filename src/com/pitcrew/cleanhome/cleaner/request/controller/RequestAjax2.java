@@ -70,8 +70,6 @@ public class RequestAjax2 extends HttpServlet {
 		
 		String jsonString = new Gson().toJson(calendarList);
 		
-		System.out.println(jsonString);
-		
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		

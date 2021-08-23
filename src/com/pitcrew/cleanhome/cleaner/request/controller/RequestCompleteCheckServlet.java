@@ -21,18 +21,13 @@ public class RequestCompleteCheckServlet extends HttpServlet {
 		
 		int reqNo = Integer.parseInt(request.getParameter("no"));
 		
-		System.out.println(reqNo);
-		
 		RequestService requestService = new RequestService();
 		RequestDTO req = requestService.checkRequestComplete(reqNo);		
 		Date reqDate = req.getReqDate();
-		System.out.println("reqDate : " + req.getReqDate());
 		
 		Date tomorrow = new Date(reqDate.getTime() + (1000 * 60 * 60 * 24));
-		System.out.println("reqDate + 1 : " + tomorrow);
 		
 		Date now = new Date(System.currentTimeMillis());
-		System.out.println("now : " + now);
 		
 		int result = 0;
 		if(now.compareTo(tomorrow) > 0) {

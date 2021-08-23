@@ -15,7 +15,7 @@ public class DeleteBlacklist extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("서블리리리릿");
+		
 		int memNo = Integer.parseInt(request.getParameter("memNo"));
 		
 		BlacklistService blacklistService = new BlacklistService();

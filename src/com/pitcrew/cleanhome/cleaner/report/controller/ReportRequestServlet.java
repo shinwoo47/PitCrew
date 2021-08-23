@@ -54,12 +54,6 @@ public class ReportRequestServlet extends HttpServlet {
 			String rootLocation = getServletContext().getRealPath("/");
 			int maxFileSize = 1024 * 1024 * 10;
 			String encodingType = "UTF-8";
-			
-			System.out.println("파일 저장 ROOT 경로 : " + rootLocation);
-			System.out.println("최대 업로드 파일 용량 : " + maxFileSize);
-			System.out.println("인코딩 방식 : " + encodingType);
-			
-			
 			String fileUploadDirectory = rootLocation + "/resources/upload/report/" + memName + "/";   
 			
 			
@@ -89,11 +83,6 @@ public class ReportRequestServlet extends HttpServlet {
 	        try {
 	        	/* request를 파싱하여 데이터 하나 하나를 FileItem 인스턴로 반환한다. */
 				List<FileItem> fileItems = fileUpload.parseRequest(request);
-				
-				for(FileItem item : fileItems) {
-					/* 폼 데이터는 isFormField 속성이 true이고, 파일은 isFormField 속성이 false이다. */
-					System.out.println(item);
-				}
 				
 				/* 위에서 출력해본 모든 item들을 다 처리할 것이다. */
 				for(int i = 0; i < fileItems.size(); i++) {
@@ -144,15 +133,11 @@ public class ReportRequestServlet extends HttpServlet {
 					}
 				}
 				
-				System.out.println("parameter : " + parameter);
-				System.out.println("fileList : " + fileList);
-				
 				int reqNo = Integer.parseInt(parameter.get("reqNo"));
 				int reportCategoryCode = Integer.parseInt(parameter.get("reportCategory"));
 				String body = parameter.get("body");
 				ReportService reportService = new ReportService();
 				RequestDTO req = reportService.selectUserNo(reqNo);
-				System.out.println("userNo : " + req.getMemNoUser());
 				
 				ReportDTO report = new ReportDTO();
 				report.setReportCategoryCode(reportCategoryCode);

@@ -16,8 +16,6 @@ public class AccountAuthorizeServlet extends HttpServlet {
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
 		
-		System.out.println("code : " + code);
-		System.out.println("state : " + state);
 	}
 
 	

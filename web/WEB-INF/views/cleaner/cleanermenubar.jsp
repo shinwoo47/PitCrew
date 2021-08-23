@@ -64,11 +64,11 @@
                         </nav>
 						<div class="header__search">
                             <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></span>
                             </c:if>
                             <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
                             </c:if>
                         </div>
                     </div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>맡겨줘 홈즈 관리자 모드</title>
 <style>
 	table{
 		margin-top: 100px;
@@ -57,13 +57,4 @@
 		</div>
 </body>
 
-<script>
-	window.onload = function() {
-		
-		console.log($("#memNo")[0].value);
-		console.log("hi")
-	}
-	
-	
-</script>
 </html>

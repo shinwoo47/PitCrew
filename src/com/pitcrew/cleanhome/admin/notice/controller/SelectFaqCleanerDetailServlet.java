@@ -15,12 +15,10 @@ public class SelectFaqCleanerDetailServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no = Integer.parseInt(request.getParameter("no"));
-		System.out.println("게시글 번호 넘어옴 : " + no);
 		
 		NoticeDTO faqDTO = new NoticeService().selectFaqDetail(no);
 		
-		System.out.println("controller : " + faqDTO);
-		
+	
 		String path = "";
 		if(faqDTO != null) {
 			path = "/WEB-INF/views/admin/notice/faqCleanerDetail.jsp";

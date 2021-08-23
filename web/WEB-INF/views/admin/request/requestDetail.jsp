@@ -143,13 +143,6 @@
       </div>
 	</div>
 	<script>
-		/*	if(document.getElementById("modify")) {
-				const $modify = document.getElementById("modify");
-				//경로와 reqNo를 넘겨서 수정 모달을 띄우기
-				$modify.onclick = function() {
-					location.href = "${ pageContext.servletContext.contextPath }/admin/notice/insert";
-				}
-			}*/
 			$("button[type=reset]").click(function() {
 				
 				if(confirm("목록으로 가시겠습니까?")) {

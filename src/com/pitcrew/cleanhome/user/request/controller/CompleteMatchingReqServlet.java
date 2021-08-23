@@ -31,8 +31,6 @@ public class CompleteMatchingReqServlet extends HttpServlet {
 		/* 사용자의 매칭된 의뢰를 조회하는 리스트*/
 		List<UserRequestDTO> compRegistReq = new MyReqService().compRegistReq(memNoUser);
 		
-		System.out.println("매칭된 의뢰 : " + compRegistReq);
-		
 		String path = "";
 		
 		/* 성공 실패시 페이지 이동*/

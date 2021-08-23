@@ -20,7 +20,6 @@ import com.pitcrew.cleanhome.common.paging.SelectAdminCriteria;
 public class SelectRequestServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("controller 진입 성공");
 
 		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
 		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
@@ -89,8 +88,6 @@ public class SelectRequestServlet extends HttpServlet {
 		RequestService requestService = new RequestService();
 		int totalCount = requestService.selectTotalCount(searchMap);
 
-		System.out.println("totalCount : " + totalCount);
-
 		/* 한 페이지에 보여 줄 게시물 수 */
 		int limit = 15;		
 		/* 한 번에 보여질 페이징 버튼의 갯수 */
@@ -106,12 +103,9 @@ public class SelectRequestServlet extends HttpServlet {
 			selectAdminCriteria = AdminPagenation.getSelectAdminCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
 
-		System.out.println(selectAdminCriteria);
-
 		/* 조회해온다 */
 		List<RequestDTO> requestList = requestService.selectRequestList(selectAdminCriteria);
 
-		System.out.println("requestList : " + requestList);
 
 		String path = "";
 		if(!requestList.isEmpty() || requestList != null) {

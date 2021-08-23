@@ -21,7 +21,6 @@ public class EncodingFilter implements Filter {
 		HttpServletRequest hrequest = (HttpServletRequest) request;
 		if("POST".equals(hrequest.getMethod())) {
 			request.setCharacterEncoding(encodingType);
-			System.out.println("변경된 인코딩 타입 : " + request.getCharacterEncoding());
 		}
 		
 		chain.doFilter(request, response);

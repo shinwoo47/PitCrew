@@ -27,10 +27,8 @@ public class PasswordEncryptFilter implements Filter {
 		HttpServletRequest hrequest = (HttpServletRequest) request;
 		
 		String uri = hrequest.getRequestURI();
-		System.out.println("uri : " + uri);
 		
 		String intent = uri.substring(uri.lastIndexOf("/"));
-		System.out.println("intent : " + intent);
 		
 		/* 로그인 요청이 아닌 경우에만 암호화를 한다. */
 		if(!"/login".equals(intent)) {

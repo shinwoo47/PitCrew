@@ -19,12 +19,6 @@
          <div class="container-fluid dashboard-content">
                 	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
             <h3>해결사 공지사항</h3><br>
-          <!--  <div class="row" style="background-color: #02A79D">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h3 style="color:#fff">No</h3>
-                    </div>
-            </div>-->
-            
           <button type="button" id="writeBoard">글쓰기</button>
          <table id="boardList">
          	<tr>

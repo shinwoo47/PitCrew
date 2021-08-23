@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pitcrew.cleanhome.user.model.dto.CleanDTO;
-import com.pitcrew.cleanhome.user.model.service.SelectCleanService;
 
 @WebServlet("/user/clean/select")
 public class SelectCleanServlet extends HttpServlet {
@@ -23,21 +22,18 @@ public class SelectCleanServlet extends HttpServlet {
 		CleanDTO clean = new CleanDTO();
 		int number = Integer.parseInt(request.getParameter("number")); 
 		if(number ==1) { 
-			System.out.println("1번클릭");
 			clean.setImgNo("roomClean.png");
 			clean.setName("방청소");
 			clean.setPrice(25000);
 			clean.setTime(2);
 			clean.setCleanNo(1);
 		} else if(number == 2) {
-			System.out.println("2번클릭"); 
 			clean.setImgNo("bathroomClean.png");
 			clean.setName("화장실");
 			clean.setPrice(30000);
 			clean.setTime(2);
 			clean.setCleanNo(2);
 		} else if(number == 3) { 
-			System.out.println("3번클릭"); 
 			clean.setImgNo("allClean.png");
 			clean.setName("전체청소");
 			clean.setPrice(55000);
@@ -46,7 +42,6 @@ public class SelectCleanServlet extends HttpServlet {
 		}	
 		String path = "";
 		if (number > 0) {
-			System.out.println("clean" + clean);
 			path = "/WEB-INF/views/user/request/selectcleaning.jsp";
 			request.setAttribute("clean", clean);
 		} else {

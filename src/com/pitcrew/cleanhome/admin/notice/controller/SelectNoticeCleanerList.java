@@ -16,13 +16,9 @@ import com.pitcrew.cleanhome.admin.notice.model.service.NoticeService;
 public class SelectNoticeCleanerList extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("controller 진입성공");
 
 		String forWho = "해결사";
 		List<NoticeDTO> noticeCleanerList = new NoticeService().selectAllNoticeList(forWho);
-
-		System.out.println("controller : " + noticeCleanerList);
-
 
 		String path = "";
 		if(noticeCleanerList != null) {
