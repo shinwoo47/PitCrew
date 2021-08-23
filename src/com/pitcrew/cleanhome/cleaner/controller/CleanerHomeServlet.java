@@ -15,7 +15,7 @@ public class CleanerHomeServlet extends HttpServlet {
 		
 		String path = "/WEB-INF/views/cleaner/home.jsp";
 		
-		request.getRequestDispatcher(path).forward(request, response);
+		request.getRequestDispatcher(path).forward(request, response); 
 		
 	}
 
