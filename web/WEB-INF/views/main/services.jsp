@@ -39,7 +39,7 @@
                         <h2>간단하고 편리한 </h2>
                         <h2>청소 서비스</h2>
                         <p>필요한 청소만 골라서 신청</p>
-                        <a href="${ pageContext.servletContext.contextPath }/member/login" class="primary-btn1">시작하기</a>
+                        <a href="${ pageContext.servletContext.contextPath }/user/home" class="primary-btn1">시작하기</a>
                     </div>
                 </div>
                 
