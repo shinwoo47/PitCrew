@@ -50,11 +50,6 @@
 		<result property="calDate" column="CAL_DATE"/>
 		<result property="incometax" column="INCOME_TAX"/>
 		<result property="residenttax" column="RESIDENT_TAX"/>
-		
-	</resultMap>
-	
-	
-	<resultMap type="com.pitcrew.cleanhome.admin.calculator.model.dto.CalculatingDTO" id="calculatingResultMap2">
 		<association property="cleaner" resultMap="memberMapForCleaner"/>
 		<association property="request" resultMap="requestResultMap"/>
 	</resultMap>
@@ -75,7 +70,32 @@
 	      FROM REQUEST_SET_PERIOD A
 	</select>
 	
-	<select id="selectCalSetting" resultMap="calculatingResultMap2">
+	<select id="selectAllCount" resultType="_int" parameterType="hashmap">
+		SELECT /* */
+               COUNT(*)
+        FROM REQUEST_INFO A
+	     JOIN MEMBER B ON (A.MEM_NO_CLEANER = B.MEM_NO)
+	    <where>
+	    	B.MEMBER_ROLE = '해결사'
+	    AND A.REQ_STATUS = '완료'	
+	    AND A.REQ_NO NOT IN (SELECT A1.REQ_NO FROM REQUEST_SET_PERIOD A1)
+	     <if test="searchCondition == 'cleanerId'">
+		       AND B.MEM_ID = #{ searchValue } 	
+		 </if>
+		 <if test="searchCondition == 'cleanerName'">
+		       AND B.MEM_NAME = #{ searchValue } 	
+		 </if>
+	     <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
+									or (searchEndDate != null and !"".equals(searchEndDate)) '>
+			     AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
+	    			   AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
+		 </if>
+	    </where> 
+		</select>
+		
+	
+	
+	<select id="selectCalSetting" resultMap="calculatingResultMap" parameterType="hashmap">
 	     SELECT  
 	          D.RNUM 		
 		    , D.REQ_NO
@@ -153,7 +173,8 @@
  	   WHERE SEQUENCE_NAME = 'SEQ_REQUEST_SET_PERIOD'   
    </select>
 
-   <insert id="insertCal">
+   <insert id="insertCal" parameterType="hashmap">
+   
         INSERT /* */
           INTO SET_HISTORY A
         (
@@ -167,38 +188,16 @@
         )
         VALUES
         (
+        <foreach collection="buckit" item="item" separator=",">
           SEQ_SET_HISTORY.NEXTVAL
-        , #{ cleanerNo }
-        , #{ cleanerIncome }
-        , #{ cleanerTransferPrice }
+        , #{ item.memNo }
+        , #{ item.calcPrice }
+        , #{ item.transferPrice }
         , SYSDATE
-        , #{ incometax }
-        , #{ residenttax }
+        , #{ item.incometax }
+        , #{ item.residenttax }
         )
-	</insert>
-	
-	<insert id="insertReqNum">
-        INSERT /* */
-          INTO SET_HISTORY A
-        (
-          A.CAL_NO
-        , A.MEM_NO
-        , A.CAL_PRICE
-        , A.CAL_TRANSFER_PRICE
-        , A.CAL_DATE
-        , A.INCOME_TAX
-        , A.RESIDENT_TAX
-        )
-        VALUES
-        (
-          SEQ_SET_HISTORY
-        , #{ memNo }
-        , #{ calcPrice }
-        , #{ transferPrice }
-        , SYSDATE
-        , #{ transferPrice }
-        , #{ residentTax }
-        )
+     </foreach>   
 	</insert>
 
 	<insert id="insertStatus">
@@ -219,28 +218,7 @@
         )
 	</insert>
 
-	<select id="selectAllCount" resultType="_int" parameterType="hashmap">
-		SELECT /* */
-               COUNT(*)
-        FROM REQUEST_INFO A
-	     JOIN MEMBER B ON (A.MEM_NO_CLEANER = B.MEM_NO)
-	    <where>
-	    	B.MEMBER_ROLE = '해결사'
-	    AND A.REQ_STATUS = '완료'	
-	    AND A.REQ_NO NOT IN (SELECT A1.REQ_NO FROM REQUEST_SET_PERIOD A1)
-	     <if test="searchCondition == 'cleanerId'">
-		       AND B.MEM_ID = #{ searchValue } 	
-		 </if>
-		 <if test="searchCondition == 'cleanerName'">
-		       AND B.MEM_NAME = #{ searchValue } 	
-		 </if>
-	     <if test='(searchStartDate != null and !"".equals(searchStartDate)) 
-									or (searchEndDate != null and !"".equals(searchEndDate)) '>
-			     AND  A.REQ_DATE BETWEEN TO_DATE(#{ searchStartDate }, 'YYYY-MM-DD')
-	    			   AND TO_DATE(#{ searchEndDate }, 'YYYY-MM-DD') + 1             
-		 </if>
-	    </where> 
-		</select>
+	
 		
 		<select id="selectCalList" resultMap="calculatingResultMap">
      	   	   SELECT A.RNUM

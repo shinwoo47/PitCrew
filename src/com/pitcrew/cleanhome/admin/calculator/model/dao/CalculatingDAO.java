@@ -19,10 +19,10 @@ public class CalculatingDAO {
 		return session.selectList("CalculatingDAO.selectCalCheck");
 	}
 	
-	
-	public List<CalculatingDTO> selectCalSetting(SqlSession session, Map<String, String> searchMap) {
+	/* 정산 기초자료 조회 */
+	public List<CalculatingDTO> selectCalSetting(SqlSession session, SelectAdminCriteriaForCal selectAdminCriteriaForCal) {
 		
-		return session.selectList("CalculatingDAO.selectCalSetting", searchMap);
+		return session.selectList("CalculatingDAO.selectCalSetting", selectAdminCriteriaForCal);
 	}
 
 	public DeductRateDTO selectdeductRate(SqlSession session) {
@@ -31,10 +31,10 @@ public class CalculatingDAO {
 	}
 
 	/* 정산 대기 등록*/
-	public int insertReqNum(SqlSession session, Map<String, List<CalListDTO>> buckitList) {
+	public int insertCal(SqlSession session, Map<String, List<CalListDTO>> buckitList) {
 	
 		
-		return session.insert("CalculatingDAO.insertReqNum", buckitList);
+		return session.insert("CalculatingDAO.insertCal", buckitList);
 	}
 
 

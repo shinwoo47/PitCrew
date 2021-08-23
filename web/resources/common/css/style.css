@@ -168,6 +168,20 @@ ol {
 	letter-spacing: 1px;
 }
 
+.primary-btn1 {
+	display: inline-block;
+	font-size: 15px;
+	padding: 10px 10px 10px 10px;
+	margin: 10px 30px 30px 30px;
+	color: #ffffff;
+	text-transform: uppercase;
+	font-weight: 700;
+	background: #02A79D;
+	border-radius: 1px;
+	border-color: #ffff00;
+	letter-spacing: 1px;
+}
+
 .site-btn {
 	font-size: 15px;
 	color: #ffffff;
@@ -256,9 +270,11 @@ ol {
 /*---------------------
   Header
 -----------------------*/
-
+.header {
+	
+}
 .header__top {
-	background: #02A79D;
+	
 }
 
 .header__top__widget {
@@ -363,7 +379,7 @@ ol {
 }
 
 .header__logo {
-	padding: 30px 0;
+	padding: 20px 0;
 }
 
 .header__logo a {
@@ -382,7 +398,7 @@ ol {
 .header__menu ul li {
 	list-style: none;
 	display: inline-block;
-	margin-right: 65px;
+	margin-right: 45px;
 	position: relative;
 }
 
@@ -462,7 +478,7 @@ ol {
 }
 
 .header__search i {
-	font-size: 18px;
+	font-size: 19px;
 	color: #323232;
 	cursor: pointer;
 }
@@ -480,7 +496,7 @@ ol {
 -----------------------*/
 
 .hero {
-	padding: 170px 0;
+	padding: 300px 0;
 }
 
 .hero__text {
@@ -502,6 +518,7 @@ ol {
 
 .hero__text .primary-btn {
 	margin-right: 16px;
+	background-color: #02A79D;
 }
 
 .hero__text .primary-btn.howit-btn {
@@ -1038,7 +1055,8 @@ ol {
 
 .footer {
 	background: #182143;
-	padding-top: 75px;
+	text-align: right;
+	padding: 20px;
 }
 
 .footer__about {
