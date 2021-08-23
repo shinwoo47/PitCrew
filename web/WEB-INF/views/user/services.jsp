@@ -34,9 +34,10 @@
 		font_size: 16px;
 		positon: absolute;
 	}
-	.header__top {
-	background: #02A79D;
-}
+	.cass {
+		padding: 38px 0px 33px;
+	}
+
 </style>
 
 </head>
@@ -50,15 +51,7 @@
                     <div class="col-lg-9">
                     </div>
                     <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
-                            </c:if>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -66,6 +59,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
+                <div class="cass">
+                <a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.png" alt=""></a>
+                </div>
                     <div class="header__logo">
                         <a><br><br><br><img src=" ${ pageContext.servletContext.contextPath }/resources/user/img/user/infor.png" alt="pit"></a>  
                     </div>
@@ -90,6 +86,15 @@
                                 </li>
                             </ul>
                         </nav>
+                        <div class="header__top__language">
+                            <c:if test="${ empty sessionScope.loginMember }">
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
+                            </c:if>
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
+                            </c:if>
+                        </div>
                         <div class= "reqs_rs" align="center"><br><br>
                         <h3 id="rses">준비  및  유의  사항</h3><br>
                         <h3>청소도구를준비해주세요.</h3><br>

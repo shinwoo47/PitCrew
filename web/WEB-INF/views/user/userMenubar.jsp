@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/user/css/style.css" type="text/css">
 	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>	
+	
 <style>
 .btn_z {
 	width: 120px;
@@ -37,7 +38,10 @@
 	}
 
 .header__top {
-	background: #02A79D;
+	background: white;
+}
+.col-lg-3 {
+	padding: 38px 0px 33px;
 }
 </style>
 </head>
@@ -48,25 +52,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
-                    	<a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/userLogo.PNG" alt=""></a>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
-                            </c:if>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
+                    	<a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.png" alt=""></a>
                 </div>
                 <div class="col-lg-9">
                     <div class="header__nav">
@@ -89,6 +83,15 @@
                                 </li>
                             </ul>
                         </nav>
+                        <div class="header__top__language">
+                            <c:if test="${ empty sessionScope.loginMember }">
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a></span>
+                            </c:if>
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h6>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</a></span>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -334,7 +334,6 @@ ol {
 }
 
 .header__top__language {
-	background: #88C417;
 	padding: 11px 20px;
 	float: right;
 	position: relative;
@@ -398,7 +397,6 @@ ol {
 }
 
 .header__logo {
-	padding: 10x 0;
 	width: 200%;
     height: 600px;
 }
