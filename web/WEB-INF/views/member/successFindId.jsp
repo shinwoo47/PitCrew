@@ -76,8 +76,10 @@
 		</div>
 		<div class="card-body">
 	 	<p class="text2"></p>
+	 	<h3 align="center">회원님의 아이디는</h3>
+	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	 	<c:set var="myId" value="${ selectMyId }"/>
-	 	<h2 align="center">${ myId.id }</h2>
+	 	<h5 align="center">${ myId.id } 입니다.</h5>
 	 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
    		<p class="check" id="check"></p><br/>
    		<button id="loginBtn" class="btn btn-lg btn-primary btn-block">로그인</button>

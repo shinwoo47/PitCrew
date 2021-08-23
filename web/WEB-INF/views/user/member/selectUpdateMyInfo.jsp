@@ -37,7 +37,7 @@ table.type09 tbody th {
     background: skyblue;
 }
 table.type09 td {
-    width: 350px;
+    width: 430px;
     padding: 10px;
     vertical-align: top;
     border-bottom: 1px solid #ccc;

@@ -85,11 +85,11 @@
         <input type="text" name="memName" id="memName" class="form-control" placeholder="이름" required><BR>
         <input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
         <p class="checks" id="checks">${findpw_checkf}</p><br/>
-        <button id="findPwdBtn" class="btn btn-lg btn-primary btn-block">비밀번호 찾기</button>
+        <button id="findPwdBtn" class="btn btn-lg btn-primary btn-block">인증번호 발급</button>
       </form>
 		</div>
         <div class="links">
-            <a href="${ pageContext.servletContext.contextPath }/member/findId">아이디 찾기</a> | <a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a> | <a href="${ pageContext.servletContext.contextPath }/member/regist">회원가입</a>
+          <a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a> | <a href="${ pageContext.servletContext.contextPath }/member/findId">아이디 찾기</a> | <a href="${ pageContext.servletContext.contextPath }/member/regist">회원가입</a>
         </div>
 	</div>
 </body>

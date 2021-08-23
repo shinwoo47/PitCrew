@@ -30,10 +30,6 @@ public class FindIdServlet extends HttpServlet {
 		findMyId.setMemName(memName);
 		findMyId.setEmail(email);
 		
-		
-		/*아이디 비밀번호 찾기 폼에서 입력한 값 */
-		System.out.println("findMyId : " + findMyId);
-		
 		/* 아이디 불러온 값*/
 		MemberDTO selectMyId = new MemberService().selectMyId(findMyId);
 		

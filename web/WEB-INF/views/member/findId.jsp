@@ -81,8 +81,12 @@
         		<input type="text" name="memName" id="memName" class="form-control" placeholder="이름" required autofocus><BR>
         		<input type="email" name="email" id="email" class="form-control" placeholder="이메일" required><br>
        			<p class="check" id="check">${check}</p><br/>
-       			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">인증번호 발송</button>
+       			<button id="submitBtn" class="btn btn-lg btn-primary btn-block" type="submit">아이디 찾기</button>
      		</form>
+     		&nbsp;
+			<div class="links">
+			<a href="${ pageContext.servletContext.contextPath }/member/login">로그인</a> | <a href="${ pageContext.servletContext.contextPath }/member/findPwd">비밀번호 찾기</a> | <a href="${ pageContext.servletContext.contextPath }/member/regist">회원가입</a>
+			</div>	
 		</div>
 	</div>
 </body>
