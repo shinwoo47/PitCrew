@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/slicknav.min.css" type="text/css"> 
     <link rel="stylesheet" href="${ pageContext.servletContext.contextPath }/resources/common/css/style.css" type="text/css"> 
 <title>Insert title here</title>
+<style>
+	.header__nav {
+	padding: 20px; 0px;
+	}
+</style>
 </head>
 <body>
 	
@@ -26,40 +31,18 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.PNG" alt=""></a>
-                    </div>
-                    
-                    <div class="col-lg-3">
-                        <div class="header__top__language">
-                            <c:if test="${ empty sessionScope.loginMember }">
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
-                            </c:if>
-                            <c:if test="${ !empty sessionScope.loginMember }">
-                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
-                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
-                            </c:if>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"></a>
+                        <a href="${ pageContext.servletContext.contextPath }/main"><img src="${ pageContext.servletContext.contextPath }/resources/images/main/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="header__nav">
                         <nav class="header__menu">
                             <ul>
-                                <li class="active"><a href="${ pageContext.servletContext.contextPath }/cleaner/home">Home</a></li>
+                                <li><a href="${ pageContext.servletContext.contextPath }/cleaner/home">Home</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/enroll">청소 서비스</a></li>
                                 <li><a href="${ pageContext.servletContext.contextPath }/cleaner/request/manage">일정 관리</a></li>
                                
@@ -79,7 +62,15 @@
                                 </li>
                             </ul>
                         </nav>
-
+						<div class="header__search">
+                            <c:if test="${ empty sessionScope.loginMember }">
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/login">로그인</span>
+                            </c:if>
+                            <c:if test="${ !empty sessionScope.loginMember }">
+                            <h6><c:out value="${ sessionScope.loginMember.memName }"/>님 접속</h3>
+                            <span><a href="${ pageContext.servletContext.contextPath }/member/logout">로그아웃</span>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>
