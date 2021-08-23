@@ -373,7 +373,7 @@ body {
 	      var getCheck= RegExp(/^[a-zA-Z0-9]{4,15}$/);
 	      var getName = RegExp(/^[가-힣]+$/);
 	      var getPwd = RegExp(/\w{8,15}$/)
-	      var getPhone = RegExp(/^01(?:0|1|[6-9])-(?:\d{3}|\d{4})-\d{4}$/);
+	      var getPhone = RegExp(/^01(?:0)-(?:\d{3}|\d{4})-\d{4}$/);
 	 	  
 	      //이름 공백 확인
 	      if($("#name").val() == ""){

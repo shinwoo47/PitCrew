@@ -35,6 +35,7 @@
          </form>
     </div> 
   </div> 
+
   <script>
 $('.summernote').summernote({
 	  height: 300,

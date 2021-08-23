@@ -34,12 +34,7 @@
 	<jsp:include page="../cleaner/cleanermenubar.jsp"/>
 	<div align="center" class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
-                	<img src="${ pageContext.servletContext.contextPath }/resources/admin/assets/images/notice.png">
-          <!--  <div class="row" style="background-color: #02A79D">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <h3 style="color:#fff">No</h3>
-                    </div>
-            </div>-->
+                	<img src="${ pageContext.servletContext.contextPath }/resources/cleaner/image/${ category }.png">
            <c:if test="${ category == 'PERSONAL' }">
             <button type="button" id="writeBoard">글쓰기</button>
             </c:if>
@@ -64,6 +59,7 @@
          </table>         
          </div>
     </div>
+ 
     <script>	
     
     if(document.getElementsByTagName("td")) {

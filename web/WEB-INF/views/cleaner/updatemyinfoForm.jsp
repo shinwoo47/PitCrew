@@ -129,7 +129,7 @@ table.type09 td {
      </section>
        
        
-	
+	<jsp:include page="../cleaner/footer.jsp"/>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		const $searchZipCode = document.getElementById("searchZipCode");

@@ -122,6 +122,7 @@ body {
                 </div>
 			</form>
         </div> <!-- ./container -->
+        <jsp:include page="../cleaner/footer.jsp"/>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/jquery-3.3.1.min.js"></script>
     <script src="${ pageContext.servletContext.contextPath }/resources/common/js/bootstrap.min.js"></script>
