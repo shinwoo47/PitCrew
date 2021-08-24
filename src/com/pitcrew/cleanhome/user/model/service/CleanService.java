@@ -17,26 +17,28 @@ public class CleanService {
 	cleanDAO = new CleanDAO();
 	}
 	
+	/* 청소 정보 조회 메소드 */
 	public CleanDTO selectClean(int num) {
 		
 		SqlSession session = getSqlSession();
 		CleanDTO clean = null;
 		
 		clean = cleanDAO.selectClean(session, num);
-		System.out.println("clean : " + clean);
 		
 		session.close();
 		
 		return clean;
 	}
-
+	
+	/* 회원 정보 조회 메소드 */
 	public CleanDTO selectMember(MemberDTO member) {
 		
 		SqlSession session = getSqlSession();
 		CleanDTO clean = null;
 		
 		clean = cleanDAO.selectMember(session, member);
-		System.out.println("clean : " + clean);
+		
+		session.close();
 		
 		return clean;
 	}

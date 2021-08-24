@@ -35,9 +35,6 @@
 			 , A.ADDRESS
 		  FROM MEMBER A
 		 WHERE A.MEM_NO = #{ member.getMemNo() }
-		  
-		
 	</select>
-	
 	
 </mapper>

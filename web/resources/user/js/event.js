@@ -29,14 +29,13 @@ window.onload = function() {
 	}
 	
 	
-	
+	/* 자세히 보기 클릭시 팝업 함수 실행 */
 	if(document.getElementById("popup")) {
 	      const $popup = document.getElementById("popup");
 	      $popup.onclick = function() {
 	         var url = "/pitcrew/user/clean/list?number=" + 1;
 	         var name = "test";
-	         var option = "width = 700, height = 800, top = 100, " +
-	            	"left = 300, location = no "
+	         var option = "width = 700, height = 800, top = 100, left = 300, location = no "
 	         window.open(url, name, option);
 	      }
 	   }
@@ -91,24 +90,23 @@ window.onload = function() {
 		}
 	}
 	
-	
+	/* 주문하기 클릭시 함수 실행 */
 	if(document.getElementById("payment")) {
 		const $payment = document.getElementById("payment");
 		$payment.onclick = function() {
 			 
-			 	var now = new Date();
-
-			 	var year = now.getFullYear();
-				var month = now.getMonth()+1;
-				var day = now.getDate();
-
-				var sttDt = $("#start").val();
-				sttDt = sttDt.split("-");
-				var sttYear = sttDt[0];
-				var sttMonth = sttDt[1];
-				var sttDay = sttDt[2];
+			/* 현재 날짜 년, 월, 일  사용자가 입력한 날짜 년, 월, 일로 변수 선언 */
+			 var now = new Date();				
+			 var year = now.getFullYear();
+			var month = now.getMonth()+1;
+			var day = now.getDate();
+			var sttDt = $("#start").val();
+			sttDt = sttDt.split("-");
+			var sttYear = sttDt[0];
+			var sttMonth = sttDt[1];
+			var sttDay = sttDt[2];
 				
-			
+			/* 지난 날짜 선택 불가, 날짜 필수 선택*/
 			if($("#start").val() == "") {
 				alert("날짜를 선택해주세요");
 				return false;

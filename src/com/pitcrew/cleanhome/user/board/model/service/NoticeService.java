@@ -17,17 +17,20 @@ public class NoticeService {
 	public NoticeService() {
 		noticeDAO = new UserNoticeDAO();
 	}
-
+	
+	/* 게시글 목록 불러오기 메소드 */
 	public List<NoticeDTO> selectNoticeList(String category) {
 		
 		SqlSession session = getSqlSession();
 		
 		List<NoticeDTO> noticeList = noticeDAO.selectNoticeList(session, category);
+		
 		session.close();
 		
 		return noticeList;
 	}
 	
+	/* 게시글 세부 내용 불러오기 메소드 */
 	public NoticeDTO selectNoticeDetail(int no) {
 		
 		SqlSession session = getSqlSession();
@@ -38,7 +41,8 @@ public class NoticeService {
 		
 		return noticeDetail;
 	}
-
+	
+	/* 게시글 등록 메소드 */
 	public int insertQeustion(NoticeDTO newNotice) {
 		
 		SqlSession session = getSqlSession();
@@ -56,6 +60,7 @@ public class NoticeService {
 		return result;
 	}
 
+	/* 게시글 업데이트 메소드 */
 	public int updateQuestion(NoticeDTO newNotice) {
 
 		SqlSession session = getSqlSession();
@@ -72,7 +77,8 @@ public class NoticeService {
 
 		return result;
 	}
-
+	
+	/* 게시글 삭제 메소드 */
 	public int deleteNotice(int no) {
 		
 		SqlSession session = getSqlSession();

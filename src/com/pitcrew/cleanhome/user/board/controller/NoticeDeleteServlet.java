@@ -15,19 +15,21 @@ public class NoticeDeleteServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int no = Integer.parseInt(request.getParameter("no"));
+		int no = Integer.parseInt(request.getParameter("no"));		/* 게시글 번호 */
 		
 		NoticeService noticeService = new NoticeService();
 		
+		/* 게시글 삭제 메소드 */
 		int result = noticeService.deleteNotice(no);
 		
 		String path = "";
+		
 		if(result > 0) {
 			path = "/WEB-INF/views/common/success.jsp";
 			request.setAttribute("successCode", "userDeleteQuestion");				
 		} else {
 			path = "/WEB-INF/views/common/failed.jsp";
-			request.setAttribute("message", "공지사항 삭제에 실패하셨습니다.");
+			request.setAttribute("message", "문의사항 삭제에 실패하셨습니다.");
 		}
 	
 		request.getRequestDispatcher(path).forward(request, response);

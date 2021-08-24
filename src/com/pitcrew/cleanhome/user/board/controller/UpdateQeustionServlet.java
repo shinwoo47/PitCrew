@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.pitcrew.cleanhome.user.board.model.dto.NoticeDTO;
 import com.pitcrew.cleanhome.user.board.model.service.NoticeService;
 
-
-
 @WebServlet("/user/notice/update")
 public class UpdateQeustionServlet extends HttpServlet {	
    
@@ -21,7 +19,7 @@ public class UpdateQeustionServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		String path = "";
-		path = "/WEB-INF/views/user/board//noticeUpdateForm.jsp";
+		path = "/WEB-INF/views/user/board/noticeUpdateForm.jsp";
 		request.setAttribute("no", no);
 		
 		request.getRequestDispatcher(path).forward(request, response);
@@ -30,10 +28,9 @@ public class UpdateQeustionServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		int no = Integer.parseInt(request.getParameter("no"));		
-		String title = request.getParameter("title");
-		String content = request.getParameter("editordata");
+		int no = Integer.parseInt(request.getParameter("no"));		/* 게시글 번호 */
+		String title = request.getParameter("title");				/* 제목 */
+		String content = request.getParameter("editordata");		/* 내용*/
 		
 		NoticeService noticeService = new NoticeService();
 		
@@ -41,7 +38,8 @@ public class UpdateQeustionServlet extends HttpServlet {
 		newNotice.setNo(no);
 		newNotice.setTitle(title);
 		newNotice.setContent(content);
-
+		
+		/* 게시글 업데이트 메소드 */
 		int result = noticeService.updateQuestion(newNotice);
 		
 		String path = "";

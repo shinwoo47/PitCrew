@@ -88,6 +88,8 @@
 				</script>
 				
 				<script>
+				
+				/* 뒤로 가기 클릭 시 체크 전체 해제 */
 				window.onpageshow = function(event) {
 				    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
 						var chk = $("#clea").is(":checked");
@@ -133,6 +135,8 @@
         		</div>
         		
         		<script>
+        		
+        		/* 체크시 함수 실행 */
         		$(document).ready(function(){
         			$('#clea').change(function(){ 
         			      if($('#clea').is(":checked")){ 
@@ -150,6 +154,7 @@
         			   });
         			});	
         		
+        		/* 체크시 함수 실행 */
         		$(document).ready(function(){
         			$('#cleb').change(function(){ 
         			      if($('#cleb').is(":checked")){ 

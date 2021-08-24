@@ -16,7 +16,7 @@
 	
 	</resultMap>
 	
-	<select id="selectNoticeList3" resultMap="userNoticeMap"  parameterType="string">
+	<select id="selectNoticeList" resultMap="userNoticeMap"  parameterType="string">
 	    SELECT /**/
 		        A.BOARD_NO
 		      , A.BOARD_TITLE
@@ -35,7 +35,7 @@
 		ORDER BY A.BOARD_WRITE_DATE DESC
 	</select>
 	
-	<select id="selectNoticeDetail3" resultMap="userNoticeMap">
+	<select id="selectNoticeDetail" resultMap="userNoticeMap">
 		SELECT /**/
 			        A.BOARD_NO
 			      , A.BOARD_TITLE

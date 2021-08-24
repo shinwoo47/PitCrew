@@ -21,7 +21,7 @@
 </head>
 <body>
 	<jsp:include page="../userMenubar.jsp"/>
-	<!-- 네비 -->
+	
 	<div class="dashboard-wrapper">
          <div class="container-fluid dashboard-content">
           <form action="${ pageContext.servletContext.contextPath }/user/notice/insert" method="post">
@@ -34,12 +34,13 @@
 		 	</div>
 		 	
 			<div style="text-align:center; padding: 10px; justify-content: space-between;">
-         			<button type="submit" style="background-color: #02A79D; color: white;border-color:transparent; border-radius:0.3rem;">작성완료</button>
-         			<button type="reset" style="background-color: #02A79D; color: white; border-color:transparent; border-radius:0.3rem;">목록으로</button>
+         		<button type="submit" style="background-color: #02A79D; color: white;border-color:transparent; border-radius:0.3rem;">작성완료</button>
+         		<button type="reset" style="background-color: #02A79D; color: white; border-color:transparent; border-radius:0.3rem;">목록으로</button>
          	</div>
          </form>
     </div> 
   </div> 
+  
   <script>
 $('.summernote').summernote({
 	  height: 300,
@@ -47,5 +48,6 @@ $('.summernote').summernote({
 	  focus : true	  
 	});
 </script> 
+
 </body>
 </html>
