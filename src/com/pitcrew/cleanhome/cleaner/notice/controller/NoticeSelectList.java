@@ -22,10 +22,10 @@ public class NoticeSelectList extends HttpServlet {
 		
 		String category = request.getParameter("category");
 		
+		/* 선택한 게시글 종류에 따라 게시글 리스트를 반환*/
 		NoticeService noticeService = new NoticeService();
 		List<NoticeDTO> noticeList = noticeService.selectNoticeList(category);
-		
-		
+				
 		String path= "";
 		if(noticeList != null) {
 			path = "/WEB-INF/views/cleaner/noticeList.jsp";
@@ -37,11 +37,6 @@ public class NoticeSelectList extends HttpServlet {
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

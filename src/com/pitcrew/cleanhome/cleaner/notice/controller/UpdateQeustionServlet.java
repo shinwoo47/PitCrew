@@ -34,13 +34,15 @@ public class UpdateQeustionServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));		
 		String title = request.getParameter("title");
 		String content = request.getParameter("editordata");
-		NoticeService noticeService = new NoticeService();
 		
+		/* 입력받은 값들을 dto에 담기*/
 		NoticeDTO newNotice = new NoticeDTO();
 		newNotice.setNo(no);
 		newNotice.setTitle(title);
 		newNotice.setContent(content);
-
+		
+		/* dto에 저장한 값들을 이용하여 db에 insert한 후 결과 반환*/
+		NoticeService noticeService = new NoticeService();
 		int result = noticeService.updateQuestion(newNotice);
 		
 		String path = "";

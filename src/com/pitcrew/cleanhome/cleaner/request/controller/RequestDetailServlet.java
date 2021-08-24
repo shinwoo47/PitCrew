@@ -20,8 +20,8 @@ public class RequestDetailServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-		int no = Integer.parseInt(request.getParameter("no"));                 //의뢰 번호
-		String status = request.getParameter("status");                        //의뢰 상태
+		int no = Integer.parseInt(request.getParameter("no"));                 
+		String status = request.getParameter("status");                        
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		
@@ -31,28 +31,20 @@ public class RequestDetailServlet extends HttpServlet {
 		requestDto.setReqStatus(status);
 		requestDto.setMemNoCleaner(member.getMemNo());
 		
-		RequestService requestService = new RequestService();
-		
-		RequestDTO requestDetail = requestService.selectRequestDetail(requestDto);  //매칭된 의뢰 상세 조회
+		/* 의뢰 번호에 해당하는 의뢰의 상세 조회 */
+		RequestService requestService = new RequestService();		
+		RequestDTO requestDetail = requestService.selectRequestDetail(requestDto);  
 		
 		String path = "";
 		if(requestDetail != null) {
-			//의뢰 상세조회 성공
 			path = "/WEB-INF/views/cleaner/requestDetails.jsp";               
 			request.setAttribute("requestDetail", requestDetail);
 		} else {
-			//의뢰 상세조회 실패
 			path = "/WEB-INF/views/common.failed.jsp";
 			request.setAttribute("message", "의뢰 상세 조회 실패!");
 		}
 		
 		request.getRequestDispatcher(path).forward(request, response);
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

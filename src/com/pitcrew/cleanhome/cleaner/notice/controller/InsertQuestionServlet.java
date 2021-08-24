@@ -29,21 +29,20 @@ public class InsertQuestionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		int memNo = member.getMemNo();
-		String writer = member.getMemName();
-		
+		String writer = member.getMemName();		
 		String title = request.getParameter("title");
 		String content = request.getParameter("editordata");
 		
-		
-		
-		NoticeService noticeService = new NoticeService();
-		
+		/* 입력한 값들을 dto에 담기*/
 		NoticeDTO newNotice = new NoticeDTO();
 		newNotice.setTitle(title);
 		newNotice.setContent(content);
 		newNotice.setWriterMemberNo(memNo);
 		newNotice.setWriter(writer);
 		newNotice.setForWho("해결사");
+		
+		/* 입력한 값들이 담긴 dto를 이용하여 db에 insert한후 결과를 반환*/
+		NoticeService noticeService = new NoticeService();
 		int result = noticeService.insertQeustion(newNotice);
 		
 		String path = "";

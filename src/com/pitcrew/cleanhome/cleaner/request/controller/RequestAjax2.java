@@ -34,23 +34,18 @@ public class RequestAjax2 extends HttpServlet {
 		MemberDTO member =((MemberDTO) session.getAttribute("loginMember"));
 		int memNo = member.getMemNo();
 		String cleanerMemNo = String.valueOf(memNo);
-		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String FormDate = "";
+		Date date3;
 
 		Map<String, Object> searchMap = new HashMap<>();
 		searchMap.put("memNoCleaner",cleanerMemNo);
 		
-		/* 전체 게시물 수가 필요하다.
-		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
-		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
-		 * */
+		/* 로그인 세션의 회원 번호에 해당하는 모든 의뢰 내역을 리스트로 반환*/
 		RequestService requestService = new RequestService();
-
-		String FormDate = "";
-		Date date3;
+		List <FullCalendarDTO> calendarList = requestService.selectCalendar(searchMap);     
 		
-		List <FullCalendarDTO> calendarList = requestService.selectCalendar(searchMap);     //캘린더에 추가할 일정 조회
-		
+		/* 반환된 리스트에서 의뢰 상태에 따라 색깔을 지정하여 의뢰 상태를 구분*/
 		for(int i = 0; i < calendarList.size(); i++) {
 			try {
 				date3 = format.parse(calendarList.get(i).getStart());

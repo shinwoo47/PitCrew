@@ -127,7 +127,6 @@ public class ReportRequestServlet extends HttpServlet {
 						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
 						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
 						 * */
-//						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						
 					}
@@ -139,13 +138,15 @@ public class ReportRequestServlet extends HttpServlet {
 				ReportService reportService = new ReportService();
 				RequestDTO req = reportService.selectUserNo(reqNo);
 				
+				/* 폼 데이터로 전달받은 데이터를 dto에 담기*/
 				ReportDTO report = new ReportDTO();
 				report.setReportCategoryCode(reportCategoryCode);
 				report.setMemNoReporter(memNo);
 				report.setMemNoSucpect(req.getMemNoUser());
 				report.setReportBody(body);
 				report.setReqNo(reqNo);
-								
+				
+				/* 파일 데이터로 전달받은 데이터를 리스트를 생성하여 입력받은 파일의 갯수만큼 리스트에 저장*/
 				List<ReportAttachmentDTO> reportAttachmentList = new ArrayList<>();
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
@@ -159,8 +160,8 @@ public class ReportRequestServlet extends HttpServlet {
 					reportAttachmentList.add(tempFileInfo);
 				}
 				
-				int result = reportService.insertReport(report, reportAttachmentList);    
-				
+				/* 폼 데이터인 신고내역과와 파일 데이터인 신고 첨부파일을 전달하여 각각 db에 입력한 후에 성공 여부를 반환*/
+				int result = reportService.insertReport(report, reportAttachmentList);    				
 				
 				String path = ""; 
 				if(result > 0) { 

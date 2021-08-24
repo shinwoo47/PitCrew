@@ -19,13 +19,12 @@ public class CalculateDetailServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int calNo = Integer.parseInt(request.getParameter("no"));
-		
+		int calNo = Integer.parseInt(request.getParameter("no"));		
 		
 		CalculateService calculateService = new CalculateService();
 		
-		List<CalculateByRequestDTO> calculateList = calculateService.selectCalculateDetail(calNo);
-		
+		/* 선택한 월의 정산 번호를 이용하여 해당 월의 의뢰별 정산내역을 리스트로 반환*/
+		List<CalculateByRequestDTO> calculateList = calculateService.selectCalculateDetail(calNo);		
 		
 		String path = "";
 		if(calculateList != null) {
@@ -38,11 +37,6 @@ public class CalculateDetailServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(path).forward(request, response);
 
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

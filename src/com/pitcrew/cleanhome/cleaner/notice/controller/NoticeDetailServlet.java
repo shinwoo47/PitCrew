@@ -18,7 +18,8 @@ public class NoticeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
-				
+		
+		/* 선택한 게시글의 번호를 이용하여 게시글의 상세 내용 dto로 반환 */
 		NoticeService noticeService = new NoticeService();
 		NoticeDTO noticeDetail = noticeService.selectNoticeDetail(no);
 				
@@ -35,8 +36,5 @@ public class NoticeDetailServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(path).forward(request, response);
 	}
-
-	
-	
 
 }

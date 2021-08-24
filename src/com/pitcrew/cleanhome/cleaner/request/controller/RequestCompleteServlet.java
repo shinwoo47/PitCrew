@@ -17,7 +17,7 @@ import com.pitcrew.cleanhome.member.model.dto.MemberDTO;
 public class RequestCompleteServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("no"));                 //의뢰 번호                      //의뢰 상태
+		int no = Integer.parseInt(request.getParameter("no"));                
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		
@@ -27,8 +27,9 @@ public class RequestCompleteServlet extends HttpServlet {
 		requestDto.setMemNoCleaner(member.getMemNo());
 
 		RequestService requestService = new RequestService();
-
-		int result = requestService.completeRequest(requestDto);                           //의뢰 매칭(의뢰해결사등록)(의뢰 상태 '매칭'으로 변경)(의뢰 히스토리 내역 입력)
+		
+		/* 선택한 의뢰를 완료상태로 변경후 성공 여부를 반환*/
+		int result = requestService.completeRequest(requestDto);                           
 		
 		String path = "";
 		if(result > 0) {

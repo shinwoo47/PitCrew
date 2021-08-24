@@ -65,14 +65,11 @@
       calendar.render();
       
       var date = calendar.getDate();
-      	var year = date.getFullYear();
-      	var month = date.getMonth();
-      	console.log(year)
-      	console.log(month)
-      	var firstDate = new Date(year + "-" + (month + 1) + "-" + "02")
-      	console.log("firstDate" + firstDate)
+      var year = date.getFullYear();
+      var month = date.getMonth();
+      var firstDate = new Date(year + "-" + (month + 1) + "-" + "02")
       var searchDate = firstDate.toISOString();
-        console.log(searchDate);
+      	
         $.ajax({
 			url: "${ pageContext.servletContext.contextPath }/cleaner/request/ajax",
 			type: "get",
@@ -80,22 +77,19 @@
 				date : searchDate
 			},
 			success: function(data, textStatus, xhr) {
-				console.log(data);
 				removeDiv();
 				createDiv(data)
 				
 				
 			},
 			error: function(xhr, status, error) {
-				console.log(xhr);
 			}
     	});
+        
         var arr = getCalendarDataInDB();
         
         function getCalendarDataInDB(){
-    	    //배열 초기화
 
-    	      console.log("ajax2 : " + searchDate)
     	    var arr = [];
     	    $.ajax({
 
@@ -104,7 +98,6 @@
     	        success:function(data){
     	        	for(var i in data) {
     	    			var calendar2 = data[i];
-						console.log(calendar2)
 						calendar.addEvent( calendar2);
     	        	}
     	        	

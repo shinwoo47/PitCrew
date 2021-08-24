@@ -111,7 +111,6 @@ public class RequestAttachServlet extends HttpServlet {
 						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
 						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
 						 * */
-//						parameter.put(item.getFieldName(), item.getString());
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						
 					}
@@ -119,6 +118,7 @@ public class RequestAttachServlet extends HttpServlet {
 				
 				int reqNo = Integer.parseInt(parameter.get("reqNo"));
 				
+				/* 파일 데이터의 값들을 파일별로 리스트에 저장*/
 				List<RequestAttachmentDTO> reportAttachmentList = new ArrayList<>();
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
@@ -132,6 +132,7 @@ public class RequestAttachServlet extends HttpServlet {
 					reportAttachmentList.add(tempFileInfo);
 				}
 				
+				/* 파일 리스트를 전달하여 db에 등록한 후 성공여부 반환*/
 				RequestService requestService = new RequestService();
 				int result = requestService.insertPictures(reportAttachmentList);    
 				
@@ -147,7 +148,8 @@ public class RequestAttachServlet extends HttpServlet {
 				request.getRequestDispatcher(path).forward(request, response);
 				
 			} catch (Exception e) {
-				//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.
+
+				
 				int cnt = 0;
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);

@@ -26,17 +26,13 @@ public class EnrollRequestListServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/* 목록보기를 눌렀을 시 가장 처음에 보여지는 페이지는 1페이지이다.
-		 * 파라미터로 전달되는 페이지가 있는 경우 currentPage는 파라미터로 전달받은 페이지 수 이다.
-		 * */
 		String currentPage = request.getParameter("currentPage");
 		int pageNo = 1;
 		
 		if(currentPage != null && !"".equals(currentPage)) {
 			pageNo = Integer.parseInt(currentPage);
 		}
-	
-		/* 0보다 작은 숫자값을 입력해도 1페이지를 보여준다 */
+
 		if(pageNo <= 0) {
 			pageNo = 1;
 		}
@@ -47,39 +43,32 @@ public class EnrollRequestListServlet extends HttpServlet {
 			searchDate = (request.getParameter("searchDate"));
 		}
 		
-		
+		/* 입력받은 장소와 날짜를 검색 맵에 입력 */
 		Map<String, String> searchMap = new HashMap<>();
 		searchMap.put("searchValue", searchValue);
 		searchMap.put("searchDate", searchDate);
-		
-		/* 전체 게시물 수가 필요하다.
-		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
-		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
-		 * */
+
+		/* 검색 맵을 이용하여 조회할 리스트의 갯수를 반환*/
 		RequestService requestService = new RequestService();
 		int totalCount = requestService.selectTotalCount(searchMap);
 		
+		/* 한 번에 보여줄 목록의 갯수*/
+		int limit = 10;		
 		
-		/* 한 페이지에 보여 줄 게시물 수 */
-		int limit = 10;		//얘도 파라미터로 전달받아도 된다.
-		/* 한 번에 보여질 페이징 버튼의 갯수 */
+		/* 페이징 버튼의 최대 갯수*/
 		int buttonAmount = 5;
-		
-		/* 페이징 처리를 위한 로직 호출 후 페이징 처리에 관한 정보를 담고 있는 인스턴스를 반환받는다. */
-		SelectCriteria selectCriteria = null;
-		
+
+		/* 페이징을 위해 설정한 값들을 이용하여 검색하기 위한 dto를 생성자를 이용하여 생성*/
+		SelectCriteria selectCriteria = null;		
 		if((searchDate != null && !"".equals(searchDate)) || (searchValue != null && !"".equals(searchValue))) {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount, searchValue, searchDate);
 		} else {
 			selectCriteria = Pagenation.getSelectCriteria(pageNo, totalCount, limit, buttonAmount);
 		}
 		
-		
-		/* 조회해온다 */
+		/* 검색을 위한 dto를 이용하여 조건에 맞는 리스트를 반환*/
 		List<RequestDTO> requestList = requestService.selectRequestList(selectCriteria);
-		DateFormat format = new SimpleDateFormat("yyyyy.MMMMM.dd GGG hh:mm aaa");
-
-		
+	
 		String path = "";
 		if(requestList != null) {
 			path = "/WEB-INF/views/cleaner/request.jsp";
@@ -92,14 +81,6 @@ public class EnrollRequestListServlet extends HttpServlet {
 		
 		request.getRequestDispatcher(path).forward(request, response);
 		
-		
-		
-	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

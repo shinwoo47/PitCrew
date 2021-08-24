@@ -22,25 +22,15 @@ public class SelectAccountServlet extends HttpServlet {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		
 		AccountService accountService = new AccountService();
+		
+		/* 로그인한 회원의 회원번호와 일치하는 해결사 추가 정보 조회*/
 		CleanerInfoDTO cleanerInfo = accountService.selectCleanerInfo(member.getMemNo());
 		
-		String path = "";
-		if(member != null) {
-			path = "/WEB-INF/views/cleaner/accountlist.jsp";		
-			request.setAttribute("member", member);
-			request.setAttribute("account", cleanerInfo);
-		} else {
-			//실패
-		}
-		
-		
-		request.getRequestDispatcher(path).forward(request, response);
-	}
-
+		String path = "/WEB-INF/views/cleaner/accountlist.jsp";	
+		request.setAttribute("member", member);
+		request.setAttribute("account", cleanerInfo);
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.getRequestDispatcher(path).forward(request, response);
 	}
 
 }

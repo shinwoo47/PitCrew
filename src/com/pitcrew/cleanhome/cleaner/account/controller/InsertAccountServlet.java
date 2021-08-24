@@ -46,9 +46,10 @@ public class InsertAccountServlet extends HttpServlet {
 		accountHistory.setPreBankName(bank);
 		accountHistory.setPreAccountNo(accountNumber);
 		
-			
 		AccountService accountService = new AccountService();
-		int result = accountService.updateAccount(account, accountHistory);             //해결사 계좌 등록 , 해결사 계좌 기록 등록
+		
+		/* 해결사 계좌등록, 해결사 계좌 기록 등록 후 성공 여부 반환*/
+		int result = accountService.updateAccount(account, accountHistory);            
 		
 		String path = "";
 		if(result > 0) {

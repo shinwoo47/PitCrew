@@ -27,6 +27,7 @@ public class RequestAcceptCheckServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		
+		/* 로그인 세션을 이용하여 매칭된 모든 의뢰를 리스트로 반환*/
 		RequestService requestService = new RequestService();
 		List<RequestDTO> requestList = requestService.requestAcceptCheck(member);
 		
@@ -36,13 +37,13 @@ public class RequestAcceptCheckServlet extends HttpServlet {
 		try {
 			reqDate = format.parse(stringDate);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		/* 반환받은 리스트에서 현재 시간과 6시간이내에 해당하는 의뢰가 있으면 1을 반환*/
 		int result = 0;
 		for(int i = 0; i < requestList.size(); i++) {
-			if(Math.abs(reqDate.getTime() - requestList.get(i).getReqDate().getTime()) / (60 * 60 * 1000) < 6) {   				//선택한 의뢰 시간 - 이미 매칭된 의뢰 시간이 6시간이하면 실패처리			
+			if(Math.abs(reqDate.getTime() - requestList.get(i).getReqDate().getTime()) / (60 * 60 * 1000) < 6) {   							
 				result = 1;
 				break;
 			}

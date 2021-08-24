@@ -18,8 +18,8 @@ public class NoticeDeleteServlet extends HttpServlet {
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		
-		NoticeService noticeService = new NoticeService();
-		
+		/* 선택된 게시글 번호에 해당하는 게시글을 비활성화시키고 성공여부 반환*/
+		NoticeService noticeService = new NoticeService();		
 		int result = noticeService.deleteNotice(no);
 		
 		String path = "";

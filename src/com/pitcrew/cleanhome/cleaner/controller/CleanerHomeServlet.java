@@ -19,6 +19,4 @@ public class CleanerHomeServlet extends HttpServlet {
 		
 	}
 
-	
-
 }

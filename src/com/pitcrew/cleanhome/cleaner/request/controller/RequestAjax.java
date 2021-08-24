@@ -38,8 +38,7 @@ public class RequestAjax extends HttpServlet {
 			requestStatus = "매칭              ";
 		}
 		
-		String cleanerMemNo = String.valueOf(memNo);
-		
+		String cleanerMemNo = String.valueOf(memNo);	
 		String date = (request.getParameter("date"));
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date date2;
@@ -48,31 +47,21 @@ public class RequestAjax extends HttpServlet {
 			date2 = simpleDateFormat.parse(date);
 			searchDate = simpleDateFormat.format(date2);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-
-		
+	
+		/* 전달받은 의뢰 일자와 의뢰 상태, 로그인 세션의 회원번호를 맵에 저장*/
 		Map<String, Object> searchMap = new HashMap<>();
 		searchMap.put("searchDate", searchDate);
 		searchMap.put("reqStatus", requestStatus);
 		searchMap.put("memNoCleaner",cleanerMemNo);
-		
-		/* 전체 게시물 수가 필요하다.
-		 * 데이터베이스에서 먼저 전체 게시물 수를 조회해올 것이다.
-		 * 검색조건이 있는 경우 검색 조건에 맞는 전체 게시물 수를 조회한다.
-		 * */
+
 		RequestService requestService = new RequestService();
-
-
 		
-		/* 조회해온다 */
+		/* 맵을 이용하여 해당하는 의뢰 리스트를 반환*/
 		List<RequestDTO> requestList = requestService.selectCleanerRequestList(searchMap);
-
 		
 		String jsonString = new Gson().toJson(requestList);
-		
 		
 		response.setContentType("application/json; charset=UTF-8");
 		PrintWriter out = response.getWriter();
