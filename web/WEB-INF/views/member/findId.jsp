@@ -18,58 +18,64 @@
     <style>
         @import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 	
-	html {
-		height: 100%;
-	}
+		html {
+			height: 100%;
+		}
+		
+		body {
+		    width:100%;
+		    height:100%;
+		    margin: 0;
+	  		padding-top: 200px;
+	  		padding-bottom: 40px;
+	  		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+	  		background-repeat: no-repeat;
+	  		background-color: #eee;
+		}
+		
+	    .card {
+	        margin: 0 auto; /* Added */
+	        float: none; /* Added */
+	        margin-bottom: 10px; /* Added */
+		}
 	
-	body {
-	    width:100%;
-	    height:100%;
-	    margin: 0;
-  		padding-top: 200px;
-  		padding-bottom: 40px;
-  		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
-  		background-repeat: no-repeat;
-  		background-color: #eee;
-	}
+	    #submitBtn {
+	        background-color: skyBlue;
+	        border: none;
+	    }
+		
+		.form-signin .form-control {
+	  		position: relative;
+	  		height: auto;
+	  		-webkit-box-sizing: border-box;
+	     	-moz-box-sizing: border-box;
+	        	 box-sizing: border-box;
+	  		padding: 10px;
+	  		font-size: 16px;
+		}
+	    .card-title {
+	        margin-left: 30px;
+	    }
+	    
+		 .links {
+	        text-align: center;
+	        margin-bottom: 10px;
+	    }
 	
-    .card {
-        margin: 0 auto; /* Added */
-        float: none; /* Added */
-        margin-bottom: 10px; /* Added */
-	}
-
-    #submitBtn{
-        background-color: skyBlue;
-        border: none;
-    }
+	    a { 
+	    	color: #f58b34; text-decoration: none; 
+	    }
+	    
+	    .text2 {
+	    	color : blue;
+	    }
+    
+	</style>
 	
-	.form-signin .form-control {
-  		position: relative;
-  		height: auto;
-  		-webkit-box-sizing: border-box;
-     	-moz-box-sizing: border-box;
-        	 box-sizing: border-box;
-  		padding: 10px;
-  		font-size: 16px;
-	}
-    .card-title{
-        margin-left: 30px;
-    }
-	 .links{
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    a{ 
-    	color: #f58b34; text-decoration: none; 
-    }
-    .text2{
-    	color : blue;
-    }
-    </style>
 </head>
 <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
+	
+	<!-- 아이디 찾기 폼 -->
 	<h2 align="center">아이디 찾기</h2>
 	<div class="card align-middle" style="width:25rem;">
 		<div class="card-title" style="margin-top:30px;">
@@ -88,5 +94,7 @@
 			</div>	
 		</div>
 	</div>
+	
+	<!-- 아이디 찾기 폼 끝-->
 </body>
 </html>

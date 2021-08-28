@@ -12,12 +12,14 @@ public class UserInfoDAO {
 		
 		return session.selectList("UserInfoDAO.selectMyInfo", memNo);
 	}
-
+	
+	/* 회원 정보를 조회할 메소드 */
 	public List<MemberDTO> selectUpdateMyInfo(SqlSession session, int memNo) {
 		
 		return session.selectList("UserInfoDAO.selectUpdateMyInfo", memNo);
 	}
 
+	/* 회원 정보를 수정할 메소드 */
 	public int updateMyInfo(SqlSession session, MemberDTO updateMember) {
 
 		return session.update("UserInfoDAO.updateMyInfo", updateMember);

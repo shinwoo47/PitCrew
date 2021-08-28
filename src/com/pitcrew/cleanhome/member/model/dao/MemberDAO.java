@@ -56,17 +56,20 @@ public class MemberDAO {
 		
 		return session.selectOne("MemberDAO.selectMemNo");
 	}
-
+	
+	/* 폼에서 입력한 이름과 이메일이 일치하면 해당 아이디를 조회할 수 있는 메소드*/
 	public MemberDTO selectMyId(SqlSession session, MemberDTO findMyId) {
-
+		
 		return session.selectOne("MemberDAO.selectMyId", findMyId);
 	}
-
+	
+	/* 폼에서 입력한 아이디 이름과 이메일이 null값인지 조회하는 메소드*/
 	public MemberDTO selectMyInfo(SqlSession session, MemberDTO setParameter) {
 
 		return session.selectOne("MemberDAO.selectMyInfo", setParameter);
 	}
-
+	
+	/* 재입력한 비밀번호를 업데이트 해주는 메소드 */
 	public int updateMemberPwd(SqlSession session, MemberDTO updatePwd) {
 		
 		return session.update("MemberDAO.updateMemberPwd", updatePwd);

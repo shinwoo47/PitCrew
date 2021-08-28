@@ -146,6 +146,7 @@
 	     WHERE A.MEM_NO = #{ memNo }
 	</update>
 	
+	<!-- 아이디 찾기 결과 조회 쿼리문 -->
 	<select id="selectMyId" resultMap="memberResultMap">
 		SELECT
 			   MEM_ID

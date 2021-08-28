@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
 	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
     <meta name="description" content="Loanday Template">
     <meta name="keywords" content="Loanday, unica, creative, html">
@@ -44,12 +43,14 @@
 	
 	<jsp:include page="../userMenubar.jsp"/>
 	
-    <!-- Blog Details Section Begin -->
+	
     <section class="blog-details spad">
         <div class="container">
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
                     <div class="blog__details__title">
+                    
+                    	<!-- 의뢰 상세 정보 조회 -->
                         <div class="container">
 						    <h2>의뢰 상세 내역</h2>
 							<p>*확인 필수*</p>            
@@ -61,7 +62,7 @@
 							       </tr>
 							    </thead>
 							    <tbody>
-							      <tr>
+							      	<tr>
 							        	<td>장소</td>
 							        	<td>
 							        	<c:set var="address" value="${ requestDetail.address.address }"/>
@@ -78,7 +79,6 @@
 							        	<td>일시</td>
 							        	<td>${ requestDetail.reqDate }</td>
 							       </tr>
-							        <tr>
 							        <tr>
 							        	<td>시간</td>
 							        	<td><c:set var="sum2" value="0"/>
@@ -112,28 +112,36 @@
                     </div>
                     <div>
                     	<button id="backBtn">뒤로가기</button>
-                    	<c:if test="${ requestDetail.reqStatus eq '완료              ' }">
+                    	
+                    	<!-- 의뢰 조회가 완료된 의뢰일 시 신고하기 버튼을 만들어준다. -->
+                    	<c:if test="${ requestDetail.reqStatus eq '완료              ' }">										
                     	<input type="hidden" name="reqNo" id="reqNo" value="${ requestDetail.reqNo }"/>
                     	<button id="report">신고 하기</button>
                     	</c:if>
                     </div>
 				</div>
 			</div>				
-		</div>				
+		</div>
+		
+		<!-- 의뢰 상세보기 조회 끝 -->				
     </section>	
     
-    <script>
-    
-    $("#report").on("click", function(){ 
-		const no = $("#reqNo").val();
-		console.log(no)
-		location.href = "${ pageContext.servletContext.contextPath }/user/request/report?no=" + no;
-
-	});
-    
-    $("#backBtn").on("click", function() {
-    	location.href= "${ pageContext.servletContext.contextPath}/user/select/myRequest";
-    });
-    </script>			                    
+	<script>
+		
+		/* 신고하기 버튼 */
+	    $("#report").on("click", function(){
+			const no = $("#reqNo").val();
+			console.log(no)
+			location.href = "${ pageContext.servletContext.contextPath }/user/request/report?no=" + no;
+	
+		});
+		
+		/*뒤로가기 버튼*/
+	    $("#backBtn").on("click", function() {
+	    	location.href= "${ pageContext.servletContext.contextPath}/user/select/myRequest";
+	    	
+	    });
+	    	
+	</script>			                    
 </body>
 </html>

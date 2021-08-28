@@ -15,6 +15,7 @@ public class MemberUpdatePassword extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		/* 비밀번호 변경 페이지로 이동한다. */
 		String path = "/WEB-INF/views/member/retypePwd.jsp";
 		
 		request.getRequestDispatcher(path).forward(request, response);
@@ -26,15 +27,15 @@ public class MemberUpdatePassword extends HttpServlet {
 		/* 인증키와 아까 넣어둔 세션의 값을 비교해서 맞지않으면 다른곳으로 보내고 맞으면 비밀번호 변경 로직 작성*/
 		String id = request.getParameter("memId");
 		String pwd = request.getParameter("memberPwd");
-		String AuthenticationKey = (String)request.getSession().getAttribute("AuthenticationKey");
-		String certificationNum = request.getParameter("certificationNum");
-
+		String AuthenticationKey = (String)request.getSession().getAttribute("AuthenticationKey");				/* 세션에 저장했던 인증번호 */
+		String certificationNum = request.getParameter("certificationNum");										/* 비밀번호 변경 폼에서 입력했던 인증번호 */
+		
 		String path = "";
 		
 		/* 인증키와 넣어둔 세션의 값이 일치하지 않을시 다시 비밀번호 수정jsp로 넘어감*/
 		if(!AuthenticationKey.equals(certificationNum)) {
-			path = "/WEB-INF/views/common/success.jsp";
-			request.setAttribute("successCode", "inconsistentCertifiNum");
+			path = "/WEB-INF/views/common/failedInput.jsp";
+			request.setAttribute("failedCode", "inconsistentCertifiNum");
 			request.getRequestDispatcher(path).forward(request, response);
 		} else {
 			
@@ -46,7 +47,7 @@ public class MemberUpdatePassword extends HttpServlet {
 			/* MemberDTO에 담아준 id와 pwd를 인자로 넘겨서 업데이트*/
 			int result = new MemberService().updateMemberPwd(updatePwd);
 			
-			
+			/* 비밀번호 업데이트 결과 성공 실패 시 이동하는 페이지 */
 			if(result > 0) {
 				path = "/WEB-INF/views/common/success.jsp";
 				request.setAttribute("successCode", "updatePwd");

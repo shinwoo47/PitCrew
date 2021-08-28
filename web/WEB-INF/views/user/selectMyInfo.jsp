@@ -9,55 +9,60 @@
 <meta charset="UTF-8">
 <script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
 <title>Clean Home</title>
-<style>
+	<style>
 
-	table.type09 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-
-	}
-	table.type09 thead th {
-	    padding: 10px;
-	    font-weight: bold;
-	    vertical-align: top;
-	    color: #369;
-	    border-bottom: 3px solid #036;
-	}
-	table.type09 tbody th {
-	    width: 150px;
-	    padding: 10px;
-	    font-weight: bold;
-	    vertical-align: top;
-	    border-bottom: 1px solid #ccc;
-	    background: skyblue;
-	}
-	table.type09 td {
-	    width: 430px;
-	    padding: 10px;
-	    vertical-align: top;
-	    border-bottom: 1px solid #ccc;
-	}
-	.section {
-		padding: 100px;
-	}
+		table.type09 {
+	    border-collapse: collapse;
+	    text-align: left;
+	    line-height: 1.5;
 	
-	div.updateQuitBtn {
-		text-align: center;
-		margin: auto;
-		width: 50%;
-		hiehgt: 60px;
-	}
+		}
+		
+		table.type09 thead th {
+		    padding: 10px;
+		    font-weight: bold;
+		    vertical-align: top;
+		    color: #369;
+		    border-bottom: 3px solid #036;
+		}
+		
+		table.type09 tbody th {
+		    width: 150px;
+		    padding: 10px;
+		    font-weight: bold;
+		    vertical-align: top;
+		    border-bottom: 1px solid #ccc;
+		    background: skyblue;
+		}
+		
+		table.type09 td {
+		    width: 430px;
+		    padding: 10px;
+		    vertical-align: top;
+		    border-bottom: 1px solid #ccc;
+		}
+		
+		.section {
+			padding: 100px;
+		}
+		
+		div.updateQuitBtn {
+			text-align: center;
+			margin: auto;
+			width: 50%;
+			hiehgt: 60px;
+		}
+	
+		.button-myinfo{
+	    	margin-top: 30px;
+	    }
+	    
+		.btn-info{
+	    	margin: 20px 20px 20px 20px;
+	    }
 
-	.button-myinfo{
-    	margin-top: 30px;
-    }
-	.btn-info{
-    	margin: 20px 20px 20px 20px;
-    }
-
-</style> 
-	<meta charset="UTF-8">
+	</style>
+	 
     <meta name="description" content="Loanday Template">
     <meta name="keywords" content="Loanday, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,6 +90,8 @@
 		<article class="article">
 			<h2 align="center">회원 정보</h2>
 			<br><br><br>
+
+			<!-- 회원 정보 조회 -->
 			<table class="type09" align="center">
         	<c:forEach items="${ selectMyInfo }" var="myInfo">
         		<tbody>
@@ -111,6 +118,8 @@
 		          </tbody>
           	</c:forEach>
        		</table>
+       		
+			<!-- 회원 정보 조회 끝-->	
         </article>
     </section>
 	

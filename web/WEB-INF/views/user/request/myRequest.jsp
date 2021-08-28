@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
 	<script src="${ pageContext.servletContext.contextPath }/resources/user/js/event.js"></script>
     <meta name="description" content="Loanday Template">
     <meta name="keywords" content="Loanday, unica, creative, html">
@@ -158,7 +157,6 @@
 	}
 </style>
 </head>
-
 <body>
 	
 	<jsp:include page="../userMenubar.jsp"/>
@@ -172,20 +170,22 @@
 			<input type="button" class="nav-req-btn" id="endReqBtn" value="종료된의뢰"> 
 		</div>
 		<div class="req-list-container">
-			<div id="containerp-list" class="containerp-list">
-			</div>
+			<div id="containerp-list" class="containerp-list"></div>
 		</div>
 	</section>
     <!-- Search End -->
 </body>
-
+	
 	<script>
+	
+	/* DB에서 조회한 의뢰한 내역을 forEach문으로 값을 꺼낸다. 
+	     각 의뢰 항목을 변수에 초기화 해주고 append 메소드를 사용해서 태그에 추가했다.*/
 	<c:forEach var="products" items="${requestScope.selectMyAllReq}" varStatus="status">
-		var grpName = "";
-		var grpPrice = 0;
-		var grpPhone = "";
-		var grpReqDate = "";
-		var grpReqStatus = "";
+		var grpName = "";							/* 의뢰한 청소 이름 */
+		var grpPrice = 0;							/* 의뢰한 총 가격 */
+		var grpPhone = "";							/* 회원의 전화번호 */
+		var grpReqDate = "";						/* 의뢰한 날짜 */
+		var grpReqStatus = "";  					/* 의뢰 상태 */
 		
      	<c:forEach var="product" items="${products.productList}" varStatus="st">
      		grpName += "${product.serName}"
@@ -225,6 +225,7 @@
      	
 	</c:forEach>
 	
+	 /* 등록된 의뢰 정보 확인 */
      if(document.getElementById("registReqBtn")) {
 		 const $registRequest = document.getElementById("registReqBtn");
 		 $registRequest.onclick = function() {
@@ -232,13 +233,15 @@
 		 }
      }
      
+	 /* 매칭 완료된 의뢰 정보 확인*/
      if(document.getElementById("compMatchingReqBtn")) {
          const $endRegistRequest = document.getElementById("compMatchingReqBtn");
     	 $endRegistRequest.onclick = function() {
 			 location.href = "/pitcrew/user/comp/regist/request";
 		 }
      } 
-
+	
+	 /* 종료된 의뢰 정보 확인 */
      if(document.getElementById("endReqBtn")) {
     	 const $endRequest = document.getElementById("endReqBtn");
     	 $endRequest.onclick = function() {
@@ -246,23 +249,22 @@
 		 }
      } 
 	 
+	 /* 의뢰 상세보기를 위한 이벤트
+	 	의뢰 번호를 가지고 와서 URL로 전달*/
      window.onload = function() {
     	 
     	 const $detail = $("div > #req_detailBtn");
     	 const $reqNo = $("div > #reqNo");
-    	 
-    	 console.log($detail)
-    	 console.log($reqNo)
+
     	 $detail.on("click", function(){ 
     		 	const no = this.parentNode.children[0].value;
-				console.log(no)
- 			location.href = "${ pageContext.servletContext.contextPath }/user/request/detail?no=" + no;
+
+    		 	location.href = "${ pageContext.servletContext.contextPath }/user/request/detail?no=" + no;
 
  		});
      }
       
      </script>
-     
      
 </body>
 </html>

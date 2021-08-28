@@ -6,52 +6,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Clean Home</title>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<style>
+	
+	<style>
 
-body {
-	background-color: #ddd;
-}
-
-table.type09 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-
-}
-table.type09 thead th {
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #369;
-    border-bottom: 3px solid #036;
-}
-table.type09 tbody th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-    background: skyblue;
-}
-table.type09 td {
-    width: 430px;
-    padding: 10px;
-    vertical-align: top;
-    border-bottom: 1px solid #ccc;
-}
-.section {
-	padding: 100px;
-}
-
-.updateButton {
-	text-align: center;
-	margin: auto;
-	width: 50%;
-}
-</style> 
+		body {
+			background-color: #ddd;
+		}
+		
+		table.type09 {
+		    border-collapse: collapse;
+		    text-align: left;
+		    line-height: 1.5;
+		
+		}
+		
+		table.type09 thead th {
+		    padding: 10px;
+		    font-weight: bold;
+		    vertical-align: top;
+		    color: #369;
+		    border-bottom: 3px solid #036;
+		}
+		
+		table.type09 tbody th {
+		    width: 150px;
+		    padding: 10px;
+		    font-weight: bold;
+		    vertical-align: top;
+		    border-bottom: 1px solid #ccc;
+		    background: skyblue;
+		}
+		
+		table.type09 td {
+		    width: 430px;
+		    padding: 10px;
+		    vertical-align: top;
+		    border-bottom: 1px solid #ccc;
+		}
+		
+		.section {
+			padding: 100px;
+		}
+		
+		.updateButton {
+			text-align: center;
+			margin: auto;
+			width: 50%;
+		}
+		
+	</style> 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
@@ -73,6 +78,8 @@ table.type09 td {
 	<section class="section">
 	<h2 align="center">정보 수정</h2>
 	<br><br><br><br>
+	
+	<!-- 회원 정보 수정 -->
 	<form name="updateInfo" action="${ pageContext.servletContext.contextPath }/user/member/selectUpdate/myInfo" method="post" onsubmit="return check()">
 	<table class="type09" align="center">
         <c:forEach items="${ selectUpdateMyInfo }" var="selectUpdateMyInfo">
@@ -124,6 +131,8 @@ table.type09 td {
        	<br>
        	<div class="updateButton"><button id="updateMyInfo">수정하기</button></div>
        </form>
+       
+       <!-- 회원 정보 수정 끝 -->
      </section>
        
        
@@ -149,12 +158,14 @@ table.type09 td {
 	<script>
 		
 	function check() {
-		//비밀번호 정규식
+		
+		/* 비밀번호 정규식 */
 		var getPwd = RegExp(/\w{8,15}$/)
-		//이메일 정규식
+		
+		/* 이메일 정규식 */
 		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 		
-		//비밀번호 형식 검사
+		/* 비밀번호 형식 검사 */
 	    if(!getPwd.test($("#memberPwd").val())){
 	        alert("형식에 맞게 입력해주세요");
 	        $("#memberPwd").val("");
@@ -162,7 +173,7 @@ table.type09 td {
 	        return false;
 	    }
         		
-		//비밀번호 비교
+		/* 비밀번호 비교 */
 		if($("#memberPwd").val() != ($("#checkPwd").val())) {
 			alert("비밀번호가 틀렸습니다.");
 			$("#memberPwd").val("");
@@ -171,7 +182,7 @@ table.type09 td {
 			return false;
 		}
 		
-	    //이메일 유효성 검사
+	    /* 이메일 유효성 검사 */
 	    if(!getMail.test($("#udpateEmail").val())){
 	        alert("이메일형식에 맞게 입력해주세요")
 	        $("#udpateEmail").val("");
@@ -179,7 +190,7 @@ table.type09 td {
 	        return false;
 	     }
 	    
-	    //주소 공백 확인
+	    /* 주소 공백 확인 */
 	     if($("#zipCode").val() == ""){
 		        alert("주소를 입력해 주세요");
 		        $("#zipCode").focus();

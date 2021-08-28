@@ -17,7 +17,8 @@ public class UserReportService {
 	public UserReportService() {
 		userReportDAO = new UserReportDAO();
 	}
-
+	
+	/* 신고할 의뢰 번호 조회를 한다.*/
 	public RequestDTO selectCleanerNo(int reqNo) {
 
 		SqlSession session = getSqlSession();
@@ -28,7 +29,8 @@ public class UserReportService {
 		
 		return cleanerNo;
 	}
-
+	
+	/* 폼 데이터와 파일데이터를 insert하기 위한 메소드 */
 	public int insertReport(ReportDTO report, List<ReportAttachmentDTO> reportAttachmentList) {
 		
 		SqlSession session = getSqlSession();

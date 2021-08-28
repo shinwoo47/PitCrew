@@ -120,11 +120,6 @@
 					successMessage = "비밀번호 변경 완료!";
 					break;	
 
-				case "failedInput" : 
-					movePath = "${ pageContext.servletContext.contextPath }/member/findPwd";
-					successMessage = "정보를 다시 입력해주세요!";
-					break;
-					
 				case "insertPicture" : 
 					movePath = "${ pageContext.servletContext.contextPath }/cleaner/home";
 					successMessage = "사진 등록 완료했습니다!";

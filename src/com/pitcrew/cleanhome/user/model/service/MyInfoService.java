@@ -25,8 +25,10 @@ public class MyInfoService {
 		/* 회원 정보를 담은 리스트를 DAO에서 호출 */
 		SqlSession session = getSqlSession();
 		
+		/* 세션과 회원 번호를 DAO로 넘겨줘 회원 정보를 조회한다.*/
 		List<MemberDTO> selectMyInfo = userInfoDAO.selectMyInfo(session, memNo);
 		
+		/* 세션을 닫아준다. */
 		session.close();
 		
 		return selectMyInfo;
@@ -49,14 +51,17 @@ public class MyInfoService {
 		
 		SqlSession session = getSqlSession();
 		
+		/* 세션과 수정한 정보를 담아줬던 updateMember객체를 DAO로 전달해 업데이트 한다.*/
 		int result = userInfoDAO.updateMyInfo(session, updateMember);
 		
+		/* 성공 실패시 로직*/
 		if(result > 0) {
 			session.commit();
 		} else {
 			session.rollback();
 		}
 		
+		/* 세션을 닫아준다. */
 		session.close();
 		
 		return result;

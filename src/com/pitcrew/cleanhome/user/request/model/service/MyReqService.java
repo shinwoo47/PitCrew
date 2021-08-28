@@ -19,13 +19,15 @@ public class MyReqService {
 		
 	}
 	
-	/*한 회원의 모든 의뢰 정보*/
+	/*한 회원의 모든 의뢰 정보를 조회하는 메소드*/
 	public List<UserRequestDTO> selectMyAllReq(int memNoUser) {
 		
 		SqlSession session = getSqlSession();
 		
+		/* DAO에 세션과 회원 번호를 넘겨주고 의뢰 정보를 조회 */
 		List<UserRequestDTO> selectMyAllReq = userReqDAO.selectMyAllReq(session, memNoUser);
 		
+		/* 세션 닫아준다. */
 		session.close();
 		
 		return selectMyAllReq;
@@ -56,7 +58,7 @@ public class MyReqService {
 		return compRegistReq;
 	}
 	
-	/*한 회원의 완료된 정보*/
+	/*한 회원의 종료된 정보*/
 	public List<UserRequestDTO> myeEndRequest(int memNoUser) {
 	
 		SqlSession session = getSqlSession();
@@ -68,13 +70,15 @@ public class MyReqService {
 		return myeEndRequest;
 	}
 	
-	/* 의뢰 상세보기 */
+	/* 의뢰 상세보기를 조회하기 위한 메소드 */
 	public UserRequestDTO selectRequestDetail(UserRequestDTO userRequestDTO) {
 		
 		SqlSession session = getSqlSession();
 		
+		/* DAO에 세션과 회원 번호를 넘겨주고 의뢰 상세정보를 조회한다. */
 		UserRequestDTO requestDetail = userReqDAO.selectRequestDetail(session, userRequestDTO);
 		
+		/* 세션을 닫아준다. */
 		session.close();
 		
 		return requestDetail;

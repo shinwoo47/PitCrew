@@ -36,7 +36,7 @@ public class UserRequestDetailServlet extends HttpServlet {
 		
 		String path = "";
 		
-		/* 성공 실패시 페이지 이동*/
+		/* 조회 결과가 null 값이거나 아닐 때 이동하는 경로*/
 		if(requestDetail != null) {
 			path = "/WEB-INF/views/user/request/requestDetail.jsp";
 			request.setAttribute("requestDetail", requestDetail);

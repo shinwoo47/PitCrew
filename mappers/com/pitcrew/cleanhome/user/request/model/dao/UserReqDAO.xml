@@ -69,6 +69,7 @@
          JOIN PRODUCT_INFO C ON(C.SER_NO = B.SER_NO)
          JOIN MEMBER D ON(A.MEM_NO_USER = D.MEM_NO)
         WHERE A.MEM_NO_USER = #{ memNoUser }
+        ORDER BY A.REQ_DATE ASC
 	</select>
 	
 	<select id="myRegistRequest" resultMap="userRequestResultMap">
@@ -85,6 +86,7 @@
          JOIN MEMBER D ON(A.MEM_NO_USER = D.MEM_NO)
         WHERE A.MEM_NO_USER = #{ memNoUser }
           AND A.REQ_STATUS = '등록'
+          ORDER BY A.REQ_DATE ASC
 	</select>
 	
 	<select id="compRegistReq" resultMap="userRequestResultMap">
@@ -101,6 +103,7 @@
          JOIN MEMBER D ON(A.MEM_NO_USER = D.MEM_NO)
         WHERE A.MEM_NO_USER = #{ memNoUser }
           AND A.REQ_STATUS = '매칭'
+          ORDER BY A.REQ_DATE ASC
 	</select>
 	
 	<select id="myeEndRequest" resultMap="userRequestResultMap">
@@ -117,6 +120,7 @@
          JOIN MEMBER D ON(A.MEM_NO_USER = D.MEM_NO)
         WHERE A.MEM_NO_USER = #{ memNoUser }
           AND A.REQ_STATUS = '완료'
+          ORDER BY A.REQ_DATE ASC
 	</select>
 	
 	<select id="selectRequestDetail" resultMap="userRequestResultMap">

@@ -101,6 +101,7 @@ public class UserReportServlet extends HttpServlet {
 							int dot = originFileName.lastIndexOf(".");
 							String ext = originFileName.substring(dot);
 							
+							/* 문자열이 아니므로 toString()으로 문자열 반환*/
 							String randomFileName = UUID.randomUUID().toString().replace("-", "") + ext;
 							
 							/* 저장할 파일 정보를 담은 인스턴스를 생성하고 */
@@ -109,7 +110,7 @@ public class UserReportServlet extends HttpServlet {
 							/* 저장한다 */
 							item.write(storeFile);
 							
-							/* 필요한 정보를 Map에 담는다. */
+							/* DB에 저장하기 위해 필요한 정보를 Map에 담는다. */
 							Map<String, String> fileMap = new HashMap<>();
 							fileMap.put("filedName", filedName);
 							fileMap.put("originFileName", originFileName);
@@ -121,29 +122,34 @@ public class UserReportServlet extends HttpServlet {
 						}
 						
 					} else {
-						/* 폼 데이터인 경우 */
-						/* 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
+						
+						/* 폼 데이터인 경우 *
+						 * 전송된 폼의 name은 getFiledName()으로 받아오고, 해당 필드의 value는 getString()으로 받아온다. 
 						 * 하지만 인코딩 설정을 하더라도 전송되는 파라미터는 ISO-8859-1로 처리된다.
-						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다.
-						 * */
-//						parameter.put(item.getFieldName(), item.getString());
+						 * 별도로 ISO-8859-1로 해석된 한글을 UTF-8로 변경해주어야 한다. */
+						 
 						parameter.put(item.getFieldName(), new String(item.getString().getBytes("ISO-8859-1"), "UTF-8"));
 						
 					}
 				}
+				
 				int reqNo = Integer.parseInt(parameter.get("reqNo"));
 				int reportCategoryCode = Integer.parseInt(parameter.get("reportCategory"));
 				String body = parameter.get("body");
 				UserReportService userReportService = new UserReportService();
+				
+				/* 신고할 의뢰 번호를 조회하기 위해 DB에서 의뢰 번호를 조회*/
 				RequestDTO req = userReportService.selectCleanerNo(reqNo);
 				
+				/* 폼 데이터로 전달 받은 데이터를 set메소드를 이용해 값을 담아준다.*/
 				ReportDTO report = new ReportDTO();
 				report.setReportCategoryCode(reportCategoryCode);
 				report.setMemNoReporter(memNo);
 				report.setMemNoSucpect(req.getMemNoCleaner());
 				report.setReportBody(body);
 				report.setReqNo(reqNo);
-								
+				
+				/* 파일 데이터를 리스트를 생성해 입력받은 파일의 갯수만큼 리스트에 저장한다.*/
 				List<ReportAttachmentDTO> reportAttachmentList = new ArrayList<>();
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
@@ -157,8 +163,10 @@ public class UserReportServlet extends HttpServlet {
 					reportAttachmentList.add(tempFileInfo);
 				}
 				
+				/* 폼 데이터와 파일데이터를 인자값으로 넘긴 후 db에 insert */
 				int result = userReportService.insertReport(report, reportAttachmentList);
 				
+				/* 성공 실패 시 페이지 이동 */
 				String path = "";
 				
 				if(result > 0) {
@@ -172,7 +180,8 @@ public class UserReportServlet extends HttpServlet {
 				request.getRequestDispatcher(path).forward(request, response);
 				
 	        } catch (Exception e) {
-	        	//어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다.
+	        	
+	        	/* 어떤 종류의 Exception이 발생 하더라도실패 시 파일을 삭제해야 한다. */
 				int cnt = 0;
 				for(int i = 0; i < fileList.size(); i++) {
 					Map<String, String> file = fileList.get(i);
